@@ -1,8 +1,8 @@
 {
   "name": "@pittorica/react",
-  "version": "0.2.1",
+  "version": "0.0.1",
   "private": false,
-  "homepage": "https://github.com/dcdavidev/pittorica#readme",
+  "homepage": "https://github.com/dcdavidev/pittorica",
   "bugs": {
     "url": "https://github.com/dcdavidev/pittorica/issues"
   },
@@ -11,7 +11,7 @@
     "url": "https://github.com/dcdavidev/pittorica.git"
   },
   "license": "MIT",
-  "author": "dcdavidev",
+  "author": "Davide Di Criscito",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -25,7 +25,17 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "pittorica": "workspace:*"
+  },
+  "devDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
   "publishConfig": {
     "access": "public"
   },

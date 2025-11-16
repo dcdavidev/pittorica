@@ -60,5 +60,12 @@
       "tag": true,
       "push": true
     }
+  },
+  "generators": {
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "none"
+      }
+    }
   }
 }

@@ -1,1 +1,1 @@
-console.log('@pittorica/react');
+export * from './lib/react';
