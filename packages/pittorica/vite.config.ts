@@ -21,13 +21,10 @@ export default defineConfig(() => ({
       transformMixedEsModules: true,
     },
     lib: {
+      entry: 'src/index.ts',
       name: 'pittorica',
       fileName: 'index',
       formats: ['es' as const, 'cjs' as const],
-      entry: {
-        index: path.resolve(import.meta.dirname, 'src/index.css'),
-        tokens: path.resolve(import.meta.dirname, 'src/tokens.ts'),
-      },
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.

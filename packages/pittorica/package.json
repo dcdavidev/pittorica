@@ -2,6 +2,16 @@
   "name": "pittorica",
   "version": "0.1.0",
   "private": false,
+  "homepage": "https://github.com/dcdavidev/pittorica#readme",
+  "bugs": {
+    "url": "https://github.com/dcdavidev/pittorica/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcdavidev/pittorica.git"
+  },
+  "license": "MIT",
+  "author": "dcdavidev",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
