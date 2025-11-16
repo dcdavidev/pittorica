@@ -1,0 +1,25 @@
+/* Pittorica Grid Component */
+.picto-grid {
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+/* Responsive columns example */
+@media (max-width: 900px) {
+  .picto-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .picto-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Grid column span utility */
+[class*='picto-grid-col-'] {
+  grid-column: span var(--picto-grid-col-span, 1);
+}
+
+/* Example: .picto-grid-col-6 { --picto-grid-col-span: 6; } */
