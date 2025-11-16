@@ -1,6 +1,12 @@
 # pittorica
 
-soon.
+Pittorica is a painterly, CSS-first UI framework that brings elegant, lightweight structure to modern interfaces.
+
+## Documentation
+
+- [Overview](./docs/overview.md)
+- [Design Tokens](./docs/tokens.md)
+- [Base CSS](./docs/base-css.md)
 
 ---
 
