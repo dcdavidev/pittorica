@@ -1,20 +1,20 @@
 {
   "name": "pittorica",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": false,
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/tokens.d.ts",
-      "import": "./dist/tokens.js",
-      "require": "./dist/tokens.cjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./css": "./dist/index.css"
   },
-  "main": "./dist/tokens.cjs",
-  "module": "./dist/tokens.js",
-  "types": "./dist/tokens.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "style": "./dist/index.css",
   "files": [
     "dist"
