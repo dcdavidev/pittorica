@@ -1,3 +1,5 @@
+import './pittorica.scss';
+
 /**
  * Switch theme by toggling the data-theme attribute on the &lt;html> element.
  * @param theme The theme to set ('light' or 'dark').

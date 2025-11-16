@@ -1,17 +1,3 @@
-/**
- * Pittorica - CSS-first design system
- * Material Design 3 Expressive inspired
- */
-
-/* Design tokens */
-@import './tokens/index.css';
-
-/* Utility classes */
-@import './utilities.css';
-
-/* Base components */
-@import './components.css';
-
 /* Base styles */
 * {
   box-sizing: border-box;
