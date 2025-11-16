@@ -2,8 +2,4 @@
 .picto-box {
   display: block;
   box-sizing: border-box;
-  padding: clamp(0.75rem, 2vw, 1.5rem);
-  background: var(--picto-surface);
-  border-radius: clamp(0.5rem, 2vw, 1rem);
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
 }

@@ -11,6 +11,15 @@
 .picto-bg-error {
   background-color: var(--picto-error);
 }
+.picto-bg-success {
+  background-color: var(--picto-success);
+}
+.picto-bg-info {
+  background-color: var(--picto-info);
+}
+.picto-bg-warning {
+  background-color: var(--picto-warning);
+}
 .picto-bg-surface {
   background-color: var(--picto-surface);
 }
@@ -36,6 +45,8 @@
 .picto-text-background {
   color: var(--picto-background);
 }
+
+/* Semantic text colors */
 .picto-text-success {
   color: var(--picto-success);
 }

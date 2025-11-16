@@ -1,1 +1,1 @@
-export * from './Typography/Typography.js';
+export * from './Box/Box.js';
