@@ -1,0 +1,39 @@
+/**
+ * Elevation tokens - Material Design 3 shadows
+ * Prefix: --picto-*
+ */
+
+:root {
+  /* Shadow levels */
+  --picto-elevation-0: none;
+
+  --picto-elevation-1:
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+
+  --picto-elevation-2:
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+
+  --picto-elevation-3:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+
+  --picto-elevation-4:
+    0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+
+  --picto-elevation-5:
+    0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+
+  /* Semantic elevations */
+  --picto-shadow-none: var(--picto-elevation-0);
+  --picto-shadow-sm: var(--picto-elevation-1);
+  --picto-shadow-md: var(--picto-elevation-2);
+  --picto-shadow-lg: var(--picto-elevation-3);
+  --picto-shadow-xl: var(--picto-elevation-4);
+  --picto-shadow-2xl: var(--picto-elevation-5);
+
+  /* Component-specific shadows */
+  --picto-shadow-button: var(--picto-elevation-0);
+  --picto-shadow-button-hover: var(--picto-elevation-1);
+  --picto-shadow-card: var(--picto-elevation-1);
+  --picto-shadow-dialog: var(--picto-elevation-3);
+  --picto-shadow-menu: var(--picto-elevation-2);
+}

@@ -1,0 +1,40 @@
+/**
+ * Spacing tokens
+ */
+
+:root {
+  /* Base unit */
+  --picto-space-unit: 0.25rem; /* 4px */
+
+  /* Spacing scale (rem) */
+  --picto-space-0: 0;
+  --picto-space-1: 0.25rem; /* 1 unit = 4px */
+  --picto-space-2: 0.5rem; /* 2 units = 8px */
+  --picto-space-3: 0.75rem; /* 3 units = 12px */
+  --picto-space-4: 1rem; /* 4 units = 16px */
+  --picto-space-5: 1.25rem; /* 5 units = 20px */
+  --picto-space-6: 1.5rem; /* 6 units = 24px */
+  --picto-space-7: 1.75rem; /* 7 units = 28px */
+  --picto-space-8: 2rem; /* 8 units = 32px */
+  --picto-space-10: 2.5rem; /* 10 units = 40px */
+  --picto-space-12: 3rem; /* 12 units = 48px */
+  --picto-space-14: 3.5rem; /* 14 units = 56px */
+  --picto-space-16: 4rem; /* 16 units = 64px */
+  --picto-space-20: 5rem; /* 20 units = 80px */
+  --picto-space-24: 6rem; /* 24 units = 96px */
+
+  /* Semantic spacing */
+  --picto-space-xs: var(--picto-space-1);
+  --picto-space-sm: var(--picto-space-2);
+  --picto-space-md: var(--picto-space-4);
+  --picto-space-lg: var(--picto-space-6);
+  --picto-space-xl: var(--picto-space-8);
+  --picto-space-2xl: var(--picto-space-12);
+  --picto-space-3xl: var(--picto-space-16);
+
+  /* Component-specific spacing */
+  --picto-padding-button: var(--picto-space-4);
+  --picto-padding-input: var(--picto-space-3);
+  --picto-padding-card: var(--picto-space-4);
+  --picto-gap-default: var(--picto-space-2);
+}

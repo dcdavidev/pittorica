@@ -1,0 +1,31 @@
+/**
+ * Border radius tokens
+ */
+
+:root {
+  /* Radius scale (rem) */
+  --picto-radius-none: 0;
+  --picto-radius-xs: 0.25rem; /* 4px */
+  --picto-radius-sm: 0.5rem; /* 8px */
+  --picto-radius-md: 0.75rem; /* 12px */
+  --picto-radius-lg: 1rem; /* 16px */
+  --picto-radius-xl: 1.25rem; /* 20px */
+  --picto-radius-2xl: 1.75rem; /* 28px */
+  --picto-radius-full: 9999px;
+
+  /* Shape system (rem) */
+  --picto-shape-corner-none: 0;
+  --picto-shape-corner-extra-small: 0.25rem; /* 4px */
+  --picto-shape-corner-small: 0.5rem; /* 8px */
+  --picto-shape-corner-medium: 0.75rem; /* 12px */
+  --picto-shape-corner-large: 1rem; /* 16px */
+  --picto-shape-corner-extra-large: 1.75rem; /* 28px */
+  --picto-shape-corner-full: 9999px;
+
+  /* Component-specific radius */
+  --picto-radius-button: var(--picto-shape-corner-full);
+  --picto-radius-input: var(--picto-shape-corner-small);
+  --picto-radius-card: var(--picto-shape-corner-medium);
+  --picto-radius-dialog: var(--picto-shape-corner-extra-large);
+  --picto-radius-chip: var(--picto-shape-corner-small);
+}
