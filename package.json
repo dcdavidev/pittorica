@@ -1,18 +1,28 @@
 {
   "name": "@pittorica/source",
   "version": "0.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {},
-  "private": true,
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@cspell/cspell-types": "^9.3.2",
     "@nx/js": "22.0.3",
+    "@nx/vite": "22.0.3",
+    "@nx/web": "22.0.3",
     "@prettier/plugin-xml": "^3.4.2",
     "@swc-node/register": "~1.11.1",
     "@swc/core": "~1.15.2",
     "@swc/helpers": "~0.5.17",
+    "@types/node": "20.19.9",
+    "@vitest/ui": "^3.0.0",
     "commitizen": "^4.3.1",
     "commitlint-config-spellbookx": "^0.4.0",
     "conventional-changelog-conventionalcommits": "^9.1.0",
@@ -21,6 +31,7 @@
     "cz-git": "^1.12.0",
     "eslint": "^9.39.1",
     "eslint-plugin-spellbookx": "^0.3.3",
+    "jiti": "2.4.2",
     "nx": "22.0.3",
     "prettier": "^3.6.2",
     "prettier-config-spellbookx": "^0.4.1",
@@ -33,11 +44,9 @@
     "prettier-plugin-tailwindcss": "^0.7.1",
     "prettier-plugin-toml": "^2.0.6",
     "tslib": "^2.8.1",
-    "typescript": "~5.9.3"
-  },
-  "config": {
-    "commitizen": {
-      "path": "git-cz"
-    }
+    "typescript": "~5.9.3",
+    "vite": "^7.0.0",
+    "vite-plugin-dts": "~4.5.0",
+    "vitest": "^3.0.0"
   }
 }
