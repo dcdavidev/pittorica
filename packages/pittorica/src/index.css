@@ -6,6 +6,9 @@
 /* Design tokens */
 @import './tokens/index.css';
 
+/* Utility classes */
+@import './utilities.css';
+
 /* Base styles */
 * {
   box-sizing: border-box;

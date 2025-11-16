@@ -1,0 +1,19 @@
+/* Typography Utilities */
+.picto-font-display-large {
+  font-size: var(--picto-display-large-size);
+  line-height: var(--picto-display-large-line-height);
+  font-weight: var(--picto-display-large-weight);
+  letter-spacing: var(--picto-display-large-tracking);
+}
+.picto-font-body-large {
+  font-size: var(--picto-body-large-size);
+  line-height: var(--picto-body-large-line-height);
+  font-weight: var(--picto-body-large-weight);
+  letter-spacing: var(--picto-body-large-tracking);
+}
+.picto-font-label-large {
+  font-size: var(--picto-label-large-size);
+  line-height: var(--picto-label-large-line-height);
+  font-weight: var(--picto-label-large-weight);
+  letter-spacing: var(--picto-label-large-tracking);
+}

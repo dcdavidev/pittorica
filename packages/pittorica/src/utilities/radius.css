@@ -1,0 +1,19 @@
+/* Border Radius Utilities */
+.picto-radius-xs {
+  border-radius: var(--picto-radius-xs);
+}
+.picto-radius-sm {
+  border-radius: var(--picto-radius-sm);
+}
+.picto-radius-md {
+  border-radius: var(--picto-radius-md);
+}
+.picto-radius-lg {
+  border-radius: var(--picto-radius-lg);
+}
+.picto-radius-xl {
+  border-radius: var(--picto-radius-xl);
+}
+.picto-radius-full {
+  border-radius: var(--picto-radius-full);
+}

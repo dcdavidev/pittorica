@@ -1,0 +1,38 @@
+/* Color Utilities */
+.picto-bg-primary {
+  background-color: var(--picto-primary);
+}
+.picto-bg-secondary {
+  background-color: var(--picto-secondary);
+}
+.picto-bg-tertiary {
+  background-color: var(--picto-tertiary);
+}
+.picto-bg-error {
+  background-color: var(--picto-error);
+}
+.picto-bg-surface {
+  background-color: var(--picto-surface);
+}
+.picto-bg-background {
+  background-color: var(--picto-background);
+}
+
+.picto-text-primary {
+  color: var(--picto-primary);
+}
+.picto-text-secondary {
+  color: var(--picto-secondary);
+}
+.picto-text-tertiary {
+  color: var(--picto-tertiary);
+}
+.picto-text-error {
+  color: var(--picto-error);
+}
+.picto-text-surface {
+  color: var(--picto-surface);
+}
+.picto-text-background {
+  color: var(--picto-background);
+}
