@@ -39,5 +39,26 @@
         "watchDepsTargetName": "watch-deps"
       }
     }
-  ]
+  ],
+  "release": {
+    "projects": ["packages/*"],
+    "projectsRelationship": "independent",
+    "version": {
+      "conventionalCommits": true,
+      "preVersionCommand": "pnpm install --ignore-scripts && pnpm dlx nx run-many -t build --tui=false"
+    },
+    "changelog": {
+      "workspaceChangelog": false,
+      "projectChangelogs": {
+        "createRelease": "github",
+        "file": false
+      }
+    },
+    "git": {
+      "commit": true,
+      "stageChanges": true,
+      "tag": true,
+      "push": true
+    }
+  }
 }
