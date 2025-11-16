@@ -18,5 +18,6 @@ Pittorica is a modern, CSS-first design system inspired by Material Design 3, Ta
 
 - [Design Tokens](./tokens.md)
 - [Base CSS](./base-css.md)
+- [Utility Classes](./utilities.md)
 
 For more details, see the docs folder.
