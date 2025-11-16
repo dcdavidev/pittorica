@@ -1,0 +1,99 @@
+/* Pittorica Buttons - Material Design 3 inspired */
+
+.picto-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-family: var(--picto-font-family-base);
+  font-size: var(--picto-label-large-size, 1rem);
+  font-weight: var(--picto-label-large-weight, 500);
+  line-height: var(--picto-label-large-line-height, 1.5);
+  letter-spacing: var(--picto-label-large-tracking, 0.03em);
+  border-radius: var(--picto-radius-md, 0.5rem);
+  padding: 0.5em 1.25em;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+  border: none;
+  outline: none;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+}
+
+/* Elevated Button */
+.picto-btn-elevated {
+  background: var(--picto-primary-container);
+  color: var(--picto-on-primary-container);
+  box-shadow: var(--picto-elevation-1, 0 2px 8px rgba(0, 0, 0, 0.08));
+}
+.picto-btn-elevated:hover {
+  background: var(--picto-primary);
+  color: var(--picto-on-primary);
+}
+
+/* Filled Button */
+.picto-btn-filled {
+  background: var(--picto-primary);
+  color: var(--picto-on-primary);
+}
+.picto-btn-filled:hover {
+  background: var(--picto-primary-dark, #0056b3);
+}
+
+/* Tonal Button */
+.picto-btn-tonal {
+  background: var(--picto-secondary-container);
+  color: var(--picto-on-secondary-container);
+}
+.picto-btn-tonal:hover {
+  background: var(--picto-secondary);
+  color: var(--picto-on-secondary);
+}
+
+/* Outlined Button */
+.picto-btn-outlined {
+  background: transparent;
+  color: var(--picto-primary);
+  border: 2px solid var(--picto-outline);
+}
+.picto-btn-outlined:hover {
+  background: var(--picto-primary-container);
+  color: var(--picto-on-primary-container);
+}
+
+/* Text Button */
+.picto-btn-text {
+  background: transparent;
+  color: var(--picto-primary);
+}
+.picto-btn-text:hover {
+  background: var(--picto-primary-container);
+  color: var(--picto-on-primary-container);
+}
+
+/* Disabled State */
+.picto-btn:disabled,
+.picto-btn[aria-disabled='true'] {
+  opacity: 0.5;
+  pointer-events: none;
+  background: var(--picto-surface);
+  color: var(--picto-on-surface);
+  border-color: var(--picto-outline);
+}
+
+/* Icon Button */
+.picto-btn-icon {
+  padding: 0.5em;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  border-radius: 50%;
+  background: var(--picto-surface);
+  color: var(--picto-on-surface);
+}
+.picto-btn-icon:hover {
+  background: var(--picto-primary-container);
+  color: var(--picto-on-primary-container);
+}
