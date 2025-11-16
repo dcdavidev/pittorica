@@ -9,6 +9,9 @@
 /* Utility classes */
 @import './utilities.css';
 
+/* Base components */
+@import './components.css';
+
 /* Base styles */
 * {
   box-sizing: border-box;

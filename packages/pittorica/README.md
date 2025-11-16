@@ -24,6 +24,11 @@ Pittorica is a painterly, CSS-first UI framework that brings elegant, lightweigh
 - [Design Tokens](./docs/tokens.md)
 - [Base CSS](./docs/base-css.md)
 - [Utility Classes](./docs/utilities.md)
+- [Components](./docs/components.md)
+  - [Container](./docs/components/container.md)
+  - [Box](./docs/components/box.md)
+  - [Grid](./docs/components/grid.md)
+  - [Stack](./docs/components/stack.md)
 
 ---
 
