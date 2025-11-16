@@ -2,7 +2,7 @@ import { Box } from '../Box/Box';
 import { Stack } from './Stack';
 
 export default {
-  title: 'Pittorica/Stack',
+  title: 'Layout/Stack',
   component: Stack,
   tags: ['autodocs'],
   argTypes: {

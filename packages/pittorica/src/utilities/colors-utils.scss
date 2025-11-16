@@ -46,6 +46,14 @@
   color: var(--picto-background);
 }
 
+/* Fixed colors for light/dark */
+.picto-text-white {
+  color: #ffffff;
+}
+.picto-text-black {
+  color: #000000;
+}
+
 /* Semantic text colors */
 .picto-text-success {
   color: var(--picto-success);

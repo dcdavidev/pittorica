@@ -3,7 +3,7 @@ import { Grid } from './Grid';
 import { GridItem } from './GridItem';
 
 export default {
-  title: 'Pittorica/Grid',
+  title: 'Layout/Grid',
   component: Grid,
   tags: ['autodocs'],
   argTypes: {

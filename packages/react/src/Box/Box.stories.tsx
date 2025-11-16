@@ -1,7 +1,7 @@
 import { Box } from './Box';
 
 export default {
-  title: 'Pittorica/Box',
+  title: 'Utils/Box',
   component: Box,
   tags: ['autodocs'],
   argTypes: {

@@ -2,7 +2,7 @@ import { Box } from '../Box/Box.js';
 import { Container } from './Container.js';
 
 export default {
-  title: 'Pittorica/Container',
+  title: 'Layout/Container',
   component: Container,
   tags: ['autodocs'],
   argTypes: {
