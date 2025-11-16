@@ -1,4 +1,4 @@
-# @pittorica/react-old
+# @pittorica/react
 
 soon.
 
