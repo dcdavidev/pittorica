@@ -56,3 +56,32 @@
 .picto-text-warning {
   color: var(--picto-warning);
 }
+
+/* On-color text utilities (for contrast on colored backgrounds) */
+.picto-text-on-primary {
+  color: var(--picto-on-primary);
+}
+.picto-text-on-secondary {
+  color: var(--picto-on-secondary);
+}
+.picto-text-on-tertiary {
+  color: var(--picto-on-tertiary);
+}
+.picto-text-on-error {
+  color: var(--picto-on-error);
+}
+.picto-text-on-success {
+  color: var(--picto-on-success);
+}
+.picto-text-on-info {
+  color: var(--picto-on-info);
+}
+.picto-text-on-warning {
+  color: var(--picto-on-warning);
+}
+.picto-text-on-surface {
+  color: var(--picto-on-surface);
+}
+.picto-text-on-background {
+  color: var(--picto-on-background);
+}

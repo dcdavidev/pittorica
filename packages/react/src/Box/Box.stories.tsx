@@ -51,21 +51,21 @@ export const AsSection = {
 export const WithPrimaryColor = {
   args: {
     color: 'primary',
-    children: 'Box with primary background',
+    children: 'Box with primary background and automatic light text contrast',
   },
 };
 
 export const WithErrorColor = {
   args: {
     color: 'error',
-    children: 'Box with error background',
+    children: 'Box with error background and automatic light text contrast',
   },
 };
 
 export const WithSuccessColor = {
   args: {
     color: 'success',
-    children: 'Box with success background',
+    children: 'Box with success background and automatic light text contrast',
   },
 };
 

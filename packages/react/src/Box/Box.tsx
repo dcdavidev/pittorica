@@ -25,13 +25,13 @@ export interface BoxProps extends HTMLAttributes<HTMLElement> {
 
 /**
  * Pittorica Box wrapper. Maps to .picto-box class.
- * A flexible container with optional background color.
+ * A flexible container with optional background color and automatic text contrast.
  * @example
  * <Box>
  *   <Typography variant="body-lg">Transparent box</Typography>
  * </Box>
- * <Box color="primary" styles={{ padding: '1rem' }}>
- *   <Typography variant="body-lg">Box with primary background</Typography>
+ * <Box color="primary">
+ *   <Typography variant="body-lg">Box with primary background and light text</Typography>
  * </Box>
  */
 export const Box: React.FC<BoxProps> = ({
@@ -44,10 +44,11 @@ export const Box: React.FC<BoxProps> = ({
 }) => {
   const Tag: ElementType = as;
   const colorClass = color ? `picto-bg-${color}` : '';
+  const textColorClass = color ? `picto-text-on-${color}` : '';
   return React.createElement(
     Tag,
     {
-      className: clsx('picto-box', colorClass, className),
+      className: clsx('picto-box', colorClass, textColorClass, className),
       style: styles,
       ...rest,
     },
