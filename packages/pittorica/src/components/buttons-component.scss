@@ -10,7 +10,7 @@
   font-weight: var(--picto-label-large-weight, 500);
   line-height: var(--picto-label-large-line-height, 1.5);
   letter-spacing: var(--picto-label-large-tracking, 0.03em);
-  border-radius: var(--picto-radius-md, 0.5rem);
+  border-radius: var(--picto-radius-lg, 0.625rem);
   padding: 0.5em 1.25em;
   cursor: pointer;
   transition:
@@ -23,15 +23,85 @@
   min-height: 2.5rem;
 }
 
+/* Shape variants */
+.picto-btn--round {
+  border-radius: var(--picto-radius-xl, 0.75rem);
+}
+
+.picto-btn--square {
+  border-radius: var(--picto-radius-sm, 0.25rem);
+}
+
+/* Special case: XL round buttons get extra rounded corners */
+.picto-btn--xl.picto-btn--round {
+  border-radius: 2rem;
+}
+
+/* Size variants */
+.picto-btn--xs {
+  font-size: var(--picto-label-small-size, 0.75rem);
+  padding: 0.25em 0.75em;
+  min-height: 2rem;
+}
+
+.picto-btn--sm {
+  font-size: var(--picto-label-medium-size, 0.875rem);
+  padding: 0.375em 1em;
+  min-height: 2.25rem;
+}
+
+.picto-btn--lg {
+  font-size: var(--picto-label-large-size, 1rem);
+  padding: 0.625em 1.5em;
+  min-height: 3rem;
+}
+
+.picto-btn--xl {
+  font-size: var(--picto-headline-small-size, 1.125rem);
+  padding: 0.75em 2em;
+  min-height: 3.5rem;
+  line-height: 1;
+}
+
 /* Elevated Button */
 .picto-btn-elevated {
-  background: var(--picto-primary-container);
-  color: var(--picto-on-primary-container);
+  background: rgba(8, 164, 189, 0.04);
+  color: var(--picto-primary);
   box-shadow: var(--picto-elevation-1, 0 2px 8px rgba(0, 0, 0, 0.08));
 }
 .picto-btn-elevated:hover {
-  background: var(--picto-primary);
-  color: var(--picto-on-primary);
+  background: var(--picto-primary-container);
+  color: var(--picto-on-primary-container);
+}
+
+/* Elevated button color variants with subtle backgrounds */
+.picto-btn-elevated.picto-btn-color-primary {
+  background: rgba(8, 164, 189, 0.04);
+  color: var(--picto-primary);
+}
+.picto-btn-elevated.picto-btn-color-secondary {
+  background: rgba(216, 124, 172, 0.04);
+  color: var(--picto-secondary);
+}
+.picto-btn-elevated.picto-btn-color-tertiary {
+  background: rgba(158, 118, 130, 0.04);
+  color: var(--picto-tertiary);
+}
+.picto-btn-elevated.picto-btn-color-error {
+  background: rgba(155, 41, 21, 0.04);
+  color: var(--picto-error);
+}
+.picto-btn-elevated.picto-btn-color-success {
+  background: rgba(40, 167, 69, 0.04);
+  color: var(--picto-success);
+}
+.picto-btn-elevated.picto-btn-color-info {
+  background: rgba(0, 153, 255, 0.04);
+  color: var(--picto-info);
+}
+.picto-btn-elevated.picto-btn-color-warning {
+  background: rgba(255, 193, 7, 0.04);
+  color: var(--picto-warning);
 }
 
 /* Filled Button */
@@ -45,28 +115,28 @@
 
 /* Tonal Button */
 .picto-btn-tonal {
-  background: var(--picto-secondary-container);
-  color: var(--picto-on-secondary-container);
+  background: var(--picto-tertiary);
+  color: var(--picto-on-tertiary);
 }
 .picto-btn-tonal:hover {
-  background: var(--picto-secondary);
-  color: var(--picto-on-secondary);
+  background: var(--picto-tertiary-dark, #8a6470);
 }
 
 /* Outlined Button */
 .picto-btn-outlined {
   background: transparent;
   color: var(--picto-primary);
-  border: 2px solid var(--picto-outline);
+  border: 2px solid var(--picto-primary);
 }
 .picto-btn-outlined:hover {
   background: var(--picto-primary-container);
   color: var(--picto-on-primary-container);
+  border-color: var(--picto-on-primary-container);
 }
 
 /* Text Button */
 .picto-btn-text {
-  background: transparent;
+  background: rgba(8, 164, 189, 0.04);
   color: var(--picto-primary);
 }
 .picto-btn-text:hover {
@@ -74,14 +144,44 @@
   color: var(--picto-on-primary-container);
 }
 
+/* Text button color variants with subtle backgrounds */
+.picto-btn-text.picto-btn-color-primary {
+  background: rgba(8, 164, 189, 0.04);
+}
+.picto-btn-text.picto-btn-color-secondary {
+  background: rgba(216, 124, 172, 0.04);
+}
+.picto-btn-text.picto-btn-color-tertiary {
+  background: rgba(158, 118, 130, 0.04);
+}
+.picto-btn-text.picto-btn-color-error {
+  background: rgba(155, 41, 21, 0.04);
+}
+.picto-btn-text.picto-btn-color-success {
+  background: rgba(40, 167, 69, 0.04);
+}
+.picto-btn-text.picto-btn-color-info {
+  background: rgba(0, 153, 255, 0.04);
+}
+.picto-btn-text.picto-btn-color-warning {
+  background: rgba(255, 193, 7, 0.04);
+}
+
 /* Disabled State */
-.picto-btn:disabled,
-.picto-btn[aria-disabled='true'] {
-  opacity: 0.5;
+button.picto-btn:disabled,
+button.picto-btn[aria-disabled='true'],
+.picto-btn--disabled {
+  background: var(--picto-neutral-95);
+  color: var(--picto-neutral-40);
+  cursor: not-allowed !important;
   pointer-events: none;
-  background: var(--picto-surface);
-  color: var(--picto-on-surface);
-  border-color: var(--picto-outline);
+  opacity: 1;
+}
+button.picto-btn:disabled:hover,
+button.picto-btn[aria-disabled='true']:hover,
+.picto-btn--disabled:hover {
+  background: var(--picto-neutral-95);
+  color: var(--picto-neutral-40);
 }
 
 /* Icon Button */
@@ -96,4 +196,68 @@
 .picto-btn-icon:hover {
   background: var(--picto-primary-container);
   color: var(--picto-on-primary-container);
+}
+
+/* Color variants */
+.picto-btn-color-primary {
+  background: var(--picto-primary);
+  color: var(--picto-on-primary);
+  border-color: var(--picto-primary);
+}
+.picto-btn-color-primary:hover {
+  background: var(--picto-primary-dark, #0056b3);
+}
+
+.picto-btn-color-secondary {
+  background: var(--picto-secondary);
+  color: var(--picto-on-secondary);
+  border-color: var(--picto-secondary);
+}
+.picto-btn-color-secondary:hover {
+  background: var(--picto-secondary-dark, #b35a8a);
+}
+
+.picto-btn-color-tertiary {
+  background: var(--picto-tertiary);
+  color: var(--picto-on-tertiary);
+  border-color: var(--picto-tertiary);
+}
+.picto-btn-color-tertiary:hover {
+  background: var(--picto-tertiary-dark, #7a5a62);
+}
+
+.picto-btn-color-error {
+  background: var(--picto-error);
+  color: var(--picto-on-error);
+  border-color: var(--picto-error);
+}
+.picto-btn-color-error:hover {
+  background: var(--picto-error-dark, #8b2410);
+}
+
+.picto-btn-color-success {
+  background: var(--picto-success);
+  color: var(--picto-on-success);
+  border-color: var(--picto-success);
+}
+.picto-btn-color-success:hover {
+  background: var(--picto-success-dark, #1e7e34);
+}
+
+.picto-btn-color-info {
+  background: var(--picto-info);
+  color: var(--picto-on-info);
+  border-color: var(--picto-info);
+}
+.picto-btn-color-info:hover {
+  background: var(--picto-info-dark, #0066cc);
+}
+
+.picto-btn-color-warning {
+  background: var(--picto-warning);
+  color: var(--picto-on-warning);
+  border-color: var(--picto-warning);
+}
+.picto-btn-color-warning:hover {
+  background: var(--picto-warning-dark, #d39e00);
 }
