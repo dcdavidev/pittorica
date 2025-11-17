@@ -10,9 +10,6 @@ const meta: Meta<typeof BgBubbles> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    interactive: {
-      control: 'boolean',
-    },
     animationSpeed: {
       control: { type: 'number', min: 5, max: 50 },
     },
@@ -28,20 +25,7 @@ export const Default: Story = {
     children: (
       <div style={{ padding: '2rem' }}>
         <h1>Background Bubbles</h1>
-        <p>Move your mouse to interact with the bubbles!</p>
-      </div>
-    ),
-  },
-};
-
-export const NonInteractive: Story = {
-  args: {
-    style: { height: '100vh' },
-    interactive: false,
-    children: (
-      <div style={{ padding: '2rem' }}>
-        <h1>Static Bubbles</h1>
-        <p>The bubbles don't react to mouse movement.</p>
+        <p>Animated background bubbles with customizable colors and speed.</p>
       </div>
     ),
   },

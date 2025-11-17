@@ -5,13 +5,8 @@ import React from 'react';
 import { motion } from 'motion/react';
 
 interface BgBubblesProps extends React.PropsWithChildren {
-  interactive?: boolean;
   className?: string;
   colors?: string[];
-  transition?: {
-    stiffness: number;
-    damping: number;
-  };
   style?: React.CSSProperties;
   animationSpeed?: number;
 }
@@ -51,16 +46,13 @@ function hexToRgb(hex: string): string {
 }
 
 export default function BgBubbles({
-  interactive = true,
   className = '',
   style,
   children,
   colors = DEFAULT_COLORS,
-  transition = { stiffness: 100, damping: 20 },
   animationSpeed = 15,
 }: BgBubblesProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
   const [bubblePositions, setBubblePositions] = React.useState<
     BubblePosition[]
   >([]);
@@ -104,23 +96,6 @@ export default function BgBubbles({
     // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setBubblePositions(generateBubblePositions());
   }, [generateBubblePositions]);
-
-  React.useEffect(() => {
-    if (!interactive) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = containerRef.current?.getBoundingClientRect();
-      if (!rect) return;
-
-      setMousePosition({
-        x: ((e.clientX - rect.left) / rect.width) * 100,
-        y: ((e.clientY - rect.top) / rect.height) * 100,
-      });
-    };
-
-    globalThis.addEventListener('mousemove', handleMouseMove);
-    return () => globalThis.removeEventListener('mousemove', handleMouseMove);
-  }, [interactive]);
 
   return (
     <div
@@ -190,6 +165,11 @@ export default function BgBubbles({
                 mix-blend-mode: normal;
                 animation: ${animationType} ${speed}s ease-in-out infinite, wander ${speed + 10}s ease-in-out infinite;
                 filter: drop-shadow(0 0 30px rgba(var(--bubble-color-${i}), 0.6));
+                transition: mix-blend-mode 0.3s ease;
+              }
+
+              .bubble-${i}:hover {
+                mix-blend-mode: screen;
               }
             `;
           })
@@ -230,20 +210,6 @@ export default function BgBubbles({
             const pos = bubblePositions[i];
             if (!pos) return null;
 
-            let attractX = 0;
-            let attractY = 0;
-
-            if (interactive) {
-              const dx = mousePosition.x - pos.x;
-              const dy = mousePosition.y - pos.y;
-              const distance = Math.hypot(dx, dy);
-
-              if (distance < 30) {
-                attractX = dx * 0.3;
-                attractY = dy * 0.3;
-              }
-            }
-
             return (
               <motion.div
                 key={color}
@@ -262,26 +228,12 @@ export default function BgBubbles({
                 animate={{
                   opacity: 1,
                   scale: 1,
-                  x: `calc(-50% + ${attractX}px)`,
-                  y: `calc(-50% + ${attractY}px)`,
+                  x: '-50%',
+                  y: '-50%',
                 }}
                 transition={{
                   opacity: { duration: 0.8, ease: 'easeOut', delay: i * 0.05 },
                   scale: { duration: 0.8, ease: 'easeOut', delay: i * 0.05 },
-                  x: interactive
-                    ? {
-                        type: 'spring',
-                        stiffness: transition.stiffness,
-                        damping: transition.damping,
-                      }
-                    : {},
-                  y: interactive
-                    ? {
-                        type: 'spring',
-                        stiffness: transition.stiffness,
-                        damping: transition.damping,
-                      }
-                    : {},
                 }}
               />
             );
