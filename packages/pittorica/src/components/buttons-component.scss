@@ -252,6 +252,10 @@ button.picto-btn[aria-disabled='true']:hover,
   color: var(--picto-on-primary-container);
 }
 
+.picto-btn--square {
+  border-radius: 0.125rem !important;
+}
+
 /* Color variants */
 .picto-btn-color-primary {
   background: var(--picto-primary);
