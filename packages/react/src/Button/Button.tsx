@@ -25,6 +25,7 @@ export type ButtonShape = 'round' | 'square';
 
 export interface ButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
+  href?: string;
   variant?: ButtonVariant;
   color?: ButtonColor;
   size?: ButtonSize;
@@ -82,6 +83,7 @@ export const Button: React.FC<ButtonProps> = ({
   onBlur,
   onMouseDown,
   onMouseUp,
+  href,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -270,6 +272,36 @@ export const Button: React.FC<ButtonProps> = ({
       const spinner = buttonChildren.splice(spinnerIndex, 1)[0];
       buttonChildren.splice(1, 0, spinner); // after startDecorator
     }
+  }
+  if (href) {
+    return React.createElement(
+      'a',
+      {
+        className: clsx(
+          'picto-btn',
+          variantClass,
+          colorClass,
+          sizeClass,
+          shapeClass,
+          disabledClass,
+          stateClass,
+          loadingActiveClass,
+          className
+        ),
+        href,
+        tabIndex: disabled ? -1 : 0,
+        'aria-disabled': disabled,
+        onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+          if (disabled) {
+            e.preventDefault();
+            return;
+          }
+          onClick?.(e as any);
+        },
+        ...rest,
+      },
+      ...buttonChildren
+    );
   }
   return React.createElement(
     'button',
