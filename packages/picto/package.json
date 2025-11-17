@@ -33,5 +33,8 @@
   "nx": {
     "name": "picto"
   },
-  "sass": "./src/index.scss"
+  "sass": "./src/index.scss",
+  "devDependencies": {
+    "postcss-custom-properties": "^14.0.6"
+  }
 }

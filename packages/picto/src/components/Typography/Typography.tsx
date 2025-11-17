@@ -4,7 +4,11 @@ import React from 'react';
 import '../../index.scss';
 
 import { Color } from '../../types/colors';
-import { TypographyVariant } from '../../types/typography';
+import {
+  FontName,
+  FontWeight,
+  TypographyVariant,
+} from '../../types/typography';
 
 export type TypographyAlign = 'left' | 'center' | 'right' | 'justify';
 
@@ -13,6 +17,8 @@ export interface TypographyProps {
   variant?: TypographyVariant;
   color?: Color;
   align?: TypographyAlign;
+  fontWeight?: FontWeight;
+  font?: FontName;
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
@@ -56,11 +62,27 @@ const alignToClass: Record<TypographyAlign, string> = {
   justify: 'picto-text-justify',
 };
 
+const fontWeightToClass: Record<FontWeight, string> = {
+  regular: 'picto-font-weight-regular',
+  medium: 'picto-font-weight-medium',
+  semibold: 'picto-font-weight-semibold',
+  bold: 'picto-font-weight-bold',
+};
+
+const fontToClass: Record<FontName, string> = {
+  serif: 'picto-font-serif',
+  sans: 'picto-font-sans',
+  mono: 'picto-font-mono',
+  display: 'picto-font-display',
+};
+
 export const Typography: React.FC<TypographyProps> = ({
   as: Component = 'span',
   variant = 'body-md',
   color,
   align,
+  fontWeight,
+  font,
   className = '',
   style,
   children,
@@ -69,6 +91,8 @@ export const Typography: React.FC<TypographyProps> = ({
     variantToClass[variant],
     color ? colorToClass[color] : '',
     align ? alignToClass[align] : '',
+    fontWeight ? fontWeightToClass[fontWeight] : '',
+    font ? fontToClass[font] : '',
     className,
   ]
     .filter(Boolean)
