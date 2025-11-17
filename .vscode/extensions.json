@@ -27,6 +27,9 @@
     "foxundermoon.shell-format",
     "timonwong.shellcheck",
     "gruntfuggly.todo-tree",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "syler.sass-indented",
+    "csstools.postcss",
+    "smallcase.postcssense"
   ]
 }

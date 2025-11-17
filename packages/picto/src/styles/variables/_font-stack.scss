@@ -1,0 +1,35 @@
+/**
+ * Font Stack Variables
+ * Core typography tokens for Pittorica.
+ *
+ * Each stack is defined as a single, readable line.
+ * The families are designed to cover Windows, macOS, Linux, and generic fallbacks.
+ */
+
+$font-stack-serif: Georgia, 'Times New Roman', Times, serif;
+
+$font-stack-sans:
+  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+  Arial, sans-serif;
+
+$font-stack-mono:
+  ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, 'Liberation Mono',
+  'Courier New', monospace;
+
+/* Display = sans for consistency, but kept separate for future overrides */
+$font-stack-display: $font-stack-sans;
+
+/**
+ * Semantic registry
+ * Allows you to use font("mono") anywhere.
+ */
+$fonts: (
+  serif: $font-stack-serif,
+  sans: $font-stack-sans,
+  mono: $font-stack-mono,
+  display: $font-stack-display,
+);
+
+@function font($name) {
+  @return map-get($fonts, $name);
+}

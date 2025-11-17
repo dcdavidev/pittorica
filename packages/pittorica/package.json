@@ -16,16 +16,10 @@
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
+    ".": "./dist/index.css",
     "./css": "./dist/index.css"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.css",
   "style": "./dist/index.css",
   "files": [
     "dist",
@@ -44,5 +38,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "sass": "./src/index.scss"
 }

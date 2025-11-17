@@ -1,0 +1,20 @@
+.picto {
+  /* Pittorica Box Component */
+  &-box {
+    /* Base */
+    display: block;
+    box-sizing: border-box;
+
+    &-squared {
+      border-radius: var(--picto-shape-squared, 0.5rem);
+    }
+
+    &-rounded {
+      border-radius: var(--picto-shape-rounded, 1rem);
+    }
+
+    &-circle {
+      border-radius: var(--picto-shape-circle, 50%);
+    }
+  }
+}

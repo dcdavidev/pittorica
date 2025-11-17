@@ -31,7 +31,7 @@ export default {
       options: [
         'primary',
         'secondary',
-        'tertiary',
+        'tonal',
         'error',
         'success',
         'info',
@@ -334,8 +334,8 @@ export const AllVariants = {
           <Button variant="filled" color="secondary">
             Secondary
           </Button>
-          <Button variant="filled" color="tertiary">
-            Tertiary
+          <Button variant="filled" color="tonal">
+            Tonal
           </Button>
           <Button variant="filled" color="error">
             Error

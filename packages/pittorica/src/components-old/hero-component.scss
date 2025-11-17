@@ -1,0 +1,59 @@
+/* Pittorica Hero component base styles */
+.picto-hero {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  display: block;
+  background-color: var(--picto-surface, #e9f1f7);
+}
+
+.picto-hero-primary {
+  background-color: var(--picto-primary);
+  color: var(--picto-on-primary);
+}
+.picto-hero-secondary {
+  background-color: var(--picto-secondary);
+  color: var(--picto-on-secondary);
+}
+.picto-hero-tonal {
+  background-color: var(--picto-tonal);
+  color: var(--picto-on-tonal);
+}
+.picto-hero-error {
+  background-color: var(--picto-error);
+  color: var(--picto-on-error);
+}
+.picto-hero-success {
+  background-color: var(--picto-success);
+  color: var(--picto-on-success);
+}
+.picto-hero-info {
+  background-color: var(--picto-info);
+  color: var(--picto-on-info);
+}
+.picto-hero-warning {
+  background-color: var(--picto-warning);
+  color: var(--picto-on-warning);
+}
+
+/* Sizing variants */
+.picto-hero-sm {
+  padding: var(--space-2, 0.5rem);
+  min-height: 10rem;
+}
+.picto-hero-md {
+  padding: var(--space-4, 1rem);
+  min-height: 12.5rem;
+}
+.picto-hero-lg {
+  padding: var(--space-6, 1.5rem);
+  min-height: 17.5rem;
+}
+.picto-hero-xl {
+  padding: var(--space-8, 2rem);
+  min-height: 22.5rem;
+}
+.picto-hero-xxl {
+  padding: var(--space-10, 2.5rem);
+  min-height: 27.5rem;
+}

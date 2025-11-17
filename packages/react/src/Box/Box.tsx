@@ -1,23 +1,16 @@
-import type { HTMLAttributes, ReactNode } from 'react';
-import type { ElementType } from 'react';
+import type { ElementType, HTMLAttributes, ReactNode } from 'react';
 import React from 'react';
 
 import clsx from 'clsx';
 
-export type BoxColor =
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'error'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'surface'
-  | 'background';
+import type { BoxColor } from '../types/box';
+import type { PictoShape } from '../types/shapes';
+import { shapeClassMap } from '../types/shapes';
 
 export interface BoxProps extends HTMLAttributes<HTMLElement> {
   as?: ElementType;
   color?: BoxColor;
+  shape?: PictoShape;
   className?: string;
   styles?: React.CSSProperties;
   children: ReactNode;
@@ -37,6 +30,7 @@ export interface BoxProps extends HTMLAttributes<HTMLElement> {
 export const Box: React.FC<BoxProps> = ({
   as = 'div',
   color,
+  shape,
   styles,
   children,
   className = '',
@@ -45,10 +39,17 @@ export const Box: React.FC<BoxProps> = ({
   const Tag: ElementType = as;
   const colorClass = color ? `picto-bg-${color}` : '';
   const textColorClass = color ? `picto-text-on-${color}` : '';
+  const shapeClass = shape ? shapeClassMap[shape] : '';
   return React.createElement(
     Tag,
     {
-      className: clsx('picto-box', colorClass, textColorClass, className),
+      className: clsx(
+        'picto-box',
+        colorClass,
+        textColorClass,
+        shapeClass,
+        className
+      ),
       style: styles,
       ...rest,
     },

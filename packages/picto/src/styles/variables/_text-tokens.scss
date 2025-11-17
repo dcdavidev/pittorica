@@ -1,0 +1,155 @@
+/**
+ * Text Tokens
+ * Defines text styles for display, headline, title, body, and label variants.
+ * Each token includes size, line-height, weight, and tracking.
+ */
+// Display Large: Hero, main headings
+$text-display-lg: (
+  size: clamp(2.5rem, 6vw, 3.563rem),
+  // Responsive font size (40px-57px)
+  line-height: clamp(2.75rem, 7vw, 4rem),
+  // Responsive line height (44px-64px)
+  weight: $font-weight-regular,
+  // Regular weight
+  tracking: $letter-spacing-tight, // Tight tracking
+);
+// Display Medium: Section headings
+$text-display-md: (
+  size: clamp(2rem, 5vw, 2.813rem),
+  // 32px-45px
+  line-height: clamp(2.25rem, 6vw, 3.25rem),
+  // 36px-52px
+  weight: $font-weight-regular,
+  // Regular weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Display Small: Subheadings
+$text-display-sm: (
+  size: clamp(1.5rem, 4vw, 2.25rem),
+  // 24px-36px
+  line-height: clamp(1.75rem, 5vw, 2.75rem),
+  // 28px-44px
+  weight: $font-weight-regular,
+  // Regular weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Headline Large: Main headlines
+$text-headline-lg: (
+  size: clamp(1.25rem, 3vw, 2rem),
+  // 20px-32px
+  line-height: clamp(1.5rem, 4vw, 2.5rem),
+  // 24px-40px
+  weight: $font-weight-regular,
+  // Regular weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Headline Medium: Section headlines
+$text-headline-md: (
+  size: clamp(1.125rem, 2.5vw, 1.563rem),
+  // 18px-25px
+  line-height: clamp(1.375rem, 3.5vw, 2rem),
+  // 22px-32px
+  weight: $font-weight-regular,
+  // Regular weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Headline Small: Subsection headlines
+$text-headline-sm: (
+  size: clamp(1rem, 2vw, 1.25rem),
+  // 16px-20px
+  line-height: clamp(1.25rem, 3vw, 1.75rem),
+  // 20px-28px
+  weight: $font-weight-regular,
+  // Regular weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Title Large: Main titles
+$text-title-lg: (
+  size: clamp(1rem, 2vw, 1.375rem),
+  // 16px-22px
+  line-height: clamp(1.25rem, 2.5vw, 1.75rem),
+  // 20px-28px
+  weight: $font-weight-medium,
+  // Medium weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Title Medium: Section titles
+$text-title-md: (
+  size: clamp(0.875rem, 1.5vw, 1.125rem),
+  // 14px-18px
+  line-height: clamp(1.125rem, 2vw, 1.5rem),
+  // 18px-24px
+  weight: $font-weight-medium,
+  // Medium weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Title Small: Subsection titles
+$text-title-sm: (
+  size: clamp(0.75rem, 1vw, 1rem),
+  // 12px-16px
+  line-height: clamp(1rem, 1.5vw, 1.25rem),
+  // 16px-20px
+  weight: $font-weight-medium,
+  // Medium weight
+  tracking: $letter-spacing-wide, // Wide tracking
+);
+// Body Large: Main body text
+$text-body-lg: (
+  size: 1rem,
+  // 16px
+  line-height: 1.5rem,
+  // 24px
+  weight: $font-weight-regular,
+  // Regular weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Body Medium: Secondary body text
+$text-body-md: (
+  size: 0.875rem,
+  // 14px
+  line-height: 1.25rem,
+  // 20px
+  weight: $font-weight-regular,
+  // Regular weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Body Small: Tertiary body text
+$text-body-sm: (
+  size: 0.75rem,
+  // 12px
+  line-height: 1rem,
+  // 16px
+  weight: $font-weight-regular,
+  // Regular weight
+  tracking: $letter-spacing-normal, // Normal tracking
+);
+// Label Large: Main labels
+$text-label-lg: (
+  size: 1rem,
+  // 16px
+  line-height: 1.5rem,
+  // 24px
+  weight: $font-weight-medium,
+  // Medium weight
+  tracking: $letter-spacing-wide, // Wide tracking
+);
+// Label Medium: Secondary labels
+$text-label-md: (
+  size: 0.875rem,
+  // 14px
+  line-height: 1.25rem,
+  // 20px
+  weight: $font-weight-medium,
+  // Medium weight
+  tracking: $letter-spacing-wide, // Wide tracking
+);
+// Label Small: Tertiary labels
+$text-label-sm: (
+  size: 0.75rem,
+  // 12px
+  line-height: 1rem,
+  // 16px
+  weight: $font-weight-medium,
+  // Medium weight
+  tracking: $letter-spacing-wide, // Wide tracking
+);

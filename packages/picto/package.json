@@ -1,0 +1,37 @@
+{
+  "name": "@pittorica/picto",
+  "version": "0.0.1",
+  "private": false,
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@pittorica/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./css": {
+      "sass": "./src/index.scss",
+      "style": "./dist/index.css",
+      "import": "./dist/index.css",
+      "default": "./dist/index.css"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/index.css",
+  "files": [
+    "dist",
+    "src",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "nx": {
+    "name": "picto"
+  },
+  "sass": "./src/index.scss"
+}

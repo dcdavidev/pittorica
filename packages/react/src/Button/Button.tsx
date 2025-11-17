@@ -13,7 +13,7 @@ export type ButtonVariant =
 export type ButtonColor =
   | 'primary'
   | 'secondary'
-  | 'tertiary'
+  | 'tonal'
   | 'error'
   | 'success'
   | 'info'
@@ -291,12 +291,14 @@ export const Button: React.FC<ButtonProps> = ({
         href,
         tabIndex: disabled ? -1 : 0,
         'aria-disabled': disabled,
+        style: { textDecoration: 'none', ...rest.style },
         onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
           if (disabled) {
             e.preventDefault();
             return;
           }
-          onClick?.(e as any);
+          // Simulate button event type for onClick
+          onClick?.(e as unknown as React.MouseEvent<HTMLButtonElement>);
         },
         ...rest,
       },

@@ -1,0 +1,293 @@
+html {
+  font-size: 16px;
+}
+
+html,
+body,
+*,
+*::before,
+*::after {
+  @extend %border-box;
+}
+
+html,
+body {
+  @extend %reset-margins;
+}
+
+body {
+  font-family: var(--picto-font-sans);
+  background-color: var(--picto-color-white);
+  color: var(--picto-color-black);
+
+  .picto-theme-dark {
+    background-color: var(--picto-color-black);
+    color: var(--picto-color-white);
+  }
+
+  .picto-theme-light {
+    background-color: var(--picto-color-white);
+    color: var(--picto-color-black);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.picto-text-display-lg,
+.picto-text-display-md,
+.picto-text-display-sm,
+.picto-text-headline-lg,
+.picto-text-headline-md,
+.picto-text-headline-sm,
+.picto-text-title-lg,
+.picto-text-title-md,
+.picto-text-title-sm,
+.picto-text-body-lg,
+.picto-text-body-md,
+.picto-text-body-sm,
+p {
+  &.picto-text-light {
+    color: var(--picto-text-light);
+  }
+
+  &.picto-text-dark {
+    color: var(--picto-text-dark);
+  }
+
+  &.picto-text-primary {
+    color: var(--picto-text-primary);
+  }
+
+  &.picto-text-accent {
+    color: var(--picto-text-accent);
+  }
+
+  &.picto-text-tonal {
+    color: var(--picto-text-tonal);
+  }
+
+  &.picto-text-info {
+    color: var(--picto-text-info);
+  }
+
+  &.picto-text-success {
+    color: var(--picto-text-success);
+  }
+
+  &.picto-text-warning {
+    color: var(--picto-text-warning);
+  }
+
+  &.picto-text-error {
+    color: var(--picto-text-error);
+  }
+
+  &.picto-text-neutral {
+    color: var(--picto-text-neutral);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.picto-text-display-lg,
+.picto-text-display-md,
+.picto-text-display-sm,
+.picto-text-headline-lg,
+.picto-text-headline-md,
+.picto-text-headline-sm,
+.picto-text-title-lg,
+.picto-text-title-md,
+.picto-text-title-sm {
+  font-family: var(--picto-font-display);
+}
+
+h1,
+.picto-text-display-lg {
+  font-size: var(--picto-text-display-lg);
+  line-height: var(--picto-text-display-lg-line-height);
+  font-weight: var(--picto-text-display-lg-weight);
+  letter-spacing: var(--picto-text-display-lg-tracking);
+}
+
+h2,
+.picto-text-display-md {
+  font-size: var(--picto-text-display-md);
+  line-height: var(--picto-text-display-md-line-height);
+  font-weight: var(--picto-text-display-md-weight);
+  letter-spacing: var(--picto-text-display-md-tracking);
+}
+
+h3,
+.picto-text-display-sm {
+  font-size: var(--picto-text-display-sm);
+  line-height: var(--picto-text-display-sm-line-height);
+  font-weight: var(--picto-text-display-sm-weight);
+  letter-spacing: var(--picto-text-display-sm-tracking);
+}
+
+h4,
+.picto-text-headline-lg {
+  font-size: var(--picto-text-headline-lg);
+  line-height: var(--picto-text-headline-lg-line-height);
+  font-weight: var(--picto-text-headline-lg-weight);
+  letter-spacing: var(--picto-text-headline-lg-tracking);
+}
+
+h5,
+.picto-text-headline-md {
+  font-size: var(--picto-text-headline-md);
+  line-height: var(--picto-text-headline-md-line-height);
+  font-weight: var(--picto-text-headline-md-weight);
+  letter-spacing: var(--picto-text-headline-md-tracking);
+}
+
+h6,
+.picto-text-headline-sm {
+  font-size: var(--picto-text-headline-sm);
+  line-height: var(--picto-text-headline-sm-line-height);
+  font-weight: var(--picto-text-headline-sm-weight);
+  letter-spacing: var(--picto-text-headline-sm-tracking);
+}
+
+.picto-text-title-lg {
+  font-size: var(--picto-text-title-lg);
+  line-height: var(--picto-text-title-lg-line-height);
+  font-weight: var(--picto-text-title-lg-weight);
+  letter-spacing: var(--picto-text-title-lg-tracking);
+}
+
+.picto-text-title-md {
+  font-size: var(--picto-text-title-md);
+  line-height: var(--picto-text-title-md-line-height);
+  font-weight: var(--picto-text-title-md-weight);
+  letter-spacing: var(--picto-text-title-md-tracking);
+}
+
+.picto-text-title-sm {
+  font-size: var(--picto-text-title-sm);
+  line-height: var(--picto-text-title-sm-line-height);
+  font-weight: var(--picto-text-title-sm-weight);
+  letter-spacing: var(--picto-text-title-sm-tracking);
+}
+
+.picto-text-label-lg {
+  font-size: var(--picto-text-label-lg);
+  line-height: var(--picto-text-label-lg-line-height);
+  font-weight: var(--picto-text-label-lg-weight);
+  letter-spacing: var(--picto-text-label-lg-tracking);
+}
+
+.picto-text-label-md {
+  font-size: var(--picto-text-label-md);
+  line-height: var(--picto-text-label-md-line-height);
+  font-weight: var(--picto-text-label-md-weight);
+  letter-spacing: var(--picto-text-label-md-tracking);
+}
+
+.picto-text-label-sm {
+  font-size: var(--picto-text-label-sm);
+  line-height: var(--picto-text-label-sm-line-height);
+  font-weight: var(--picto-text-label-sm-weight);
+  letter-spacing: var(--picto-text-label-sm-tracking);
+}
+
+.picto-text-body-lg {
+  font-size: var(--picto-text-body-lg);
+  line-height: var(--picto-text-body-lg-line-height);
+  font-weight: var(--picto-text-body-lg-weight);
+  letter-spacing: var(--picto-text-body-lg-tracking);
+}
+
+p,
+.picto-text-body-md {
+  font-size: var(--picto-text-body-md);
+  line-height: var(--picto-text-body-md-line-height);
+  font-weight: var(--picto-text-body-md-weight);
+  letter-spacing: var(--picto-text-body-md-tracking);
+}
+
+.picto-text-body-sm {
+  font-size: var(--picto-text-body-sm);
+  line-height: var(--picto-text-body-sm-line-height);
+  font-weight: var(--picto-text-body-sm-weight);
+  letter-spacing: var(--picto-text-body-sm-tracking);
+}
+
+p,
+.picto-text-label-lg,
+.picto-text-label-md,
+.picto-text-label-sm,
+.picto-text-body-lg,
+.picto-text-body-md,
+.picto-text-body-sm {
+  font-family: var(--picto-font-sans);
+}
+
+b,
+strong {
+  font-weight: var(--picto-font-weight-bold);
+
+  &.picto-text-light {
+    color: var(--picto-text-light);
+  }
+
+  &.picto-text-dark {
+    color: var(--picto-text-dark);
+  }
+
+  &.picto-text-primary {
+    color: var(--picto-text-primary);
+  }
+
+  &.picto-text-accent {
+    color: var(--picto-text-accent);
+  }
+
+  &.picto-text-tonal {
+    color: var(--picto-text-tonal);
+  }
+
+  &.picto-text-info {
+    color: var(--picto-text-info);
+  }
+
+  &.picto-text-success {
+    color: var(--picto-text-success);
+  }
+
+  &.picto-text-warning {
+    color: var(--picto-text-warning);
+  }
+
+  &.picto-text-error {
+    color: var(--picto-text-error);
+  }
+
+  &.picto-text-neutral {
+    color: var(--picto-text-neutral);
+  }
+}
+
+.picto-text-right {
+  text-align: right;
+}
+
+.picto-text-center {
+  text-align: center;
+}
+
+.picto-text-left {
+  text-align: left;
+}
+
+.picto-text-justify {
+  text-align: justify;
+}

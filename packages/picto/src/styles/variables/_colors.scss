@@ -1,0 +1,73 @@
+@use 'sass:map';
+@use 'sass:color';
+
+/**
+ * Pittorica Design System – Color Variables
+ *
+ * Base palette + automatic scale generator.
+ * Each color has a single “base” from which a full 100–900 scale is generated.
+ * The generate-scale function creates consistent and readable variations.
+ */
+
+/* Base colors */
+$color-white: #e9f1f7; // System white
+$color-black: #131b23; // System black
+
+$color-primary-base: #08a4bd; // Brand
+$color-accent-base: #d87cac; // Secondary
+$color-tonal-base: #9e7682; // Auxiliary
+$color-error-base: #dc4c26; // Error
+$color-success-base: #28a745; // Success
+$color-info-base: #0099ff; // Info
+$color-warning-base: #ffc107; // Warning
+$color-neutral-base: #787579; // Neutral grey
+
+/**
+ * Generates a Material-like 100–900 scale from a base color.
+ * Uses color.mix for more natural transitions compared to lighten/darken.
+ */
+@function generate-scale($base) {
+  @return (
+    100: color.mix(white, $base, 90%),
+    200: color.mix(white, $base, 70%),
+    300: color.mix(white, $base, 50%),
+    400: color.mix(white, $base, 30%),
+    500: $base,
+    600: color.mix(black, $base, 20%),
+    700: color.mix(black, $base, 40%),
+    800: color.mix(black, $base, 60%),
+    900: color.mix(black, $base, 80%)
+  );
+}
+
+/* Color scales generated automatically */
+$color-primary-scale: generate-scale($color-primary-base);
+$color-accent-scale: generate-scale($color-accent-base);
+$color-tonal-scale: generate-scale($color-tonal-base);
+$color-error-scale: generate-scale($color-error-base);
+$color-success-scale: generate-scale($color-success-base);
+$color-info-scale: generate-scale($color-info-base);
+$color-warning-scale: generate-scale($color-warning-base);
+$color-neutral-scale: generate-scale($color-neutral-base);
+
+/**
+ * Unified color registry for lookup
+ * Allows: color('primary', 300)
+ */
+$colors: (
+  primary: $color-primary-scale,
+  accent: $color-accent-scale,
+  tonal: $color-tonal-scale,
+  error: $color-error-scale,
+  success: $color-success-scale,
+  info: $color-info-scale,
+  warning: $color-warning-scale,
+  neutral: $color-neutral-scale,
+);
+
+/**
+ * Gets a color from the global $colors map.
+ */
+@function color-token($name, $step: 500) {
+  @return map.get(map.get($colors, $name), $step);
+}

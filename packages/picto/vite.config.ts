@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
-  cacheDir: '../../node_modules/.vite/packages/react',
+  cacheDir: '../../node_modules/.vite/packages/picto',
   plugins: [
     react(),
     dts({
@@ -30,8 +30,8 @@ export default defineConfig(() => ({
     },
     lib: {
       // Could also be a dictionary or array of multiple entry points.
-      entry: 'src/index.scss',
-      name: 'react',
+      entry: 'src/index.ts',
+      name: 'picto',
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.

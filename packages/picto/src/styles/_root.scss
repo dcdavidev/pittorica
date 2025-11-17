@@ -1,0 +1,356 @@
+@use 'sass:map';
+
+:root {
+  /* Font Stack */
+  --picto-font-sans: #{font-stack.$font-stack-sans};
+  --picto-font-serif: #{font-stack.$font-stack-serif};
+  --picto-font-mono: #{font-stack.$font-stack-mono};
+  --picto-font-display: #{font-stack.$font-stack-display};
+
+  /* Font Weight */
+  --picto-font-weight-regular: #{font-weight.$font-weight-regular};
+  --picto-font-weight-medium: #{font-weight.$font-weight-medium};
+  --picto-font-weight-semibold: #{font-weight.$font-weight-semibold};
+  --picto-font-weight-bold: #{font-weight.$font-weight-bold};
+
+  /* Letter Spacing */
+  --picto-letter-spacing-tight: #{letter-spacing.$letter-spacing-tight};
+  --picto-letter-spacing-normal: #{letter-spacing.$letter-spacing-normal};
+  --picto-letter-spacing-wide: #{letter-spacing.$letter-spacing-wide};
+  --picto-letter-spacing-wider: #{letter-spacing.$letter-spacing-wider};
+
+  /* Line Height */
+  --picto-line-height-tight: #{line-height.$line-height-tight};
+  --picto-line-height-normal: #{line-height.$line-height-normal};
+  --picto-line-height-relaxed: #{line-height.$line-height-relaxed};
+
+  /* Spacing */
+  --picto-space-xs: #{map.get(spacing.$spacing-semantic, xs)};
+  --picto-space-sm: #{map.get(spacing.$spacing-semantic, sm)};
+  --picto-space-md: #{map.get(spacing.$spacing-semantic, md)};
+  --picto-space-lg: #{map.get(spacing.$spacing-semantic, lg)};
+  --picto-space-xl: #{map.get(spacing.$spacing-semantic, xl)};
+  --picto-space-2xl: #{map.get(spacing.$spacing-semantic, '2xl')};
+  --picto-space-3xl: #{map.get(spacing.$spacing-semantic, '3xl')};
+
+  /* Radius */
+  --picto-radius-none: #{map.get(radius.$radius-semantic, none)};
+  --picto-radius-xs: #{map.get(radius.$radius-semantic, xs)};
+  --picto-radius-sm: #{map.get(radius.$radius-semantic, sm)};
+  --picto-radius-md: #{map.get(radius.$radius-semantic, md)};
+  --picto-radius-lg: #{map.get(radius.$radius-semantic, lg)};
+  --picto-radius-xl: #{map.get(radius.$radius-semantic, xl)};
+  --picto-radius-2xl: #{map.get(radius.$radius-semantic, '2xl')};
+  --picto-radius-full: #{map.get(radius.$radius-semantic, full)};
+
+  /* Shapes */
+  --picto-shape-none: #{map.get(shapes.$shape-semantic, none)};
+  --picto-shape-squared: #{map.get(shapes.$shape-semantic, squared)};
+  --picto-shape-rounded: #{map.get(shapes.$shape-semantic, rounded)};
+  --picto-shape-circle: #{map.get(shapes.$shape-semantic, circle)};
+
+  /* Elevation */
+  --picto-elevation-none: #{map.get(elevation.$elevation-semantic, none)};
+  --picto-elevation-sm: #{map.get(elevation.$elevation-semantic, sm)};
+  --picto-elevation-md: #{map.get(elevation.$elevation-semantic, md)};
+  --picto-elevation-lg: #{map.get(elevation.$elevation-semantic, lg)};
+  --picto-elevation-xl: #{map.get(elevation.$elevation-semantic, xl)};
+  --picto-elevation-2xl: #{map.get(elevation.$elevation-semantic, '2xl')};
+
+  /* Motion */
+  --picto-motion-fast-duration: #{map.get(
+      map.get(motion.$motion-transition-semantic, fast),
+      duration
+    )};
+  --picto-motion-fast-easing: #{map.get(
+      map.get(motion.$motion-transition-semantic, fast),
+      easing
+    )};
+  --picto-motion-normal-duration: #{map.get(
+      map.get(motion.$motion-transition-semantic, normal),
+      duration
+    )};
+  --picto-motion-normal-easing: #{map.get(
+      map.get(motion.$motion-transition-semantic, normal),
+      easing
+    )};
+  --picto-motion-slow-duration: #{map.get(
+      map.get(motion.$motion-transition-semantic, slow),
+      duration
+    )};
+  --picto-motion-slow-easing: #{map.get(
+      map.get(motion.$motion-transition-semantic, slow),
+      easing
+    )};
+
+  /* Colors */
+  --picto-color-black: #{colors.$color-black};
+  --picto-color-white: #{colors.$color-white};
+
+  --picto-color-primary-100: #{map.get(colors.$color-primary-scale, 100)};
+  --picto-color-primary-200: #{map.get(colors.$color-primary-scale, 200)};
+  --picto-color-primary-300: #{map.get(colors.$color-primary-scale, 300)};
+  --picto-color-primary-400: #{map.get(colors.$color-primary-scale, 400)};
+  --picto-color-primary-500: #{map.get(colors.$color-primary-scale, 500)};
+  --picto-color-primary-600: #{map.get(colors.$color-primary-scale, 600)};
+  --picto-color-primary-700: #{map.get(colors.$color-primary-scale, 700)};
+  --picto-color-primary-800: #{map.get(colors.$color-primary-scale, 800)};
+  --picto-color-primary-900: #{map.get(colors.$color-primary-scale, 900)};
+
+  --picto-color-accent-100: #{map.get(colors.$color-accent-scale, 100)};
+  --picto-color-accent-200: #{map.get(colors.$color-accent-scale, 200)};
+  --picto-color-accent-300: #{map.get(colors.$color-accent-scale, 300)};
+  --picto-color-accent-400: #{map.get(colors.$color-accent-scale, 400)};
+  --picto-color-accent-500: #{map.get(colors.$color-accent-scale, 500)};
+  --picto-color-accent-600: #{map.get(colors.$color-accent-scale, 600)};
+  --picto-color-accent-700: #{map.get(colors.$color-accent-scale, 700)};
+  --picto-color-accent-800: #{map.get(colors.$color-accent-scale, 800)};
+  --picto-color-accent-900: #{map.get(colors.$color-accent-scale, 900)};
+
+  --picto-color-tonal-100: #{map.get(colors.$color-tonal-scale, 100)};
+  --picto-color-tonal-200: #{map.get(colors.$color-tonal-scale, 200)};
+  --picto-color-tonal-300: #{map.get(colors.$color-tonal-scale, 300)};
+  --picto-color-tonal-400: #{map.get(colors.$color-tonal-scale, 400)};
+  --picto-color-tonal-500: #{map.get(colors.$color-tonal-scale, 500)};
+  --picto-color-tonal-600: #{map.get(colors.$color-tonal-scale, 600)};
+  --picto-color-tonal-700: #{map.get(colors.$color-tonal-scale, 700)};
+  --picto-color-tonal-800: #{map.get(colors.$color-tonal-scale, 800)};
+  --picto-color-tonal-900: #{map.get(colors.$color-tonal-scale, 900)};
+
+  --picto-color-error-100: #{map.get(colors.$color-error-scale, 100)};
+  --picto-color-error-200: #{map.get(colors.$color-error-scale, 200)};
+  --picto-color-error-300: #{map.get(colors.$color-error-scale, 300)};
+  --picto-color-error-400: #{map.get(colors.$color-error-scale, 400)};
+  --picto-color-error-500: #{map.get(colors.$color-error-scale, 500)};
+  --picto-color-error-600: #{map.get(colors.$color-error-scale, 600)};
+  --picto-color-error-700: #{map.get(colors.$color-error-scale, 700)};
+  --picto-color-error-800: #{map.get(colors.$color-error-scale, 800)};
+  --picto-color-error-900: #{map.get(colors.$color-error-scale, 900)};
+
+  --picto-color-success-100: #{map.get(colors.$color-success-scale, 100)};
+  --picto-color-success-200: #{map.get(colors.$color-success-scale, 200)};
+  --picto-color-success-300: #{map.get(colors.$color-success-scale, 300)};
+  --picto-color-success-400: #{map.get(colors.$color-success-scale, 400)};
+  --picto-color-success-500: #{map.get(colors.$color-success-scale, 500)};
+  --picto-color-success-600: #{map.get(colors.$color-success-scale, 600)};
+  --picto-color-success-700: #{map.get(colors.$color-success-scale, 700)};
+  --picto-color-success-800: #{map.get(colors.$color-success-scale, 800)};
+  --picto-color-success-900: #{map.get(colors.$color-success-scale, 900)};
+
+  --picto-color-info-100: #{map.get(colors.$color-info-scale, 100)};
+  --picto-color-info-200: #{map.get(colors.$color-info-scale, 200)};
+  --picto-color-info-300: #{map.get(colors.$color-info-scale, 300)};
+  --picto-color-info-400: #{map.get(colors.$color-info-scale, 400)};
+  --picto-color-info-500: #{map.get(colors.$color-info-scale, 500)};
+  --picto-color-info-600: #{map.get(colors.$color-info-scale, 600)};
+  --picto-color-info-700: #{map.get(colors.$color-info-scale, 700)};
+  --picto-color-info-800: #{map.get(colors.$color-info-scale, 800)};
+  --picto-color-info-900: #{map.get(colors.$color-info-scale, 900)};
+
+  --picto-color-warning-100: #{map.get(colors.$color-warning-scale, 100)};
+  --picto-color-warning-200: #{map.get(colors.$color-warning-scale, 200)};
+  --picto-color-warning-300: #{map.get(colors.$color-warning-scale, 300)};
+  --picto-color-warning-400: #{map.get(colors.$color-warning-scale, 400)};
+  --picto-color-warning-500: #{map.get(colors.$color-warning-scale, 500)};
+  --picto-color-warning-600: #{map.get(colors.$color-warning-scale, 600)};
+  --picto-color-warning-700: #{map.get(colors.$color-warning-scale, 700)};
+  --picto-color-warning-800: #{map.get(colors.$color-warning-scale, 800)};
+  --picto-color-warning-900: #{map.get(colors.$color-warning-scale, 900)};
+
+  --picto-color-neutral-100: #{map.get(colors.$color-neutral-scale, 100)};
+  --picto-color-neutral-200: #{map.get(colors.$color-neutral-scale, 200)};
+  --picto-color-neutral-300: #{map.get(colors.$color-neutral-scale, 300)};
+  --picto-color-neutral-400: #{map.get(colors.$color-neutral-scale, 400)};
+  --picto-color-neutral-500: #{map.get(colors.$color-neutral-scale, 500)};
+  --picto-color-neutral-600: #{map.get(colors.$color-neutral-scale, 600)};
+  --picto-color-neutral-700: #{map.get(colors.$color-neutral-scale, 700)};
+  --picto-color-neutral-800: #{map.get(colors.$color-neutral-scale, 800)};
+  --picto-color-neutral-900: #{map.get(colors.$color-neutral-scale, 900)};
+
+  /* Text */
+  --picto-text-display-lg: #{map.get(text-tokens.$text-display-lg, size)};
+  --picto-text-display-lg-line-height: #{map.get(
+      text-tokens.$text-display-lg,
+      line-height
+    )};
+  --picto-text-display-lg-weight: #{map.get(
+      text-tokens.$text-display-lg,
+      weight
+    )};
+  --picto-text-display-lg-tracking: #{map.get(
+      text-tokens.$text-display-lg,
+      tracking
+    )};
+
+  --picto-text-display-md: #{map.get(text-tokens.$text-display-md, size)};
+  --picto-text-display-md-line-height: #{map.get(
+      text-tokens.$text-display-md,
+      line-height
+    )};
+  --picto-text-display-md-weight: #{map.get(
+      text-tokens.$text-display-md,
+      weight
+    )};
+  --picto-text-display-md-tracking: #{map.get(
+      text-tokens.$text-display-md,
+      tracking
+    )};
+
+  --picto-text-display-sm: #{map.get(text-tokens.$text-display-sm, size)};
+  --picto-text-display-sm-line-height: #{map.get(
+      text-tokens.$text-display-sm,
+      line-height
+    )};
+  --picto-text-display-sm-weight: #{map.get(
+      text-tokens.$text-display-sm,
+      weight
+    )};
+  --picto-text-display-sm-tracking: #{map.get(
+      text-tokens.$text-display-sm,
+      tracking
+    )};
+
+  --picto-text-headline-lg: #{map.get(text-tokens.$text-headline-lg, size)};
+  --picto-text-headline-lg-line-height: #{map.get(
+      text-tokens.$text-headline-lg,
+      line-height
+    )};
+  --picto-text-headline-lg-weight: #{map.get(
+      text-tokens.$text-headline-lg,
+      weight
+    )};
+  --picto-text-headline-lg-tracking: #{map.get(
+      text-tokens.$text-headline-lg,
+      tracking
+    )};
+
+  --picto-text-headline-md: #{map.get(text-tokens.$text-headline-md, size)};
+  --picto-text-headline-md-line-height: #{map.get(
+      text-tokens.$text-headline-md,
+      line-height
+    )};
+  --picto-text-headline-md-weight: #{map.get(
+      text-tokens.$text-headline-md,
+      weight
+    )};
+  --picto-text-headline-md-tracking: #{map.get(
+      text-tokens.$text-headline-md,
+      tracking
+    )};
+
+  --picto-text-headline-sm: #{map.get(text-tokens.$text-headline-sm, size)};
+  --picto-text-headline-sm-line-height: #{map.get(
+      text-tokens.$text-headline-sm,
+      line-height
+    )};
+  --picto-text-headline-sm-weight: #{map.get(
+      text-tokens.$text-headline-sm,
+      weight
+    )};
+  --picto-text-headline-sm-tracking: #{map.get(
+      text-tokens.$text-headline-sm,
+      tracking
+    )};
+
+  --picto-text-title-lg: #{map.get(text-tokens.$text-title-lg, size)};
+  --picto-text-title-lg-line-height: #{map.get(
+      text-tokens.$text-title-lg,
+      line-height
+    )};
+  --picto-text-title-lg-weight: #{map.get(text-tokens.$text-title-lg, weight)};
+  --picto-text-title-lg-tracking: #{map.get(
+      text-tokens.$text-title-lg,
+      tracking
+    )};
+
+  --picto-text-title-md: #{map.get(text-tokens.$text-title-md, size)};
+  --picto-text-title-md-line-height: #{map.get(
+      text-tokens.$text-title-md,
+      line-height
+    )};
+  --picto-text-title-md-weight: #{map.get(text-tokens.$text-title-md, weight)};
+  --picto-text-title-md-tracking: #{map.get(
+      text-tokens.$text-title-md,
+      tracking
+    )};
+
+  --picto-text-title-sm: #{map.get(text-tokens.$text-title-sm, size)};
+  --picto-text-title-sm-line-height: #{map.get(
+      text-tokens.$text-title-sm,
+      line-height
+    )};
+  --picto-text-title-sm-weight: #{map.get(text-tokens.$text-title-sm, weight)};
+  --picto-text-title-sm-tracking: #{map.get(
+      text-tokens.$text-title-sm,
+      tracking
+    )};
+
+  --picto-text-body-lg: #{map.get(text-tokens.$text-body-lg, size)};
+  --picto-text-body-lg-line-height: #{map.get(
+      text-tokens.$text-body-lg,
+      line-height
+    )};
+  --picto-text-body-lg-weight: #{map.get(text-tokens.$text-body-lg, weight)};
+  --picto-text-body-lg-tracking: #{map.get(text-tokens.$text-body-lg, tracking)};
+
+  --picto-text-body-md: #{map.get(text-tokens.$text-body-md, size)};
+  --picto-text-body-md-line-height: #{map.get(
+      text-tokens.$text-body-md,
+      line-height
+    )};
+  --picto-text-body-md-weight: #{map.get(text-tokens.$text-body-md, weight)};
+  --picto-text-body-md-tracking: #{map.get(text-tokens.$text-body-md, tracking)};
+
+  --picto-text-body-sm: #{map.get(text-tokens.$text-body-sm, size)};
+  --picto-text-body-sm-line-height: #{map.get(
+      text-tokens.$text-body-sm,
+      line-height
+    )};
+  --picto-text-body-sm-weight: #{map.get(text-tokens.$text-body-sm, weight)};
+  --picto-text-body-sm-tracking: #{map.get(text-tokens.$text-body-sm, tracking)};
+
+  --picto-text-label-lg: #{map.get(text-tokens.$text-label-lg, size)};
+  --picto-text-label-lg-line-height: #{map.get(
+      text-tokens.$text-label-lg,
+      line-height
+    )};
+  --picto-text-label-lg-weight: #{map.get(text-tokens.$text-label-lg, weight)};
+  --picto-text-label-lg-tracking: #{map.get(
+      text-tokens.$text-label-lg,
+      tracking
+    )};
+
+  --picto-text-label-md: #{map.get(text-tokens.$text-label-md, size)};
+  --picto-text-label-md-line-height: #{map.get(
+      text-tokens.$text-label-md,
+      line-height
+    )};
+  --picto-text-label-md-weight: #{map.get(text-tokens.$text-label-md, weight)};
+  --picto-text-label-md-tracking: #{map.get(
+      text-tokens.$text-label-md,
+      tracking
+    )};
+
+  --picto-text-label-sm: #{map.get(text-tokens.$text-label-sm, size)};
+  --picto-text-label-sm-line-height: #{map.get(
+      text-tokens.$text-label-sm,
+      line-height
+    )};
+  --picto-text-label-sm-weight: #{map.get(text-tokens.$text-label-sm, weight)};
+  --picto-text-label-sm-tracking: #{map.get(
+      text-tokens.$text-label-sm,
+      tracking
+    )};
+
+  /* Text Colors */
+  --picto-text-light: var(--picto-color-white);
+  --picto-text-dark: var(--picto-color-black);
+  --picto-text-primary: var(--picto-color-primary-500);
+  --picto-text-accent: var(--picto-color-accent-500);
+  --picto-text-tonal: var(--picto-color-tonal-500);
+  --picto-text-error: var(--picto-color-error-500);
+  --picto-text-success: var(--picto-color-success-500);
+  --picto-text-info: var(--picto-color-info-500);
+  --picto-text-warning: var(--picto-color-warning-500);
+  --picto-text-neutral: var(--picto-color-neutral-500);
+}

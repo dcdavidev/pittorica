@@ -1,0 +1,46 @@
+@use 'sass:map';
+
+/**
+ * Radius Variables
+ * $radius-unit: base unit for radius scale (4px)
+ * $radius-scale: numeric scale for border radius (multiples of $radius-unit)
+ * $radius-semantic: semantic aliases for radius (none, xs, sm, ...)
+ */
+
+$radius-unit: 0.25rem; // Base radius unit (4px)
+
+$radius-scale: (
+  none: 0,
+  // No radius
+  xs: $radius-unit * 1,
+  // Extra small (4px)
+  sm: $radius-unit * 2,
+  // Small (8px)
+  md: $radius-unit * 3,
+  // Medium (12px)
+  lg: $radius-unit * 4,
+  // Large (16px)
+  xl: $radius-unit * 5,
+  // Extra large (20px)
+  '2xl': $radius-unit * 7,
+  // 2x extra large (28px)
+  full: 9999px, // Full radius (circular)
+);
+
+$radius-semantic: (
+  none: map.get($radius-scale, none),
+  // No radius
+  xs: map.get($radius-scale, xs),
+  // Extra small (4px)
+  sm: map.get($radius-scale, sm),
+  // Small (8px)
+  md: map.get($radius-scale, md),
+  // Medium (12px)
+  lg: map.get($radius-scale, lg),
+  // Large (16px)
+  xl: map.get($radius-scale, xl),
+  // Extra large (20px)
+  '2xl': map.get($radius-scale, '2xl'),
+  // 2x extra large (28px)
+  full: map.get($radius-scale, full), // Full radius (circular)
+);

@@ -6,10 +6,11 @@ import { motion } from 'motion/react';
 
 interface BgBubblesProps extends React.PropsWithChildren {
   className?: string;
-  colors?: string[];
+  colors?: BgBubblesColors;
   style?: React.CSSProperties;
   animationSpeed?: number;
 }
+import type { BgBubblesColors } from '../types/bg-bubbles';
 
 type BubblePosition = { x: number; y: number };
 

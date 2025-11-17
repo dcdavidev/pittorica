@@ -1,0 +1,28 @@
+@use 'sass:map';
+@use './radius';
+
+/**
+ * Shape Variables
+ * $shape-scale: scale for shape border-radius values
+ * $shape-semantic: semantic aliases for shapes (none, squared, rounded, circle)
+ */
+
+$shape-scale: (
+  none: 0,
+  // No shape (square corners)
+  squared: map.get(radius.$radius-scale, sm),
+  // Slightly rounded corners (uses radius sm)
+  rounded: map.get(radius.$radius-scale, lg),
+  // More rounded corners (uses radius lg)
+  circle: 50%, // Fully circular
+);
+
+$shape-semantic: (
+  none: map.get($shape-scale, none),
+  // No shape
+  squared: map.get($shape-scale, squared),
+  // Squared shape
+  rounded: map.get($shape-scale, rounded),
+  // Rounded shape
+  circle: map.get($shape-scale, circle), // Circle shape
+);

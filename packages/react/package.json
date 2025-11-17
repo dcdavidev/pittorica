@@ -21,6 +21,51 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./BgBubbles": {
+      "types": "./dist/BgBubbles.d.ts",
+      "import": "./dist/BgBubbles.js",
+      "default": "./dist/BgBubbles.js"
+    },
+    "./Box": {
+      "types": "./dist/Box.d.ts",
+      "import": "./dist/Box.js",
+      "default": "./dist/Box.js"
+    },
+    "./Container": {
+      "types": "./dist/Container.d.ts",
+      "import": "./dist/Container.js",
+      "default": "./dist/Container.js"
+    },
+    "./Grid": {
+      "types": "./dist/Grid.d.ts",
+      "import": "./dist/Grid.js",
+      "default": "./dist/Grid.js"
+    },
+    "./Hero": {
+      "types": "./dist/Hero.d.ts",
+      "import": "./dist/Hero.js",
+      "default": "./dist/Hero.js"
+    },
+    "./IconButton": {
+      "types": "./dist/IconButton.d.ts",
+      "import": "./dist/IconButton.js",
+      "default": "./dist/IconButton.js"
+    },
+    "./Stack": {
+      "types": "./dist/Stack.d.ts",
+      "import": "./dist/Stack.js",
+      "default": "./dist/Stack.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.js",
+      "default": "./dist/types/index.js"
+    },
+    "./Typography": {
+      "types": "./dist/Typography.d.ts",
+      "import": "./dist/Typography.js",
+      "default": "./dist/Typography.js"
     }
   },
   "main": "./dist/index.js",
