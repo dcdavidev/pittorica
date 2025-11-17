@@ -4,6 +4,46 @@ export default {
   title: 'Typography/Typography',
   component: Typography,
   tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: { type: 'select' },
+      options: [
+        'display-lg',
+        'display-md',
+        'display-sm',
+        'headline-lg',
+        'headline-md',
+        'headline-sm',
+        'title-lg',
+        'title-md',
+        'title-sm',
+        'body-lg',
+        'body-md',
+        'body-sm',
+        'label-lg',
+        'label-md',
+        'label-sm',
+      ],
+    },
+    color: {
+      control: { type: 'select' },
+      options: [
+        'light',
+        'dark',
+        'primary',
+        'secondary',
+        'tertiary',
+        'error',
+        'success',
+        'info',
+        'warning',
+      ],
+    },
+    align: {
+      control: { type: 'select' },
+      options: ['left', 'center', 'right', 'justify'],
+    },
+  },
 };
 
 export const DisplayLargePrimary = {
@@ -111,6 +151,33 @@ export const LabelSmall = {
   args: {
     variant: 'label-sm',
     children: 'Label Small - UI element text',
+  },
+};
+
+export const CenterAligned = {
+  args: {
+    variant: 'body-lg',
+    align: 'center',
+    children:
+      'This text is center aligned. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+};
+
+export const RightAligned = {
+  args: {
+    variant: 'body-lg',
+    align: 'right',
+    children:
+      'This text is right aligned. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+};
+
+export const Justified = {
+  args: {
+    variant: 'body-lg',
+    align: 'justify',
+    children:
+      'This text is justified. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   },
 };
 

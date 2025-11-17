@@ -32,10 +32,13 @@ export type TypographyColor =
   | 'info'
   | 'warning';
 
+export type TypographyAlign = 'left' | 'center' | 'right' | 'justify';
+
 export interface TypographyProps extends HTMLAttributes<HTMLElement> {
   variant?: TypographyVariant;
   as?: ElementType;
   color?: TypographyColor;
+  align?: TypographyAlign;
   children: ReactNode;
 }
 
@@ -45,12 +48,14 @@ export interface TypographyProps extends HTMLAttributes<HTMLElement> {
  * @example
  * <Typography variant="headline-large" as="h1">Title</Typography>
  * <Typography variant="body-large" color="primary">Body text</Typography>
+ * <Typography align="center">Centered text</Typography>
  * <Typography>Default body-large text</Typography>
  */
 export const Typography: React.FC<TypographyProps> = ({
   variant = 'body-lg',
   as = 'span',
   color,
+  align,
   children,
   className = '',
   ...rest
@@ -103,6 +108,7 @@ export const Typography: React.FC<TypographyProps> = ({
     Tag,
     {
       className: clsx(variantClass, colorClass, className),
+      style: { display: 'block', textAlign: align, ...rest.style },
       ...rest,
     },
     children

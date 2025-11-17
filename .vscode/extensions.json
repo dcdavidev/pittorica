@@ -8,7 +8,6 @@
     "pkief.material-icon-theme",
     "ms-edgedevtools.vscode-edge-devtools",
     "ms-vscode-remote.remote-wsl",
-    "codacy-app.codacy",
     "streetsidesoftware.code-spell-checker",
     "coderabbit.coderabbit-vscode",
     "joshbolduc.commitlint",
@@ -21,14 +20,12 @@
     "bierner.github-markdown-preview",
     "ecmel.vscode-html-css",
     "lottiefiles.vscode-lottie",
-    "motion.motion-vscode-extension",
     "christian-kohler.npm-intellisense",
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
     "rpinski.shebang-snippets",
     "foxundermoon.shell-format",
     "timonwong.shellcheck",
-    "bradlc.vscode-tailwindcss",
     "gruntfuggly.todo-tree",
     "redhat.vscode-yaml"
   ]
