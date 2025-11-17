@@ -124,7 +124,7 @@
   "exportall.config.barrelName": "index.ts",
   "exportall.config.exportFileExtension": "js",
   "exportall.config.includeFoldersToExport": false,
-  "exportall.config.namedExports": false,
+  "exportall.config.namedExports": true,
   "exportall.config.semis": true,
   "exportall.config.recursive": true,
   "exportall.config.exclude": [".test.", ".spec.", ".stories.", "/__tests__/"],
@@ -222,5 +222,6 @@
       ".config/lefthook.toml"
     ]
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "exportall.config.folderListener": ["/packages/react/src"]
 }

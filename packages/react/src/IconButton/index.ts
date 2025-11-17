@@ -1,7 +1,7 @@
+export { IconButton } from './IconButton.js';
 export type {
   IconButtonColor,
-  IconButtonProps,
-  IconButtonShape,
   IconButtonSize,
+  IconButtonShape,
+  IconButtonProps,
 } from './IconButton.js';
-export { IconButton } from './IconButton.js';
