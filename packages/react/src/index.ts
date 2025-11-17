@@ -1,4 +1,4 @@
-export * from './Box/Box.js';
+export * from './BgBubbles/BgBubbles.js';
 export * from './Button/Button.js';
 export * from './Container/Container.js';
 export * from './Grid/Grid.js';
