@@ -224,15 +224,64 @@ export const AllVariants = {
           <span
             style={{ minWidth: '80px', fontSize: '0.875rem', color: '#666' }}
           >
-            Round:
+            Elevated:
+          </span>
+          <Button variant="elevated" shape="round">
+            Elevated
+          </Button>
+          <Button variant="elevated" shape="square">
+            Elevated
+          </Button>
+        </Stack>
+        <Stack gap="0.5rem" direction="horizontal" alignItems="center">
+          <span
+            style={{ minWidth: '80px', fontSize: '0.875rem', color: '#666' }}
+          >
+            Filled:
           </span>
           <Button variant="filled" shape="round">
             Filled
           </Button>
+          <Button variant="filled" shape="square">
+            Filled
+          </Button>
+        </Stack>
+        <Stack gap="0.5rem" direction="horizontal" alignItems="center">
+          <span
+            style={{ minWidth: '80px', fontSize: '0.875rem', color: '#666' }}
+          >
+            Tonal:
+          </span>
+          <Button variant="tonal" shape="round">
+            Tonal
+          </Button>
+          <Button variant="tonal" shape="square">
+            Tonal
+          </Button>
+        </Stack>
+        <Stack gap="0.5rem" direction="horizontal" alignItems="center">
+          <span
+            style={{ minWidth: '80px', fontSize: '0.875rem', color: '#666' }}
+          >
+            Outlined:
+          </span>
           <Button variant="outlined" shape="round">
             Outlined
           </Button>
+          <Button variant="outlined" shape="square">
+            Outlined
+          </Button>
+        </Stack>
+        <Stack gap="0.5rem" direction="horizontal" alignItems="center">
+          <span
+            style={{ minWidth: '80px', fontSize: '0.875rem', color: '#666' }}
+          >
+            Text:
+          </span>
           <Button variant="text" shape="round">
+            Text
+          </Button>
+          <Button variant="text" shape="square">
             Text
           </Button>
         </Stack>
@@ -240,16 +289,44 @@ export const AllVariants = {
           <span
             style={{ minWidth: '80px', fontSize: '0.875rem', color: '#666' }}
           >
-            Square:
+            Sizes:
           </span>
-          <Button variant="filled" shape="square">
-            Filled
+          <Button variant="filled" size="xs">
+            XS
           </Button>
-          <Button variant="outlined" shape="square">
-            Outlined
+          <Button variant="filled" size="sm">
+            SM
           </Button>
-          <Button variant="text" shape="square">
-            Text
+          <Button variant="filled" size="md">
+            MD
+          </Button>
+          <Button variant="filled" size="lg">
+            LG
+          </Button>
+          <Button variant="filled" size="xl">
+            XL
+          </Button>
+        </Stack>
+        <Stack gap="0.5rem" direction="horizontal" alignItems="center">
+          <span
+            style={{ minWidth: '80px', fontSize: '0.875rem', color: '#666' }}
+          >
+            Colors:
+          </span>
+          <Button variant="filled" color="primary">
+            Primary
+          </Button>
+          <Button variant="filled" color="secondary">
+            Secondary
+          </Button>
+          <Button variant="filled" color="tertiary">
+            Tertiary
+          </Button>
+          <Button variant="filled" color="error">
+            Error
+          </Button>
+          <Button variant="filled" color="success">
+            Success
           </Button>
         </Stack>
       </Stack>
