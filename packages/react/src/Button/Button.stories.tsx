@@ -1,3 +1,18 @@
+export const WithEndDecorators = {
+  args: {
+    variant: 'filled',
+    children: 'Button',
+    endDecorator: '⭐',
+    focusEndDecorator: '👀',
+    activeEndDecorator: '🔥',
+    success: true,
+    successEndDecorator: '🎉',
+    error: true,
+    errorEndDecorator: '❌',
+    loading: true,
+    loadingEndDecorator: '⏳',
+  },
+};
 import { Container } from '../Container/Container.jsx';
 import { Stack } from '../Stack/Stack.jsx';
 import { Button } from './Button.js';

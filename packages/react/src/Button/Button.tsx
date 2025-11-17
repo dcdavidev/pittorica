@@ -37,6 +37,12 @@ export interface ButtonProps
   successStartDecorator?: ReactNode;
   errorStartDecorator?: ReactNode;
   loadingDecorator?: ReactNode;
+  endDecorator?: ReactNode;
+  focusEndDecorator?: ReactNode;
+  activeEndDecorator?: ReactNode;
+  successEndDecorator?: ReactNode;
+  errorEndDecorator?: ReactNode;
+  loadingEndDecorator?: ReactNode;
   loadingText?: string;
   loading?: boolean;
   error?: boolean;
@@ -62,6 +68,11 @@ export const Button: React.FC<ButtonProps> = ({
   successStartDecorator,
   errorStartDecorator,
   loadingDecorator,
+  endDecorator,
+  focusEndDecorator,
+  activeEndDecorator,
+  successEndDecorator,
+  errorEndDecorator,
   loadingText,
   loading = false,
   error = false,
@@ -152,13 +163,23 @@ export const Button: React.FC<ButtonProps> = ({
     return base;
   };
 
+  // For loading state, loadingDecorator is used for both start and end
   const currentStartDecorator = getDecorator(
     startDecorator,
     focusStartDecorator,
     activeStartDecorator,
     successStartDecorator,
     errorStartDecorator,
-    null // no start for loading
+    loadingDecorator
+  );
+
+  const currentEndDecorator = getDecorator(
+    endDecorator,
+    focusEndDecorator,
+    activeEndDecorator,
+    successEndDecorator,
+    errorEndDecorator,
+    loadingDecorator
   );
 
   // For loading, show children and overlay with spinner/decorator
@@ -167,7 +188,18 @@ export const Button: React.FC<ButtonProps> = ({
   const buttonChildren = [];
   if (currentStartDecorator) {
     buttonChildren.push(
-      React.createElement('span', { key: 'start' }, currentStartDecorator)
+      React.createElement(
+        'span',
+        {
+          key: 'start',
+          style: {
+            display: 'inline-flex',
+            alignItems: 'center',
+            marginRight: '0.5em',
+          },
+        },
+        currentStartDecorator
+      )
     );
   }
   if (effectiveState === 'loading' && !loadingDecorator) {
@@ -204,8 +236,40 @@ export const Button: React.FC<ButtonProps> = ({
   }
   if (currentChildren) {
     buttonChildren.push(
-      React.createElement('span', { key: 'children' }, currentChildren)
+      React.createElement(
+        'span',
+        {
+          key: 'children',
+          style: { display: 'inline-flex', alignItems: 'center' },
+        },
+        currentChildren
+      )
     );
+  }
+  if (currentEndDecorator) {
+    buttonChildren.push(
+      React.createElement(
+        'span',
+        {
+          key: 'end',
+          style: {
+            display: 'inline-flex',
+            alignItems: 'center',
+            marginLeft: '0.5em',
+          },
+        },
+        currentEndDecorator
+      )
+    );
+  }
+  // Reorder: startDecorator, spinner (if loading), text, endDecorator
+  if (effectiveState === 'loading' && !loadingDecorator) {
+    // Move spinner right after startDecorator
+    const spinnerIndex = buttonChildren.findIndex((el) => el.key === 'spinner');
+    if (spinnerIndex > 0) {
+      const spinner = buttonChildren.splice(spinnerIndex, 1)[0];
+      buttonChildren.splice(1, 0, spinner); // after startDecorator
+    }
   }
   return React.createElement(
     'button',
