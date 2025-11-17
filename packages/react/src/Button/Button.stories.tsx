@@ -34,6 +34,63 @@ export default {
     disabled: {
       control: 'boolean',
     },
+    startDecorator: {
+      control: 'text',
+      description: 'Element to display before the children',
+    },
+    endDecorator: {
+      control: 'text',
+      description: 'Element to display after the children',
+    },
+    focusStartDecorator: {
+      control: 'text',
+      description: 'Element to display before the children when focused',
+    },
+    focusEndDecorator: {
+      control: 'text',
+      description: 'Element to display after the children when focused',
+    },
+    activeStartDecorator: {
+      control: 'text',
+      description: 'Element to display before the children when active',
+    },
+    activeEndDecorator: {
+      control: 'text',
+      description: 'Element to display after the children when active',
+    },
+    successStartDecorator: {
+      control: 'text',
+      description:
+        'Element to display before the children when success is true',
+    },
+    successEndDecorator: {
+      control: 'text',
+      description: 'Element to display after the children when success is true',
+    },
+    errorStartDecorator: {
+      control: 'text',
+      description: 'Element to display before the children when error is true',
+    },
+    errorEndDecorator: {
+      control: 'text',
+      description: 'Element to display after the children when error is true',
+    },
+    loadingDecorator: {
+      control: 'text',
+      description: 'Element to display when loading is true',
+    },
+    loading: {
+      control: 'boolean',
+      description: 'Loading state',
+    },
+    error: {
+      control: 'boolean',
+      description: 'Error state',
+    },
+    success: {
+      control: 'boolean',
+      description: 'Success state',
+    },
     className: {
       control: 'text',
       description: 'Additional CSS classes',
@@ -108,13 +165,6 @@ export const Text = {
   },
 };
 
-export const TonalTertiary = {
-  args: {
-    variant: 'tonal',
-    children: 'Tonal Tertiary',
-  },
-};
-
 export const FilledSecondary = {
   args: {
     variant: 'filled',
@@ -135,6 +185,34 @@ export const Disabled = {
   args: {
     disabled: true,
     children: 'Disabled Button',
+  },
+};
+
+export const WithDecorators = {
+  args: {
+    variant: 'filled',
+    children: 'Button',
+    startDecorator: '🚀',
+    endDecorator: '⭐',
+  },
+};
+
+export const WithStatusDecorators = {
+  args: {
+    variant: 'filled',
+    children: 'Button',
+    success: true,
+    successStartDecorator: '✅',
+    successEndDecorator: '🎉',
+  },
+};
+
+export const Loading = {
+  args: {
+    variant: 'filled',
+    children: 'Button',
+    loading: true,
+    loadingText: 'Loading...',
   },
 };
 

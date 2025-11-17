@@ -4,7 +4,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5em;
+  gap: 0.5rem;
   font-family: var(--picto-font-family-base);
   font-size: var(--picto-label-large-size, 1rem);
   font-weight: var(--picto-label-large-weight, 500);
@@ -28,8 +28,16 @@
   border-radius: var(--picto-radius-xl, 0.75rem);
 }
 
+.picto-btn--round:active {
+  border-radius: 0.375rem;
+}
+
 .picto-btn--square {
   border-radius: var(--picto-radius-sm, 0.25rem);
+}
+
+.picto-btn--square:active {
+  border-radius: 0.125rem;
 }
 
 /* Special case: XL round buttons get extra rounded corners */
@@ -70,8 +78,19 @@
   box-shadow: var(--picto-elevation-1, 0 2px 8px rgba(0, 0, 0, 0.08));
 }
 .picto-btn-elevated:hover {
-  background: var(--picto-primary-container);
+  background: rgba(8, 164, 189, 0.08);
   color: var(--picto-on-primary-container);
+  box-shadow: var(--picto-elevation-2);
+}
+
+.picto-btn-elevated:focus {
+  box-shadow:
+    inset 0 0 0 3px var(--picto-primary-dark, #0056b3),
+    var(--picto-elevation-2);
+}
+
+.picto-btn-elevated:active {
+  box-shadow: none;
 }
 
 /* Elevated button color variants with subtle backgrounds */
@@ -109,8 +128,10 @@
   background: var(--picto-primary);
   color: var(--picto-on-primary);
 }
-.picto-btn-filled:hover {
-  background: var(--picto-primary-dark, #0056b3);
+.picto-btn-filled:focus {
+  box-shadow:
+    inset 0 0 0 2px var(--picto-primary-dark, #0056b3),
+    var(--picto-shadow-button-hover);
 }
 
 /* Tonal Button */
@@ -120,6 +141,17 @@
 }
 .picto-btn-tonal:hover {
   background: var(--picto-tertiary-dark, #8a6470);
+  box-shadow: var(--picto-shadow-button-hover);
+}
+
+.picto-btn-tonal:focus {
+  box-shadow:
+    inset 0 0 0 3px var(--picto-tertiary-dark, #8a6470),
+    var(--picto-shadow-button-hover);
+}
+
+.picto-btn-tonal:active {
+  box-shadow: none;
 }
 
 /* Outlined Button */
@@ -129,9 +161,20 @@
   border: 2px solid var(--picto-primary);
 }
 .picto-btn-outlined:hover {
-  background: var(--picto-primary-container);
+  background: rgba(8, 164, 189, 0.1);
   color: var(--picto-on-primary-container);
   border-color: var(--picto-on-primary-container);
+  box-shadow: var(--picto-shadow-button-hover);
+}
+
+.picto-btn-outlined:focus {
+  box-shadow:
+    inset 0 0 0 3px var(--picto-primary-dark, #0056b3),
+    var(--picto-shadow-button-hover);
+}
+
+.picto-btn-outlined:active {
+  box-shadow: none;
 }
 
 /* Text Button */
@@ -140,8 +183,19 @@
   color: var(--picto-primary);
 }
 .picto-btn-text:hover {
-  background: var(--picto-primary-container);
+  background: rgba(8, 164, 189, 0.08);
   color: var(--picto-on-primary-container);
+  box-shadow: var(--picto-shadow-button-hover);
+}
+
+.picto-btn-text:focus {
+  box-shadow:
+    inset 0 0 0 3px var(--picto-primary-dark, #0056b3),
+    var(--picto-shadow-button-hover);
+}
+
+.picto-btn-text:active {
+  box-shadow: none;
 }
 
 /* Text button color variants with subtle backgrounds */
@@ -204,8 +258,19 @@ button.picto-btn[aria-disabled='true']:hover,
   color: var(--picto-on-primary);
   border-color: var(--picto-primary);
 }
-.picto-btn-color-primary:hover {
-  background: var(--picto-primary-dark, #0056b3);
+.picto-btn-filled:hover {
+  background: color-mix(in srgb, #08a4bd 90%, #808080 10%);
+  box-shadow: var(--picto-shadow-button-hover);
+}
+
+.picto-btn-filled:focus {
+  box-shadow:
+    inset 0 0 0 3px var(--picto-primary-dark, #0056b3),
+    var(--picto-shadow-button-hover);
+}
+
+.picto-btn-filled:active {
+  box-shadow: none;
 }
 
 .picto-btn-color-secondary {
@@ -215,6 +280,7 @@ button.picto-btn[aria-disabled='true']:hover,
 }
 .picto-btn-color-secondary:hover {
   background: var(--picto-secondary-dark, #b35a8a);
+  box-shadow: var(--picto-shadow-button-hover);
 }
 
 .picto-btn-color-tertiary {
@@ -224,6 +290,7 @@ button.picto-btn[aria-disabled='true']:hover,
 }
 .picto-btn-color-tertiary:hover {
   background: var(--picto-tertiary-dark, #7a5a62);
+  box-shadow: var(--picto-shadow-button-hover);
 }
 
 .picto-btn-color-error {
@@ -233,6 +300,7 @@ button.picto-btn[aria-disabled='true']:hover,
 }
 .picto-btn-color-error:hover {
   background: var(--picto-error-dark, #8b2410);
+  box-shadow: var(--picto-shadow-button-hover);
 }
 
 .picto-btn-color-success {
@@ -242,6 +310,7 @@ button.picto-btn[aria-disabled='true']:hover,
 }
 .picto-btn-color-success:hover {
   background: var(--picto-success-dark, #1e7e34);
+  box-shadow: var(--picto-shadow-button-hover);
 }
 
 .picto-btn-color-info {
@@ -251,6 +320,7 @@ button.picto-btn[aria-disabled='true']:hover,
 }
 .picto-btn-color-info:hover {
   background: var(--picto-info-dark, #0066cc);
+  box-shadow: var(--picto-shadow-button-hover);
 }
 
 .picto-btn-color-warning {
@@ -260,4 +330,48 @@ button.picto-btn[aria-disabled='true']:hover,
 }
 .picto-btn-color-warning:hover {
   background: var(--picto-warning-dark, #d39e00);
+  box-shadow: var(--picto-shadow-button-hover);
+}
+
+/* Loading Spinner */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    stroke: var(--picto-success);
+  }
+  16.67% {
+    stroke: var(--picto-error);
+  }
+  33.33% {
+    stroke: var(--picto-warning);
+  }
+  50% {
+    stroke: var(--picto-info);
+  }
+  66.67% {
+    stroke: var(--picto-neutral-95);
+  }
+  83.33% {
+    stroke: var(--picto-neutral-10);
+  }
+  100% {
+    stroke: var(--picto-success);
+  }
+}
+
+.picto-btn-state-loading {
+  position: relative;
+}
+
+.picto-btn--loading-active {
+  transform: scale(0.98);
+  box-shadow: none !important;
 }
