@@ -8,6 +8,35 @@ With a rich and powerful structure that remains intentionally lightweight and ea
 
 > Get started quickly: import the toolkit, use the utility classes, and customize your design system with ease.
 
+## Components
+
+### Layout Components
+
+- **Container**: Responsive container with size variants
+- **Grid**: CSS Grid layout system with GridItem
+- **Hero**: Hero section component with background support
+- **Surface**: Surface component with color, elevation, and shape variants
+
+### Typography Components
+
+- **Typography**: Main typography component with full styling options
+- **Paragraph**: Block-level paragraph component
+- **Strong**: Strong/bold text component
+- **Em**: Emphasis/italic text component
+- **Mark**: Highlighted text component
+- **Small**: Small text component
+- **Del**: Deleted/strikethrough text component
+- **Ins**: Inserted/underlined text component
+- **Sub**: Subscript text component
+- **Sup**: Superscript text component
+- **Br**: Line break component
+
+### UI Components
+
+- **Button**: Interactive button component
+- **IconButton**: Button with icon support
+- **BgBubbles**: Animated background bubbles component
+
 ## Progress
 
 ### Headings
@@ -23,7 +52,7 @@ With a rich and powerful structure that remains intentionally lightweight and ea
 
 - [x] `<p>`
 - [x] `<br>`
-- [x] `<hr>`
+- [ ] `<hr>`
 
 ### Text Formatting
 

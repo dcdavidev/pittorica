@@ -2,18 +2,7 @@
   <img src="./images/gh-banner.png" alt="pittorica" />
 </p>
 
-<h1 align="center">Pittorica</h1>
-
-<p align="center">
-  A modern design system and component library for React applications.
-</p>
-
-<p align="center">
-  <a href="#installation">Installation</a> •
-  <a href="#packages">Packages</a> •
-  <a href="#documentation">Documentation</a> •
-  <a href="#contributing">Contributing</a>
-</p>
+Pittorica is a painterly, CSS-first UI framework that brings elegant, lightweight structure to modern interfaces.
 
 ---
 
@@ -32,9 +21,9 @@ Pittorica is a comprehensive design system built with React, TypeScript, and mod
 
 The React package includes:
 
-- **Layout**: Box, Container, Grid, Stack
-- **UI**: Button, IconButton, Typography
-- **Specialized**: BgBubbles (animated backgrounds)
+- **Layout**: Container, Grid, GridItem, Hero, Surface
+- **Typography**: Typography, Paragraph, Strong, Em, Mark, Small, Del, Ins, Sub, Sup, Br
+- **UI**: Button, IconButton, BgBubbles (animated backgrounds)
 
 ## Installation
 
