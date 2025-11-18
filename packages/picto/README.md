@@ -22,7 +22,7 @@ With a rich and powerful structure that remains intentionally lightweight and ea
 ### Text and Paragraph
 
 - [x] `<p>`
-- [ ] `<br>`
+- [x] `<br>`
 - [x] `<hr>`
 
 ### Text Formatting
