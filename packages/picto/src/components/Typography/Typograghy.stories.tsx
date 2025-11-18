@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { COLOR_TOKEN } from '../../types/colors';
+import { COLOR_TOKEN } from '../../types/colors.js';
 import {
   FONT_WEIGHT_TOKEN,
   LETTER_SPACING_TOKEN,
   LINE_HEIGHT_TOKEN,
   TYPOGRAPHY_ALIGN_TOKEN,
   TYPOGRAPHY_SIZE_TOKEN,
-} from '../../types/typography';
+} from '../../types/typography.js';
+import { Container } from '../Container/Container.js';
 import { Divider } from '../Divider/Divider.js';
 import { Typography } from './Typography.js';
 
@@ -58,13 +59,7 @@ export const Document: Story = {
     children: '',
   },
   render: () => (
-    <div
-      style={{
-        padding: 16,
-        maxWidth: 700,
-        margin: '0 auto',
-      }}
-    >
+    <Container>
       <Typography size="display-lg" color="primary">
         Typography Component <Typography weight="bold">Stories</Typography>.
       </Typography>
@@ -114,7 +109,7 @@ export const Document: Story = {
       </Typography>
 
       <Divider variant="double" />
-    </div>
+    </Container>
   ),
 };
 
