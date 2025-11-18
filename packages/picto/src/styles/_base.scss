@@ -1,19 +1,19 @@
+/* Updated SCSS with integrated variables from previous files */
 @use './utils/reset-margins';
 @use './utils/border-box';
 @use './variables/text-tokens';
+@use './variables/colors';
 
-$text-color-names:
-  'light', 'dark', 'primary', 'accent', 'tonal', 'error', 'success', 'info',
-  'warning', 'neutral';
-
+// Generate text color utility classes
 @mixin text-colors {
-  @each $name in $text-color-names {
+  @each $name in colors.$color-token-names {
     &.picto-text-#{$name} {
       color: var(--picto-text-#{$name});
     }
   }
 }
 
+// Apply typographic tokens
 @mixin apply-text-style($name) {
   font-size: var(--picto-text-#{$name});
   line-height: var(--picto-text-#{$name}-line-height);
@@ -21,6 +21,7 @@ $text-color-names:
   letter-spacing: var(--picto-text-#{$name}-tracking);
 }
 
+// Alignment utilities
 @mixin text-align($align) {
   .picto-text-#{$align} {
     text-align: $align;
@@ -60,6 +61,7 @@ body {
   }
 }
 
+// Bind text color utilities to all text elements
 h1,
 h2,
 h3,
@@ -82,6 +84,7 @@ p,
   @include text-colors;
 }
 
+// Map headings to tokens
 $heading-map: (
   h1: 'display-lg',
   h2: 'display-md',
@@ -91,22 +94,26 @@ $heading-map: (
   h6: 'headline-sm',
 );
 
+// Generate text-style classes from tokens
 @each $name, $token in text-tokens.$text-styles {
   .picto-text-#{$name} {
     @include apply-text-style($name);
   }
 }
 
+// Bind heading tags to their typographic maps
 @each $tag, $style in $heading-map {
   #{$tag} {
     @extend .picto-text-#{$style};
   }
 }
 
+// Default paragraph style
 p {
   @extend .picto-text-body-md;
 }
 
+// Font assignments
 h1,
 h2,
 h3,
@@ -141,6 +148,7 @@ strong {
   @include text-colors;
 }
 
+// Alignment utilities
 @include text-align(right);
 @include text-align(center);
 @include text-align(left);
