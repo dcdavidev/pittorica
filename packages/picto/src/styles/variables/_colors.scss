@@ -9,20 +9,20 @@ $color-token-names:
   'success', 'info', 'danger';
 
 /* Canonical white/black */
-$white: #ffffff;
-$black: #000000;
+$white: #e9f1f7;
+$black: #131b23;
 
 /* Base colors (the “50” point) */
 $base: (
   primary: #08a4bd,
   secondary: #d87cac,
-  tertiary: #9e7682,
+  tertiary: #67597a,
   neutral: #787579,
   neutral-variant: #6a6670,
-  error: #bb0a1e,
-  success: #28a745,
-  info: #0099ff,
-  danger: #dc4c26,
+  error: #9b2915,
+  success: #004f2d,
+  info: #08a4bd,
+  danger: #e9b44c,
 );
 
 /* -------------------------------------------------------

@@ -5,6 +5,13 @@ export type {
   DividerStyle,
 } from './Divider/Divider';
 export { Divider } from './Divider/Divider';
+export type {
+  SurfaceColor,
+  SurfaceElevation,
+  SurfaceProps,
+  SurfaceShape,
+} from './Surface/Surface';
+export { Surface } from './Surface/Surface';
 export {
   getColorClass,
   getLetterSpacingClass,

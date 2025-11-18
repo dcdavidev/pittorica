@@ -1,0 +1,41 @@
+@use 'sass:map';
+@use '../variables/colors' as colors;
+@use '../variables/elevation' as elevation;
+@use '../variables/shapes' as shapes;
+
+@mixin surface-base {
+  background-color: var(--surface-bg);
+  color: var(--surface-fg);
+}
+
+.picto-surface {
+  @include colors.color-scheme(light);
+  @include surface-base;
+}
+
+.picto-surface-dark {
+  @include colors.color-scheme(dark);
+  @include surface-base;
+}
+
+@each $name in colors.$color-token-names {
+  .picto-surface-#{$name} {
+    background-color: colors.semantic-token('#{$name}-container');
+    color: colors.semantic-token('on-#{$name}-container');
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: colors.semantic-token('on-#{$name}');
+    }
+
+    p,
+    span,
+    div {
+      color: inherit;
+    }
+  }
+}

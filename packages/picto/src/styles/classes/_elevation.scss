@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '../variables/elevation';
+
+@each $level in map.keys(elevation.$elevation-semantic) {
+  .picto-elevation-#{$level} {
+    $shadows: map.get(elevation.$elevation-semantic, $level);
+
+    @if $shadows == none {
+      box-shadow: none;
+    } @else {
+      box-shadow: #{list.join($shadows, ', ')};
+    }
+  }
+}

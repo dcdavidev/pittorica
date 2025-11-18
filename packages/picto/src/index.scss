@@ -18,3 +18,10 @@
 /* Base styles */
 @use 'styles/root';
 @use 'styles/base';
+
+/* Classes */
+@use 'styles/classes/shape' as shape-classes;
+@use 'styles/classes/elevation' as elevation-classes;
+
+/* Components */
+@use 'styles/components/surface';

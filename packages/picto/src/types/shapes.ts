@@ -1,4 +1,4 @@
 // Shape tokens
-export const SHAPE = ['square', 'rounded', 'circle'] as const;
+export const SHAPE_TOKEN = ['none', 'square', 'round', 'circle'] as const;
 
-export type Shape = (typeof SHAPE)[number];
+export type ShapeToken = (typeof SHAPE_TOKEN)[number];
