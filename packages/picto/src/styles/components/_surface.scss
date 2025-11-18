@@ -11,11 +11,11 @@
 .picto-surface {
   @include colors.color-scheme(light);
   @include surface-base;
-}
 
-.picto-surface-dark {
-  @include colors.color-scheme(dark);
-  @include surface-base;
+  &-dark {
+    @include colors.color-scheme(dark);
+    @include surface-base;
+  }
 }
 
 @each $name in colors.$color-token-names {
