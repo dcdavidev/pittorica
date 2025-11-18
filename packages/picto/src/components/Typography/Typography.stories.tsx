@@ -10,7 +10,20 @@ import {
 } from '../../types/typography.js';
 import { Container } from '../Container/Container.jsx';
 import { Divider } from '../Divider/Divider.jsx';
-import { Typography } from './Typography.jsx';
+import { Typography, TypographyProps } from './Typography.jsx';
+
+const defaultValues: TypographyProps = {
+  size: 'body-lg',
+  weight: 'regular',
+  lineHeight: 'normal',
+  letterSpacing: 'normal',
+  align: 'left',
+  color: undefined,
+  mark: false,
+  pre: false,
+  html: false,
+  children: 'The quick brown fox jumps over the lazy dog.',
+};
 
 const meta = {
   title: 'Typography/Typography',
@@ -18,28 +31,55 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     size: {
-      control: { type: 'select' },
+      control: { type: 'select', defaultValue: defaultValues.size },
       options: [undefined, ...TYPOGRAPHY_SIZE_TOKEN],
     },
     weight: {
-      control: { type: 'select' },
+      control: { type: 'select', defaultValue: defaultValues.weight },
       options: [undefined, ...FONT_WEIGHT_TOKEN],
     },
     lineHeight: {
-      control: { type: 'select' },
+      control: { type: 'select', defaultValue: defaultValues.lineHeight },
       options: [undefined, ...LINE_HEIGHT_TOKEN],
     },
     letterSpacing: {
-      control: { type: 'select' },
+      control: { type: 'select', defaultValue: defaultValues.letterSpacing },
       options: [undefined, ...LETTER_SPACING_TOKEN],
     },
     align: {
-      control: { type: 'select' },
+      control: { type: 'select', defaultValue: defaultValues.align },
       options: [undefined, ...TYPOGRAPHY_ALIGN_TOKEN],
     },
     color: {
-      control: { type: 'select' },
+      control: { type: 'select', defaultValue: defaultValues.color },
       options: [undefined, ...COLOR_TOKEN],
+    },
+    mark: {
+      control: { type: 'boolean' },
+    },
+    small: {
+      control: { type: 'boolean' },
+    },
+    del: {
+      control: { type: 'boolean' },
+    },
+    ins: {
+      control: { type: 'boolean' },
+    },
+    sub: {
+      control: { type: 'boolean' },
+    },
+    sup: {
+      control: { type: 'boolean' },
+    },
+    pre: {
+      control: { type: 'boolean', defaultValue: defaultValues.pre },
+    },
+    html: {
+      control: { type: 'boolean', defaultValue: defaultValues.html },
+    },
+    children: {
+      control: { type: 'text', defaultValue: defaultValues.children },
     },
   },
 } satisfies Meta<typeof Typography>;
@@ -49,19 +89,23 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    color: undefined,
-    children: 'The quick brown fox jumps over the lazy dog.',
+    ...defaultValues,
   },
 };
 
 export const Preformatted: Story = {
   args: {
+    ...defaultValues,
     pre: true,
+
     children: `function helloWorld() {
   console.log("Hello, World!");
   return "Preformatted text preserves whitespace and formatting";
 }`,
   },
+};
+Preformatted.parameters = {
+  controls: { exclude: ['as', 'children'] },
 };
 
 export const Showroom: Story = {
@@ -71,7 +115,7 @@ export const Showroom: Story = {
   render: () => (
     <Container>
       <Typography size="display-lg" color="primary">
-        Typography Component <Typography weight="bold">Stories</Typography>.
+        Typography Component <Typography weight="bold">Showroom</Typography>
       </Typography>
       <Typography size="label-lg">
         The heading above uses size: "display-lg", while I use "label-lg".
@@ -98,24 +142,15 @@ export const Showroom: Story = {
         Italic. Default size is span which means this is an inline block
         actually.
       </Typography>
-
-      <Divider />
-
-      <Typography size="headline-md">
-        Following a Paragraph with 'paragraph', size 'body-sm' props.
+      <Typography mark>
+        This text is <Typography weight="bold">highlighted</Typography> using
+        the mark element.
       </Typography>
-      <Typography size="label-sm" color="tertiary">
-        The heading above uses size headline-md. I use size label-sm, color
-        tertiary.
-      </Typography>
-
-      <Typography paragraph size="body-sm">
-        Sussex result matter any end see. It speedily me addition weddings
-        vicinity in pleasure. Happiness commanded an conveying breakfast in.
-        Regard her say warmly elinor. Him these are visit front end for seven
-        walls. Money eat scale now ask law learn. Side its they just any upon
-        see last. He prepared no shutters perceive do greatest. Ye at unpleasant
-        solicitude in companions interested.
+      <Typography>
+        Misc: <Typography small>small text</Typography>,{' '}
+        <Typography del>deleted text</Typography>,{' '}
+        <Typography ins>inserted text</Typography>, H
+        <Typography sub>2</Typography>O, E = mc<Typography sup>2</Typography>.
       </Typography>
 
       <Divider variant="double" />

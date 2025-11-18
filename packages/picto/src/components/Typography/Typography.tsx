@@ -37,6 +37,12 @@ export interface TypographyProps {
   style?: React.CSSProperties;
   noMargins?: boolean;
   html?: boolean;
+  mark?: boolean;
+  small?: boolean;
+  del?: boolean;
+  ins?: boolean;
+  sub?: boolean;
+  sup?: boolean;
 }
 
 export const Typography: React.FC<TypographyProps> = ({
@@ -55,6 +61,12 @@ export const Typography: React.FC<TypographyProps> = ({
   style,
   noMargins,
   html,
+  mark,
+  small,
+  del,
+  ins,
+  sub,
+  sup,
   ...rest
 }) => {
   const size = sizeProp ?? 'body-lg';
@@ -86,6 +98,18 @@ export const Typography: React.FC<TypographyProps> = ({
   let Tag: ElementType = 'span';
   if (as) {
     Tag = as;
+  } else if (mark) {
+    Tag = 'mark';
+  } else if (small) {
+    Tag = 'small';
+  } else if (del) {
+    Tag = 'del';
+  } else if (ins) {
+    Tag = 'ins';
+  } else if (sub) {
+    Tag = 'sub';
+  } else if (sup) {
+    Tag = 'sup';
   } else if (pre) {
     Tag = 'pre';
   } else if (paragraph) {
@@ -123,6 +147,12 @@ export const Typography: React.FC<TypographyProps> = ({
   }
   if (noMargins) {
     computedStyle = { ...computedStyle, margin: 0, padding: 0 };
+  }
+  if (mark || small || del || ins || sub || sup) {
+    computedStyle = { ...computedStyle, display: 'inline-block' };
+  }
+  if (small) {
+    computedStyle = { ...computedStyle, fontSize: 'smaller' };
   }
 
   return React.createElement(

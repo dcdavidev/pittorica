@@ -28,5 +28,29 @@ export {
   getLineHeightClass,
   getWeightClass,
 } from './Typography/helpers.js';
-export type { TypographyProps } from './Typography/Typography.js';
-export { Typography } from './Typography/Typography.js';
+export type {
+  BrProps,
+  DelProps,
+  EmProps,
+  InsProps,
+  MarkProps,
+  ParagraphProps,
+  SmallProps,
+  StrongProps,
+  SubProps,
+  SupProps,
+  TypographyProps,
+} from './Typography/index.js';
+export {
+  Br,
+  Del,
+  Em,
+  Ins,
+  Mark,
+  Paragraph,
+  Small,
+  Strong,
+  Sub,
+  Sup,
+  Typography,
+} from './Typography/index.js';

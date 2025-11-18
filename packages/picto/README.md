@@ -12,31 +12,31 @@ With a rich and powerful structure that remains intentionally lightweight and ea
 
 ### Headings
 
-- [ ] `<h1>`
-- [ ] `<h2>`
-- [ ] `<h3>`
-- [ ] `<h4>`
-- [ ] `<h5>`
-- [ ] `<h6>`
+- [x] `<h1>`
+- [x] `<h2>`
+- [x] `<h3>`
+- [x] `<h4>`
+- [x] `<h5>`
+- [x] `<h6>`
 
 ### Text and Paragraph
 
-- [ ] `<p>`
+- [x] `<p>`
 - [ ] `<br>`
-- [ ] `<hr>`
+- [x] `<hr>`
 
 ### Text Formatting
 
-- [ ] `<b>`
-- [ ] `<strong>`
-- [ ] `<i>`
-- [ ] `<em>`
-- [ ] `<mark>`
-- [ ] `<small>`
-- [ ] `<del>`
-- [ ] `<ins>`
-- [ ] `<sub>`
-- [ ] `<sup>`
+- [x] `<b>`
+- [x] `<strong>`
+- [x] `<i>`
+- [x] `<em>`
+- [x] `<mark>`
+- [x] `<small>`
+- [x] `<del>`
+- [x] `<ins>`
+- [x] `<sub>`
+- [x] `<sup>`
 
 ### Links
 
