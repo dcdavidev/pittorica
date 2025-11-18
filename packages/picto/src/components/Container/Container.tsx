@@ -4,11 +4,33 @@ import clsx from 'clsx';
 
 export type ContainerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'fluid';
 
+export type JustifyContent =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly';
+export type AlignItems =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'stretch'
+  | 'baseline';
+export type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+
 export interface ContainerProps {
   size?: ContainerSize;
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   as?: React.ElementType;
+  flex?: boolean;
+  justifyContent?: JustifyContent;
+  alignItems?: AlignItems;
+  flexDirection?: FlexDirection;
+  gap?: string | number;
+  grow?: number;
 }
 
 /**
@@ -27,19 +49,49 @@ export interface ContainerProps {
  * <Container size="fluid">
  *   <Typography>Full width content</Typography>
  * </Container>
+ *
+ * <Container flex justifyContent="center" alignItems="center">
+ *   <Typography>Centered content with flexbox</Typography>
+ * </Container>
  */
 export const Container: React.FC<ContainerProps> = ({
   size = 'md',
   children,
   className = '',
   as: Component = 'div',
+  flex = false,
+  justifyContent = 'center',
+  alignItems = 'center',
+  flexDirection = 'row',
+  gap,
+  grow,
+  style = {},
   ...rest
 }) => {
   const sizeClass = size === 'md' ? '' : `picto-container-${size}`;
+
+  // Determine if flexbox should be enabled
+  const shouldEnableFlex = flex || grow !== undefined;
+
+  // Build inline styles for flexbox properties
+  const flexStyles: React.CSSProperties = {};
+  if (shouldEnableFlex) {
+    flexStyles.display = 'flex';
+    flexStyles.justifyContent = justifyContent;
+    flexStyles.alignItems = alignItems;
+    flexStyles.flexDirection = flexDirection;
+    if (gap !== undefined) flexStyles.gap = gap;
+    if (grow !== undefined) flexStyles.flexGrow = grow;
+  }
+
   const classes = clsx('picto-container', sizeClass, className);
 
   return (
-    <Component className={classes} {...rest}>
+    <Component
+      className={classes}
+      style={{ ...flexStyles, ...style }}
+      {...rest}
+    >
       {children}
     </Component>
   );

@@ -4,25 +4,93 @@ import { COLOR_TOKEN } from '../../types/colors';
 import { ELEVATION_TOKEN } from '../../types/elevation';
 import { SHAPE_TOKEN } from '../../types/shapes';
 import { Container } from '../Container/Container.js';
-import { Grid, GridItem } from '../Grid/index.js';
 import { Typography } from '../Typography/Typography';
-import { Surface } from './Surface.js';
+import { Surface, SurfaceProps } from './Surface.js';
+
+const Content = function ({ text = 'Surface' }: { text?: string }) {
+  return (
+    <Typography size="headline-sm" noMargins>
+      {text}
+    </Typography>
+  );
+};
+
+const defaultValues: SurfaceProps = {
+  as: 'div',
+  shape: 'round',
+  elevation: 'none',
+  color: 'primary',
+  flex: true,
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '',
+  grow: 0,
+  className: '',
+  style: { padding: '1rem' },
+  children: <Content />,
+};
 
 const meta = {
   title: 'Components/Surface',
   component: Surface,
   argTypes: {
-    color: {
-      control: { type: 'select' },
-      options: ['default', ...COLOR_TOKEN],
-    },
-    elevation: {
-      control: { type: 'select' },
-      options: [...ELEVATION_TOKEN],
+    as: {
+      control: { type: 'text', defaultValue: defaultValues.as },
+      description:
+        'The HTML element or React component to render as the root element.',
     },
     shape: {
-      control: { type: 'select' },
+      control: { type: 'select', defaultValue: defaultValues.shape },
       options: [...SHAPE_TOKEN],
+    },
+    elevation: {
+      control: { type: 'select', defaultValue: defaultValues.elevation },
+      options: [...ELEVATION_TOKEN],
+    },
+    color: {
+      control: { type: 'select', defaultValue: defaultValues.color },
+      options: ['transparent', 'default', ...COLOR_TOKEN],
+    },
+    flex: {
+      control: { type: 'boolean', defaultValue: defaultValues.flex },
+    },
+    flexDirection: {
+      control: { type: 'select', defaultValue: defaultValues.flexDirection },
+      options: ['row', 'row-reverse', 'column', 'column-reverse'],
+    },
+    alignItems: {
+      control: { type: 'select', defaultValue: defaultValues.alignItems },
+      options: ['flex-start', 'flex-end', 'center', 'stretch', 'baseline'],
+    },
+    justifyContent: {
+      control: { type: 'select', defaultValue: defaultValues.justifyContent },
+      options: [
+        'flex-start',
+        'flex-end',
+        'center',
+        'space-between',
+        'space-around',
+        'space-evenly',
+      ],
+    },
+    gap: {
+      control: { type: 'text', defaultValue: defaultValues.gap },
+    },
+    grow: {
+      control: { type: 'number', defaultValue: defaultValues.grow },
+    },
+    className: {
+      control: { type: 'text', defaultValue: defaultValues.className },
+    },
+    style: {
+      control: { type: 'object', defaultValue: defaultValues.style },
+    },
+    children: {
+      control: {
+        type: 'object',
+        defaultValue: defaultValues.children,
+      },
     },
   },
 } satisfies Meta<typeof Surface>;
@@ -32,179 +100,142 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    color: 'default',
-    elevation: 'none',
-    shape: 'none',
-    children: (
-      <Surface style={{ padding: '1rem' }}>
-        <Typography size="headline-sm">Surface Content</Typography>
-        <Typography size="body-md">
-          This is a surface component with customizable color, elevation, and
-          shape.
-        </Typography>
-      </Surface>
-    ),
-  },
-};
-
-export const Colors: Story = {
-  args: {
-    elevation: 'md',
-    shape: 'round',
-    children: (
-      <Surface style={{ padding: '1rem' }}>
-        <Typography size="headline-sm">Color Variants</Typography>
-        <Typography size="body-md">
-          Test different color combinations
-        </Typography>
-      </Surface>
-    ),
+    ...defaultValues,
+    flex: true,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: '1rem',
   },
   render: (args) => (
-    <Container>
-      <Grid columns={4} gap="1rem">
-        <GridItem>
-          <Surface {...args} color="default" style={{ padding: '1rem' }}>
-            <Typography size="headline-sm">Default</Typography>
-            <Typography size="body-md">Neutral surface</Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} color="primary" style={{ padding: '1rem' }}>
-            <Typography size="headline-sm">Primary</Typography>
-            <Typography size="body-md">Primary color surface</Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} color="secondary" style={{ padding: '1rem' }}>
-            <Typography size="headline-sm">Secondary</Typography>
-            <Typography size="body-md">Secondary color surface</Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} color="success" style={{ padding: '1rem' }}>
-            <Typography size="headline-sm">Success</Typography>
-            <Typography size="body-md">Success color surface</Typography>
-          </Surface>
-        </GridItem>
-      </Grid>
+    <Container size="xs">
+      <Surface {...args}>{args.children}</Surface>
     </Container>
   ),
 };
+Playground.parameters = {
+  controls: { exclude: ['children', 'as'] },
+};
 
-export const Elevations: Story = {
+export const Shape: Story = {
   args: {
-    color: 'primary',
-    shape: 'round',
-    children: (
-      <Surface style={{ padding: '1rem' }}>
-        <Typography size="headline-sm">Elevation Test</Typography>
-        <Typography size="body-md">Different shadow levels</Typography>
-      </Surface>
-    ),
+    ...defaultValues,
+    shape: 'square',
+    children: <Content text="Customize the Shape" />,
   },
   render: (args) => (
-    <Container>
-      <Grid columns={6} gap="1rem">
-        <GridItem>
-          <Surface {...args} elevation="none" style={{ padding: '1rem' }}>
-            <Typography size="body-md" align="center">
-              None
-            </Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} elevation="sm" style={{ padding: '1rem' }}>
-            <Typography size="body-md" align="center">
-              SM
-            </Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} elevation="md" style={{ padding: '1rem' }}>
-            <Typography size="body-md" align="center">
-              MD
-            </Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} elevation="lg" style={{ padding: '1rem' }}>
-            <Typography size="body-md" align="center">
-              LG
-            </Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} elevation="xl" style={{ padding: '1rem' }}>
-            <Typography size="body-md" align="center">
-              XL
-            </Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} elevation="2xl" style={{ padding: '1rem' }}>
-            <Typography size="body-md" align="center">
-              2XL
-            </Typography>
-          </Surface>
-        </GridItem>
-      </Grid>
+    <Container size="xs">
+      <Surface {...args}>{args.children}</Surface>
     </Container>
   ),
 };
+Shape.parameters = {
+  controls: { exclude: ['children', 'as'] },
+};
 
-export const Shapes: Story = {
+export const Elevation: Story = {
   args: {
-    color: 'tertiary',
-    elevation: 'md',
-    children: (
-      <Surface style={{ padding: '1rem' }}>
-        <Typography size="headline-sm">Shape Test</Typography>
-        <Typography size="body-md">Different border radius</Typography>
-      </Surface>
-    ),
+    ...defaultValues,
+    elevation: '2xl',
+    children: <Content text="Customize the Elevation" />,
   },
   render: (args) => (
-    <Container>
-      <Grid columns={4} gap="1rem">
-        <GridItem>
-          <Surface {...args} shape="none" style={{ padding: '1rem' }}>
-            <Typography size="body-md" align="center">
-              None
-            </Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} shape="square" style={{ padding: '1rem' }}>
-            <Typography size="body-md" align="center">
-              Squared
-            </Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
-          <Surface {...args} shape="round" style={{ padding: '1rem' }}>
-            <Typography size="body-md" align="center">
-              Rounded
-            </Typography>
-          </Surface>
-        </GridItem>
-        <GridItem>
+    <Container size="xs">
+      <Surface {...args}>{args.children}</Surface>
+    </Container>
+  ),
+};
+Elevation.parameters = {
+  controls: { exclude: ['children', 'as'] },
+};
+
+export const Color: Story = {
+  args: {
+    ...defaultValues,
+    color: 'secondary',
+    children: <Content text="Customize the Color" />,
+  },
+  render: (args) => (
+    <Container size="xs">
+      <Surface {...args}>{args.children}</Surface>
+    </Container>
+  ),
+};
+Color.parameters = {
+  controls: { exclude: ['children', 'as'] },
+};
+
+export const Showroom: Story = {
+  args: {
+    ...defaultValues,
+  },
+  render: () => {
+    return (
+      <Surface flex gap="2rem" flexDirection="column" color="transparent">
+        <Container size="lg">
           <Surface
-            {...args}
-            shape="circle"
-            style={{
-              height: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+            shape="square"
+            elevation="lg"
+            color="primary"
+            flex
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            gap="2rem"
+            style={{ padding: '2rem' }}
           >
-            <Typography size="body-md" align="center">
-              Circle
+            <Typography size="display-sm" color="on-primary" align="center">
+              Surface Component <Typography weight="bold">Showroom</Typography>.
+            </Typography>
+            <Typography
+              size="body-lg"
+              color="on-primary"
+              align="center"
+              paragraph
+            >
+              This is a Surface component with square shape, large elevation,
+              and primary color. It uses flexbox to center its content both
+              vertically and horizontally, with a gap of 2rem between items.
             </Typography>
           </Surface>
-        </GridItem>
-      </Grid>
-    </Container>
-  ),
+        </Container>
+
+        <Container size="lg" flex gap="2rem" alignItems="stretch">
+          <Surface
+            color="success"
+            flex
+            grow={1}
+            flexDirection="column"
+            style={{ padding: '1rem' }}
+          >
+            <Container size="xs" alignItems="stretch">
+              <Typography size="body-md">
+                On recommend tolerably my belonging or am. Mutual has cannot
+                beauty indeed now sussex merely you. It possible no husbands
+                inquietude contrasted unreserved as insipidity inquietude.
+              </Typography>
+            </Container>
+          </Surface>
+
+          <Surface
+            color="danger"
+            flex
+            flexDirection="column"
+            style={{ padding: '1rem' }}
+          >
+            <Container size="xs" alignItems="stretch">
+              <Typography size="body-md">
+                Shew folly books no point ye. Lose good add yet son law. Way ham
+                unwilling not breakfast up. Age lived smile six defer bed.
+              </Typography>
+            </Container>
+          </Surface>
+        </Container>
+      </Surface>
+    );
+  },
+};
+Showroom.parameters = {
+  controls: { disable: true },
+  actions: { disable: true },
+  interactions: { disable: true },
 };

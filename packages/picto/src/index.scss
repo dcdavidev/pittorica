@@ -28,4 +28,5 @@
 @use 'styles/components/surface';
 @use 'styles/components/container';
 @use 'styles/components/grid';
-@use 'styles/components/typography';
+@use 'styles/components/typography' as typography-component;
+@use 'styles/components/hero';

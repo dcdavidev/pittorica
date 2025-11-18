@@ -1,129 +1,56 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Typography } from './Typography.js';
+import { COLOR_TOKEN } from '../../types/colors.js';
+import {
+  FONT_WEIGHT_TOKEN,
+  LETTER_SPACING_TOKEN,
+  LINE_HEIGHT_TOKEN,
+  TYPOGRAPHY_ALIGN_TOKEN,
+  TYPOGRAPHY_SIZE_TOKEN,
+} from '../../types/typography.js';
+import { Container } from '../Container/Container.jsx';
+import { Divider } from '../Divider/Divider.jsx';
+import { Typography } from './Typography.jsx';
 
-const meta: Meta<typeof Typography> = {
-  title: 'Components/Typography',
+const meta = {
+  title: 'Typography/Typography',
   component: Typography,
-  parameters: {
-    layout: 'padded',
-  },
   tags: ['autodocs'],
   argTypes: {
     size: {
       control: { type: 'select' },
-      options: [
-        'display-lg',
-        'display-md',
-        'display-sm',
-        'headline-lg',
-        'headline-md',
-        'headline-sm',
-        'title-lg',
-        'title-md',
-        'title-sm',
-        'body-lg',
-        'body-md',
-        'body-sm',
-        'label-lg',
-        'label-md',
-        'label-sm',
-      ],
+      options: [undefined, ...TYPOGRAPHY_SIZE_TOKEN],
     },
     weight: {
       control: { type: 'select' },
-      options: ['regular', 'medium', 'semibold', 'bold'],
+      options: [undefined, ...FONT_WEIGHT_TOKEN],
+    },
+    lineHeight: {
+      control: { type: 'select' },
+      options: [undefined, ...LINE_HEIGHT_TOKEN],
+    },
+    letterSpacing: {
+      control: { type: 'select' },
+      options: [undefined, ...LETTER_SPACING_TOKEN],
     },
     align: {
       control: { type: 'select' },
-      options: ['left', 'center', 'right', 'justify'],
+      options: [undefined, ...TYPOGRAPHY_ALIGN_TOKEN],
     },
     color: {
       control: { type: 'select' },
-      options: [
-        'primary',
-        'secondary',
-        'tertiary',
-        'error',
-        'success',
-        'info',
-        'warning',
-        'black',
-        'white',
-      ],
-    },
-    pre: {
-      control: { type: 'boolean' },
+      options: [undefined, ...COLOR_TOKEN],
     },
   },
-};
+} satisfies Meta<typeof Typography>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Playground: Story = {
   args: {
-    children: 'This is a typography component with default body-lg size.',
-  },
-};
-
-export const DisplayLarge: Story = {
-  args: {
-    size: 'display-lg',
-    children: 'Display Large Heading',
-  },
-};
-
-export const HeadlineMedium: Story = {
-  args: {
-    size: 'headline-md',
-    children: 'Headline Medium Text',
-  },
-};
-
-export const BodyLarge: Story = {
-  args: {
-    size: 'body-lg',
-    children: 'Body Large Text - This is the default size for body text.',
-  },
-};
-
-export const LabelSmall: Story = {
-  args: {
-    size: 'label-sm',
-    children: 'Label Small Text',
-  },
-};
-
-export const WithWeight: Story = {
-  args: {
-    size: 'body-lg',
-    weight: 'bold',
-    children: 'Bold body text',
-  },
-};
-
-export const WithColor: Story = {
-  args: {
-    size: 'body-lg',
-    color: 'primary',
-    children: 'Primary colored text',
-  },
-};
-
-export const Centered: Story = {
-  args: {
-    size: 'title-lg',
-    align: 'center',
-    children: 'Centered title text',
-  },
-};
-
-export const Italic: Story = {
-  args: {
-    size: 'body-lg',
-    italic: true,
-    children: 'Italic body text',
+    color: undefined,
+    children: 'The quick brown fox jumps over the lazy dog.',
   },
 };
 
@@ -135,4 +62,69 @@ export const Preformatted: Story = {
   return "Preformatted text preserves whitespace and formatting";
 }`,
   },
+};
+
+export const Showroom: Story = {
+  args: {
+    children: '',
+  },
+  render: () => (
+    <Container>
+      <Typography size="display-lg" color="primary">
+        Typography Component <Typography weight="bold">Stories</Typography>.
+      </Typography>
+      <Typography size="label-lg">
+        The heading above uses size: "display-lg", while I use "label-lg".
+      </Typography>
+
+      <Divider variant="wave" />
+
+      <Typography size="headline-lg" color="secondary">
+        Following a Paragraph with the 'paragraph' prop.
+      </Typography>
+      <Typography size="label-md" color="tertiary">
+        The heading above uses size headline-lg, color secondary. I use size
+        label-md, color tertiary.
+      </Typography>
+
+      <Typography paragraph>
+        Respect forming clothes do in he. Course so piqued no an by appear.
+        Themselves reasonable pianoforte so motionless he as difficulty be.
+        Abode way begin ham there power whole. Do unpleasing indulgence
+        impossible to conviction. Suppose neither evident welcome it at do
+        civilly uncivil. Sing tall much you get nor.
+      </Typography>
+      <Typography italic>
+        Italic. Default size is span which means this is an inline block
+        actually.
+      </Typography>
+
+      <Divider />
+
+      <Typography size="headline-md">
+        Following a Paragraph with 'paragraph', size 'body-sm' props.
+      </Typography>
+      <Typography size="label-sm" color="tertiary">
+        The heading above uses size headline-md. I use size label-sm, color
+        tertiary.
+      </Typography>
+
+      <Typography paragraph size="body-sm">
+        Sussex result matter any end see. It speedily me addition weddings
+        vicinity in pleasure. Happiness commanded an conveying breakfast in.
+        Regard her say warmly elinor. Him these are visit front end for seven
+        walls. Money eat scale now ask law learn. Side its they just any upon
+        see last. He prepared no shutters perceive do greatest. Ye at unpleasant
+        solicitude in companions interested.
+      </Typography>
+
+      <Divider variant="double" />
+    </Container>
+  ),
+};
+
+Showroom.parameters = {
+  controls: { disable: true },
+  actions: { disable: true },
+  interactions: { disable: true },
 };

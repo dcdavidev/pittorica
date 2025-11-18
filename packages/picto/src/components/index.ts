@@ -13,6 +13,8 @@ export type { GridProps } from './Grid/Grid.js';
 export { Grid } from './Grid/Grid.js';
 export type { GridItemProps } from './Grid/GridItem.js';
 export { GridItem } from './Grid/GridItem.js';
+export type { HeroProps, HeroSize, HeroBackground } from './Hero/Hero.js';
+export { Hero } from './Hero/Hero.js';
 export type {
   SurfaceColor,
   SurfaceElevation,

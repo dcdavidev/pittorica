@@ -1,0 +1,105 @@
+@use '../variables/colors' as colors;
+
+/**
+ * Hero Component Styles
+ * Full-width hero sections with background support
+ */
+
+.picto-hero {
+  position: relative;
+  width: 100%;
+
+  // Ensure proper stacking context for backgrounds
+  z-index: 1;
+}
+
+// Background color classes
+.picto-hero-bg-primary {
+  background-color: #08a4bd;
+  color: white;
+}
+
+.picto-hero-bg-secondary {
+  background-color: #d87cac;
+  color: white;
+}
+
+.picto-hero-bg-tertiary {
+  background-color: #67597a;
+  color: white;
+}
+
+.picto-hero-bg-neutral {
+  background-color: #787579;
+  color: white;
+}
+
+.picto-hero-bg-neutral-variant {
+  background-color: #6a6670;
+  color: white;
+}
+
+.picto-hero-bg-error {
+  background-color: #9b2915;
+  color: white;
+}
+
+.picto-hero-bg-success {
+  background-color: #004f2d;
+  color: white;
+}
+
+.picto-hero-bg-info {
+  background-color: #08a4bd;
+  color: white;
+}
+
+.picto-hero-bg-danger {
+  background-color: #e9b44c;
+  color: black;
+}
+
+.picto-hero-bg-dark {
+  background-color: #131b23;
+  color: white;
+}
+
+.picto-hero-bg-light {
+  background-color: #e9f1f7;
+  color: black;
+}
+
+/**
+ * Hero Component Size Classes
+ * Vertical padding for hero sections based on size
+ */
+
+.picto-hero-xs {
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+.picto-hero-sm {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+}
+
+.picto-hero-md {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+.picto-hero-lg {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.picto-hero-xl {
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-10);
+}
+
+.picto-hero-2xl {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+}

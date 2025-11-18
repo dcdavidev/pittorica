@@ -5,6 +5,7 @@ export const COLOR_TOKEN = [
   'secondary',
   'tertiary',
   'neutral',
+  'neutral-variant',
   'error',
   'success',
   'info',

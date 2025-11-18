@@ -103,6 +103,9 @@ export function getColorClass(c?: string) {
     case 'tertiary': {
       return 'picto-text-tertiary';
     }
+    case 'neutral': {
+      return 'picto-text-neutral';
+    }
     case 'error': {
       return 'picto-text-error';
     }
