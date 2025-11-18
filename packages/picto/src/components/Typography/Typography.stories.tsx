@@ -52,6 +52,9 @@ const meta: Meta<typeof Typography> = {
         'white',
       ],
     },
+    pre: {
+      control: { type: 'boolean' },
+    },
   },
 };
 
@@ -121,5 +124,15 @@ export const Italic: Story = {
     size: 'body-lg',
     italic: true,
     children: 'Italic body text',
+  },
+};
+
+export const Preformatted: Story = {
+  args: {
+    pre: true,
+    children: `function helloWorld() {
+  console.log("Hello, World!");
+  return "Preformatted text preserves whitespace and formatting";
+}`,
   },
 };

@@ -1,5 +1,7 @@
 export type { ContainerProps, ContainerSize } from './Container/Container.js';
 export { Container } from './Container/Container.js';
+export type { BlockquoteProps } from './Blockquote/Blockquote.js';
+export { Blockquote } from './Blockquote/Blockquote.js';
 export type {
   DividerColor,
   DividerProps,

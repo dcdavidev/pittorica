@@ -27,6 +27,7 @@ export interface TypographyProps {
   align?: TypographyAlign;
   italic?: boolean;
   paragraph?: boolean;
+  pre?: boolean;
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
@@ -42,6 +43,7 @@ export const Typography: React.FC<TypographyProps> = ({
   align,
   italic,
   paragraph,
+  pre,
   children,
   className,
   style,
@@ -68,6 +70,8 @@ export const Typography: React.FC<TypographyProps> = ({
   let Tag: ElementType = 'span';
   if (as) {
     Tag = as;
+  } else if (pre) {
+    Tag = 'pre';
   } else if (paragraph) {
     Tag = 'p';
   } else if (size) {

@@ -40,7 +40,8 @@
     "LICENSE"
   ],
   "dependencies": {
-    "clsx": "^2.1.1"
+    "clsx": "^2.1.1",
+    "html-react-parser": "^5.2.10"
   },
   "devDependencies": {
     "postcss-custom-properties": "^14.0.6"
