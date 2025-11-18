@@ -222,9 +222,5 @@
       ".config/lefthook.toml"
     ]
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "exportall.config.folderListener": [
-    "/packages/react/src",
-    "/packages/react/src/types"
-  ]
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

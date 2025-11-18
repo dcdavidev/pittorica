@@ -1,10 +1,3 @@
-// Elevation tokens
-export const ELEVATION = {
-  none: '0',
-  xs: '2px',
-  sm: '4px',
-  md: '8px',
-  lg: '16px',
-  xl: '24px',
-};
-export type ElevationLevel = keyof typeof ELEVATION;
+export const ELEVATION_TOKEN = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
+
+export type ElevationToken = (typeof ELEVATION_TOKEN)[number];

@@ -95,13 +95,13 @@ pnpm build
 
 ### Project Structure
 
-```
+```bash
 pittorica/
 ├── packages/
-│   ├── react/          # React components
-│   └── pittorica/      # Core styles and tokens
-├── images/             # Assets
-└── tools/              # Build tools
+│ ├── react/     # React components
+│ └── pittorica/ # Core styles and tokens
+├── images/      # Assets
+└── tools/       # Build tools
 ```
 
 ## Contributing

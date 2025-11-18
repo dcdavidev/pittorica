@@ -1,4 +1,3 @@
-// Motion tokens
 export const MOTION = {
   fast: '150ms',
   normal: '300ms',

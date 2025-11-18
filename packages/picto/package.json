@@ -11,11 +11,23 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
+    "./components": {
+      "@pittorica/source": "./src/components/index.ts",
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js",
+      "default": "./dist/components/index.js"
+    },
     "./css": {
       "sass": "./src/index.scss",
       "style": "./dist/index.css",
       "import": "./dist/index.css",
       "default": "./dist/index.css"
+    },
+    "./types": {
+      "@pittorica/source": "./src/types/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "main": "./dist/index.js",
@@ -27,14 +39,44 @@
     "src",
     "LICENSE"
   ],
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "postcss-custom-properties": "^14.0.6"
+  },
   "publishConfig": {
     "access": "public"
   },
   "nx": {
-    "name": "picto"
+    "name": "picto",
+    "targets": {
+      "lint": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "pnpm dlx eslint --no-warn-ignored --fix ./packages/picto"
+          ]
+        }
+      },
+      "fmt": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "pnpm exec prettier --ignore-unknown --write ./packages/picto"
+          ]
+        }
+      },
+      "lint:fmt": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "pnpm dlx nx run picto:lint",
+            "pnpm dlx nx run picto:fmt"
+          ]
+        }
+      }
+    }
   },
-  "sass": "./src/index.scss",
-  "devDependencies": {
-    "postcss-custom-properties": "^14.0.6"
-  }
+  "sass": "./src/index.scss"
 }

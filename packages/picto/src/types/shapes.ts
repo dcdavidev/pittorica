@@ -1,7 +1,4 @@
 // Shape tokens
-export const SHAPES = {
-  square: '0',
-  rounded: '8px',
-  circle: '50%',
-};
-export type Shape = keyof typeof SHAPES;
+export const SHAPE = ['square', 'rounded', 'circle'] as const;
+
+export type Shape = (typeof SHAPE)[number];

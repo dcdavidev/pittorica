@@ -1,7 +1,10 @@
-/* Updated SCSS with integrated variables from previous files */
+@use 'sass:map';
 @use './utils/reset-margins';
 @use './utils/border-box';
 @use './variables/text-tokens';
+@use './variables/font-weight';
+@use './variables/line-height';
+@use './variables/letter-spacing';
 @use './variables/colors';
 
 // Generate text color utility classes
@@ -81,6 +84,7 @@ p,
 .picto-text-body-lg,
 .picto-text-body-md,
 .picto-text-body-sm {
+  display: block;
   @include text-colors;
 }
 
@@ -148,8 +152,138 @@ strong {
   @include text-colors;
 }
 
+.picto-font-weight-regular {
+  font-weight: font-weight.$font-weight-regular !important;
+}
+.picto-font-weight-medium {
+  font-weight: font-weight.$font-weight-medium !important;
+}
+.picto-font-weight-semibold {
+  font-weight: font-weight.$font-weight-semibold !important;
+}
+.picto-font-weight-bold {
+  font-weight: font-weight.$font-weight-bold !important;
+}
+
+.picto-line-height-tight {
+  line-height: line-height.$line-height-tight !important;
+}
+.picto-line-height-normal {
+  line-height: line-height.$line-height-normal !important;
+}
+.picto-line-height-relaxed {
+  line-height: line-height.$line-height-relaxed !important;
+}
+
+.picto-tracking-tight {
+  letter-spacing: letter-spacing.$letter-spacing-tight !important;
+}
+.picto-tracking-normal {
+  letter-spacing: letter-spacing.$letter-spacing-normal !important;
+}
+.picto-tracking-wide {
+  letter-spacing: letter-spacing.$letter-spacing-wide !important;
+}
+.picto-tracking-wider {
+  letter-spacing: letter-spacing.$letter-spacing-wider !important;
+}
+
+.picto-tracking-tight {
+  letter-spacing: letter-spacing.$letter-spacing-tight !important;
+}
+.picto-tracking-normal {
+  letter-spacing: letter-spacing.$letter-spacing-normal !important;
+}
+.picto-tracking-wide {
+  letter-spacing: letter-spacing.$letter-spacing-wide !important;
+}
+.picto-tracking-wider {
+  letter-spacing: letter-spacing.$letter-spacing-wider !important;
+}
+
+.picto-text-primary {
+  color: map.get(colors.$base, primary) !important;
+}
+.picto-text-secondary {
+  color: map.get(colors.$base, secondary) !important;
+}
+.picto-text-tertiary {
+  color: map.get(colors.$base, tertiary) !important;
+}
+.picto-text-error {
+  color: map.get(colors.$base, error) !important;
+}
+.picto-text-success {
+  color: map.get(colors.$base, success) !important;
+}
+.picto-text-info {
+  color: map.get(colors.$base, info) !important;
+}
+.picto-text-warning {
+  color: map.get(colors.$base, warning) !important;
+}
+.picto-text-black {
+  color: colors.$black !important;
+}
+.picto-text-white {
+  color: colors.$white !important;
+}
+
 // Alignment utilities
 @include text-align(right);
 @include text-align(center);
 @include text-align(left);
 @include text-align(justify);
+
+i,
+em,
+.picto-text-italic {
+  font-style: italic;
+}
+
+hr,
+.picto-divider {
+  @extend %border-box;
+  border: none;
+  border-top: 1px solid var(--picto-outline);
+}
+
+.picto-divider-dark {
+  border-top-color: var(--picto-color-black);
+}
+
+.picto-divider-light {
+  border-top-color: var(--picto-color-white);
+}
+
+.picto-divider-primary {
+  border-top-color: var(--picto-primary);
+}
+
+.picto-divider-secondary {
+  border-top-color: var(--picto-secondary);
+}
+
+.picto-divider-tertiary {
+  border-top-color: var(--picto-tertiary);
+}
+
+.picto-divider-error {
+  border-top-color: var(--picto-error);
+}
+
+.picto-divider-neutral {
+  border-top-color: var(--picto-neutral);
+}
+
+.picto-divider-info {
+  border-top-color: var(--picto-info);
+}
+
+.picto-divider-warning {
+  border-top-color: var(--picto-warning);
+}
+
+.picto-divider-danger {
+  border-top-color: var(--picto-danger);
+}

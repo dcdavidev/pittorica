@@ -45,7 +45,12 @@
   --picto-line-height-normal: #{line-height.$line-height-normal};
   --picto-line-height-relaxed: #{line-height.$line-height-relaxed};
 
-  /* Spacing */
+  /* Spacing Scale */
+  @each $name, $value in spacing.$spacing-scale {
+    --picto-space-#{$name}: #{$value};
+  }
+
+  /* Spacing Semantic */
   @each $name, $value in spacing.$spacing-semantic {
     --picto-space-#{$name}: #{$value};
   }
@@ -181,12 +186,14 @@
     --picto-surface-dim: var(--picto-color-neutral-87);
     --picto-surface-bright: var(--picto-color-neutral-98);
     --picto-outline: var(--picto-color-neutral-variant-50);
+    --surface-border: var(--picto-color-neutral-30);
   } @else if $mode == dark {
     --picto-surface: var(--picto-color-neutral-7);
     --picto-on-surface: var(--picto-color-neutral-90);
     --picto-surface-dim: var(--picto-color-neutral-6);
     --picto-surface-bright: var(--picto-color-neutral-24);
     --picto-outline: var(--picto-color-neutral-variant-60);
+    --surface-border: var(--picto-color-neutral-70);
   }
 }
 

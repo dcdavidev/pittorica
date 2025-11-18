@@ -1,9 +1,12 @@
-// Radius tokens
-export const RADIUS = {
-  none: '0',
-  sm: '4px',
-  md: '8px',
-  lg: '16px',
-  pill: '9999px',
-};
-export type Radius = keyof typeof RADIUS;
+export const RADIUS_TOKEN = [
+  'none',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  '2xl',
+  'full',
+] as const;
+
+export type RadiusToken = (typeof RADIUS_TOKEN)[number];

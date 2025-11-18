@@ -28,7 +28,6 @@
     "timonwong.shellcheck",
     "gruntfuggly.todo-tree",
     "redhat.vscode-yaml",
-    "syler.sass-indented",
-    "csstools.postcss"
+    "syler.sass-indented"
   ]
 }

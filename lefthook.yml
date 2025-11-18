@@ -9,8 +9,8 @@ pre-commit:
     - name: sync workspace
       run: pnpm dlx nx sync
     - name: lint
-      run: pnpm dlx eslint --fix {staged_files}
+      run: pnpm dlx eslint --no-warn-ignored --fix {staged_files}
       stage_fixed: true
     - name: fmt
-      run: pnpm dlx prettier --write {staged_files}
+      run: pnpm exec prettier --ignore-unknown --write {staged_files}
       stage_fixed: true

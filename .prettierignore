@@ -3,10 +3,9 @@
 /.gemini/
 /.github/instructions/
 /.nx/
+/.czrc
 /bun.lockb
-/czrc
-/eslint.config.mjs
-/prettier.config.mjs
+/old
 
 **/dist/
 **/node_modules/
