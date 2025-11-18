@@ -3,6 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { COLOR_TOKEN } from '../../types/colors';
 import { ELEVATION_TOKEN } from '../../types/elevation';
 import { SHAPE_TOKEN } from '../../types/shapes';
+import { Container } from '../Container/Container.js';
+import { Grid, GridItem } from '../Grid/index.js';
+import { Typography } from '../Typography/Typography';
 import { Surface } from './Surface.js';
 
 const meta = {
@@ -33,13 +36,13 @@ export const Playground: Story = {
     elevation: 'none',
     shape: 'none',
     children: (
-      <div style={{ padding: '1rem' }}>
-        <h3>Surface Content</h3>
-        <p>
+      <Surface style={{ padding: '1rem' }}>
+        <Typography size="headline-sm">Surface Content</Typography>
+        <Typography size="body-md">
           This is a surface component with customizable color, elevation, and
           shape.
-        </p>
-      </div>
+        </Typography>
+      </Surface>
     ),
   },
 };
@@ -49,45 +52,43 @@ export const Colors: Story = {
     elevation: 'md',
     shape: 'round',
     children: (
-      <div style={{ padding: '1rem', textAlign: 'center' }}>
-        <h4>Color Variants</h4>
-        <p>Test different color combinations</p>
-      </div>
+      <Surface style={{ padding: '1rem' }}>
+        <Typography size="headline-sm">Color Variants</Typography>
+        <Typography size="body-md">
+          Test different color combinations
+        </Typography>
+      </Surface>
     ),
   },
   render: (args) => (
-    <div
-      style={{
-        display: 'grid',
-        gap: '1rem',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-      }}
-    >
-      <Surface {...args} color="default">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <h4>Default</h4>
-          <p>Neutral surface</p>
-        </div>
-      </Surface>
-      <Surface {...args} color="primary">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <h4>Primary</h4>
-          <p>Primary color surface</p>
-        </div>
-      </Surface>
-      <Surface {...args} color="secondary">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <h4>Secondary</h4>
-          <p>Secondary color surface</p>
-        </div>
-      </Surface>
-      <Surface {...args} color="success">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <h4>Success</h4>
-          <p>Success color surface</p>
-        </div>
-      </Surface>
-    </div>
+    <Container>
+      <Grid columns={4} gap="1rem">
+        <GridItem>
+          <Surface {...args} color="default" style={{ padding: '1rem' }}>
+            <Typography size="headline-sm">Default</Typography>
+            <Typography size="body-md">Neutral surface</Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} color="primary" style={{ padding: '1rem' }}>
+            <Typography size="headline-sm">Primary</Typography>
+            <Typography size="body-md">Primary color surface</Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} color="secondary" style={{ padding: '1rem' }}>
+            <Typography size="headline-sm">Secondary</Typography>
+            <Typography size="body-md">Secondary color surface</Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} color="success" style={{ padding: '1rem' }}>
+            <Typography size="headline-sm">Success</Typography>
+            <Typography size="body-md">Success color surface</Typography>
+          </Surface>
+        </GridItem>
+      </Grid>
+    </Container>
   ),
 };
 
@@ -96,104 +97,114 @@ export const Elevations: Story = {
     color: 'primary',
     shape: 'round',
     children: (
-      <div style={{ padding: '1rem', textAlign: 'center' }}>
-        <h4>Elevation Test</h4>
-        <p>Different shadow levels</p>
-      </div>
+      <Surface style={{ padding: '1rem' }}>
+        <Typography size="headline-sm">Elevation Test</Typography>
+        <Typography size="body-md">Different shadow levels</Typography>
+      </Surface>
     ),
   },
   render: (args) => (
-    <div
-      style={{
-        display: 'grid',
-        gap: '1rem',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-      }}
-    >
-      <Surface {...args} elevation="none">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <p>None</p>
-        </div>
-      </Surface>
-      <Surface {...args} elevation="sm">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <p>SM</p>
-        </div>
-      </Surface>
-      <Surface {...args} elevation="md">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <p>MD</p>
-        </div>
-      </Surface>
-      <Surface {...args} elevation="lg">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <p>LG</p>
-        </div>
-      </Surface>
-      <Surface {...args} elevation="xl">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <p>XL</p>
-        </div>
-      </Surface>
-      <Surface {...args} elevation="2xl">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <p>2XL</p>
-        </div>
-      </Surface>
-    </div>
+    <Container>
+      <Grid columns={6} gap="1rem">
+        <GridItem>
+          <Surface {...args} elevation="none" style={{ padding: '1rem' }}>
+            <Typography size="body-md" align="center">
+              None
+            </Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} elevation="sm" style={{ padding: '1rem' }}>
+            <Typography size="body-md" align="center">
+              SM
+            </Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} elevation="md" style={{ padding: '1rem' }}>
+            <Typography size="body-md" align="center">
+              MD
+            </Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} elevation="lg" style={{ padding: '1rem' }}>
+            <Typography size="body-md" align="center">
+              LG
+            </Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} elevation="xl" style={{ padding: '1rem' }}>
+            <Typography size="body-md" align="center">
+              XL
+            </Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} elevation="2xl" style={{ padding: '1rem' }}>
+            <Typography size="body-md" align="center">
+              2XL
+            </Typography>
+          </Surface>
+        </GridItem>
+      </Grid>
+    </Container>
   ),
 };
 
 export const Shapes: Story = {
   args: {
-    color: 'secondary',
+    color: 'tertiary',
     elevation: 'md',
     children: (
-      <div style={{ padding: '1rem', textAlign: 'center' }}>
-        <h4>Shape Test</h4>
-        <p>Different border radius</p>
-      </div>
+      <Surface style={{ padding: '1rem' }}>
+        <Typography size="headline-sm">Shape Test</Typography>
+        <Typography size="body-md">Different border radius</Typography>
+      </Surface>
     ),
   },
   render: (args) => (
-    <div
-      style={{
-        display: 'grid',
-        gap: '1rem',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-      }}
-    >
-      <Surface {...args} shape="none">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <p>None</p>
-        </div>
-      </Surface>
-      <Surface {...args} shape="square">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <p>Squared</p>
-        </div>
-      </Surface>
-      <Surface {...args} shape="round">
-        <div style={{ padding: '1rem', textAlign: 'center' }}>
-          <p>Rounded</p>
-        </div>
-      </Surface>
-      <Surface {...args} shape="circle">
-        <div
-          style={{
-            padding: '1rem',
-            textAlign: 'center',
-            borderRadius: '50%',
-            width: '100px',
-            height: '100px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <p>Circle</p>
-        </div>
-      </Surface>
-    </div>
+    <Container>
+      <Grid columns={4} gap="1rem">
+        <GridItem>
+          <Surface {...args} shape="none" style={{ padding: '1rem' }}>
+            <Typography size="body-md" align="center">
+              None
+            </Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} shape="square" style={{ padding: '1rem' }}>
+            <Typography size="body-md" align="center">
+              Squared
+            </Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface {...args} shape="round" style={{ padding: '1rem' }}>
+            <Typography size="body-md" align="center">
+              Rounded
+            </Typography>
+          </Surface>
+        </GridItem>
+        <GridItem>
+          <Surface
+            {...args}
+            shape="circle"
+            style={{
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Typography size="body-md" align="center">
+              Circle
+            </Typography>
+          </Surface>
+        </GridItem>
+      </Grid>
+    </Container>
   ),
 };

@@ -34,7 +34,7 @@ export interface TypographyProps {
 
 export const Typography: React.FC<TypographyProps> = ({
   as,
-  size,
+  size = 'body-lg',
   weight,
   lineHeight,
   letterSpacing,

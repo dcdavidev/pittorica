@@ -10,6 +10,7 @@
 @use 'styles/variables/motion';
 @use 'styles/variables/colors';
 @use 'styles/variables/text-tokens';
+@use 'styles/variables/typography';
 
 /* Utilities */
 @use 'styles/utils/border-box';
@@ -26,3 +27,5 @@
 /* Components */
 @use 'styles/components/surface';
 @use 'styles/components/container';
+@use 'styles/components/grid';
+@use 'styles/components/typography';

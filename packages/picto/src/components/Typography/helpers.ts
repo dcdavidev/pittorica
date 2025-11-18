@@ -11,22 +11,22 @@ import type {
  * @param w The font weight string ('regular', 'medium', 'semibold', 'bold').
  * @returns The corresponding CSS class string, or empty string if not found.
  * @example
- * getWeightClass('regular') // 'picto-font-weight-regular'
- * getWeightClass('bold') // 'picto-font-weight-bold'
+ * getWeightClass('regular') // 'picto-text-regular'
+ * getWeightClass('bold') // 'picto-text-bold'
  */
 export function getWeightClass(w?: FontWeight) {
   switch (w) {
     case 'regular': {
-      return 'picto-font-weight-regular';
+      return 'picto-text-regular';
     }
     case 'medium': {
-      return 'picto-font-weight-medium';
+      return 'picto-text-medium';
     }
     case 'semibold': {
-      return 'picto-font-weight-semibold';
+      return 'picto-text-semibold';
     }
     case 'bold': {
-      return 'picto-font-weight-bold';
+      return 'picto-text-bold';
     }
     default: {
       return '';
@@ -39,19 +39,19 @@ export function getWeightClass(w?: FontWeight) {
  * @param lh The line height string ('normal', 'tight', 'loose').
  * @returns The corresponding CSS class string, or empty string if not found.
  * @example
- * getLineHeightClass('normal') // 'picto-line-height-normal'
- * getLineHeightClass('tight') // 'picto-line-height-tight'
+ * getLineHeightClass('normal') // 'picto-text-normal'
+ * getLineHeightClass('tight') // 'picto-text-tight'
  */
 export function getLineHeightClass(lh?: LineHeight) {
   switch (lh) {
     case 'tight': {
-      return 'picto-line-height-tight';
+      return 'picto-text-tight';
     }
     case 'normal': {
-      return 'picto-line-height-normal';
+      return 'picto-text-normal';
     }
     case 'loose': {
-      return 'picto-line-height-relaxed';
+      return 'picto-text-relaxed';
     }
     default: {
       return '';
@@ -64,19 +64,19 @@ export function getLineHeightClass(lh?: LineHeight) {
  * @param ls The letter spacing string ('normal', 'wide', 'wider').
  * @returns The corresponding CSS class string, or empty string if not found.
  * @example
- * getLetterSpacingClass('normal') // 'picto-tracking-normal'
- * getLetterSpacingClass('wider') // 'picto-tracking-wider'
+ * getLetterSpacingClass('normal') // 'picto-text-normal'
+ * getLetterSpacingClass('wider') // 'picto-text-wider'
  */
 export function getLetterSpacingClass(ls?: LetterSpacing) {
   switch (ls) {
     case 'normal': {
-      return 'picto-tracking-normal';
+      return 'picto-text-normal';
     }
     case 'wide': {
-      return 'picto-tracking-wide';
+      return 'picto-text-wide';
     }
     case 'wider': {
-      return 'picto-tracking-wider';
+      return 'picto-text-wider';
     }
     default: {
       return '';

@@ -1,0 +1,30 @@
+@use 'font-weight';
+@use 'letter-spacing';
+@use 'line-height';
+@use 'text-tokens';
+
+/**
+ * Typography Scale Variables
+ * Defines typography scales for the Typography component
+ */
+
+// Typography scale using text tokens
+$typography-scale: text-tokens.$text-styles;
+
+// Font weight scale
+$font-weight-scale: font-weight.$font-weights;
+
+// Line height scale
+$line-height-scale: (
+  tight: line-height.$line-height-tight,
+  normal: line-height.$line-height-normal,
+  relaxed: line-height.$line-height-relaxed,
+);
+
+// Letter spacing scale
+$letter-spacing-scale: (
+  tight: letter-spacing.$letter-spacing-tight,
+  normal: letter-spacing.$letter-spacing-normal,
+  wide: letter-spacing.$letter-spacing-wide,
+  wider: letter-spacing.$letter-spacing-wider,
+);
