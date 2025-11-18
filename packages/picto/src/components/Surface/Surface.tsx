@@ -19,6 +19,7 @@ export interface SurfaceProps {
   children: React.ReactNode;
   className?: string;
   as?: React.ElementType;
+  style?: React.CSSProperties;
 }
 
 export const Surface: React.FC<SurfaceProps> = ({
