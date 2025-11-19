@@ -5,11 +5,14 @@
   "projectType": "library",
   "tags": ["scope:picto", "type:ui"],
   "targets": {
+    "build": {
+      "dependsOn": ["doc:g:toc", "^build"]
+    },
     "doc:g:toc": {
       "executor": "nx:run-commands",
       "options": {
         "cwd": "{projectRoot}",
-        "command": "pnpm dlx markdown-toc -i **/*.md"
+        "command": "pnpm dlx markdown-toc -i README.md"
       }
     }
   }
