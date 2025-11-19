@@ -15,7 +15,19 @@ export default defineConfig(() => ({
       entryRoot: 'src',
       tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json'),
     }),
-    vanillaExtractPlugin(),
+    vanillaExtractPlugin({
+      identifiers: ({ debugId, filePath }) => {
+        const name =
+          debugId || filePath.split('/').pop()?.split('.')[0] || 'style';
+
+        const kebabName = name
+          .replaceAll('_', '-')
+          .replaceAll(/([a-z0-9])([A-Z])/g, '$1-$2')
+          .toLowerCase();
+
+        return `picto-${kebabName}`;
+      },
+    }),
   ],
   build: {
     outDir: './dist',

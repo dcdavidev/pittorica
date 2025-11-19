@@ -6,6 +6,7 @@
     "./package.json": "./package.json",
     ".": {
       "@pittorica/source": "./src/index.ts",
+      "styles": "./dist/index.css",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
@@ -15,6 +16,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "@fontsource/momo-trust-display": "^5.2.1",
+    "@fontsource/momo-trust-sans": "^5.2.1",
     "@material/material-color-utilities": "^0.3.0"
   }
 }
