@@ -20,6 +20,10 @@ export const generateTones = (hexColor: string) => {
   const palette = TonalPalette.fromInt(argb);
 
   return {
+    /** Very dark tone (10) - almost black. */
+    tone10: hexFromArgb(palette.tone(10)),
+    /** Dark tone (20) - for surface backgrounds. */
+    tone20: hexFromArgb(palette.tone(20)),
     /** The base color tone (40). */
     base: hexFromArgb(palette.tone(40)),
     /** Text color that contrasts with the base color (100). */
@@ -28,5 +32,9 @@ export const generateTones = (hexColor: string) => {
     container: hexFromArgb(palette.tone(90)),
     /** Text color for container backgrounds (10). */
     onContainer: hexFromArgb(palette.tone(10)),
+    /** Very light tone (98) - almost white. */
+    tone98: hexFromArgb(palette.tone(98)),
+    /** Ultra light tone (99) - extremely light. */
+    tone99: hexFromArgb(palette.tone(99)),
   };
 };

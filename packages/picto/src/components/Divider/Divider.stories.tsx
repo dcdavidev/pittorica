@@ -16,7 +16,16 @@ const meta: Meta<typeof Divider> = {
     },
     color: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'tertiary', 'neutral', 'error', 'success', 'info', 'danger'],
+      options: [
+        'primary',
+        'secondary',
+        'tertiary',
+        'neutral',
+        'error',
+        'success',
+        'info',
+        'danger',
+      ],
     },
     space: {
       control: { type: 'select' },

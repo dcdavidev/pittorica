@@ -1,13 +1,20 @@
 import '@fontsource/momo-trust-display';
 import '@fontsource/momo-trust-sans';
 
-import { createGlobalTheme } from '@vanilla-extract/css';
+import { createGlobalTheme, globalStyle } from '@vanilla-extract/css';
 
 import { generateThemeObject } from '../helpers/generate-theme-object.js';
+import { generateTones } from '../helpers/generate-tones.js';
 import { ELEVATION_SCALE } from './elevation.css.js';
+
+// Generate tonal colors for primary
+const primaryTones = generateTones('#08a4bd');
+const neutralTones = generateTones('#08a4bd'); // Use primary for theme backgrounds
 
 export const vars = createGlobalTheme(':root', {
   color: generateThemeObject({
+    dark: '#131b23',
+    light: '#e9f1f7',
     primary: '#08a4bd',
     secondary: '#d87cac',
     tertiary: '#67597a',
@@ -17,6 +24,21 @@ export const vars = createGlobalTheme(':root', {
     success: '#004f2d',
     info: '#08a4bd',
     danger: '#e9b44c',
+    // Container colors (lighter variants)
+    primaryContainer: '#e0f4f7',
+    secondaryContainer: '#fcebf2',
+    tertiaryContainer: '#f0ecf2',
+    neutralContainer: '#f5f4f5',
+    'neutral-variantContainer': '#f0eff2',
+    errorContainer: '#fceaea',
+    successContainer: '#e0f2e8',
+    infoContainer: '#e0f4f7',
+    dangerContainer: '#fef9e7',
+    // Tonal colors
+    primaryBase: primaryTones.base,
+    primaryOnBase: primaryTones.onBase,
+    primaryContainerTone: primaryTones.container,
+    primaryOnContainer: primaryTones.onContainer,
   }),
   elevation: ELEVATION_SCALE,
   font: {
@@ -80,4 +102,42 @@ export const vars = createGlobalTheme(':root', {
     '2xl': '3rem',
     '3xl': '4rem',
   },
+});
+
+// Global styles for themes and body backgrounds
+globalStyle('body', {
+  margin: 0,
+  padding: 0,
+  fontFamily: vars.font.sans,
+  backgroundColor: neutralTones.tone99, // Very light tone from primary
+  color: neutralTones.tone10, // Dark text for contrast
+});
+
+// Light theme
+globalStyle('body.picto-theme-light', {
+  backgroundColor: neutralTones.tone99, // Very light tone (99) from primary
+  color: neutralTones.tone10, // Dark text
+});
+
+// Dark theme
+globalStyle('body.picto-theme-dark', {
+  backgroundColor: neutralTones.tone10, // Very dark tone (10) from primary
+  color: neutralTones.tone99, // Light text
+});
+
+// Surface backgrounds - very light but slightly darker than body
+globalStyle('.picto-surface-bg', {
+  backgroundColor: neutralTones.tone98, // Slightly darker than body (98)
+  color: neutralTones.tone10, // Dark text
+});
+
+// Dark theme overrides for surface
+globalStyle('body.picto-theme-dark .picto-surface-bg', {
+  backgroundColor: neutralTones.tone20, // Slightly lighter than dark body (20)
+  color: neutralTones.tone99, // Light text
+});
+
+// Primary background class
+globalStyle('.picto-primary-bg', {
+  backgroundColor: vars.color.primaryContainerTone,
 });
