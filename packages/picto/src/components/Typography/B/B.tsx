@@ -2,11 +2,11 @@ import React, { type ElementType } from 'react';
 
 import clsx from 'clsx';
 
-import { ColorToken } from '../../types/colors.js';
-import { FontWeight } from '../../types/typography.js';
-import { getColorClass, getWeightClass } from '../Typography/helpers.js';
+import { ColorToken } from '../../../types/colors.js';
+import { FontWeight } from '../../../types/typography.js';
+import { getColorClass, getWeightClass } from '../helpers.js';
 
-export interface StrongProps {
+export interface BProps {
   as?: ElementType;
   weight?: FontWeight;
   color?: string | ColorToken;
@@ -15,7 +15,7 @@ export interface StrongProps {
   style?: React.CSSProperties;
 }
 
-export const Strong: React.FC<StrongProps> = ({
+export const B: React.FC<BProps> = ({
   as,
   weight = 'bold',
   color,
@@ -24,7 +24,7 @@ export const Strong: React.FC<StrongProps> = ({
   style,
   ...rest
 }) => {
-  const Tag: ElementType = as || 'strong';
+  const Tag: ElementType = as || 'b';
 
   const weightClass = getWeightClass(weight);
   const colorClass = getColorClass(color);

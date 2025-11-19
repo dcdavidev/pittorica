@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { ColorToken } from '../../types/colors.js';
+import { ColorToken } from '../../../types/colors.js';
 import {
   FontWeight,
   LetterSpacing,
   LineHeight,
   TypographyAlign,
   TypographySize,
-} from '../../types/typography.js';
-import { Typography } from './Typography.js';
+} from '../../../types/typography.js';
+import { Typography } from '../Typography/Typography.js';
 
 export interface ParagraphProps {
   as?: React.ElementType;

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Strong } from './Strong.js';
+import { B } from './B.js';
 
 const meta = {
-  title: 'Typography/Strong',
-  component: Strong,
+  title: 'Typography/B',
+  component: B,
   tags: ['autodocs'],
   argTypes: {
     weight: {
@@ -16,7 +16,7 @@ const meta = {
       options: ['primary', 'secondary', 'tertiary', 'neutral'],
     },
   },
-} satisfies Meta<typeof Strong>;
+} satisfies Meta<typeof B>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -24,27 +24,27 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: {
     weight: 'bold',
-    children: 'This text is strong/bold',
+    children: 'This text is bold',
   },
 };
 
 export const Weights: Story = {
   args: {
-    children: 'Strong text with different weights',
+    children: 'Bold text with different weights',
   },
   render: (args) => (
     <>
       <p>
-        Regular: <Strong {...args} weight="regular" />
+        Regular: <B {...args} weight="regular" />
       </p>
       <p>
-        Medium: <Strong {...args} weight="medium" />
+        Medium: <B {...args} weight="medium" />
       </p>
       <p>
-        Semibold: <Strong {...args} weight="semibold" />
+        Semibold: <B {...args} weight="semibold" />
       </p>
       <p>
-        Bold: <Strong {...args} weight="bold" />
+        Bold: <B {...args} weight="bold" />
       </p>
     </>
   ),

@@ -6,6 +6,7 @@ import { ColorToken } from '../../types/colors.js';
 import { ElevationToken } from '../../types/elevation.js';
 import { AlignItems, FlexDirection, JustifyContent } from '../../types/flex.js';
 import { ShapeToken } from '../../types/shapes.js';
+import { TypographyAlign } from '../../types/typography.js';
 
 export type SurfaceColor = ColorToken | 'default' | 'transparent';
 
@@ -27,6 +28,8 @@ export interface SurfaceProps {
   flexDirection?: FlexDirection;
   gap?: string | number;
   grow?: number;
+  screen?: boolean;
+  textAlign?: TypographyAlign;
 }
 
 export const Surface: React.FC<SurfaceProps> = ({
@@ -42,6 +45,8 @@ export const Surface: React.FC<SurfaceProps> = ({
   flexDirection = 'row',
   gap,
   grow,
+  screen = false,
+  textAlign,
   style = {},
   ...rest
 }) => {
@@ -77,12 +82,31 @@ export const Surface: React.FC<SurfaceProps> = ({
     backgroundStyles.background = 'inherit';
   }
 
+  // Handle screen size
+  const screenStyles: React.CSSProperties = {};
+  if (screen) {
+    screenStyles.width = '100vw';
+    screenStyles.height = '100vh';
+  }
+
+  // Handle text alignment
+  const textAlignStyles: React.CSSProperties = {};
+  if (textAlign) {
+    textAlignStyles.textAlign = textAlign;
+  }
+
   const classes = clsx(colorClass, elevationClass, shapeClass, className);
 
   return (
     <Component
       className={classes}
-      style={{ ...backgroundStyles, ...flexStyles, ...style }}
+      style={{
+        ...backgroundStyles,
+        ...screenStyles,
+        ...textAlignStyles,
+        ...flexStyles,
+        ...style,
+      }}
       {...rest}
     >
       {children}

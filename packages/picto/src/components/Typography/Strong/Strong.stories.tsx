@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Paragraph } from './Paragraph.js';
+import { Strong } from './Strong.js';
 
 const meta = {
-  title: 'Typography/Paragraph',
-  component: Paragraph,
+  title: 'Typography/Strong',
+  component: Strong,
   tags: ['autodocs'],
   argTypes: {
     size: {
@@ -60,52 +60,51 @@ const meta = {
       control: { type: 'boolean' },
     },
   },
-} satisfies Meta<typeof Paragraph>;
+} satisfies Meta<typeof Strong>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    children:
-      'This is a paragraph component. It renders as a <p> element by default and supports all typography styling options except semantic inline elements.',
+    children: 'This is strong text.',
   },
 };
 
 export const Sizes: Story = {
   args: {
-    children: 'Paragraph with different sizes.',
+    children: 'Strong text with different sizes.',
   },
   render: (args) => (
     <>
-      <Paragraph {...args} size="body-lg">
-        Body Large: The quick brown fox jumps over the lazy dog.
-      </Paragraph>
-      <Paragraph {...args} size="body-md">
-        Body Medium: The quick brown fox jumps over the lazy dog.
-      </Paragraph>
-      <Paragraph {...args} size="body-sm">
-        Body Small: The quick brown fox jumps over the lazy dog.
-      </Paragraph>
+      <Strong {...args} size="body-lg">
+        Body Large: Important information.
+      </Strong>
+      <Strong {...args} size="body-md">
+        Body Medium: Important information.
+      </Strong>
+      <Strong {...args} size="body-sm">
+        Body Small: Important information.
+      </Strong>
     </>
   ),
 };
 
 export const WithStyling: Story = {
   args: {
-    children: 'Styled paragraph with various typography options.',
+    children: 'Styled strong text.',
   },
   render: (args) => (
     <>
-      <Paragraph {...args} weight="bold" color="primary">
-        Bold primary paragraph
-      </Paragraph>
-      <Paragraph {...args} italic color="secondary">
-        Italic secondary paragraph
-      </Paragraph>
-      <Paragraph {...args} align="center" color="tertiary">
-        Centered tertiary paragraph
-      </Paragraph>
+      <Strong {...args} weight="bold" color="primary">
+        Bold primary strong text
+      </Strong>
+      <Strong {...args} italic color="secondary">
+        Italic secondary strong text
+      </Strong>
+      <Strong {...args} align="center" color="tertiary">
+        Centered tertiary strong text
+      </Strong>
     </>
   ),
 };

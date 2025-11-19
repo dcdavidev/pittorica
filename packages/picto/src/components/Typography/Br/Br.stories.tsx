@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Br } from './Br.js';
-import { Paragraph } from './Paragraph.js';
+import { Paragraph } from '../Paragraph/Paragraph.js';
 
 const meta = {
   title: 'Typography/Br',

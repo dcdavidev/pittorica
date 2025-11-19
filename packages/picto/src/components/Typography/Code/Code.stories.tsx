@@ -1,24 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Sub } from './Sub.js';
+import { Code } from './Code.js';
 
 const meta = {
-  title: 'Typography/Sub',
-  component: Sub,
+  title: 'Typography/Code',
+  component: Code,
   tags: ['autodocs'],
-  argTypes: {},
-} satisfies Meta<typeof Sub>;
+} satisfies Meta<typeof Code>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    children: '2',
+    children: 'const hello = "world";',
   },
-  render: () => (
-    <span>
-      H<Sub>2</Sub>O
-    </span>
-  ),
 };

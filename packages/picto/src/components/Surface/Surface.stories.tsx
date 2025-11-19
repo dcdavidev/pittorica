@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { COLOR_TOKEN } from '../../types/colors';
 import { ELEVATION_TOKEN } from '../../types/elevation';
 import { SHAPE_TOKEN } from '../../types/shapes';
+import { TYPOGRAPHY_ALIGN_TOKEN } from '../../types/typography';
 import { Container } from '../Container/Container.js';
 import { Typography } from '../Typography/Typography';
 import { Surface, SurfaceProps } from './Surface.js';
@@ -26,6 +27,8 @@ const defaultValues: SurfaceProps = {
   justifyContent: 'center',
   gap: '',
   grow: 0,
+  screen: false,
+  textAlign: 'center',
   className: '',
   style: { padding: '1rem' },
   children: <Content />,
@@ -79,6 +82,13 @@ const meta = {
     },
     grow: {
       control: { type: 'number', defaultValue: defaultValues.grow },
+    },
+    screen: {
+      control: { type: 'boolean', defaultValue: defaultValues.screen },
+    },
+    textAlign: {
+      control: { type: 'select', defaultValue: defaultValues.textAlign },
+      options: [...TYPOGRAPHY_ALIGN_TOKEN],
     },
     className: {
       control: { type: 'text', defaultValue: defaultValues.className },
@@ -148,19 +158,15 @@ Elevation.parameters = {
   controls: { exclude: ['children', 'as'] },
 };
 
-export const Color: Story = {
+export const Screen: Story = {
   args: {
     ...defaultValues,
-    color: 'secondary',
-    children: <Content text="Customize the Color" />,
+    screen: true,
+    children: <Content text="Full Screen Surface" />,
   },
-  render: (args) => (
-    <Container size="xs">
-      <Surface {...args}>{args.children}</Surface>
-    </Container>
-  ),
+  render: (args) => <Surface {...args}>{args.children}</Surface>,
 };
-Color.parameters = {
+Screen.parameters = {
   controls: { exclude: ['children', 'as'] },
 };
 

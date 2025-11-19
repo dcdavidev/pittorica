@@ -2,33 +2,30 @@ import React, { type ElementType } from 'react';
 
 import clsx from 'clsx';
 
-export interface SmallProps {
+export interface IProps {
   as?: ElementType;
+  italic?: boolean;
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
 }
 
-export const Small: React.FC<SmallProps> = ({
+export const I: React.FC<IProps> = ({
   as,
+  italic = true,
   children,
   className,
   style,
   ...rest
 }) => {
-  const Tag: ElementType = as || 'small';
+  const Tag: ElementType = as || 'i';
 
-  const classes = clsx(className);
+  const classes = clsx(italic && 'picto-text-italic', className);
 
   return (
     <Tag
       className={classes}
-      style={{
-        display: 'inline',
-        color: 'inherit',
-        fontSize: 'smaller',
-        ...style,
-      }}
+      style={{ display: 'inline', color: 'inherit', ...style }}
       {...rest}
     >
       {children}

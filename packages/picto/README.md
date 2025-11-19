@@ -27,25 +27,25 @@ bun add @pittorica/picto
 <!-- toc -->
 
 - [Components](#components)
-  * [Layout Components](#layout-components)
-  * [Typography Components](#typography-components)
+  - [Layout Components](#layout-components)
+  - [Typography Components](#typography-components)
 - [Development Roadmap](#development-roadmap)
-  * [Headings](#headings)
-  * [Text and Paragraph](#text-and-paragraph)
-  * [Text Formatting](#text-formatting)
-  * [Links](#links)
-  * [Images and Media](#images-and-media)
-  * [Lists](#lists)
-  * [Tables](#tables)
-  * [Section/Semantic Elements](#sectionsemantic-elements)
-  * [Form](#form)
-  * [Script and Embed](#script-and-embed)
-  * [Interactive Elements](#interactive-elements)
-  * [Progress Indicators](#progress-indicators)
-  * [Graphics](#graphics)
-  * [Ruby Annotations](#ruby-annotations)
-  * [Time and Data](#time-and-data)
-  * [Group/Block Elements](#groupblock-elements)
+  - [Headings](#headings)
+  - [Text and Paragraph](#text-and-paragraph)
+  - [Text Formatting](#text-formatting)
+  - [Links](#links)
+  - [Images and Media](#images-and-media)
+  - [Lists](#lists)
+  - [Tables](#tables)
+  - [Section/Semantic Elements](#sectionsemantic-elements)
+  - [Form](#form)
+  - [Script and Embed](#script-and-embed)
+  - [Interactive Elements](#interactive-elements)
+  - [Progress Indicators](#progress-indicators)
+  - [Graphics](#graphics)
+  - [Ruby Annotations](#ruby-annotations)
+  - [Time and Data](#time-and-data)
+  - [Group/Block Elements](#groupblock-elements)
 - [License](#license)
 
 <!-- tocstop -->
@@ -62,18 +62,31 @@ bun add @pittorica/picto
 
 ### Typography Components
 
+- **Abbr**: Abbreviation component
+- **B**: Bold text component
+- **Bdi**: Bidirectional isolate component
+- **Bdo**: Bidirectional override component
 - **Blockquote**: Block-level quotation component
 - **Br**: Line break component
+- **Cite**: Citation component
+- **Code**: Code snippet component
 - **Del**: Deleted/strikethrough text component
+- **Dfn**: Definition term component
 - **Em**: Emphasis/italic text component
+- **I**: Italic text component
 - **Ins**: Inserted/underlined text component
+- **Kbd**: Keyboard input component
 - **Mark**: Highlighted text component
 - **Paragraph**: Block-level paragraph component
+- **Q**: Short quotation component
+- **Samp**: Sample output component
 - **Small**: Small text component
 - **Strong**: Strong/bold text component
 - **Sub**: Subscript text component
 - **Sup**: Superscript text component
 - **Typography**: Main typography component with full styling options
+- **Var**: Variable component
+- **Wbr**: Word break component
 
 ## Development Roadmap
 
@@ -92,8 +105,8 @@ Here's a list of HTML tags. Not all of them will become components.
 
 - [x] `<p>`: Defines a paragraph.
 - [x] `<br>`: Inserts a single line break.
-- [ ] `<hr>`: Defines a thematic change in the content (horizontal rule).
-- [ ] `<blockquote>`: Defines a section that is quoted from another source.
+- [x] `<hr>`: Defines a thematic change in the content (horizontal rule).
+- [x] `<blockquote>`: Defines a section that is quoted from another source.
 - [ ] `<pre>`: Defines preformatted text.
 
 ### Text Formatting
@@ -108,17 +121,17 @@ Here's a list of HTML tags. Not all of them will become components.
 - [x] `<ins>`: Defines inserted (underlined) text.
 - [x] `<sub>`: Defines subscripted text.
 - [x] `<sup>`: Defines superscripted text.
-- [ ] `<abbr>`: Defines an abbreviation or acronym.
-- [ ] `<cite>`: Defines the title of a work.
-- [ ] `<q>`: Defines a short quotation.
-- [ ] `<dfn>`: Defines a definition term.
-- [ ] `<code>`: Defines a piece of computer code.
-- [ ] `<kbd>`: Defines keyboard input.
-- [ ] `<samp>`: Defines sample output from a computer program.
-- [ ] `<var>`: Defines a variable.
-- [ ] `<bdi>`: Isolates a part of text for bidirectional text formatting.
-- [ ] `<bdo>`: Overrides the current text direction.
-- [ ] `<wbr>`: Defines a possible line-break.
+- [x] `<abbr>`: Defines an abbreviation or acronym.
+- [x] `<cite>`: Defines the title of a work.
+- [x] `<q>`: Defines a short quotation.
+- [x] `<dfn>`: Defines a definition term.
+- [x] `<code>`: Defines a piece of computer code.
+- [x] `<kbd>`: Defines keyboard input.
+- [x] `<samp>`: Defines sample output from a computer program.
+- [x] `<var>`: Defines a variable.
+- [x] `<bdi>`: Isolates a part of text for bidirectional text formatting.
+- [x] `<bdo>`: Overrides the current text direction.
+- [x] `<wbr>`: Defines a possible line-break.
 
 ### Links
 
