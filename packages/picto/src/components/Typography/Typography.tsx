@@ -2,11 +2,9 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import { TextAlignToken } from '../../style/text-align.css.js';
-import { typography } from '../../style/typography.css.js';
-import { vars } from '../../style/vars.css.js';
+import { TextAlignToken, typography, vars } from '../../style/index.js';
+import { TextColor } from '../../types/colors.js';
 
-type ColorToken = keyof typeof vars.color;
 type TypographyVariant = 'body' | 'label';
 type TypographySize = 'lg' | 'md' | 'sm';
 
@@ -16,7 +14,7 @@ interface TypographyProps {
   children: React.ReactNode;
   style?: React.CSSProperties;
   className?: string;
-  color?: ColorToken;
+  color?: TextColor;
   align?: TextAlignToken;
   space?: string;
 }
@@ -34,7 +32,7 @@ const Typography: React.FC<TypographyProps> = ({
   const token = `${variant}-${size}` as const;
   const typographyClass = typography[token];
 
-  let spaceStyle = {};
+  let spaceStyle: React.CSSProperties = {};
   if (space) {
     if (space === 'lg' || space === 'md' || space === 'sm') {
       // For semantic spacing, use vars.space
@@ -52,15 +50,24 @@ const Typography: React.FC<TypographyProps> = ({
 
   const Tag = variant === 'body' ? 'p' : 'span';
 
+  const colorStyle: React.CSSProperties = color
+    ? {
+        color:
+          color === 'transparent'
+            ? 'transparent'
+            : vars.color[color as keyof typeof vars.color],
+      }
+    : {};
+
   return React.createElement(
     Tag,
     {
       className: combinedClassName,
       style: {
-        color: color ? vars.color[color] : undefined,
         textAlign: align,
         ...spaceStyle,
         ...style,
+        ...colorStyle,
       },
     },
     children

@@ -1,1 +1,2 @@
-export { Container, type ContainerSize } from './Container';
+export type { ContainerProps, ContainerSize } from './Container.js';
+export { Container } from './Container.js';

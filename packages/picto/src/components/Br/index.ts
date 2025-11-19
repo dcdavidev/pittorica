@@ -1,1 +1,1 @@
-export { default } from './Br';
+export { default as Br } from './Br.js';

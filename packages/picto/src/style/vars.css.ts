@@ -1,45 +1,64 @@
 import '@fontsource/momo-trust-display';
 import '@fontsource/momo-trust-sans';
 
-import { createGlobalTheme, globalStyle } from '@vanilla-extract/css';
+import {
+  createGlobalTheme,
+  createThemeContract,
+  globalStyle,
+} from '@vanilla-extract/css';
 
-import { generateThemeObject } from '../helpers/generate-theme-object.js';
-import { generateTones } from '../helpers/generate-tones.js';
 import { ELEVATION_SCALE } from './elevation.css.js';
+import { createPictoTheme, defaultPalette } from './theme.js';
 
-// Generate tonal colors for primary
-const primaryTones = generateTones('#08a4bd');
-const neutralTones = generateTones('#08a4bd'); // Use primary for theme backgrounds
+// Define themeContract here
+const themeContract = {
+  primary: '',
+  onPrimary: '',
+  primaryContainer: '',
+  onPrimaryContainer: '',
+  secondary: '',
+  onSecondary: '',
+  secondaryContainer: '',
+  onSecondaryContainer: '',
+  tertiary: '',
+  onTertiary: '',
+  tertiaryContainer: '',
+  onTertiaryContainer: '',
+  error: '',
+  onError: '',
+  errorContainer: '',
+  onErrorContainer: '',
+  success: '',
+  onSuccess: '',
+  successContainer: '',
+  onSuccessContainer: '',
+  info: '',
+  onInfo: '',
+  infoContainer: '',
+  onInfoContainer: '',
+  danger: '',
+  onDanger: '',
+  dangerContainer: '',
+  onDangerContainer: '',
+  background: '',
+  onBackground: '',
+  surface: '',
+  onSurface: '',
+  surfaceVariant: '',
+  onSurfaceVariant: '',
+  outline: '',
+  shadow: '',
+  inverseSurface: '',
+  inverseOnSurface: '',
+  inversePrimary: '',
+};
+
+export const colorPalette = createThemeContract(themeContract);
+
+const { lightTheme, darkTheme } = createPictoTheme(defaultPalette);
 
 export const vars = createGlobalTheme(':root', {
-  color: generateThemeObject({
-    dark: '#131b23',
-    light: '#e9f1f7',
-    primary: '#08a4bd',
-    secondary: '#d87cac',
-    tertiary: '#67597a',
-    neutral: '#787579',
-    'neutral-variant': '#6a6670',
-    error: '#9b2915',
-    success: '#004f2d',
-    info: '#08a4bd',
-    danger: '#e9b44c',
-    // Container colors (lighter variants)
-    primaryContainer: '#e0f4f7',
-    secondaryContainer: '#fcebf2',
-    tertiaryContainer: '#f0ecf2',
-    neutralContainer: '#f5f4f5',
-    'neutral-variantContainer': '#f0eff2',
-    errorContainer: '#fceaea',
-    successContainer: '#e0f2e8',
-    infoContainer: '#e0f4f7',
-    dangerContainer: '#fef9e7',
-    // Tonal colors
-    primaryBase: primaryTones.base,
-    primaryOnBase: primaryTones.onBase,
-    primaryContainerTone: primaryTones.container,
-    primaryOnContainer: primaryTones.onContainer,
-  }),
+  color: colorPalette,
   elevation: ELEVATION_SCALE,
   font: {
     display: 'Momo Trust Display, serif',
@@ -104,40 +123,28 @@ export const vars = createGlobalTheme(':root', {
   },
 });
 
-// Global styles for themes and body backgrounds
+// --- Base body styles ---
 globalStyle('body', {
   margin: 0,
   padding: 0,
   fontFamily: vars.font.sans,
-  backgroundColor: neutralTones.tone99, // Very light tone from primary
-  color: neutralTones.tone10, // Dark text for contrast
+  backgroundColor: vars.color.background,
+  color: vars.color.onBackground,
 });
 
-// Light theme
-globalStyle('body.picto-theme-light', {
-  backgroundColor: neutralTones.tone99, // Very light tone (99) from primary
-  color: neutralTones.tone10, // Dark text
+// --- Theme application ---
+
+// Apply light theme by default
+globalStyle('body', {
+  vars: lightTheme,
 });
 
-// Dark theme
-globalStyle('body.picto-theme-dark', {
-  backgroundColor: neutralTones.tone10, // Very dark tone (10) from primary
-  color: neutralTones.tone99, // Light text
+// Explicitly apply light theme
+globalStyle('.picto-theme-light', {
+  vars: lightTheme,
 });
 
-// Surface backgrounds - very light but slightly darker than body
-globalStyle('.picto-surface-bg', {
-  backgroundColor: neutralTones.tone98, // Slightly darker than body (98)
-  color: neutralTones.tone10, // Dark text
-});
-
-// Dark theme overrides for surface
-globalStyle('body.picto-theme-dark .picto-surface-bg', {
-  backgroundColor: neutralTones.tone20, // Slightly lighter than dark body (20)
-  color: neutralTones.tone99, // Light text
-});
-
-// Primary background class
-globalStyle('.picto-primary-bg', {
-  backgroundColor: vars.color.primaryContainerTone,
+// Apply dark theme when class is present
+globalStyle('.picto-theme-dark', {
+  vars: darkTheme,
 });

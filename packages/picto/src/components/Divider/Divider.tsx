@@ -2,9 +2,10 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import { vars } from '../../style/vars.css.js';
+import { vars } from '../../style/index.js';
+import type { TextColor } from '../../types/colors.js';
 
-export type DividerColor = keyof typeof vars.color | string;
+export type DividerColor = Exclude<TextColor, 'transparent'>;
 
 export type DividerSpace = 'normal' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -34,10 +35,7 @@ export const Divider: React.FC<DividerProps> = ({
 
   let colorValue: string | undefined;
   if (color) {
-    colorValue =
-      typeof color === 'string' && color in vars.color
-        ? vars.color[color as keyof typeof vars.color]
-        : color;
+    colorValue = vars.color[color];
   }
 
   const hrStyle: React.CSSProperties = {};

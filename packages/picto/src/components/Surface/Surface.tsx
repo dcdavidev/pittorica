@@ -2,9 +2,10 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import { vars } from '../../style/vars.css.js';
-
-export type SurfaceColor = keyof typeof vars.color | 'default' | 'transparent';
+import { vars } from '../../style/index.js';
+import { SurfaceColor } from '../../types/colors.js';
+import * as styles from './Surface.css.js';
+import { shape as shapeStyles } from '../../style/index.js';
 
 export type SurfaceElevation = keyof typeof vars.elevation;
 
@@ -28,17 +29,17 @@ export interface SurfaceProps {
   textAlign?: React.CSSProperties['textAlign'];
 }
 
-export const Surface: React.FC<SurfaceProps> = ({
-  color = 'transparent',
+const Surface: React.FC<SurfaceProps> = ({
+  color = 'surface',
   elevation = 'none',
   shape = 'none',
   children,
-  className = '',
+  className,
   as: Component = 'div',
-  flex = false,
-  justifyContent = 'center',
-  alignItems = 'center',
-  flexDirection = 'row',
+  flex: isFlex = false,
+  justifyContent,
+  alignItems,
+  flexDirection,
   gap,
   grow,
   screen = false,
@@ -46,87 +47,41 @@ export const Surface: React.FC<SurfaceProps> = ({
   style = {},
   ...rest
 }) => {
-  const classes = clsx(className);
+  const flexStyles: React.CSSProperties = isFlex
+    ? {
+        display: 'flex',
+        justifyContent,
+        alignItems,
+        flexDirection,
+        gap,
+        flexGrow: grow,
+      }
+    : {};
 
-  // Determine if flexbox should be enabled
-  const shouldEnableFlex = flex || grow !== undefined;
+  const otherStyles: React.CSSProperties = {
+    width: screen ? '100vw' : undefined,
+    height: screen ? '100vh' : undefined,
+    textAlign,
+  };
 
-  // Build inline styles for flexbox properties
-  const flexStyles: React.CSSProperties = {};
-  if (shouldEnableFlex) {
-    flexStyles.display = 'flex';
-    flexStyles.justifyContent = justifyContent;
-    flexStyles.alignItems = alignItems;
-    flexStyles.flexDirection = flexDirection;
-    if (gap !== undefined) flexStyles.gap = gap;
-    if (grow !== undefined) flexStyles.flexGrow = grow;
-  }
-
-  // Handle background color
-  const backgroundStyles: React.CSSProperties = {};
-  let surfaceClass = 'picto-surface-bg'; // Always apply surface background class
-
-  if (color === 'transparent') {
-    backgroundStyles.background = 'inherit';
-    surfaceClass = ''; // Don't apply surface class for transparent
-  } else if (color === 'default') {
-    // Use theme-appropriate surface background (already handled by class)
-  } else if (color in vars.color) {
-    // Use container color for better contrast if available
-    const containerColorKey = `${color}Container` as keyof typeof vars.color;
-    if (containerColorKey in vars.color) {
-      backgroundStyles.backgroundColor = vars.color[containerColorKey];
-      surfaceClass = ''; // Don't apply surface class when using specific color
-    } else {
-      backgroundStyles.backgroundColor =
-        vars.color[color as keyof typeof vars.color];
-      surfaceClass = ''; // Don't apply surface class when using specific color
-    }
-  }
-
-  // Combine classes
-  const finalClasses = clsx(classes, surfaceClass);
-
-  // Handle elevation
-  const elevationStyles: React.CSSProperties = {};
-  if (elevation !== 'none') {
-    elevationStyles.boxShadow = vars.elevation[elevation];
-  }
-
-  // Handle shape
-  const shapeStyles: React.CSSProperties = {};
-  if (shape !== 'none') {
-    shapeStyles.borderRadius = vars.shape[shape];
-  }
-
-  // Handle screen size
-  const screenStyles: React.CSSProperties = {};
-  if (screen) {
-    screenStyles.width = '100vw';
-    screenStyles.height = '100vh';
-  }
-
-  // Handle text alignment
-  const textAlignStyles: React.CSSProperties = {};
-  if (textAlign) {
-    textAlignStyles.textAlign = textAlign;
-  }
+  const classes = clsx(
+    styles.base,
+    color !== 'surface' && styles[color],
+    elevation !== 'none' && styles.elevation[elevation],
+    shape !== 'none' && shapeStyles[shape],
+    isFlex && styles.flex,
+    className
+  );
 
   return (
     <Component
-      className={finalClasses}
-      style={{
-        ...backgroundStyles,
-        ...elevationStyles,
-        ...shapeStyles,
-        ...screenStyles,
-        ...textAlignStyles,
-        ...flexStyles,
-        ...style,
-      }}
+      className={classes}
+      style={{ ...flexStyles, ...otherStyles, ...style }}
       {...rest}
     >
       {children}
     </Component>
   );
 };
+
+export default Surface;

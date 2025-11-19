@@ -6,8 +6,6 @@ export { LETTER_SPACING_TOKEN, letterSpacing } from './letter-spacing.css.js';
 export type { LetterSpacingToken } from './letter-spacing.css.js';
 export { LINE_HEIGHT_TOKEN } from './line-height.css.js';
 export type { LineHeightToken } from './line-height.css.js';
-export { PALETTE_TOKEN } from './palette.css.js';
-export type { PaletteToken } from './palette.css.js';
 export { RADIUS_TOKEN, radius } from './radius.css.js';
 export type { RadiusToken } from './radius.css.js';
 export { SHAPE_TOKEN, shape } from './shapes.css.js';
@@ -27,6 +25,10 @@ export {
   paddingRight,
 } from './space.css.js';
 export type { SpacingToken } from './space.css.js';
+export { TEXT_ALIGN_TOKEN } from './text-align.css.js';
+export type { TextAlignToken } from './text-align.css.js';
+export { defaultPalette, createPictoTheme } from './theme.js';
+export type { Palette } from './theme.js';
 export { TYPESCALE_TOKEN, typography } from './typography.css.js';
 export type { TypescaleToken } from './typography.css.js';
-export { vars } from './vars.css.js';
+export { colorPalette, vars } from './vars.css.js';
