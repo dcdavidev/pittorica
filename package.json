@@ -11,7 +11,8 @@
     "fmt": "pnpm exec prettier --ignore-unknown --write .",
     "lint": "pnpm dlx eslint --no-warn-ignored --fix .",
     "lint:fmt": "pnpm lint && pnpm fmt",
-    "release": "nx release --yes"
+    "release": "nx release --yes",
+    "sb:picto": "nx storybook picto"
   },
   "config": {
     "commitizen": {

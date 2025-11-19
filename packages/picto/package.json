@@ -34,7 +34,8 @@
   "dependencies": {
     "@fontsource/momo-trust-display": "^5.2.1",
     "@fontsource/momo-trust-sans": "^5.2.1",
-    "@material/material-color-utilities": "^0.3.0"
+    "@material/material-color-utilities": "^0.3.0",
+    "clsx": "^2.1.1"
   },
   "publishConfig": {
     "access": "public"
