@@ -24,6 +24,8 @@ yarn add @pittorica/picto
 bun add @pittorica/picto
 ```
 
+---
+
 <!-- toc -->
 
 - [Components](#components)
@@ -49,6 +51,8 @@ bun add @pittorica/picto
 - [License](#license)
 
 <!-- tocstop -->
+
+---
 
 ## Components
 
