@@ -2,11 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": [
-    {
-      "path": "./packages/picto"
-    }
-  ],
+  "references": [],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs",
