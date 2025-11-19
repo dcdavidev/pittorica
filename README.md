@@ -1,101 +1,27 @@
+# Pittorica
+
+**Pittorica** is a comprehensive design system built with React, TypeScript, and modern web technologies. It provides a collection of reusable components, design tokens, and utilities for building consistent and beautiful user interfaces.
+
 <p align="center">
   <img src="./images/gh-banner.png" alt="pittorica" />
 </p>
 
-Pittorica is a painterly, CSS-first UI framework that brings elegant, lightweight structure to modern interfaces.
+<!-- toc -->
+
+- [Picto](#picto)
+- [License](#license)
+
+<!-- tocstop -->
+
+## Picto
+
+[`picto`](./packages/picto/) is the core UI framework that serves as a painterly foundation for modern interfaces. It unifies multiple design philosophies into a single, flexible toolkit with a rich and powerful structure that remains intentionally lightweight and easy to integrate.
+
+```bash
+npm install @pittorica/picto
+```
 
 ---
-
-## About
-
-Pittorica is a comprehensive design system built with React, TypeScript, and modern web technologies. It provides a collection of reusable components, design tokens, and utilities for building consistent and beautiful user interfaces.
-
-## Packages
-
-### Core Packages
-
-- [**@pittorica/react**](./packages/react) - React components library
-- [**@pittorica/core**](./packages/pittorica) - Core design tokens and utilities
-
-### Components
-
-The React package includes:
-
-- **Layout**: Container, Grid, GridItem, Hero, Surface
-- **Typography**: Typography, Paragraph, Strong, Em, Mark, Small, Del, Ins, Sub, Sup, Br
-- **UI**: Button, IconButton, BgBubbles (animated backgrounds)
-
-## Installation
-
-```bash
-# Install the React components
-npm install @pittorica/react
-
-# Or with yarn
-yarn add @pittorica/react
-```
-
-## Quick Start
-
-```tsx
-import { Button, BgBubbles, Container } from '@pittorica/react';
-
-function App() {
-  return (
-    <BgBubbles colors={['#ff6b9d', '#4ecdc4', '#45b7d1']}>
-      <Container>
-        <Button>Hello Pittorica!</Button>
-      </Container>
-    </BgBubbles>
-  );
-}
-```
-
-## Documentation
-
-- [Storybook](https://pittorica.dev/storybook) - Interactive component documentation
-- [API Reference](./packages/react/README.md) - Detailed component APIs
-
-## Development
-
-This is a monorepo managed with [pnpm](https://pnpm.io/) and [Nx](https://nx.dev/).
-
-### Prerequisites
-
-- Node.js 18+
-- pnpm
-
-### Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/dcdavidev/pittorica.git
-cd pittorica
-
-# Install dependencies
-pnpm install
-
-# Start Storybook
-pnpm storybook
-
-# Build all packages
-pnpm build
-```
-
-### Project Structure
-
-```bash
-pittorica/
-├── packages/
-│ ├── react/     # React components
-│ └── pittorica/ # Core styles and tokens
-├── images/      # Assets
-└── tools/       # Build tools
-```
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
 
 ## License
 

@@ -76,6 +76,15 @@
             "pnpm dlx nx run picto:fmt"
           ]
         }
+      },
+      "doc:g:toc": {
+        "executor": "nx:run-commands",
+        "options": {
+          "cwd": "{projectRoot}",
+          "commands": [
+            "pnpm dlx markdown-toc -i README.md"
+          ]
+        }
       }
     }
   },
