@@ -1,6 +1,7 @@
 {
   "name": "@pittorica/picto",
   "version": "0.0.1",
+  "private": false,
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -10,6 +11,21 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./css": {
+      "style": "./dist/index.css",
+      "import": "./dist/index.css",
+      "default": "./dist/index.css"
+    },
+    "./helpers": {
+      "types": "./dist/helpers/index.d.ts",
+      "import": "./dist/helpers/index.js",
+      "default": "./dist/helpers/index.js"
+    },
+    "./style": {
+      "types": "./dist/style/index.d.ts",
+      "import": "./dist/style/index.js",
+      "default": "./dist/style/index.js"
     }
   },
   "main": "./dist/index.js",
@@ -19,5 +35,8 @@
     "@fontsource/momo-trust-display": "^5.2.1",
     "@fontsource/momo-trust-sans": "^5.2.1",
     "@material/material-color-utilities": "^0.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
