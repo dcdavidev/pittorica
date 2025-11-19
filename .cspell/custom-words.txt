@@ -1,2 +1,3 @@
+argb
 picto
 pittorica

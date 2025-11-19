@@ -1,7 +1,16 @@
 {
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
   "name": "picto",
+  "root": "packages/picto",
   "sourceRoot": "packages/picto/src",
   "projectType": "library",
-  "tags": ["scope:picto", "type:ui"]
+  "tags": ["scope:picto", "type:ui"],
+  "targets": {
+    "doc:g:toc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "pnpm dlx markdown-toc -i **/*.md"
+      }
+    }
+  }
 }
