@@ -1,116 +1,47 @@
 import React from 'react';
 
-import clsx from 'clsx';
+import { RecipeVariants } from '@vanilla-extract/recipes';
 
-import { TextAlignToken, typography, vars } from '../../style/index.js';
-import { TextColor } from '../../types/colors.js';
+import { headingRecipe } from '../../styles/typography.css.js';
+import { Box, BoxProps } from '../Box/Box.js';
 
-type HeadingVariant = 'display' | 'headline' | 'title';
-type HeadingSize = 'lg' | 'md' | 'sm';
+type HeadingVariants = RecipeVariants<typeof headingRecipe>;
 
-interface HeadingProps {
-  variant: HeadingVariant;
-  size: HeadingSize;
+/**
+ * Props for the Heading component.
+ */
+export interface HeadingProps extends Omit<BoxProps, 'as'> {
+  /** The semantic HTML level (h1-h6). Defaults to h2. */
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  /** The visual style variant. */
+  variant?: NonNullable<HeadingVariants>['variant'];
+  /** The size of the heading. */
+  size?: NonNullable<HeadingVariants>['size'];
+  /** The content of the heading. */
   children: React.ReactNode;
-  style?: React.CSSProperties;
-  className?: string;
-  color?: TextColor;
-  align?: TextAlignToken;
-  space?: string;
 }
 
-const Heading: React.FC<HeadingProps> = ({
-  variant,
-  size,
+/**
+ * A semantic heading component (h1-h6) with Material Design 3 styles.
+ * * @param {HeadingProps} props Component props.
+ * @returns {React.ReactElement} The rendered heading.
+ * @example
+ * <Heading level={1} variant="display" size="large">Main Title</Heading>
+ */
+export const Heading = ({
+  level = 2,
+  variant = 'headline',
+  size = 'medium',
+  className,
   children,
-  style,
-  className: additionalClassName,
-  align,
-  space,
-  color,
-}) => {
-  const token = `${variant}-${size}` as const;
-  const typographyClass = typography[token];
+  ...props
+}: HeadingProps): React.ReactElement => {
+  const Tag = `h${level}` as React.ElementType;
+  const recipeClass = headingRecipe({ variant, size });
 
-  let spaceStyle: React.CSSProperties = {};
-  if (space) {
-    if (space === 'lg' || space === 'md' || space === 'sm') {
-      // For semantic spacing, use vars.space
-      const spaceValue = vars.space[space];
-      spaceStyle = {
-        paddingTop: spaceValue,
-        paddingBottom: `calc(${spaceValue} / 2)`,
-      };
-    } else {
-      spaceStyle = { paddingTop: space, paddingBottom: `calc(${space} / 2)` };
-    }
-  }
-
-  const combinedClassName = clsx(typographyClass, additionalClassName);
-
-  let Tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  if (variant === 'display') {
-    switch (size) {
-      case 'lg': {
-        Tag = 'h1';
-        break;
-      }
-      case 'md': {
-        Tag = 'h2';
-        break;
-      }
-      case 'sm': {
-        Tag = 'h3';
-        break;
-      }
-      default: {
-        Tag = 'h1';
-        break;
-      }
-    }
-  } else {
-    switch (size) {
-      case 'lg': {
-        Tag = 'h4';
-        break;
-      }
-      case 'md': {
-        Tag = 'h5';
-        break;
-      }
-      case 'sm': {
-        Tag = 'h6';
-        break;
-      }
-      default: {
-        Tag = 'h4';
-        break;
-      }
-    }
-  }
-
-  const colorStyle: React.CSSProperties = color
-    ? {
-        color:
-          color === 'transparent'
-            ? 'transparent'
-            : vars.color[color as keyof typeof vars.color],
-      }
-    : {};
-
-  return React.createElement(
-    Tag,
-    {
-      className: combinedClassName,
-      style: {
-        textAlign: align,
-        ...spaceStyle,
-        ...style,
-        ...colorStyle,
-      },
-    },
-    children
+  return (
+    <Box as={Tag} className={`${recipeClass} ${className || ''}`} {...props}>
+      {children}
+    </Box>
   );
 };
-
-export default Heading;

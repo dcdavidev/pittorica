@@ -2,3 +2,6 @@ argb
 momo
 picto
 pittorica
+xlarge
+xsmall
+xxlarge

@@ -1,1 +1,1 @@
-export { default as Heading } from './Heading.js';
+export * from './Heading.js';
