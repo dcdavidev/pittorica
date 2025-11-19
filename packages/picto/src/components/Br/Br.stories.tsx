@@ -4,7 +4,7 @@ import Typography from '../Typography/Typography';
 import Br from './Br';
 
 const meta: Meta<typeof Br> = {
-  title: 'Components/Br',
+  title: 'Text & Formatting/Br',
   component: Br,
   parameters: {
     layout: 'padded',
