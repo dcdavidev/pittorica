@@ -1,2 +1,2 @@
-export type { HeroProps, HeroSize, HeroBackground } from './Hero.js';
+export type { HeroBackground, HeroProps, HeroSize } from './Hero.js';
 export { Hero } from './Hero.js';

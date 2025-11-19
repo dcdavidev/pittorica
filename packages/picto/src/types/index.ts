@@ -2,6 +2,7 @@ export { COLOR_TOKEN } from './colors.js';
 export type { ColorToken } from './colors.js';
 export { ELEVATION_TOKEN } from './elevation.js';
 export type { ElevationToken } from './elevation.js';
+export type { JustifyContent, AlignItems, FlexDirection } from './flex.js';
 export { MOTION } from './motion.js';
 export type { MotionSpeed } from './motion.js';
 export { RADIUS_TOKEN } from './radius.js';

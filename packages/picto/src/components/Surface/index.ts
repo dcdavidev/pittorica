@@ -3,5 +3,5 @@ export type {
   SurfaceElevation,
   SurfaceProps,
   SurfaceShape,
-} from './Surface';
-export { Surface } from './Surface';
+} from './Surface.js';
+export { Surface } from './Surface.js';

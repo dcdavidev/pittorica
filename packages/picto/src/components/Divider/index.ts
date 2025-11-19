@@ -2,6 +2,6 @@ export type {
   DividerColor,
   DividerProps,
   DividerSpace,
-  DividerStyle,
-} from './Divider';
-export { Divider } from './Divider';
+  DividerVariant,
+} from './Divider.js';
+export { Divider, DIVIDER_VARIANT } from './Divider.js';

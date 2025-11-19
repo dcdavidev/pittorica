@@ -4,6 +4,7 @@ import clsx from 'clsx';
 
 import { ColorToken } from '../../types/colors.js';
 import { ElevationToken } from '../../types/elevation.js';
+import { AlignItems, FlexDirection, JustifyContent } from '../../types/flex.js';
 import { ShapeToken } from '../../types/shapes.js';
 
 export type SurfaceColor = ColorToken | 'default' | 'transparent';
@@ -11,21 +12,6 @@ export type SurfaceColor = ColorToken | 'default' | 'transparent';
 export type SurfaceElevation = ElevationToken;
 
 export type SurfaceShape = ShapeToken;
-
-export type JustifyContent =
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly';
-export type AlignItems =
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'stretch'
-  | 'baseline';
-export type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
 export interface SurfaceProps {
   color?: SurfaceColor;

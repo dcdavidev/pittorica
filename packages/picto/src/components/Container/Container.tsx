@@ -2,22 +2,9 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-export type ContainerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'fluid';
+import { AlignItems, FlexDirection, JustifyContent } from '../../types/flex.js';
 
-export type JustifyContent =
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly';
-export type AlignItems =
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'stretch'
-  | 'baseline';
-export type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+export type ContainerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'fluid';
 
 export interface ContainerProps {
   size?: ContainerSize;

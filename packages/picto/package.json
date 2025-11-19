@@ -2,6 +2,14 @@
   "name": "@pittorica/picto",
   "version": "0.0.1",
   "private": false,
+  "homepage": "https://github.com/dcdavidev/pittorica#readme",
+  "bugs": "https://github.com/dcdavidev/pittorica/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcdavidev/pittorica.git",
+    "directory": "packages/picto"
+  },
+  "author": "Davide Di Criscito",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -44,49 +52,14 @@
     "html-react-parser": "^5.2.10"
   },
   "devDependencies": {
-    "postcss-custom-properties": "^14.0.6"
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "postcss-custom-properties": "^14.0.6",
+    "postcss-load-config": "^6.0.1",
+    "postcss-nested": "^7.0.2"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "nx": {
-    "name": "picto",
-    "targets": {
-      "lint": {
-        "executor": "nx:run-commands",
-        "options": {
-          "commands": [
-            "pnpm dlx eslint --no-warn-ignored --fix ./packages/picto"
-          ]
-        }
-      },
-      "fmt": {
-        "executor": "nx:run-commands",
-        "options": {
-          "commands": [
-            "pnpm exec prettier --ignore-unknown --write ./packages/picto"
-          ]
-        }
-      },
-      "lint:fmt": {
-        "executor": "nx:run-commands",
-        "options": {
-          "commands": [
-            "pnpm dlx nx run picto:lint",
-            "pnpm dlx nx run picto:fmt"
-          ]
-        }
-      },
-      "doc:g:toc": {
-        "executor": "nx:run-commands",
-        "options": {
-          "cwd": "{projectRoot}",
-          "commands": [
-            "pnpm dlx markdown-toc -i README.md"
-          ]
-        }
-      }
-    }
   },
   "sass": "./src/index.scss"
 }
