@@ -1,4 +1,6 @@
+export { default as Br } from './components/Br/Br.js';
 export { default as Heading } from './components/Heading/Heading.js';
+export { default as Typography } from './components/Typography/Typography.js';
 export { PREFIX } from './consts.js';
 export { generateThemeObject } from './helpers/generate-theme-object.js';
 export { generateTones } from './helpers/generate-tones.js';
