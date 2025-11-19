@@ -1,0 +1,7 @@
+{
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "name": "picto",
+  "sourceRoot": "packages/picto/src",
+  "projectType": "library",
+  "tags": ["scope:picto", "type:ui"]
+}
