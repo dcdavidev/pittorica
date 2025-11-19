@@ -2,14 +2,13 @@ import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { colorsMap } from '../../styles/sprinkles.css.js';
 import { themeClass } from '../../styles/theme.css.js';
-import { Heading } from './Heading.js';
+import { Heading, type HeadingProps } from './Heading.js';
 
-/**
- * Story configuration for the Heading component.
- * Displays the typographic hierarchy for titles.
- */
-const meta: Meta<typeof Heading> = {
+const colorOptions = Object.keys(colorsMap);
+
+const meta: Meta<HeadingProps> = {
   title: 'Typography/Heading',
   component: Heading,
   tags: ['autodocs'],
@@ -37,18 +36,16 @@ const meta: Meta<typeof Heading> = {
       description: 'The size of the heading.',
     },
     color: {
-      control: 'text',
-      description: 'Sprinkles color token (e.g., "brand-500", "error-600").',
+      control: 'select',
+      options: colorOptions,
+      description: 'Sprinkles color token.',
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Heading>;
+type Story = StoryObj<HeadingProps>;
 
-/**
- * Default headline usage.
- */
 export const Default: Story = {
   args: {
     children: 'Heading Title',
@@ -58,9 +55,6 @@ export const Default: Story = {
   },
 };
 
-/**
- * Large display style for hero sections.
- */
 export const DisplayLarge: Story = {
   args: {
     children: 'Hero Display Text',
@@ -70,9 +64,6 @@ export const DisplayLarge: Story = {
   },
 };
 
-/**
- * Example of overriding the color using Sprinkles props.
- */
 export const Colored: Story = {
   args: {
     children: 'Colored Heading',

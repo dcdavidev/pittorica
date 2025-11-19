@@ -2,9 +2,8 @@ import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 
 import { vars } from './theme.css.js';
 
-// --- UTILS ---
+// --- UTILS & FLATTENING ---
 type TokenTree = { [key: string]: string | TokenTree };
-
 const flattenVars = (obj: TokenTree, prefix = ''): Record<string, string> => {
   const result: Record<string, string> = {};
   for (const key in obj) {
@@ -21,7 +20,8 @@ const flattenVars = (obj: TokenTree, prefix = ''): Record<string, string> => {
   return result;
 };
 
-// --- PROPERTIES ---
+// --- CONFIG OBJECTS ---
+export const colorsMap = flattenVars(vars.colors);
 
 const spaceProps = {
   paddingTop: vars.space,
@@ -35,7 +35,6 @@ const spaceProps = {
   gap: vars.space,
 };
 
-// Defining the type explicitly helps defineProperties inference
 const spaceShorthands: Record<string, Array<keyof typeof spaceProps>> = {
   padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
   paddingX: ['paddingLeft', 'paddingRight'],
@@ -51,6 +50,7 @@ const spaceShorthands: Record<string, Array<keyof typeof spaceProps>> = {
   my: ['marginTop', 'marginBottom'],
 };
 
+// --- DEFINE PROPERTIES ---
 const spaceProperties = defineProperties({
   properties: spaceProps,
   shorthands: spaceShorthands,
@@ -63,9 +63,9 @@ const colorProperties = defineProperties({
   },
   defaultCondition: 'lightMode',
   properties: {
-    color: flattenVars(vars.colors),
-    backgroundColor: flattenVars(vars.colors),
-    borderColor: flattenVars(vars.colors),
+    color: colorsMap,
+    backgroundColor: colorsMap,
+    borderColor: colorsMap,
   },
 });
 
@@ -80,7 +80,6 @@ const typographyProperties = defineProperties({
 });
 
 // --- EXPORTS ---
-
 export const atoms = createSprinkles(
   spaceProperties,
   colorProperties,
@@ -89,8 +88,7 @@ export const atoms = createSprinkles(
 
 export type Atoms = Parameters<typeof atoms>[0];
 
-// Define valid keys for TypeScript and Runtime checks
-const validSprinkleKeys = [
+export const validSprinkleKeys = [
   ...Object.keys(spaceProps),
   ...Object.keys(spaceShorthands),
   'color',
@@ -104,5 +102,3 @@ const validSprinkleKeys = [
 ] as const;
 
 export type SprinkleKey = (typeof validSprinkleKeys)[number];
-
-export const sprinkleProperties = new Set(validSprinkleKeys);

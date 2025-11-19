@@ -2,14 +2,13 @@ import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { colorsMap } from '../../styles/sprinkles.css.js';
 import { themeClass } from '../../styles/theme.css.js';
-import { Text } from './Text.js';
+import { Text, type TextProps } from './Text.js';
 
-/**
- * Story configuration for the Text component.
- * Handles body text and UI labels.
- */
-const meta: Meta<typeof Text> = {
+const colorOptions = Object.keys(colorsMap);
+
+const meta: Meta<TextProps> = {
   title: 'Typography/Text',
   component: Text,
   tags: ['autodocs'],
@@ -38,31 +37,25 @@ const meta: Meta<typeof Text> = {
       description: 'The size of the text.',
     },
     color: {
-      control: 'text',
+      control: 'select',
+      options: colorOptions,
       description: 'Sprinkles color token.',
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Text>;
+type Story = StoryObj<TextProps>;
 
-/**
- * Standard body text.
- */
 export const Body: Story = {
   args: {
     children:
-      'Much did had call new drew that kept. Limits expect wonder law she. Now has you views woman noisy match money rooms.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     variant: 'body',
     size: 'medium',
   },
 };
 
-/**
- * Label style, typically used for UI controls or metadata.
- * It usually has a slightly heavier weight.
- */
 export const Label: Story = {
   args: {
     children: 'Form Label',
@@ -72,9 +65,6 @@ export const Label: Story = {
   },
 };
 
-/**
- * Example with a semantic color for feedback.
- */
 export const ErrorMessage: Story = {
   args: {
     children: 'This field is required.',
