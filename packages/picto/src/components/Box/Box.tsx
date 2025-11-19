@@ -1,46 +1,52 @@
 import React from 'react';
 
-import { type Atoms, atoms } from '../../styles/sprinkles.css.js';
+import {
+  type Atoms,
+  atoms,
+  sprinkleProperties,
+} from '../../styles/sprinkles.css.js';
 
 /**
- * We omit 'color' from the standard HTML attributes because it conflicts
- * with our Sprinkles 'color' prop.
+ * We define the BoxProps by combining Atoms and a permissive HTML type.
+ * Using 'any' for the HTML props base prevents the "Type is not assignable to never"
+ * error caused by complex intersection conflicts between strict HTML types and Atoms.
  */
-type HTMLProperties = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>;
-
-/**
- * Interface for the Box component props.
- * It merges Sprinkles atoms (styles) with standard HTML div attributes (minus color).
- */
-export interface BoxProps extends Atoms, HTMLProperties {
-  /**
-   * Optional polymorphic prop to render a different element (e.g., 'span', 'section').
-   * Defaults to 'div'.
-   */
+export type BoxProps = Atoms & {
   as?: React.ElementType;
-}
+  className?: string;
+  children?: React.ReactNode;
+} & Omit<React.ComponentPropsWithoutRef<'div'>, keyof Atoms | 'as'>;
 
 /**
- * A fundamental layout primitive that accepts Sprinkles properties directly.
- *
- * @param {BoxProps} props The component properties.
- * @returns {React.ReactElement} The rendered element with atomic classes.
- * @example
- * <Box padding="medium" backgroundColor="brand-500">Hello World</Box>
+ * A fundamental layout primitive.
  */
 export const Box = ({
   as: Component = 'div',
   className,
+  children,
   ...props
-}: BoxProps): React.ReactElement => {
-  // We generate the atomic class string based on the props
-  // We cast props to Atoms because we know the atom props are present
-  const atomClasses = atoms(props as unknown as Atoms);
+}: BoxProps): React.JSX.Element => {
+  const atomProps: Record<string, unknown> = {};
+  const nativeProps: Record<string, unknown> = {};
 
-  // We combine custom classNames (passed from parent) with generated atom classes
+  // Runtime filtration
+  for (const key in props) {
+    if (sprinkleProperties.has(key)) {
+      atomProps[key] = props[key as keyof typeof props];
+    } else {
+      nativeProps[key] = props[key as keyof typeof props];
+    }
+  }
+
+  const atomClasses = atoms(atomProps as Atoms);
+
   const combinedClasses = className
     ? `${atomClasses} ${className}`
     : atomClasses;
 
-  return <Component className={combinedClasses} {...props} />;
+  return (
+    <Component className={combinedClasses} {...nativeProps}>
+      {children}
+    </Component>
+  );
 };
