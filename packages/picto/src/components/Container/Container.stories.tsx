@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Hero } from '../Hero/Hero.jsx';
 import { Surface } from '../Surface/Surface.jsx';
 import { Typography } from '../Typography/Typography.jsx';
 import { Container } from './Container.js';
@@ -76,15 +75,13 @@ export const Showroom: Story = {
   },
   render: () => (
     <Surface flex gap="1rem" flexDirection="column">
-      <Hero background={{ variant: 'color', color: 'primary' }}>
-        <Container size="lg">
-          <Surface>
-            <Typography size="display-lg" align="center">
-              <Typography weight="bold">Container</Typography> Component Story
-            </Typography>
-          </Surface>
-        </Container>
-      </Hero>
+      <Container size="lg">
+        <Surface>
+          <Typography size="display-lg" align="center">
+            <Typography weight="bold">Container</Typography> Component Story
+          </Typography>
+        </Surface>
+      </Container>
 
       <Container size="lg" flex gap="4rem" alignItems="stretch">
         <Surface

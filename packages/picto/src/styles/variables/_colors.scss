@@ -5,8 +5,8 @@
 @use 'sass:meta';
 
 $color-token-names:
-  'primary', 'secondary', 'tertiary', 'neutral', 'neutral-variant', 'error',
-  'success', 'info', 'danger';
+  'dark', 'light', 'primary', 'secondary', 'tertiary', 'neutral',
+  'neutral-variant', 'error', 'success', 'info', 'danger';
 
 /* Canonical white/black */
 $white: #e9f1f7;
@@ -118,10 +118,22 @@ $color-scales: ();
 $semantic-tokens: ();
 
 @each $name in $color-token-names {
-  $bg: color-token($name, 50);
-  $on: on-color($bg);
-  $container: container-token($name, 80);
-  $on-container: on-container-token($name, 80);
+  @if $name == 'dark' {
+    $bg: $black;
+    $on: #ffffff;
+    $container: $black;
+    $on-container: #ffffff;
+  } @else if $name == 'light' {
+    $bg: $white;
+    $on: #000000;
+    $container: $white;
+    $on-container: #000000;
+  } @else {
+    $bg: color-token($name, 50);
+    $on: on-color($bg);
+    $container: container-token($name, 80);
+    $on-container: on-container-token($name, 80);
+  }
 
   $semantic-tokens: map.merge(
     $semantic-tokens,

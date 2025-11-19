@@ -16,6 +16,7 @@
     font-weight: map.get($config, font-weight);
     line-height: map.get($config, line-height);
     letter-spacing: map.get($config, letter-spacing);
+    margin: 0;
   }
 }
 
@@ -117,4 +118,27 @@
   .picto-text-#{$color} {
     color: colors.semantic-token('on-#{$color}');
   }
+}
+
+// Background color variants
+@each $color in colors.$color-token-names {
+  .picto-bg-#{$color} {
+    background-color: colors.semantic-token('#{$color}');
+  }
+}
+
+// Spacing variants for components
+.picto-space-lg {
+  padding-top: 2rem;
+  padding-bottom: calc(2rem / 2);
+}
+
+.picto-space-md {
+  padding-top: 1.5rem;
+  padding-bottom: calc(1.5rem / 2);
+}
+
+.picto-space-sm {
+  padding-top: 1rem;
+  padding-bottom: calc(1rem / 2);
 }
