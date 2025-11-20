@@ -2,9 +2,10 @@ import { style } from '@vanilla-extract/css';
 
 import { vars } from './theme.css.js';
 
-// Recursive partial type to allow deep overrides
-type DeepPartial<T> = {
-  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+type ThemeOverrideValues<T> = {
+  [P in keyof T]?: T[P] extends Record<string, unknown>
+    ? ThemeOverrideValues<T[P]>
+    : string;
 };
 
 // The type of our theme contract
@@ -56,8 +57,8 @@ const flattenOverrides = (
 
 /**
  * Creates a CSS class that overrides specific theme variables.
- * The consumer can pass a partial theme object.
- * @param {DeepPartial<ThemeContract>} overrides The partial theme object.
+ * The consumer can pass a partial theme object containing raw CSS values.
+ * @param {ThemeOverrideValues<ThemeContract>} overrides The partial theme object.
  * @returns {string} The CSS class name for the override.
  * @example
  * const myFont = createThemeOverride({
@@ -65,7 +66,7 @@ const flattenOverrides = (
  * });
  */
 export const createThemeOverride = (
-  overrides: DeepPartial<ThemeContract>
+  overrides: ThemeOverrideValues<ThemeContract>
 ): string => {
   const cssVars = flattenOverrides(
     vars as unknown as Record<string, unknown>,
