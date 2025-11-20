@@ -1,5 +1,7 @@
 export * from './components/Box/Box.js';
 export * from './components/Heading/Heading.js';
+export * from './components/LineBreak/LineBreak.js';
+export * from './components/Paragraph/Paragraph.js';
 export * from './components/Text/Text.js';
 export * from './styles/color-utils.js';
 export * from './styles/sprinkles.css.js';

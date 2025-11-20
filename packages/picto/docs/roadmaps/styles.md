@@ -14,7 +14,7 @@ Here's a list of HTML tags.
 ## Text and Paragraph
 
 - [x] `<p>`: Defines a paragraph.
-- [ ] `<br>`: Inserts a single line break.
+- [x] `<br>`: Inserts a single line break.
 - [ ] `<hr>`: Defines a thematic change in the content (horizontal rule).
 - [ ] `<blockquote>`: Defines a section that is quoted from another source.
 - [ ] `<pre>`: Defines preformatted text.
