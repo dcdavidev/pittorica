@@ -1,19 +1,107 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, createThemeContract } from '@vanilla-extract/css';
 
 import { palette } from './tokens.js';
 
 /**
- * Creates the base theme (Light Mode) and generates CSS variables.
- * @description
- * This theme maps the raw palette tokens to semantic CSS variables.
- * - `colors`: Contains the full tonal palettes and semantic mappings (background, text).
- * - `space`: Defines the spacing scale for margins and paddings using rem units (assuming 16px base).
- *
- * @returns {Array} A tuple containing the className and the vars object.
+ * Helper to create the contract structure for color scales (100-900).
+ * Used to avoid typing '100': '', '200': ''... manually in the contract.
  */
-export const [themeClass, vars] = createTheme({
+const colorScaleContract = {
+  100: '',
+  200: '',
+  300: '',
+  400: '',
+  500: '',
+  600: '',
+  700: '',
+  800: '',
+  900: '',
+};
+
+/**
+ * 1. THEME CONTRACT
+ * Defines the shape of our theme variables without assigning values yet.
+ * This creates the stable CSS variables (e.g. --colors-brand-500) that can be overridden.
+ */
+export const vars = createThemeContract({
   colors: {
-    // Full tonal palettes (100-900)
+    brand: colorScaleContract,
+    secondary: colorScaleContract,
+    tertiary: colorScaleContract,
+    info: colorScaleContract,
+    success: colorScaleContract,
+    warning: colorScaleContract,
+    error: colorScaleContract,
+
+    background: '',
+    text: '',
+
+    light: '',
+    dark: '',
+    white: '',
+    black: '',
+  },
+  space: {
+    none: '',
+    small: '',
+    medium: '',
+    large: '',
+    xlarge: '',
+    xxlarge: '',
+  },
+  border: {
+    radius: {
+      small: '',
+      medium: '',
+      full: '',
+    },
+  },
+  typography: {
+    fonts: {
+      sans: '',
+      serif: '',
+      mono: '',
+    },
+    fontSizes: {
+      displayLarge: '',
+      displayMedium: '',
+      displaySmall: '',
+
+      headlineLarge: '',
+      headlineMedium: '',
+      headlineSmall: '',
+
+      titleLarge: '',
+      titleMedium: '',
+      titleSmall: '',
+
+      bodyLarge: '',
+      bodyMedium: '',
+      bodySmall: '',
+
+      labelLarge: '',
+      labelMedium: '',
+      labelSmall: '',
+    },
+    fontWeights: {
+      regular: '',
+      medium: '',
+      bold: '',
+    },
+    lineHeights: {
+      tight: '',
+      normal: '',
+      loose: '',
+    },
+  },
+});
+
+/**
+ * 2. DEFAULT THEME IMPLEMENTATION
+ * Applies the actual values from tokens.ts to the contract variables.
+ */
+export const themeClass = createTheme(vars, {
+  colors: {
     brand: palette.brand,
     secondary: palette.secondary,
     tertiary: palette.tertiary,
@@ -22,11 +110,9 @@ export const [themeClass, vars] = createTheme({
     warning: palette.warning,
     error: palette.error,
 
-    // Semantic colors (mapped to our custom neutrals)
-    background: palette.light, // #e9f1f7
-    text: palette.dark, // #131b23
+    background: palette.light,
+    text: palette.dark,
 
-    // neutrals
     light: palette.light,
     dark: palette.dark,
     white: '#ffffff',
@@ -34,45 +120,45 @@ export const [themeClass, vars] = createTheme({
   },
   space: {
     none: '0',
-    small: '0.25rem', // 4px
-    medium: '0.5rem', // 8px
-    large: '1rem', // 16px
-    xlarge: '2rem', // 32px
-    xxlarge: '4rem', // 64px
+    small: '0.25rem',
+    medium: '0.5rem',
+    large: '1rem',
+    xlarge: '2rem',
+    xxlarge: '4rem',
   },
   border: {
     radius: {
-      small: '0.25rem', // 4px
-      medium: '0.5rem', // 8px
+      small: '0.25rem',
+      medium: '0.5rem',
       full: '9999px',
     },
   },
   typography: {
     fonts: {
-      sans: '"Roboto", "Helvetica", "Arial", sans-serif', // MD3 standard
+      sans: '"Roboto", "Helvetica", "Arial", sans-serif',
       serif: '"Georgia", serif',
       mono: '"Roboto Mono", monospace',
     },
     fontSizes: {
-      displayLarge: '3.56rem', // 57px
-      displayMedium: '2.81rem', // 45px
-      displaySmall: '2.25rem', // 36px
+      displayLarge: '3.56rem',
+      displayMedium: '2.81rem',
+      displaySmall: '2.25rem',
 
-      headlineLarge: '2rem', // 32px
-      headlineMedium: '1.75rem', // 28px
-      headlineSmall: '1.5rem', // 24px
+      headlineLarge: '2rem',
+      headlineMedium: '1.75rem',
+      headlineSmall: '1.5rem',
 
-      titleLarge: '1.375rem', // 22px
-      titleMedium: '1rem', // 16px
-      titleSmall: '0.875rem', // 14px
+      titleLarge: '1.375rem',
+      titleMedium: '1rem',
+      titleSmall: '0.875rem',
 
-      bodyLarge: '1rem', // 16px
-      bodyMedium: '0.875rem', // 14px
-      bodySmall: '0.75rem', // 12px
+      bodyLarge: '1rem',
+      bodyMedium: '0.875rem',
+      bodySmall: '0.75rem',
 
-      labelLarge: '0.875rem', // 14px
-      labelMedium: '0.75rem', // 12px
-      labelSmall: '0.68rem', // 11px
+      labelLarge: '0.875rem',
+      labelMedium: '0.75rem',
+      labelSmall: '0.68rem',
     },
     fontWeights: {
       regular: '400',
