@@ -4,7 +4,7 @@ import { themeClass } from '../../styles/theme.css.js';
 import { Abbreviation, AbbreviationProps } from './Abbreviation';
 
 const meta: Meta<AbbreviationProps> = {
-  title: 'Components/Abbreviation',
+  title: 'Typography/Abbreviation',
   component: Abbreviation,
   tags: ['autodocs'],
   decorators: [
