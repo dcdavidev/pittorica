@@ -12,31 +12,56 @@ import {
   contentContainer,
 } from './background.css.js';
 
+/**
+ * Props for the Background component.
+ */
 export interface BackgroundProps extends React.PropsWithChildren {
+  /**
+   * Additional CSS class name.
+   */
   className?: string;
+
+  /**
+   * Inline styles.
+   */
   style?: React.CSSProperties;
+
   /**
    * The type of background animation.
    * @default 'bubbles'
    */
   variant?: 'bubbles';
+
   /**
    * Array of hex colors for the bubbles.
+   * When not provided, uses a default vibrant color palette.
    */
   colors?: string[];
+
   /**
-   * Speed of the animation.
+   * Speed of the animation in seconds.
+   * Higher values result in slower animations.
    * @default 15
    */
   animationSpeed?: number;
+
   /**
    * Enable interactive mode where bubbles follow the cursor.
+   * When enabled, bubbles are attracted to the mouse position.
    * @default false
    */
   interactive?: boolean;
 }
 
+/**
+ * Internal type for bubble positioning.
+ */
 type BubblePosition = { x: number; y: number };
+
+/**
+ * Default color palette for bubbles.
+ * A vibrant collection of blues, pinks, purples, greens, and oranges.
+ */
 
 const DEFAULT_COLORS = [
   '#08A4BD',
@@ -61,6 +86,12 @@ const DEFAULT_COLORS = [
   '#FF5733',
 ];
 
+/**
+ * Converts a hexadecimal color to RGB string format.
+ *
+ * @param hex - Hexadecimal color string (with or without #).
+ * @returns RGB values as a comma-separated string (e.g., "255,255,255").
+ */
 function hexToRgb(hex: string): string {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return '255,255,255';
@@ -70,6 +101,25 @@ function hexToRgb(hex: string): string {
   return `${r},${g},${b}`;
 }
 
+/**
+ * A dynamic background component with animated bubbles.
+ * Supports interactive mode where bubbles respond to cursor movement.
+ * Can be used standalone or as a wrapper for content.
+ *
+ * @param props - Component props.
+ * @returns The rendered background with optional children.
+ * @example
+ * // Standalone background
+ * <Background variant="bubbles" />
+ * @example
+ * // Background with content
+ * <Background variant="bubbles" interactive>
+ *   <h1>Welcome</h1>
+ * </Background>
+ * @example
+ * // Custom colors
+ * <Background colors={['#FF0000', '#00FF00', '#0000FF']} />
+ */
 export const Background = ({
   className,
   style,

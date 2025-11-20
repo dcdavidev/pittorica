@@ -1,3 +1,8 @@
+/**
+ * Barrel export for all Picto components.
+ * Re-exports all component modules and their associated styles.
+ */
+
 export * from './Abbreviation/abbreviation.css.js';
 export * from './Abbreviation/Abbreviation.js';
 export * from './Background/background.css.js';

@@ -3,6 +3,9 @@ import React from 'react';
 import { Atoms } from '../../styles/sprinkles.css.js';
 import { Box, BoxProps } from '../Box/Box.js';
 
+/**
+ * Props for the Stack component.
+ */
 export interface StackProps
   extends Omit<
     BoxProps,
@@ -14,38 +17,56 @@ export interface StackProps
     | 'gap'
   > {
   /**
-   * The direction of the stack.
+   * The direction of the stack (vertical or horizontal).
+   * Maps to CSS `flexDirection`.
    * @default 'column'
    */
   direction?: Atoms['flexDirection'];
+
   /**
    * Alignment of items along the cross axis.
-   * Maps to `alignItems`.
+   * Maps to CSS `alignItems`.
    * @default 'stretch'
    */
   align?: Atoms['alignItems'];
+
   /**
    * Alignment of items along the main axis.
-   * Maps to `justifyContent`.
+   * Maps to CSS `justifyContent`.
    * @default 'flex-start'
    */
   justify?: Atoms['justifyContent'];
+
   /**
    * Whether to wrap items onto multiple lines.
-   * Maps to `flexWrap`.
+   * Maps to CSS `flexWrap`.
    * @default 'nowrap'
    */
   wrap?: Atoms['flexWrap'];
+
   /**
-   * The spacing between items.
-   * Maps to `gap`.
+   * The spacing between stack items.
+   * Maps to CSS `gap`.
    */
   gap?: Atoms['gap'];
 }
 
 /**
- * A layout primitive that manages the layout of its immediate children
- * along the vertical or horizontal axis with configurable spacing.
+ * A flexbox-based layout primitive for stacking elements vertically or horizontally.
+ * Provides a simplified API for common flex layouts with configurable spacing and alignment.
+ *
+ * @param props - Component props.
+ * @returns The rendered stack container.
+ * @example
+ * <Stack gap="medium">
+ *   <div>Item 1</div>
+ *   <div>Item 2</div>
+ * </Stack>
+ * @example
+ * <Stack direction="row" gap="small" align="center">
+ *   <Button>Cancel</Button>
+ *   <Button>Submit</Button>
+ * </Stack>
  */
 export const Stack = ({
   direction = 'column',

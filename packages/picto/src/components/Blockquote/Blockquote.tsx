@@ -10,34 +10,56 @@ import { blockquoteRecipe } from './blockquote.css.js';
 
 type BlockquoteVariants = RecipeVariants<typeof blockquoteRecipe>;
 
+/**
+ * Props for the Blockquote component.
+ */
 export type BlockquoteProps = Omit<BoxProps, 'as' | 'color'> & {
   /**
    * The visual style of the quote.
+   * - `classic`: Traditional blockquote with left border.
+   * - `solid`: Filled background style.
    * @default 'classic'
    */
   variant?: NonNullable<BlockquoteVariants>['variant'];
 
   /**
-   * Name of the author.
+   * Name of the author of the quote.
    */
   author?: string;
 
   /**
-   * Source of the quote (e.g., book title, article).
+   * Source of the quote (e.g., book title, article, website).
    */
   source?: string;
 
   /**
-   * Accent color.
-   * - In 'classic': colors the left border.
-   * - In 'solid': colors the background.
+   * Accent color for the blockquote.
+   * - In 'classic' variant: colors the left border.
+   * - In 'solid' variant: colors the background.
+   * @default 'brand'
    */
   color?: BoxProps['color'];
 };
 
 /**
- * A semantic component for block quotations.
- * Integrates logic for "Surface" styling and automatic layout.
+ * A semantic component for block quotations with attribution support.
+ * Automatically handles layout and styling for quotes, authors, and sources.
+ *
+ * @param props - Component props.
+ * @returns The rendered blockquote element.
+ * @example
+ * <Blockquote author="Albert Einstein">
+ *   Imagination is more important than knowledge.
+ * </Blockquote>
+ * @example
+ * <Blockquote
+ *   variant="solid"
+ *   author="Maya Angelou"
+ *   source="I Know Why the Caged Bird Sings"
+ *   color="accent"
+ * >
+ *   There is no greater agony than bearing an untold story inside you.
+ * </Blockquote>
  */
 export const Blockquote = ({
   variant = 'classic',

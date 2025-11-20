@@ -7,9 +7,20 @@ import { RecipeVariants } from '@vanilla-extract/recipes';
 import { Box, BoxProps } from '../Box/Box.js';
 import { dividerRecipe } from './divider.css.js';
 
+/**
+ * SVG height for pattern-based dividers.
+ */
 const SVG_HEIGHT = 16;
+
+/**
+ * Center Y coordinate for SVG patterns.
+ */
 const CENTER_Y = SVG_HEIGHT / 2;
 
+/**
+ * SVG path definitions for decorative divider patterns.
+ * Each pattern includes a path definition (d) and width (w).
+ */
 const PATTERNS = {
   wave: {
     d: `M0 ${CENTER_Y} Q6 0 12 ${CENTER_Y} T24 ${CENTER_Y}`,
@@ -47,31 +58,51 @@ const PATTERNS = {
 
 type DividerVariants = RecipeVariants<typeof dividerRecipe>;
 
+/**
+ * Props for the Divider component.
+ */
 export type DividerProps = Omit<BoxProps, 'as' | 'children'> & {
   /**
    * The visual style of the divider.
+   * - `solid`: Simple solid line.
+   * - `wave`: Wavy pattern.
+   * - `zigzag`: Zigzag pattern.
+   * - `square`: Square wave pattern.
+   * - `scallop`: Scalloped edge pattern.
+   * - `dashed`: Dashed line pattern.
+   * - `double`: Double line pattern.
+   * - `cross`: Crossed pattern.
+   * - `dots`: Dotted pattern.
    * @default 'solid'
    */
   variant?: NonNullable<DividerVariants>['variant'];
 
   /**
    * Orientation of the divider.
-   * Note: 'wave', 'zigzag', etc., are currently optimized for horizontal use.
+   * Note: Decorative patterns are optimized for horizontal use.
    * @default 'horizontal'
    */
   orientation?: NonNullable<DividerVariants>['orientation'];
 
   /**
-   * Thickness of the line (only applies to 'solid' variant).
+   * Thickness of the divider line.
+   * Only applies to the 'solid' variant.
    */
   thickness?: string | number;
 };
 
 /**
- * A versatile separator component supporting solid lines and SVG patterns.
+ * A versatile separator component supporting solid lines and decorative SVG patterns.
+ * Can be used horizontally or vertically to divide content sections.
  *
- * @param {DividerProps} props Component props.
- * @returns {React.JSX.Element} The rendered divider.
+ * @param props - Component props.
+ * @returns The rendered divider.
+ * @example
+ * <Divider />
+ * @example
+ * <Divider variant="wave" color="brand" />
+ * @example
+ * <Divider orientation="vertical" thickness="2px" />
  */
 export const Divider = ({
   variant = 'solid',

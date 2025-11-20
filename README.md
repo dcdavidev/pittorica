@@ -9,6 +9,9 @@
 <!-- toc -->
 
 - [Picto](#picto)
+  - [Features](#features)
+  - [Components](#components)
+  - [Technology Stack](#technology-stack)
 - [License](#license)
 
 <!-- tocstop -->
@@ -20,6 +23,36 @@
 ```bash
 npm install @pittorica/picto
 ```
+
+### Features
+
+- **🎨 Modern Design** - Components following modern design principles and best practices
+- **⚡ Zero-Runtime CSS** - Built with Vanilla Extract for optimal performance
+- **♿ Accessibility First** - Semantic HTML and ARIA best practices
+- **🎯 Fully Typed** - Comprehensive TypeScript support
+- **🧩 Composable** - Flexible primitives built on the Box component
+- **📦 Tree-Shakeable** - Import only what you need
+
+### Components
+
+Picto provides 17 carefully crafted components:
+
+**Layout**: Box, Stack, Grid, Container, Inline
+**Typography**: Heading, Text, Paragraph, Code, Pre, Abbreviation, Quote, Blockquote
+**Interactive**: Button
+**Visual**: Divider, Background, LineBreak
+
+Each component is fully documented with JSDoc comments and includes TypeScript types for a great developer experience.
+
+### Technology Stack
+
+- **React** - Component library
+- **TypeScript** - Type safety and developer experience
+- **Vanilla Extract** - Zero-runtime CSS-in-JS
+- **Sprinkles** - Atomic CSS utilities
+- **Modern Design Tokens** - Comprehensive theming system
+
+For detailed documentation, see the [Picto README](./packages/picto/README.md).
 
 ---
 

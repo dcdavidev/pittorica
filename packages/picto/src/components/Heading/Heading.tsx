@@ -32,12 +32,15 @@ export type HeadingProps = Omit<BoxProps, 'as'> & {
 };
 
 /**
- * A semantic heading component (h1-h6) with Material Design 3 styles.
+ * A semantic heading component (h1-h6) with modern typography styles.
+ * Separates semantic level from visual appearance for better accessibility.
  *
- * @param {HeadingProps} props Component props.
- * @returns {React.JSX.Element} The rendered heading.
+ * @param props - Component props.
+ * @returns The rendered heading element.
  * @example
- * <Heading level={1} variant="display" size="large" color="brand">Main Title</Heading>
+ * <Heading level={1} variant="display" size="large">Main Title</Heading>
+ * @example
+ * <Heading level={2} variant="headline" color="brand">Section Title</Heading>
  */
 export const Heading = ({
   level = 2,
