@@ -26,7 +26,9 @@ export type TextProps = Omit<BoxProps, 'as'> & {
     | 'figcaption'
     | 'strong'
     | 'em'
-    | 'blockquote';
+    | 'blockquote'
+    | 'cite'
+    | 'small';
 
   /**
    * The visual style variant.

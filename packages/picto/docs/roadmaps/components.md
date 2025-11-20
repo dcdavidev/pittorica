@@ -8,7 +8,7 @@ These components are used to position the others.
 - [ ] **Stack** (Vertical/horizontal Flexbox layout with managed `gap`)
 - [ ] **Grid** (Wrapper for CSS Grid)
 - [ ] **Container** (Container with `max-width` to center content)
-- [ ] **Divider** (Horizontal/vertical separator line)
+- [x] **Divider** (Horizontal/vertical separator line)
 
 ## 2. Inputs (User Interaction)
 

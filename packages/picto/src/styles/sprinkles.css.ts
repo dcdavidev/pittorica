@@ -124,6 +124,9 @@ const typographyProperties = defineProperties({
     fontWeight: vars.typography.fontWeights,
     lineHeight: vars.typography.lineHeights,
     textAlign: ['left', 'center', 'right', 'justify'],
+    fontStyle: ['normal', 'italic'],
+    textTransform: ['none', 'uppercase', 'lowercase', 'capitalize'],
+    textDecoration: ['none', 'underline', 'line-through'],
   },
 });
 
