@@ -1,5 +1,3 @@
-import { style } from '@vanilla-extract/css';
-
 import { vars } from './theme.css.js';
 
 type ThemeOverrideValues<T> = {
@@ -56,24 +54,19 @@ const flattenOverrides = (
 };
 
 /**
- * Creates a CSS class that overrides specific theme variables.
- * The consumer can pass a partial theme object containing raw CSS values.
- * @param {ThemeOverrideValues<ThemeContract>} overrides The partial theme object.
- * @returns {string} The CSS class name for the override.
+ * Generates a flat mapping of CSS variable overrides from a partial theme object.
+ * Useful for passing to vanilla-extract's style({ vars }) or for debugging theme overrides.
+ * @param {ThemeOverrideValues<ThemeContract>} overrides The partial theme override object.
+ * @returns {Record<string, string>} A flat mapping of CSS variable names to override values.
  * @example
- * const myFont = createThemeOverride({
- * typography: { fonts: { sans: 'Inter, sans-serif' } }
- * });
+ * const vars = getThemeVars({ color: { brand: { 500: '#123456' } } });
+ * // vars: { 'var(--brand-500)': '#123456' }
  */
-export const createThemeOverride = (
+export const getThemeVars = (
   overrides: ThemeOverrideValues<ThemeContract>
-): string => {
-  const cssVars = flattenOverrides(
+): Record<string, string> => {
+  return flattenOverrides(
     vars as unknown as Record<string, unknown>,
     overrides as unknown as Record<string, unknown>
   );
-
-  return style({
-    vars: cssVars,
-  });
 };
