@@ -63,11 +63,6 @@ export const bubble = style({
   borderRadius: '50%',
   mixBlendMode: 'normal',
   transition: 'mix-blend-mode 0.3s ease',
-  selectors: {
-    '&:hover': {
-      mixBlendMode: 'screen',
-    },
-  },
 });
 
 export const contentContainer = style({

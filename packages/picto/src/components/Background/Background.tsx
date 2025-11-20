@@ -29,6 +29,11 @@ export interface BackgroundProps extends React.PropsWithChildren {
    * @default 15
    */
   animationSpeed?: number;
+  /**
+   * Enable interactive mode where bubbles follow the cursor.
+   * @default false
+   */
+  interactive?: boolean;
 }
 
 type BubblePosition = { x: number; y: number };
@@ -72,11 +77,16 @@ export const Background = ({
   variant = 'bubbles',
   colors = DEFAULT_COLORS,
   animationSpeed = 15,
+  interactive = false,
 }: BackgroundProps) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [bubblePositions, setBubblePositions] = React.useState<
     (BubblePosition & { id: string })[]
   >([]);
+  const [mousePos, setMousePos] = React.useState<{ x: number; y: number }>({
+    x: 50,
+    y: 50,
+  });
 
   const selectedColors = colors;
   const numBubbles = selectedColors.length;
@@ -112,6 +122,19 @@ export const Background = ({
       };
     });
   }, [numBubbles]);
+
+  const handleMouseMove = React.useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!interactive || !containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      setMousePos({ x, y });
+    },
+    [interactive]
+  );
 
   React.useEffect(() => {
     const positions = generateBubblePositions();
@@ -171,6 +194,24 @@ export const Background = ({
                 ][i % 3];
                 const baseSize = 600 + (i % 5) * 120;
 
+                // Calculate cursor attraction
+                const dx = mousePos.x - pos.x;
+                const dy = mousePos.y - pos.y;
+                const distance = Math.hypot(dx, dy);
+                const attractionRadius = 30; // percentage units
+                const attractionStrength = 0.3;
+
+                let offsetX = 0;
+                let offsetY = 0;
+                let shouldBlend = false;
+
+                if (interactive && distance < attractionRadius) {
+                  const force = 1 - distance / attractionRadius;
+                  offsetX = dx * force * attractionStrength;
+                  offsetY = dy * force * attractionStrength;
+                  shouldBlend = distance < attractionRadius * 0.6;
+                }
+
                 return (
                   <motion.div
                     key={pos.id}
@@ -183,7 +224,10 @@ export const Background = ({
                       height: `${baseSize}px`,
                       background: `radial-gradient(circle at center, rgba(${rgb}, 0.8) 0%, rgba(${rgb}, 0.3) 50%, rgba(${rgb}, 0) 100%)`,
                       filter: `drop-shadow(0 0 30px rgba(${rgb}, 0.6))`,
-                      animation: `${animationType} ${speed}s ease-in-out infinite, ${animations.wander} ${speed + 10}s ease-in-out infinite`,
+                      animation: interactive
+                        ? 'none'
+                        : `${animationType} ${speed}s ease-in-out infinite, ${animations.wander} ${speed + 10}s ease-in-out infinite`,
+                      mixBlendMode: shouldBlend ? 'screen' : 'normal',
                     }}
                     initial={{
                       opacity: 0,
@@ -194,8 +238,8 @@ export const Background = ({
                     animate={{
                       opacity: 1,
                       scale: 1,
-                      x: '-50%',
-                      y: '-50%',
+                      x: `calc(-50% + ${offsetX}%)`,
+                      y: `calc(-50% + ${offsetY}%)`,
                     }}
                     transition={{
                       opacity: {
@@ -207,6 +251,16 @@ export const Background = ({
                         duration: 0.8,
                         ease: 'easeOut',
                         delay: i * 0.05,
+                      },
+                      x: {
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 20,
+                      },
+                      y: {
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 20,
                       },
                     }}
                   />
@@ -225,6 +279,7 @@ export const Background = ({
       ref={containerRef}
       className={`${backgroundRecipe({ position: hasChildren ? 'relative' : 'absolute' })} ${className || ''}`}
       style={style}
+      onMouseMove={handleMouseMove}
     >
       {renderContent()}
 

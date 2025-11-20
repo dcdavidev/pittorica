@@ -33,6 +33,10 @@ const meta: Meta<BackgroundProps> = {
     animationSpeed: {
       control: { type: 'range', min: 5, max: 60, step: 1 },
     },
+    interactive: {
+      control: 'boolean',
+      description: 'Enable cursor-following behavior for bubbles',
+    },
   },
 };
 
@@ -85,4 +89,15 @@ export const AsContainer: Story = {
       </Box>
     </Background>
   ),
+};
+
+/**
+ * Interactive mode with cursor-following bubbles.
+ * Move your cursor over the background to see bubbles follow and blend.
+ */
+export const Interactive: Story = {
+  args: {
+    variant: 'bubbles',
+    interactive: true,
+  },
 };
