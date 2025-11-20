@@ -17,7 +17,10 @@ type TokenTree = { [key: string]: string | TokenTree };
  * // Input: { brand: { 500: 'var(--brand-500)' } }
  * // Output: { 'brand-500': 'var(--brand-500)', 'brand': 'var(--brand-500)' }
  */
-const flattenVars = (obj: TokenTree, prefix = ''): Record<string, string> => {
+const flattenVars = (
+  obj: TokenTree,
+  prefix: string = ''
+): Record<string, string> => {
   const result: Record<string, string> = {};
 
   for (const key in obj) {
@@ -62,7 +65,24 @@ const spaceProps = {
   gap: vars.space,
 };
 
-const spaceShorthands: Record<string, Array<keyof typeof spaceProps>> = {
+type ShorthandOptions =
+  | 'padding'
+  | 'paddingX'
+  | 'paddingY'
+  | 'p'
+  | 'px'
+  | 'py'
+  | 'margin'
+  | 'marginX'
+  | 'marginY'
+  | 'm'
+  | 'mx'
+  | 'my';
+
+const spaceShorthands: Record<
+  ShorthandOptions,
+  Array<keyof typeof spaceProps>
+> = {
   padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
   paddingX: ['paddingLeft', 'paddingRight'],
   paddingY: ['paddingTop', 'paddingBottom'],
@@ -75,7 +95,7 @@ const spaceShorthands: Record<string, Array<keyof typeof spaceProps>> = {
   m: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
   mx: ['marginLeft', 'marginRight'],
   my: ['marginTop', 'marginBottom'],
-};
+} as const;
 
 // --- DEFINE PROPERTIES ---
 
@@ -107,6 +127,19 @@ const typographyProperties = defineProperties({
   },
 });
 
+const borderProperties = defineProperties({
+  properties: {
+    borderRadius: vars.border.radius,
+    borderStyle: ['none', 'solid', 'dashed'],
+    borderWidth: {
+      none: '0px',
+      thin: '1px',
+      medium: '2px',
+      thick: '4px',
+    },
+  },
+});
+
 // --- EXPORTS ---
 
 /**
@@ -116,7 +149,8 @@ const typographyProperties = defineProperties({
 export const atoms = createSprinkles(
   spaceProperties,
   colorProperties,
-  typographyProperties
+  typographyProperties,
+  borderProperties
 );
 
 export type Atoms = Parameters<typeof atoms>[0];
