@@ -59,6 +59,24 @@ export type ButtonProps = Omit<
   selected?: boolean;
 
   /**
+   * URL to navigate to. When provided, the button renders as an anchor tag.
+   * Follows Astro.build pattern for navigation.
+   */
+  href?: string;
+
+  /**
+   * Target attribute for anchor tag (only used when href is provided).
+   * @default undefined
+   */
+  target?: '_blank' | '_self' | '_parent' | '_top';
+
+  /**
+   * Rel attribute for anchor tag (only used when href is provided).
+   * @default undefined
+   */
+  rel?: string;
+
+  /**
    * Icon to display at the start (left) of the button text.
    */
   startIcon?: React.ReactNode;
@@ -128,6 +146,9 @@ export const Button = ({
   shape = 'round',
   fullWidth = false,
   selected = false,
+  href,
+  target,
+  rel,
   startIcon,
   endIcon,
   disabled = false,
@@ -148,18 +169,37 @@ export const Button = ({
 
   const isDisabled = disabled || loading;
 
-  // Separate button-specific props from Box props
-  const buttonProps = {
-    type,
-    disabled: isDisabled,
-    onClick,
-  };
+  // Determine if we should render as anchor or button
+  const Component = href ? 'a' : 'button';
+
+  // Props specific to button element
+  const buttonProps = href
+    ? {}
+    : {
+        type,
+        disabled: isDisabled,
+        onClick,
+      };
+
+  // Props specific to anchor element
+  const anchorProps = href
+    ? {
+        href: isDisabled ? undefined : href,
+        target,
+        rel: target === '_blank' ? rel || 'noopener noreferrer' : rel,
+        onClick: isDisabled
+          ? (e: React.MouseEvent) => e.preventDefault()
+          : onClick,
+        'aria-disabled': isDisabled,
+      }
+    : {};
 
   return (
     <Box
-      as="button"
+      as={Component}
       className={clsx(recipeClass, className)}
       {...buttonProps}
+      {...anchorProps}
       {...props}
     >
       {loading ? (

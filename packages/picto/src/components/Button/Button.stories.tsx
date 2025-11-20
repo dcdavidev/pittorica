@@ -8,7 +8,7 @@ import { Button } from './Button.js';
  * Supports multiple variants, sizes, and states.
  */
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Inputs/Button',
   component: Button,
   decorators: [
     (Story) => (
@@ -360,6 +360,76 @@ export const SelectedStates: Story = {
           Selected
         </Button>
       </div>
+    </div>
+  ),
+};
+
+/**
+ * Button as link (href)
+ */
+export const AsLink: Story = {
+  args: {
+    children: 'Go to Google',
+    href: 'https://google.com',
+    variant: 'filled',
+  },
+};
+
+/**
+ * Link button with target blank
+ */
+export const LinkTargetBlank: Story = {
+  args: {
+    children: 'Open in New Tab',
+    href: 'https://github.com',
+    target: '_blank',
+    variant: 'outlined',
+    endIcon: '↗',
+  },
+};
+
+/**
+ * Disabled link button
+ */
+export const DisabledLink: Story = {
+  args: {
+    children: 'Disabled Link',
+    href: 'https://example.com',
+    disabled: true,
+    variant: 'tonal',
+  },
+};
+
+/**
+ * Navigation examples
+ */
+export const NavigationExamples: Story = {
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        alignItems: 'flex-start',
+      }}
+    >
+      <Button href="/" variant="filled">
+        Home
+      </Button>
+      <Button href="/about" variant="tonal">
+        About
+      </Button>
+      <Button
+        href="https://google.com"
+        target="_blank"
+        variant="outlined"
+        endIcon="↗"
+      >
+        External Link
+      </Button>
+      <Button href="/disabled" disabled variant="text">
+        Disabled Link
+      </Button>
     </div>
   ),
 };
