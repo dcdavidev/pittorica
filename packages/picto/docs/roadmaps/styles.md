@@ -21,27 +21,27 @@ Here's a list of HTML tags.
 
 ## Text Formatting
 
-- [ ] `<b>`: Defines bold text.
-- [ ] `<strong>`: Defines important text (bold).
-- [ ] `<i>`: Defines italic text.
-- [ ] `<em>`: Defines emphasized text (italic).
-- [ ] `<mark>`: Defines marked/highlighted text.
-- [ ] `<small>`: Defines smaller text.
-- [ ] `<del>`: Defines deleted (strikethrough) text.
-- [ ] `<ins>`: Defines inserted (underlined) text.
-- [ ] `<sub>`: Defines subscripted text.
-- [ ] `<sup>`: Defines superscripted text.
-- [ ] `<abbr>`: Defines an abbreviation or acronym.
-- [ ] `<cite>`: Defines the title of a work.
-- [ ] `<q>`: Defines a short quotation.
-- [ ] `<dfn>`: Defines a definition term.
-- [ ] `<code>`: Defines a piece of computer code.
-- [ ] `<kbd>`: Defines keyboard input.
-- [ ] `<samp>`: Defines sample output from a computer program.
-- [ ] `<var>`: Defines a variable.
-- [ ] `<bdi>`: Isolates a part of text for bidirectional text formatting.
-- [ ] `<bdo>`: Overrides the current text direction.
-- [ ] `<wbr>`: Defines a possible line-break.
+- [x] `<b>`: Defines bold text.
+- [x] `<strong>`: Defines important text (bold).
+- [x] `<i>`: Defines italic text.
+- [x] `<em>`: Defines emphasized text (italic).
+- [x] `<mark>`: Defines marked/highlighted text.
+- [x] `<small>`: Defines smaller text.
+- [x] `<del>`: Defines deleted (strikethrough) text.
+- [x] `<ins>`: Defines inserted (underlined) text.
+- [x] `<sub>`: Defines subscripted text.
+- [x] `<sup>`: Defines superscripted text.
+- [x] `<abbr>`: Defines an abbreviation or acronym.
+- [x] `<cite>`: Defines the title of a work.
+- [x] `<q>`: Defines a short quotation.
+- [x] `<dfn>`: Defines a definition term.
+- [x] `<code>`: Defines a piece of computer code.
+- [x] `<kbd>`: Defines keyboard input.
+- [x] `<samp>`: Defines sample output from a computer program.
+- [x] `<var>`: Defines a variable.
+- [x] `<bdi>`: Isolates a part of text for bidirectional text formatting.
+- [x] `<bdo>`: Overrides the current text direction.
+- [x] `<wbr>`: Defines a possible line-break.
 
 ## Links
 

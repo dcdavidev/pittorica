@@ -53,55 +53,74 @@ const flattenVars = (
  */
 export const colorsMap = flattenVars(vars.colors);
 
-const spaceProps = {
-  paddingTop: vars.space,
-  paddingBottom: vars.space,
-  paddingLeft: vars.space,
-  paddingRight: vars.space,
-  marginTop: vars.space,
-  marginBottom: vars.space,
-  marginLeft: vars.space,
-  marginRight: vars.space,
-  gap: vars.space,
-};
-
-type ShorthandOptions =
-  | 'padding'
-  | 'paddingX'
-  | 'paddingY'
-  | 'p'
-  | 'px'
-  | 'py'
-  | 'margin'
-  | 'marginX'
-  | 'marginY'
-  | 'm'
-  | 'mx'
-  | 'my';
-
-const spaceShorthands: Record<
-  ShorthandOptions,
-  Array<keyof typeof spaceProps>
-> = {
-  padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
-  paddingX: ['paddingLeft', 'paddingRight'],
-  paddingY: ['paddingTop', 'paddingBottom'],
-  p: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
-  px: ['paddingLeft', 'paddingRight'],
-  py: ['paddingTop', 'paddingBottom'],
-  margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
-  marginX: ['marginLeft', 'marginRight'],
-  marginY: ['marginTop', 'marginBottom'],
-  m: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
-  mx: ['marginLeft', 'marginRight'],
-  my: ['marginTop', 'marginBottom'],
-} as const;
-
 // --- DEFINE PROPERTIES ---
 
-const spaceProperties = defineProperties({
-  properties: spaceProps,
-  shorthands: spaceShorthands,
+const responsiveProperties = defineProperties({
+  conditions: {
+    mobile: {},
+    tablet: { '@media': 'screen and (min-width: 768px)' },
+    desktop: { '@media': 'screen and (min-width: 1024px)' },
+    wide: { '@media': 'screen and (min-width: 1200px)' },
+  },
+  defaultCondition: 'mobile',
+  properties: {
+    display: [
+      'none',
+      'block',
+      'inline',
+      'inline-block',
+      'flex',
+      'inline-flex',
+      'grid',
+      'inline-grid',
+    ],
+    flexDirection: ['row', 'column', 'row-reverse', 'column-reverse'],
+    alignItems: ['stretch', 'flex-start', 'center', 'flex-end', 'baseline'],
+    justifyContent: [
+      'flex-start',
+      'center',
+      'flex-end',
+      'space-between',
+      'space-around',
+      'space-evenly',
+    ],
+    flexWrap: ['nowrap', 'wrap', 'wrap-reverse'],
+    gap: vars.space,
+    paddingTop: vars.space,
+    paddingBottom: vars.space,
+    paddingLeft: vars.space,
+    paddingRight: vars.space,
+    marginTop: { ...vars.space, auto: 'auto' },
+    marginBottom: { ...vars.space, auto: 'auto' },
+    marginLeft: { ...vars.space, auto: 'auto' },
+    marginRight: { ...vars.space, auto: 'auto' },
+    width: ['100%', 'auto'],
+    maxWidth: {
+      none: 'none',
+      '100%': '100%',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
+    height: ['100%', 'auto'],
+  },
+  shorthands: {
+    padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
+    paddingX: ['paddingLeft', 'paddingRight'],
+    paddingY: ['paddingTop', 'paddingBottom'],
+    p: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
+    px: ['paddingLeft', 'paddingRight'],
+    py: ['paddingTop', 'paddingBottom'],
+    margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
+    marginX: ['marginLeft', 'marginRight'],
+    marginY: ['marginTop', 'marginBottom'],
+    m: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
+    mx: ['marginLeft', 'marginRight'],
+    my: ['marginTop', 'marginBottom'],
+    placeItems: ['alignItems', 'justifyContent'],
+  },
 });
 
 const colorProperties = defineProperties({
@@ -151,7 +170,7 @@ const borderProperties = defineProperties({
  * It combines properties for space, color, and typography.
  */
 export const atoms = createSprinkles(
-  spaceProperties,
+  responsiveProperties,
   colorProperties,
   typographyProperties,
   borderProperties
