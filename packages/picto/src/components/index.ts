@@ -9,6 +9,7 @@ export * from './Container/container.css.js';
 export * from './Container/Container.js';
 export * from './Divider/divider.css.js';
 export * from './Divider/Divider.js';
+export * from './Grid/Grid.js';
 export * from './Heading/heading.css.js';
 export * from './Heading/Heading.js';
 export * from './Inline/inline.css.js';

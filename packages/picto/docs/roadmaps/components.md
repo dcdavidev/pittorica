@@ -5,8 +5,8 @@
 These components are used to position the others.
 
 - [x] **Box** (The base polymorphic container)
-- [ ] **Stack** (Vertical/horizontal Flexbox layout with managed `gap`)
-- [ ] **Grid** (Wrapper for CSS Grid)
+- [x] **Stack** (Vertical/horizontal Flexbox layout with managed `gap`)
+- [x] **Grid** (Wrapper for CSS Grid)
 - [x] **Container** (Container with `max-width` to center content)
 - [x] **Divider** (Horizontal/vertical separator line)
 
