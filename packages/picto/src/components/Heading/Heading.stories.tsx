@@ -39,6 +39,7 @@ const meta: Meta<HeadingProps> = {
       control: 'select',
       options: colorOptions,
       description: 'Sprinkles color token.',
+      defaultValue: 'brand',
     },
   },
 };

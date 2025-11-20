@@ -9,7 +9,6 @@ import { vars } from './theme.css.js';
 export const headingRecipe = recipe({
   base: {
     fontFamily: vars.typography.fonts.sans,
-    color: vars.colors.text,
     margin: 0, // Reset default browser margins
   },
   variants: {
