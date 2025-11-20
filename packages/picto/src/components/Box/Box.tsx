@@ -52,7 +52,7 @@ export const Box = ({
      * We cast 'key' to string because 'atoms.properties' is a Set<string>,
      * and we need to check if the property name matches a known atom.
      */
-    if (atoms.properties.has(key as string)) {
+    if (atoms.properties.has(key as keyof Atoms)) {
       atomProps[key] = props[key as keyof typeof props];
     } else {
       nativeProps[key] = props[key as keyof typeof props];
