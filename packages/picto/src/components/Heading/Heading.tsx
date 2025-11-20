@@ -4,8 +4,8 @@ import clsx from 'clsx';
 
 import { RecipeVariants } from '@vanilla-extract/recipes';
 
-import { headingRecipe } from '../../styles/typography.css.js';
 import { Box, BoxProps } from '../Box/Box.js';
+import { headingRecipe } from './heading.css.js';
 
 // Extract variants from the recipe
 type HeadingVariants = RecipeVariants<typeof headingRecipe>;
