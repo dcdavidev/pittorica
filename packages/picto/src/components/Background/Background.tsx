@@ -1,8 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 
-import { motion } from 'motion/react';
+import clsx from 'clsx';
+
+import {
+  motion,
+  type MotionValue,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from 'motion/react';
 
 import {
   animations,
@@ -12,56 +20,29 @@ import {
   contentContainer,
 } from './background.css.js';
 
-/**
- * Props for the Background component.
- */
+// --- TYPES ---
+
 export interface BackgroundProps extends React.PropsWithChildren {
-  /**
-   * Additional CSS class name.
-   */
   className?: string;
-
-  /**
-   * Inline styles.
-   */
   style?: React.CSSProperties;
-
-  /**
-   * The type of background animation.
-   * @default 'bubbles'
-   */
   variant?: 'bubbles';
-
-  /**
-   * Array of hex colors for the bubbles.
-   * When not provided, uses a default vibrant color palette.
-   */
   colors?: string[];
-
-  /**
-   * Speed of the animation in seconds.
-   * Higher values result in slower animations.
-   * @default 15
-   */
   animationSpeed?: number;
-
-  /**
-   * Enable interactive mode where bubbles follow the cursor.
-   * When enabled, bubbles are attracted to the mouse position.
-   * @default false
-   */
   interactive?: boolean;
 }
 
-/**
- * Internal type for bubble positioning.
- */
-type BubblePosition = { x: number; y: number };
+type BubbleData = {
+  id: string;
+  x: number; // Percentage 0-100
+  y: number; // Percentage 0-100
+  color: string;
+  baseSize: number;
+  animationDelay: number;
+  animationType: string;
+  speed: number;
+};
 
-/**
- * Default color palette for bubbles.
- * A vibrant collection of blues, pinks, purples, greens, and oranges.
- */
+// --- CONSTANTS ---
 
 const DEFAULT_COLORS = [
   '#08A4BD',
@@ -86,12 +67,8 @@ const DEFAULT_COLORS = [
   '#FF5733',
 ];
 
-/**
- * Converts a hexadecimal color to RGB string format.
- *
- * @param hex - Hexadecimal color string (with or without #).
- * @returns RGB values as a comma-separated string (e.g., "255,255,255").
- */
+// --- HELPERS ---
+
 function hexToRgb(hex: string): string {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return '255,255,255';
@@ -101,25 +78,88 @@ function hexToRgb(hex: string): string {
   return `${r},${g},${b}`;
 }
 
+// --- SUB-COMPONENTS ---
+
 /**
- * A dynamic background component with animated bubbles.
- * Supports interactive mode where bubbles respond to cursor movement.
- * Can be used standalone or as a wrapper for content.
- *
- * @param props - Component props.
- * @returns The rendered background with optional children.
- * @example
- * // Standalone background
- * <Background variant="bubbles" />
- * @example
- * // Background with content
- * <Background variant="bubbles" interactive>
- *   <h1>Welcome</h1>
- * </Background>
- * @example
- * // Custom colors
- * <Background colors={['#FF0000', '#00FF00', '#0000FF']} />
+ * Individual Bubble component.
+ * Uses MotionValues to update position without triggering React re-renders.
  */
+const BubbleItem = ({
+  data,
+  mouseX,
+  mouseY,
+  interactive,
+}: {
+  data: BubbleData;
+  mouseX: MotionValue<number>;
+  mouseY: MotionValue<number>;
+  interactive: boolean;
+}) => {
+  const rgb = useMemo(() => hexToRgb(data.color), [data.color]);
+
+  // Physics settings for interaction
+  const springConfig = { damping: 15, stiffness: 150, mass: 0.5 };
+
+  // We calculate the attraction based on the MotionValue of the mouse
+  // transform takes the mouse position and outputs the bubble offset
+  const xOffset = useTransform(mouseX, (val: number) => {
+    if (!interactive) return 0;
+    // Approximation of distance checking using raw values for performance
+    const dx = val - data.x;
+    // If close (within 15% screen width), attract
+    if (Math.abs(dx) < 15) {
+      return dx * 0.5; // Attraction strength
+    }
+    return 0;
+  });
+
+  const yOffset = useTransform(mouseY, (val: number) => {
+    if (!interactive) return 0;
+    const dy = val - data.y;
+    if (Math.abs(dy) < 15) {
+      return dy * 0.5;
+    }
+    return 0;
+  });
+
+  // Apply spring physics to the calculated offset for smoothness
+  const xSpring = useSpring(xOffset, springConfig);
+  const ySpring = useSpring(yOffset, springConfig);
+
+  return (
+    <motion.div
+      className={bubble}
+      style={{
+        position: 'absolute',
+        left: `${data.x}%`,
+        top: `${data.y}%`,
+        width: `${data.baseSize}px`,
+        height: `${data.baseSize}px`,
+        background: `radial-gradient(circle at center, rgba(${rgb}, 0.8) 0%, rgba(${rgb}, 0.3) 50%, rgba(${rgb}, 0) 100%)`,
+        filter: `drop-shadow(0 0 30px rgba(${rgb}, 0.6))`,
+        // CSS Animation for passive floating
+        animation: interactive
+          ? 'none' // If interacting, we might want to pause CSS to let physics take over, or layer them
+          : `${data.animationType} ${data.speed}s ease-in-out infinite, ${animations.wander} ${data.speed + 10}s ease-in-out infinite`,
+        // Motion values for interactive movement
+        x: interactive ? xSpring : '-50%',
+        y: interactive ? ySpring : '-50%',
+        translateX: '-50%', // Ensure centering works alongside motion x/y
+        translateY: '-50%',
+      }}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        ease: 'easeOut',
+        delay: data.animationDelay,
+      }}
+    />
+  );
+};
+
+// --- MAIN COMPONENT ---
+
 export const Background = ({
   className,
   style,
@@ -130,23 +170,24 @@ export const Background = ({
   interactive = false,
 }: BackgroundProps) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [bubblePositions, setBubblePositions] = React.useState<
-    (BubblePosition & { id: string })[]
-  >([]);
-  const [mousePos, setMousePos] = React.useState<{ x: number; y: number }>({
-    x: 50,
-    y: 50,
-  });
+  const [bubbles, setBubbles] = React.useState<BubbleData[]>([]);
 
-  const selectedColors = colors;
-  const numBubbles = selectedColors.length;
+  // MotionValues for Mouse Position (Percentage 0-100)
+  // Updating these DOES NOT trigger a React Render
+  const mouseX = useMotionValue(50);
+  const mouseY = useMotionValue(50);
 
-  const generateBubblePositions = React.useCallback(() => {
+  // Generate Bubbles on Mount (Client-side only to avoid hydration mismatch)
+  React.useEffect(() => {
+    const numBubbles = colors.length;
     const cols = Math.ceil(Math.sqrt(numBubbles * 0.5));
     const rows = Math.ceil(numBubbles / cols);
-    const totalCells = cols * rows;
+    const cellWidth = 100 / cols;
+    const cellHeight = 100 / rows;
 
-    const availableCells = Array.from({ length: totalCells }, (_, i) => i);
+    const availableCells = Array.from({ length: cols * rows }, (_, i) => i);
+
+    // Shuffle positions
     for (let i = availableCells.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [availableCells[i], availableCells[j]] = [
@@ -155,185 +196,95 @@ export const Background = ({
       ];
     }
 
-    const cellWidth = 100 / cols;
-    const cellHeight = 100 / rows;
+    const newBubbles: BubbleData[] = availableCells
+      .slice(0, numBubbles)
+      .map((cellIndex, i) => {
+        const col = cellIndex % cols;
+        const row = Math.floor(cellIndex / cols);
+        const jitterX = (Math.random() - 0.5) * cellWidth * 1.2;
+        const jitterY = (Math.random() - 0.5) * cellHeight * 1.2;
 
-    return availableCells.slice(0, numBubbles).map((cellIndex) => {
-      const col = cellIndex % cols;
-      const row = Math.floor(cellIndex / cols);
+        return {
+          id: `bubble-${Math.random().toString(36).slice(2, 11)}`,
+          x: col * cellWidth + cellWidth / 2 + jitterX,
+          y: row * cellHeight + cellHeight / 2 + jitterY,
+          color: colors[i % colors.length],
+          baseSize: 600 + (i % 5) * 120,
+          animationDelay: i * 0.05,
+          speed: animationSpeed + (i % 4) * 8,
+          animationType: [animations.float, animations.drift, animations.pulse][
+            i % 3
+          ],
+        };
+      });
 
-      const jitterX = (Math.random() - 0.5) * cellWidth * 1.2;
-      const jitterY = (Math.random() - 0.5) * cellHeight * 1.2;
-
-      return {
-        id: `bubble-${Math.random().toString(36).slice(2, 11)}`,
-        x: col * cellWidth + cellWidth / 2 + jitterX,
-        y: row * cellHeight + cellHeight / 2 + jitterY,
-      };
-    });
-  }, [numBubbles]);
-
-  const handleMouseMove = React.useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!interactive || !containerRef.current) return;
-
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-      setMousePos({ x, y });
-    },
-    [interactive]
-  );
-
-  React.useEffect(() => {
-    const positions = generateBubblePositions();
     // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-    setBubblePositions(positions);
-  }, [generateBubblePositions]);
+    setBubbles(newBubbles);
+  }, [colors, animationSpeed]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!interactive || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
+    const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
+
+    // Update MotionValues directly
+    mouseX.set(xPercent);
+    mouseY.set(yPercent);
+  };
 
   const hasChildren = Boolean(children);
-
-  // Use variant to determine render logic (currently only bubbles)
-  const renderContent = () => {
-    if (variant === 'bubbles') {
-      return (
-        <>
-          {/* SVG Filter for Gooey Effect */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: 0,
-              height: 0,
-            }}
-          >
-            <defs>
-              <filter id="gooey">
-                <feGaussianBlur
-                  in="SourceGraphic"
-                  stdDeviation="10"
-                  result="blur"
-                />
-                <feColorMatrix
-                  in="blur"
-                  mode="matrix"
-                  values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 18 -8"
-                  result="goo"
-                />
-                <feBlend in="SourceGraphic" in2="goo" />
-              </filter>
-            </defs>
-          </svg>
-
-          {/* Bubbles Container */}
-          {bubblePositions.length > 0 && (
-            <div className={bubbleContainer}>
-              {selectedColors.map((color, i) => {
-                const pos = bubblePositions[i];
-                if (!pos) return null;
-
-                const rgb = hexToRgb(color);
-                const speed = animationSpeed + (i % 4) * 8;
-                const animationType = [
-                  animations.float,
-                  animations.drift,
-                  animations.pulse,
-                ][i % 3];
-                const baseSize = 600 + (i % 5) * 120;
-
-                // Calculate cursor attraction
-                const dx = mousePos.x - pos.x;
-                const dy = mousePos.y - pos.y;
-                const distance = Math.hypot(dx, dy);
-                const attractionRadius = 30; // percentage units
-                const attractionStrength = 0.3;
-
-                let offsetX = 0;
-                let offsetY = 0;
-                let shouldBlend = false;
-
-                if (interactive && distance < attractionRadius) {
-                  const force = 1 - distance / attractionRadius;
-                  offsetX = dx * force * attractionStrength;
-                  offsetY = dy * force * attractionStrength;
-                  shouldBlend = distance < attractionRadius * 0.6;
-                }
-
-                return (
-                  <motion.div
-                    key={pos.id}
-                    className={bubble}
-                    style={{
-                      position: 'absolute',
-                      left: `${pos.x}%`,
-                      top: `${pos.y}%`,
-                      width: `${baseSize}px`,
-                      height: `${baseSize}px`,
-                      background: `radial-gradient(circle at center, rgba(${rgb}, 0.8) 0%, rgba(${rgb}, 0.3) 50%, rgba(${rgb}, 0) 100%)`,
-                      filter: `drop-shadow(0 0 30px rgba(${rgb}, 0.6))`,
-                      animation: interactive
-                        ? 'none'
-                        : `${animationType} ${speed}s ease-in-out infinite, ${animations.wander} ${speed + 10}s ease-in-out infinite`,
-                      mixBlendMode: shouldBlend ? 'screen' : 'normal',
-                    }}
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                      x: '-50%',
-                      y: '-50%',
-                    }}
-                    animate={{
-                      opacity: 1,
-                      scale: 1,
-                      x: `calc(-50% + ${offsetX}%)`,
-                      y: `calc(-50% + ${offsetY}%)`,
-                    }}
-                    transition={{
-                      opacity: {
-                        duration: 0.8,
-                        ease: 'easeOut',
-                        delay: i * 0.05,
-                      },
-                      scale: {
-                        duration: 0.8,
-                        ease: 'easeOut',
-                        delay: i * 0.05,
-                      },
-                      x: {
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 20,
-                      },
-                      y: {
-                        type: 'spring',
-                        stiffness: 100,
-                        damping: 20,
-                      },
-                    }}
-                  />
-                );
-              })}
-            </div>
-          )}
-        </>
-      );
-    }
-    return null;
-  };
 
   return (
     <div
       ref={containerRef}
-      className={`${backgroundRecipe({ position: hasChildren ? 'relative' : 'absolute' })} ${className || ''}`}
+      className={clsx(
+        backgroundRecipe({ position: hasChildren ? 'relative' : 'absolute' }),
+        className
+      )}
       style={style}
       onMouseMove={handleMouseMove}
     >
-      {renderContent()}
+      {/* SVG Filter */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ position: 'absolute', width: 0, height: 0 }}
+        aria-hidden="true"
+      >
+        <defs>
+          <filter id="gooey">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="10"
+              result="blur"
+            />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
 
-      {/* Content Container */}
+      {/* Bubbles Render */}
+      {variant === 'bubbles' && bubbles.length > 0 && (
+        <div className={bubbleContainer}>
+          {bubbles.map((bubbleData) => (
+            <BubbleItem
+              key={bubbleData.id}
+              data={bubbleData}
+              mouseX={mouseX}
+              mouseY={mouseY}
+              interactive={interactive}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Content */}
       {hasChildren && <div className={contentContainer}>{children}</div>}
     </div>
   );
