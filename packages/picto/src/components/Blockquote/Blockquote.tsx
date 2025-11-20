@@ -1,115 +1,130 @@
 import React from 'react';
 
-import { ColorToken } from '../../types/colors.js';
-import { Container } from '../Container/Container.js';
-import { Surface } from '../Surface/Surface.js';
-import { Typography } from '../Typography/Typography.js';
+import clsx from 'clsx';
 
-export interface BlockquoteProps {
+import { RecipeVariants } from '@vanilla-extract/recipes';
+
+import { Box, BoxProps } from '../Box/Box.js';
+import { Text } from '../Text/Text.js';
+import { blockquoteRecipe } from './blockquote.css.js';
+
+type BlockquoteVariants = RecipeVariants<typeof blockquoteRecipe>;
+
+/**
+ * Props for the Blockquote component.
+ */
+export type BlockquoteProps = Omit<BoxProps, 'as' | 'color'> & {
+  /**
+   * The visual style of the quote.
+   * - `classic`: Traditional blockquote with left border.
+   * - `solid`: Filled background style.
+   * @default 'classic'
+   */
+  variant?: NonNullable<BlockquoteVariants>['variant'];
+
+  /**
+   * Name of the author of the quote.
+   */
   author?: string;
+
+  /**
+   * Source of the quote (e.g., book title, article, website).
+   */
   source?: string;
-  color?: ColorToken | undefined;
-  children: React.ReactNode;
-}
 
-function parseTextContent(content: React.ReactNode): React.ReactNode {
-  if (typeof content !== 'string') {
-    return content;
-  }
+  /**
+   * Accent color for the blockquote.
+   * - In 'classic' variant: colors the left border.
+   * - In 'solid' variant: colors the background.
+   * @default 'brand'
+   */
+  color?: BoxProps['color'];
+};
 
-  // Replace \n with <br />
-  const parsedContent = content.replaceAll('\n', '<br />');
-
-  // Transform HTML elements to Typography components
-  // This is a simple approach - for more complex HTML, consider using html-react-parser
-  const transformHtml = (html: string): React.ReactNode => {
-    // Split by HTML tags and process each part
-    const parts = html.split(/(<[^>]+>)/g);
-
-    return parts.map((part, index) => {
-      const key = `${part}-${index}`;
-
-      if (part.startsWith('<span>') && part.endsWith('</span>')) {
-        const innerText = part.slice(6, -7); // Remove <span> and </span>
-        return <Typography key={key}>{innerText}</Typography>;
-      }
-
-      if (part.startsWith('<b>') && part.endsWith('</b>')) {
-        const innerText = part.slice(3, -4); // Remove <b> and </b>
-        return (
-          <Typography key={key} weight="bold">
-            {innerText}
-          </Typography>
-        );
-      }
-
-      if (part.startsWith('<strong>') && part.endsWith('</strong>')) {
-        const innerText = part.slice(8, -9); // Remove <strong> and </strong>
-        return (
-          <Typography key={key} weight="bold">
-            {innerText}
-          </Typography>
-        );
-      }
-
-      if (part.startsWith('<i>') && part.endsWith('</i>')) {
-        const innerText = part.slice(3, -4); // Remove <i> and </i>
-        return (
-          <Typography key={key} italic>
-            {innerText}
-          </Typography>
-        );
-      }
-
-      if (part.startsWith('<em>') && part.endsWith('</em>')) {
-        const innerText = part.slice(4, -5); // Remove <em> and </em>
-        return (
-          <Typography key={key} italic>
-            {innerText}
-          </Typography>
-        );
-      }
-
-      if (part === '<br />') {
-        return <br key={key} />;
-      }
-
-      // Return plain text as is
-      return part;
-    });
-  };
-
-  return transformHtml(parsedContent);
-}
-
-export function Blockquote({
+/**
+ * A semantic component for block quotations with attribution support.
+ * Automatically handles layout and styling for quotes, authors, and sources.
+ *
+ * @param props - Component props.
+ * @returns The rendered blockquote element.
+ * @example
+ * <Blockquote author="Albert Einstein">
+ *   Imagination is more important than knowledge.
+ * </Blockquote>
+ * @example
+ * <Blockquote
+ *   variant="solid"
+ *   author="Maya Angelou"
+ *   source="I Know Why the Caged Bird Sings"
+ *   color="accent"
+ * >
+ *   There is no greater agony than bearing an untold story inside you.
+ * </Blockquote>
+ */
+export const Blockquote = ({
+  variant = 'classic',
   author,
   source,
-  color,
+  color = 'brand',
+  className,
   children,
-}: BlockquoteProps) {
-  const parsedChildren = parseTextContent(children);
+  ...props
+}: BlockquoteProps): React.JSX.Element => {
+  const recipeClass = blockquoteRecipe({ variant });
+
+  const boxProps: Partial<BoxProps> = {};
+
+  if (variant === 'solid') {
+    boxProps.backgroundColor = color;
+    boxProps.color = 'text';
+  } else if (variant === 'classic') {
+    boxProps.borderColor = color;
+    boxProps.color = 'text';
+  } else {
+    boxProps.color = 'text';
+  }
 
   return (
-    <Container size="xs">
-      <Surface shape="square" color={color} style={{ padding: '1rem 0' }}>
-        <blockquote>
-          <Typography size="body-lg" italic>
-            {parsedChildren}
-          </Typography>
-          {(author || source) && (
-            <Typography
-              size="body-md"
-              align="right"
-              style={{ marginTop: '0.5rem', fontStyle: 'normal' }}
-            >
-              — {author}
-              {source && author && ', '}
-              {source}
-            </Typography>
-          )}
-        </blockquote>
-      </Surface>
-    </Container>
+    <Box
+      as="blockquote"
+      className={clsx(recipeClass, className)}
+      {...boxProps}
+      {...props}
+    >
+      <Text
+        as="p"
+        size={variant === 'solid' ? 'large' : 'medium'}
+        variant="body"
+        style={{ whiteSpace: 'pre-line' }}
+      >
+        {children}
+      </Text>
+
+      {(author || source) && (
+        <Box
+          as="footer"
+          marginTop="medium"
+          style={{
+            textAlign: variant === 'solid' ? 'center' : 'right',
+            opacity: 0.8,
+          }}
+        >
+          <Text
+            as="cite"
+            size="small"
+            variant="label"
+            style={{ fontStyle: 'normal' }}
+          >
+            — {author}
+            {author && source && ', '}
+            {source && (
+              <Box as="span" style={{ fontStyle: 'italic' }}>
+                {source}
+              </Box>
+            )}
+          </Text>
+        </Box>
+      )}
+    </Box>
   );
-}
+};

@@ -1,19 +1,48 @@
-# picto
+# Picto
 
-**picto** is a UI framework designed as a painterly foundation for modern interfaces.
+**Picto** is a modern UI component library built with React, TypeScript, and Vanilla Extract. It provides a painterly foundation for creating beautiful, accessible, and performant user interfaces.
 
-It unifies multiple design philosophies into a single, flexible toolkit.
+Picto unifies multiple design philosophies into a single, flexible toolkit with a rich and powerful structure that remains intentionally lightweight and easy to integrate.
 
-With a rich and powerful structure that remains intentionally lightweight and easy to integrate, **picto** empowers designers and developers to create both simple components and complex, composite UIs.
+## Table of Contents
 
-> Get started quickly: import the toolkit, use the utility classes, and customize your design system with ease.
+<!-- toc -->
+
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Components](#components)
+  * [Layout Primitives](#layout-primitives)
+  * [Typography](#typography)
+  * [Interactive](#interactive)
+  * [Visual](#visual)
+- [Architecture](#architecture)
+  * [Box Primitive](#box-primitive)
+  * [Vanilla Extract](#vanilla-extract)
+  * [Sprinkles (Atomic CSS)](#sprinkles-atomic-css)
+- [Styling System](#styling-system)
+- [License](#license)
+
+<!-- tocstop -->
+
+## Features
+
+- **🎨 Modern Design** - Built following modern design principles and best practices
+- **⚡ Performance** - Zero-runtime CSS-in-JS with Vanilla Extract
+- **♿ Accessible** - Semantic HTML and ARIA best practices
+- **🎯 Type-Safe** - Full TypeScript support with comprehensive types
+- **🧩 Composable** - Flexible primitives that work together seamlessly
+- **📦 Tree-Shakeable** - Import only what you need
+- **🎭 Themeable** - Customizable design tokens and color palettes
+
+## Installation
 
 ```bash
-npm i @pittorica/picto
+npm install @pittorica/picto
 ```
 
 ```bash
-pnpm i @pittorica/picto
+pnpm add @pittorica/picto
 ```
 
 ```bash
@@ -24,222 +53,109 @@ yarn add @pittorica/picto
 bun add @pittorica/picto
 ```
 
-<!-- toc -->
+## Quick Start
 
-- [Components](#components)
-  - [Layout Components](#layout-components)
-  - [Typography Components](#typography-components)
-- [Development Roadmap](#development-roadmap)
-  - [Headings](#headings)
-  - [Text and Paragraph](#text-and-paragraph)
-  - [Text Formatting](#text-formatting)
-  - [Links](#links)
-  - [Images and Media](#images-and-media)
-  - [Lists](#lists)
-  - [Tables](#tables)
-  - [Section/Semantic Elements](#sectionsemantic-elements)
-  - [Form](#form)
-  - [Script and Embed](#script-and-embed)
-  - [Interactive Elements](#interactive-elements)
-  - [Progress Indicators](#progress-indicators)
-  - [Graphics](#graphics)
-  - [Ruby Annotations](#ruby-annotations)
-  - [Time and Data](#time-and-data)
-  - [Group/Block Elements](#groupblock-elements)
-- [License](#license)
+```tsx
+import { Button, Stack, Heading, Text } from '@pittorica/picto';
 
-<!-- tocstop -->
+function App() {
+  return (
+    <Stack gap="large" padding="xlarge">
+      <Heading level={1} variant="display">
+        Welcome to Picto
+      </Heading>
+      <Text variant="body" size="large">
+        A modern UI component library for React
+      </Text>
+      <Button variant="filled" size="large">
+        Get Started
+      </Button>
+    </Stack>
+  );
+}
+```
 
 ## Components
 
-### Layout Components
+Picto provides 17 carefully crafted components organized into functional categories:
 
-- **Container**: Responsive container with size variants
-- **Divider**: Horizontal rule component for thematic breaks
-- **Grid**: CSS Grid layout system with GridItem
-- **Hero**: Hero section component with background support
-- **Surface**: Surface component with color, elevation, and shape variants
+### Layout Primitives
 
-### Typography Components
+- **Box** - The foundational polymorphic component with atomic style props
+- **Stack** - Flexbox-based vertical/horizontal stacking with configurable spacing
+- **Grid** - CSS Grid layout with simplified API
+- **Container** - Content width constraint with responsive padding
+- **Inline** - Versatile inline text with semantic HTML support (bold, italic, highlight, etc.)
 
-- **Abbr**: Abbreviation component
-- **B**: Bold text component
-- **Bdi**: Bidirectional isolate component
-- **Bdo**: Bidirectional override component
-- **Blockquote**: Block-level quotation component
-- **Br**: Line break component
-- **Cite**: Citation component
-- **Code**: Code snippet component
-- **Del**: Deleted/strikethrough text component
-- **Dfn**: Definition term component
-- **Em**: Emphasis/italic text component
-- **I**: Italic text component
-- **Ins**: Inserted/underlined text component
-- **Kbd**: Keyboard input component
-- **Mark**: Highlighted text component
-- **Paragraph**: Block-level paragraph component
-- **Q**: Short quotation component
-- **Samp**: Sample output component
-- **Small**: Small text component
-- **Strong**: Strong/bold text component
-- **Sub**: Subscript text component
-- **Sup**: Superscript text component
-- **Typography**: Main typography component with full styling options
-- **Var**: Variable component
-- **Wbr**: Word break component
+### Typography
 
-## Development Roadmap
+- **Heading** - Semantic headings (h1-h6) with modern typography styles
+- **Text** - Body text, labels, and descriptions with variant support
+- **Paragraph** - Semantic paragraph component
+- **Code** - Inline code with variants for `<code>`, `<kbd>`, `<samp>`, and `<var>`
+- **Pre** - Preformatted text blocks for code snippets
+- **Abbreviation** - Accessible abbreviations with hover tooltips
+- **Quote** - Inline quotations with automatic quote marks
+- **Blockquote** - Block-level quotations with attribution support
 
-Here's a list of HTML tags. Not all of them will become components.
+### Interactive
 
-### Headings
+- **Button** - Versatile button with multiple variants (filled, tonal, outlined, elevated, text), sizes, and states
 
-- [x] `<h1>`: Defines the most important heading (top-level).
-- [x] `<h2>`: Defines a second-level heading.
-- [x] `<h3>`: Defines a third-level heading.
-- [x] `<h4>`: Defines a fourth-level heading.
-- [x] `<h5>`: Defines a fifth-level heading.
-- [x] `<h6>`: Defines the least important heading (sixth-level).
+### Visual
 
-### Text and Paragraph
+- **Divider** - Separators with solid lines and decorative SVG patterns (wave, zigzag, dots, etc.)
+- **Background** - Animated bubble backgrounds with interactive mode
+- **LineBreak** - Semantic line breaks for text formatting
 
-- [x] `<p>`: Defines a paragraph.
-- [x] `<br>`: Inserts a single line break.
-- [x] `<hr>`: Defines a thematic change in the content (horizontal rule).
-- [x] `<blockquote>`: Defines a section that is quoted from another source.
-- [ ] `<pre>`: Defines preformatted text.
+## Architecture
 
-### Text Formatting
+### Box Primitive
 
-- [x] `<b>`: Defines bold text.
-- [x] `<strong>`: Defines important text (bold).
-- [x] `<i>`: Defines italic text.
-- [x] `<em>`: Defines emphasized text (italic).
-- [x] `<mark>`: Defines marked/highlighted text.
-- [x] `<small>`: Defines smaller text.
-- [x] `<del>`: Defines deleted (strikethrough) text.
-- [x] `<ins>`: Defines inserted (underlined) text.
-- [x] `<sub>`: Defines subscripted text.
-- [x] `<sup>`: Defines superscripted text.
-- [x] `<abbr>`: Defines an abbreviation or acronym.
-- [x] `<cite>`: Defines the title of a work.
-- [x] `<q>`: Defines a short quotation.
-- [x] `<dfn>`: Defines a definition term.
-- [x] `<code>`: Defines a piece of computer code.
-- [x] `<kbd>`: Defines keyboard input.
-- [x] `<samp>`: Defines sample output from a computer program.
-- [x] `<var>`: Defines a variable.
-- [x] `<bdi>`: Isolates a part of text for bidirectional text formatting.
-- [x] `<bdo>`: Overrides the current text direction.
-- [x] `<wbr>`: Defines a possible line-break.
+The `Box` component is the foundation of Picto. It's a polymorphic component that:
 
-### Links
+- Accepts any HTML element via the `as` prop
+- Provides atomic style props via Sprinkles
+- Separates style props from native DOM attributes at runtime
+- Enables type-safe composition
 
-- [ ] `<a>`: Defines a hyperlink.
+```tsx
+<Box as="section" padding="large" backgroundColor="brand">
+  <Box as="h1" fontSize="displayLarge" color="white">
+    Hello World
+  </Box>
+</Box>
+```
 
-### Images and Media
+### Vanilla Extract
 
-- [ ] `<img>`: Defines an image.
-- [ ] `<picture>`: Defines a container for multiple image resources.
-- [ ] `<figure>`: Defines self-contained content, like illustrations.
-- [ ] `<figcaption>`: Defines a caption for a <figure> element.
-- [ ] `<audio>`: Defines sound content.
-- [ ] `<video>`: Defines a video or movie.
-- [ ] `<source>`: Defines multiple media resources for media elements.
-- [ ] `<track>`: Defines text tracks for media elements.
-- [ ] `<map>`: Defines a client-side image map.
-- [ ] `<area>`: Defines an area inside an image map.
+Picto uses [Vanilla Extract](https://vanilla-extract.style/) for zero-runtime CSS-in-JS:
 
-### Lists
+- Type-safe styles with TypeScript
+- CSS is extracted at build time (no runtime overhead)
+- Automatic critical CSS extraction
+- Scoped styles with generated class names
 
-- [ ] `<ul>`: Defines an unordered list.
-- [ ] `<ol>`: Defines an ordered list.
-- [ ] `<li>`: Defines a list item.
-- [ ] `<dl>`: Defines a description list.
-- [ ] `<dt>`: Defines a term/name in a description list.
-- [ ] `<dd>`: Defines a description of a term in a description list.
+### Sprinkles (Atomic CSS)
 
-### Tables
+Sprinkles provides atomic CSS utilities with:
 
-- [ ] `<table>`: Defines a table.
-- [ ] `<caption>`: Defines a table caption.
-- [ ] `<tr>`: Defines a row in a table.
-- [ ] `<th>`: Defines a header cell in a table.
-- [ ] `<td>`: Defines a cell in a table.
-- [ ] `<thead>`: Groups the header content in a table.
-- [ ] `<tbody>`: Groups the body content in a table.
-- [ ] `<tfoot>`: Groups the footer content in a table.
-- [ ] `<col>`: Specifies column properties for each column within a <colgroup> element.
-- [ ] `<colgroup>`: Specifies a group of one or more columns in a table for formatting.
+- Responsive design tokens
+- Color system with tonal palettes (100-900)
+- Spacing scale based on rem units
+- Typography tokens with comprehensive type scale
+- Flexbox and Grid utilities
 
-### Section/Semantic Elements
+## Styling System
 
-- [ ] `<header>`: Defines a header for a document or section.
-- [ ] `<nav>`: Defines navigation links.
-- [ ] `<main>`: Specifies the main content of a document.
-- [ ] `<section>`: Defines a section in a document.
-- [ ] `<article>`: Defines an article.
-- [ ] `<aside>`: Defines content aside from the page content.
-- [ ] `<footer>`: Defines a footer for a document or section.
-- [ ] `<address>`: Defines contact information for the author/owner of a document.
+Picto's styling system is built on design tokens:
 
-### Form
+**Colors**: Tonal palettes for brand, secondary, tertiary, info, success, warning, and error
+**Spacing**: Consistent scale from `small` (4px) to `xxlarge` (64px)
+**Typography**: Comprehensive type scale (display, headline, title, body, label)
+**Border Radius**: Small, medium, and full (pill-shaped)
 
-- [ ] `<form>`: Defines an HTML form for user input.
-- [ ] `<input>`: Defines an input control.
-- [ ] `<textarea>`: Defines a multiline input control (text area).
-- [ ] `<button>`: Defines a clickable button.
-- [ ] `<select>`: Defines a drop-down list.
-- [ ] `<option>`: Defines an option in a drop-down list.
-- [ ] `<optgroup>`: Defines a group of related options in a drop-down list.
-- [ ] `<label>`: Defines a label for an <input> element.
-- [ ] `<fieldset>`: Groups related elements in a form.
-- [ ] `<legend>`: Defines a caption for a <fieldset> element.
-- [ ] `<output>`: Defines the result of a calculation.
-- [ ] `<datalist>`: Specifies a list of pre-defined options for input controls.
-
-### Script and Embed
-
-- [ ] `<script>`: Defines a client-side script.
-- [ ] `<noscript>`: Defines an alternate content for users that do not support client-side scripts.
-- [ ] `<iframe>`: Defines an inline frame.
-- [ ] `<embed>`: Defines a container for an external (non-HTML) application.
-- [ ] `<object>`: Defines an embedded object.
-- [ ] `<template>`: Defines a template.
-
-### Interactive Elements
-
-- [ ] `<details>`: Defines additional details that the user can view or hide.
-- [ ] `<summary>`: Defines a visible heading for a <details> element.
-- [ ] `<dialog>`: Defines a dialog box or window.
-
-### Progress Indicators
-
-- [ ] `<meter>`: Defines a scalar measurement within a known range (a gauge).
-- [ ] `<progress>`: Represents the progress of a task.
-
-### Graphics
-
-- [ ] `<canvas>`: Used to draw graphics, on the fly, via scripting (usually JavaScript).
-- [ ] `<svg>`: Defines a container for SVG graphics.
-
-### Ruby Annotations
-
-- [ ] `<ruby>`: Defines a ruby annotation (for East Asian typography).
-- [ ] `<rt>`: Defines an explanation/pronunciation of characters (for East Asian typography).
-- [ ] `<rp>`: Defines what to show if a browser does not support ruby annotations.
-
-### Time and Data
-
-- [ ] `<time>`: Defines a date/time.
-- [ ] `<data>`: Links the given content with a machine-readable translation.
-
-### Group/Block Elements
-
-- [x] `<div>`: Defines a division or a section in an HTML document.
-- [x] `<span>`: Defines a section in a document.
-
----
+All tokens are customizable through the theme system.
 
 ## License
 

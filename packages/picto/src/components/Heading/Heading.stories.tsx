@@ -1,109 +1,75 @@
+import React from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Heading from './Heading.js';
+import { colorsMap } from '../../styles/sprinkles.css.js';
+import { themeClass } from '../../styles/theme.css.js';
+import { Heading, type HeadingProps } from './Heading.js';
 
-const meta: Meta<typeof Heading> = {
-  title: 'Text & Formatting/Heading',
+const colorOptions = Object.keys(colorsMap);
+
+const meta: Meta<HeadingProps> = {
+  title: 'Typography/Heading',
   component: Heading,
-  parameters: {
-    layout: 'padded',
-  },
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <div className={themeClass} style={{ padding: '2rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
+    level: {
+      control: { type: 'range', min: 1, max: 6 },
+      description: 'The semantic HTML heading level (h1-h6).',
+      table: { defaultValue: { summary: '2' } },
+    },
     variant: {
-      control: { type: 'select' },
-      options: ['display', 'headline', 'title'],
+      control: 'radio',
+      options: ['display', 'headline'],
+      description: 'The visual style variant.',
     },
     size: {
-      control: { type: 'select' },
-      options: ['lg', 'md', 'sm'],
+      control: 'radio',
+      options: ['small', 'medium', 'large'],
+      description: 'The size of the heading.',
     },
     color: {
-      control: { type: 'select' },
-      options: [
-        undefined,
-        'dark',
-        'light',
-        'primary',
-        'secondary',
-        'tertiary',
-        'neutral',
-        'neutral-variant',
-        'error',
-        'success',
-        'info',
-        'danger',
-      ],
-    },
-    align: {
-      control: { type: 'select' },
-      options: [undefined, 'left', 'center', 'right', 'justify'],
-    },
-    space: {
-      control: { type: 'text' },
-      description: 'Vertical spacing: lg, md, sm, or custom value like "1rem"',
+      control: 'select',
+      options: colorOptions,
+      description: 'Sprinkles color token.',
+      defaultValue: 'brand',
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<HeadingProps>;
 
 export const Default: Story = {
   args: {
-    variant: 'display',
-    size: 'lg',
-    children: 'This is a display large heading',
-  },
-};
-
-export const Headline: Story = {
-  args: {
+    children: 'Heading Title',
     variant: 'headline',
-    size: 'lg',
-    children: 'This is a headline large heading',
+    size: 'medium',
+    level: 2,
   },
 };
 
-export const Title: Story = {
+export const DisplayLarge: Story = {
   args: {
-    variant: 'title',
-    size: 'lg',
-    children: 'This is a title large heading',
-  },
-};
-
-export const WithColor: Story = {
-  args: {
+    children: 'Hero Display Text',
     variant: 'display',
-    size: 'md',
-    color: 'primary',
-    children: 'Colored heading with primary color',
+    size: 'large',
+    level: 1,
   },
 };
 
-export const Centered: Story = {
+export const Colored: Story = {
   args: {
+    children: 'Colored Heading',
     variant: 'headline',
-    size: 'md',
-    align: 'center',
-    children: 'Centered headline',
-  },
-};
-
-export const SmallTitle: Story = {
-  args: {
-    variant: 'title',
-    size: 'sm',
-    children: 'Small title heading',
-  },
-};
-
-export const WithSpacing: Story = {
-  args: {
-    variant: 'display',
-    size: 'md',
-    space: 'lg',
-    children: 'Heading with large spacing',
+    size: 'medium',
+    color: 'brand-500',
   },
 };

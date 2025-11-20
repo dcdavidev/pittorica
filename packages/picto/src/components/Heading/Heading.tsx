@@ -2,96 +2,67 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import type { ColorToken } from '../../types/colors.js';
-import type { TypographyAlign } from '../../types/typography.js';
+import { RecipeVariants } from '@vanilla-extract/recipes';
 
-type HeadingVariant = 'display' | 'headline' | 'title';
-type HeadingSize = 'lg' | 'md' | 'sm';
+import { Box, BoxProps } from '../Box/Box.js';
+import { headingRecipe } from './heading.css.js';
 
-interface HeadingProps {
-  variant: HeadingVariant;
-  size: HeadingSize;
-  children: React.ReactNode;
-  style?: React.CSSProperties;
-  className?: string;
-  color?: ColorToken;
-  align?: TypographyAlign;
-  space?: string;
-}
+// Extract variants from the recipe
+type HeadingVariants = RecipeVariants<typeof headingRecipe>;
 
-const Heading: React.FC<HeadingProps> = ({
-  variant,
-  size,
-  children,
-  style,
-  className: additionalClassName,
-  align,
-  space,
-  color,
-}) => {
-  const baseClassName = `picto-text-${variant}-${size}`;
-  const colorClassName = color ? `picto-text-${color}` : undefined;
-  const alignClassName = align ? `picto-text-${align}` : undefined;
+/**
+ * Props for the Heading component.
+ * Extends BoxProps (minus 'as') to inherit all atomic styles like color, margin, etc.
+ */
+export type HeadingProps = Omit<BoxProps, 'as'> & {
+  /**
+   * The semantic HTML level (h1-h6). Defaults to h2.
+   */
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
 
-  let spaceClassName;
-  let spaceStyle = {};
-  if (space) {
-    if (space === 'lg' || space === 'md' || space === 'sm') {
-      spaceClassName = `picto-space-${space}`;
-    } else {
-      spaceStyle = { paddingTop: space, paddingBottom: `calc(${space} / 2)` };
-    }
-  }
+  /**
+   * The visual style variant.
+   */
+  variant?: NonNullable<HeadingVariants>['variant'];
 
-  const combinedClassName = clsx(
-    baseClassName,
-    colorClassName,
-    alignClassName,
-    spaceClassName,
-    additionalClassName
-  );
-
-  let Tag;
-  if (variant === 'display') {
-    switch (size) {
-      case 'lg': {
-        Tag = 'h1';
-        break;
-      }
-      case 'md': {
-        Tag = 'h2';
-        break;
-      }
-      case 'sm': {
-        Tag = 'h3';
-        break;
-      }
-    }
-  } else {
-    switch (size) {
-      case 'lg': {
-        Tag = 'h4';
-        break;
-      }
-      case 'md': {
-        Tag = 'h5';
-        break;
-      }
-      case 'sm': {
-        Tag = 'h6';
-        break;
-      }
-    }
-  }
-
-  return React.createElement(
-    Tag,
-    {
-      className: combinedClassName,
-      style: { margin: 0, ...spaceStyle, ...style },
-    },
-    children
-  );
+  /**
+   * The size of the heading.
+   */
+  size?: NonNullable<HeadingVariants>['size'];
 };
 
-export default Heading;
+/**
+ * A semantic heading component (h1-h6) with modern typography styles.
+ * Separates semantic level from visual appearance for better accessibility.
+ *
+ * @param props - Component props.
+ * @returns The rendered heading element.
+ * @example
+ * <Heading level={1} variant="display" size="large">Main Title</Heading>
+ * @example
+ * <Heading level={2} variant="headline" color="brand">Section Title</Heading>
+ */
+export const Heading = ({
+  level = 2,
+  variant = 'headline',
+  size = 'medium',
+  color = 'text',
+  className,
+  children,
+  ...props
+}: HeadingProps): React.JSX.Element => {
+  const Tag = `h${level}` as React.ElementType;
+
+  const recipeClass = headingRecipe({ variant, size });
+
+  return (
+    <Box
+      as={Tag}
+      className={clsx(recipeClass, className)}
+      color={color}
+      {...props}
+    >
+      {children}
+    </Box>
+  );
+};

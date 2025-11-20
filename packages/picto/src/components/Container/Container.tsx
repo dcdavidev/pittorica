@@ -2,84 +2,48 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import { AlignItems, FlexDirection, JustifyContent } from '../../types/flex.js';
+import { RecipeVariants } from '@vanilla-extract/recipes';
 
-export type ContainerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'fluid';
+import { Box, BoxProps } from '../Box/Box.js';
+import { containerRecipe } from './container.css.js';
 
-export interface ContainerProps {
-  size?: ContainerSize;
-  children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-  as?: React.ElementType;
-  flex?: boolean;
-  justifyContent?: JustifyContent;
-  alignItems?: AlignItems;
-  flexDirection?: FlexDirection;
-  gap?: string | number;
-  grow?: number;
-}
+type ContainerVariants = RecipeVariants<typeof containerRecipe>;
 
 /**
- * Container component with responsive max-width constraints and horizontal padding.
- * Provides consistent content width and spacing across different screen sizes.
+ * Props for the Container component.
+ */
+export type ContainerProps = Omit<BoxProps, 'as'> & {
+  /**
+   * The maximum width of the container.
+   * Controls the responsive breakpoint for content width.
+   * @default 'lg'
+   */
+  size?: NonNullable<ContainerVariants>['size'];
+};
+
+/**
+ * A layout primitive that constrains content to a maximum width and centers it.
+ * Automatically adds responsive horizontal padding for proper spacing on all screen sizes.
  *
+ * @param props - Component props.
+ * @returns The rendered container element.
  * @example
- * <Container>
- *   <Typography>Content in default medium container</Typography>
- * </Container>
- *
- * <Container size="lg">
- *   <Typography>Content in large container</Typography>
- * </Container>
- *
- * <Container size="fluid">
- *   <Typography>Full width content</Typography>
- * </Container>
- *
- * <Container flex justifyContent="center" alignItems="center">
- *   <Typography>Centered content with flexbox</Typography>
+ * <Container size="md">
+ *   <Heading>Welcome</Heading>
+ *   <Paragraph>Content goes here...</Paragraph>
  * </Container>
  */
-export const Container: React.FC<ContainerProps> = ({
-  size = 'md',
+export const Container = ({
+  size = 'lg',
+  className,
   children,
-  className = '',
-  as: Component = 'div',
-  flex = false,
-  justifyContent = 'center',
-  alignItems = 'center',
-  flexDirection = 'row',
-  gap,
-  grow,
-  style = {},
-  ...rest
-}) => {
-  const sizeClass = size === 'md' ? '' : `picto-container-${size}`;
-
-  // Determine if flexbox should be enabled
-  const shouldEnableFlex = flex || grow !== undefined;
-
-  // Build inline styles for flexbox properties
-  const flexStyles: React.CSSProperties = {};
-  if (shouldEnableFlex) {
-    flexStyles.display = 'flex';
-    flexStyles.justifyContent = justifyContent;
-    flexStyles.alignItems = alignItems;
-    flexStyles.flexDirection = flexDirection;
-    if (gap !== undefined) flexStyles.gap = gap;
-    if (grow !== undefined) flexStyles.flexGrow = grow;
-  }
-
-  const classes = clsx('picto-container', sizeClass, className);
+  ...props
+}: ContainerProps): React.JSX.Element => {
+  const recipeClass = containerRecipe({ size });
 
   return (
-    <Component
-      className={classes}
-      style={{ ...flexStyles, ...style }}
-      {...rest}
-    >
+    <Box className={clsx(recipeClass, className)} {...props}>
       {children}
-    </Component>
+    </Box>
   );
 };

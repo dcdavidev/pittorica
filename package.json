@@ -6,16 +6,13 @@
   "scripts": {
     "build": "pnpm dlx nx run-many -t build",
     "build:picto": "nx run picto:build",
-    "build:pittorica": "nx build pittorica",
-    "build:react": "nx run react:build",
     "doc:g:toc": "pnpm dlx markdown-toc -i README.md",
     "postdoc:g:toc": "nx run-many -t doc:g:toc",
     "fmt": "pnpm exec prettier --ignore-unknown --write .",
     "lint": "pnpm dlx eslint --no-warn-ignored --fix .",
     "lint:fmt": "pnpm lint && pnpm fmt",
     "release": "nx release --yes",
-    "sb:picto": "nx run picto:storybook",
-    "sb:react": "nx run react:storybook"
+    "sb:picto": "nx storybook picto"
   },
   "config": {
     "commitizen": {
@@ -23,6 +20,9 @@
     }
   },
   "dependencies": {
+    "@fontsource/momo-trust-display": "^5.2.1",
+    "@fontsource/momo-trust-sans": "^5.2.1",
+    "@vanilla-extract/css": "^1.17.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
@@ -51,6 +51,7 @@
     "@types/node": "24.10.1",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
+    "@vanilla-extract/vite-plugin": "^5.1.1",
     "@vitejs/plugin-react": "^5.1.1",
     "@vitest/ui": "^4.0.10",
     "commitizen": "^4.3.1",

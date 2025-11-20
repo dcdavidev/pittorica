@@ -1,7 +1,2 @@
-export type {
-  DividerColor,
-  DividerProps,
-  DividerSpace,
-  DividerVariant,
-} from './Divider.js';
-export { Divider, DIVIDER_VARIANT } from './Divider.js';
+export * from './divider.css.js';
+export * from './Divider.js';

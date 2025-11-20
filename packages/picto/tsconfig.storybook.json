@@ -24,7 +24,7 @@
     "src/**/*.stories.mdx",
     ".storybook/*.js",
     ".storybook/*.ts",
-    "src/components/Typography/Typography.old-stories.tsx"
+    ".storybook/*.tsx"
   ],
   "references": [
     {

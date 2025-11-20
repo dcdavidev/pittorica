@@ -1,8 +1,0 @@
-@use 'sass:map';
-@use '../variables/shapes';
-
-@each $shape in map.keys(shapes.$shape-semantic) {
-  .picto-shape-#{$shape} {
-    border-radius: map.get(shapes.$shape-semantic, $shape);
-  }
-}

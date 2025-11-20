@@ -1,108 +1,183 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import clsx from 'clsx';
 
-import { COLOR_TOKEN, ColorToken } from '../../types/colors.js';
+import { RecipeVariants } from '@vanilla-extract/recipes';
 
-export type DividerColor = ColorToken;
+import { Box, BoxProps } from '../Box/Box.js';
+import { dividerRecipe } from './divider.css.js';
 
-export type DividerSpace = 'normal' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+/**
+ * SVG height for pattern-based dividers.
+ */
+const SVG_HEIGHT = 16;
 
-export const DIVIDER_VARIANT = ['wave', 'zigzag', 'dashed', 'double'] as const;
-export type DividerVariant = (typeof DIVIDER_VARIANT)[number] | undefined;
+/**
+ * Center Y coordinate for SVG patterns.
+ */
+const CENTER_Y = SVG_HEIGHT / 2;
 
-export interface DividerProps {
-  color?: DividerColor | string;
-  variant?: DividerVariant;
-  space?: DividerSpace;
-  className?: string;
-}
+/**
+ * SVG path definitions for decorative divider patterns.
+ * Each pattern includes a path definition (d) and width (w).
+ */
+const PATTERNS = {
+  wave: {
+    d: `M0 ${CENTER_Y} Q6 0 12 ${CENTER_Y} T24 ${CENTER_Y}`,
+    w: 24,
+  },
+  zigzag: {
+    d: `M0 ${CENTER_Y} L5 2 L15 14 L20 ${CENTER_Y}`,
+    w: 20,
+  },
+  square: {
+    d: `M0 ${CENTER_Y} V4 H12 V12 H24 V${CENTER_Y}`,
+    w: 24,
+  },
+  scallop: {
+    d: `M0 12 Q10 0 20 12`,
+    w: 20,
+  },
+  dashed: {
+    d: `M0 ${CENTER_Y} H8`,
+    w: 16,
+  },
+  double: {
+    d: `M0 6 H100 M0 10 H100`,
+    w: 100,
+  },
+  cross: {
+    d: 'M4 4 L12 12 M12 4 L4 12',
+    w: 16,
+  },
+  dots: {
+    d: `M0 ${CENTER_Y} H0.1`,
+    w: 16,
+  },
+};
 
-export const Divider: React.FC<DividerProps> = ({
-  color,
-  variant,
-  space = 'md',
-  className = '',
-}) => {
-  const styleClass = variant ? `picto-divider-${variant}` : '';
-  const isPredefinedColor =
-    typeof color === 'string' && COLOR_TOKEN.includes(color as ColorToken);
-  const colorClass = isPredefinedColor ? `picto-divider-${color}` : '';
-  const classes = clsx(styleClass, colorClass, className);
+type DividerVariants = RecipeVariants<typeof dividerRecipe>;
 
-  const spaceValue = space === 'normal' ? 'md' : space;
-  const paddingStyle = {
-    paddingTop: `var(--picto-space-${spaceValue})`,
-    paddingBottom: `var(--picto-space-${spaceValue})`,
-  };
+/**
+ * Props for the Divider component.
+ */
+export type DividerProps = Omit<BoxProps, 'as' | 'children'> & {
+  /**
+   * The visual style of the divider.
+   * - `solid`: Simple solid line.
+   * - `wave`: Wavy pattern.
+   * - `zigzag`: Zigzag pattern.
+   * - `square`: Square wave pattern.
+   * - `scallop`: Scalloped edge pattern.
+   * - `dashed`: Dashed line pattern.
+   * - `double`: Double line pattern.
+   * - `cross`: Crossed pattern.
+   * - `dots`: Dotted pattern.
+   * @default 'solid'
+   */
+  variant?: NonNullable<DividerVariants>['variant'];
 
-  let colorValue: string | undefined;
-  if (color) {
-    colorValue = isPredefinedColor ? `var(--picto-${color})` : color;
-  }
+  /**
+   * Orientation of the divider.
+   * Note: Decorative patterns are optimized for horizontal use.
+   * @default 'horizontal'
+   */
+  orientation?: NonNullable<DividerVariants>['orientation'];
 
-  const hrStyle: React.CSSProperties = {};
-  if (colorValue && !variant) {
-    hrStyle.borderTopColor = colorValue;
-  }
+  /**
+   * Thickness of the divider line.
+   * Only applies to the 'solid' variant.
+   */
+  thickness?: string | number;
+};
 
-  const patternId = `divider-${variant}-${Math.random().toString(36).slice(2, 11)}`;
+/**
+ * A versatile separator component supporting solid lines and decorative SVG patterns.
+ * Can be used horizontally or vertically to divide content sections.
+ *
+ * @param props - Component props.
+ * @returns The rendered divider.
+ * @example
+ * <Divider />
+ * @example
+ * <Divider variant="wave" color="brand" />
+ * @example
+ * <Divider orientation="vertical" thickness="2px" />
+ */
+export const Divider = ({
+  variant = 'solid',
+  orientation = 'horizontal',
+  color = 'light',
+  thickness = '1px',
+  className,
+  style,
+  ...props
+}: DividerProps): React.JSX.Element => {
+  const uniqueId = useId(); // React 18 hook for stable IDs
+  const recipeClass = dividerRecipe({ variant, orientation });
+  const isSvgVariant = variant !== 'solid' && variant in PATTERNS;
 
-  if (variant) {
-    let pathD: string;
-    switch (variant) {
-      case 'wave': {
-        pathD =
-          'M114 4c-5.067 4.667-10.133 4.667-15.2 0S88.667-.667 83.6 4 73.467 8.667 68.4 4 58.267-.667 53.2 4 43.067 8.667 38 4 27.867-.667 22.8 4 12.667 8.667 7.6 4-2.533-.667-7.6 4s-10.133 4.667-15.2 0S-32.933-.667-38 4s-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0';
-        break;
-      }
-      case 'zigzag': {
-        pathD = 'M0 6 L15 0 L30 6 L46 0 L61 6 L76 0 L91 6';
-        break;
-      }
-      case 'dashed': {
-        pathD = 'M0 4 L10 4 M22 4 L32 4 M44 4 L54 4 M66 4 L76 4';
-        break;
-      }
-      case 'double': {
-        pathD = 'M0 2 L91 2 M0 7 L91 7';
-        break;
-      }
-      default: {
-        pathD = '';
-      }
-    }
+  // Case 1: SVG Pattern Divider
+  if (isSvgVariant) {
+    const patternId = `divider-${variant}-${uniqueId}`;
+    const { d, w } = PATTERNS[variant];
+
+    const lineCap =
+      variant === 'dots' || variant === 'scallop' || variant === 'wave'
+        ? 'round'
+        : 'square';
+    const strokeWidth = variant === 'dots' ? '3' : '1.5';
+
     return (
-      <div style={paddingStyle}>
+      <Box
+        className={clsx(recipeClass, className)}
+        color={color} // Sprinkles applies the color to the text (currentColor)
+        {...props}
+      >
         <svg
           width="100%"
-          height="8"
+          height={SVG_HEIGHT}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={classes}
+          // Using explicit styling to ensure SVG behaves as a block
+          style={{ display: 'block', overflow: 'visible' }}
         >
-          <pattern
-            id={patternId}
-            width="91"
-            height="8"
-            patternUnits="userSpaceOnUse"
-          >
-            <path
-              d={pathD}
-              stroke={colorValue || 'currentColor'}
-              strokeLinecap="square"
-              fill="none"
-            />
-          </pattern>
+          <defs>
+            <pattern
+              id={patternId}
+              width={w}
+              height={SVG_HEIGHT}
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d={d}
+                stroke="currentColor" // Inherits color from Box
+                strokeWidth={strokeWidth} // Slightly thicker for better visibility
+                strokeLinecap={lineCap}
+                fill="none"
+              />
+            </pattern>
+          </defs>
           <rect width="100%" height="100%" fill={`url(#${patternId})`} />
         </svg>
-      </div>
+      </Box>
     );
   }
 
+  // Case 2: Standard Solid Divider
+  const isVertical = orientation === 'vertical';
+
   return (
-    <div style={paddingStyle}>
-      <hr className={classes} style={hrStyle} />
-    </div>
+    <Box
+      as={isVertical ? 'div' : 'hr'}
+      backgroundColor={color} // Solid lines use background color
+      className={clsx(recipeClass, className)}
+      style={{
+        // Override height/width based on thickness prop if provided
+        ...(isVertical ? { width: thickness } : { height: thickness }),
+        ...style,
+      }}
+      {...props}
+    />
   );
 };

@@ -62,6 +62,13 @@
       }
     }
   ],
+  "generators": {
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "none"
+      }
+    }
+  },
   "release": {
     "projects": ["packages/*"],
     "projectsRelationship": "independent",
@@ -81,13 +88,6 @@
       "stageChanges": true,
       "tag": true,
       "push": true
-    }
-  },
-  "generators": {
-    "@nx/react": {
-      "library": {
-        "unitTestRunner": "none"
-      }
     }
   }
 }

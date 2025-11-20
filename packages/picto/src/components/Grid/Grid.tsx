@@ -1,55 +1,85 @@
 import React from 'react';
 
-import clsx from 'clsx';
+import { Atoms } from '../../styles/sprinkles.css.js';
+import { Box, BoxProps } from '../Box/Box.js';
 
-export interface GridProps {
-  columns?: number;
-  gap?: string | number;
-  responsive?: boolean;
-  className?: string;
-  as?: React.ElementType;
-  children: React.ReactNode;
+/**
+ * Props for the Grid component.
+ */
+export interface GridProps
+  extends Omit<
+    BoxProps,
+    | 'display'
+    | 'gridTemplateColumns'
+    | 'gap'
+    | 'gridAutoFlow'
+    | 'alignItems'
+    | 'justifyContent'
+  > {
+  /**
+   * Number of columns in the grid.
+   * Maps to CSS `gridTemplateColumns`.
+   */
+  columns?: Atoms['gridTemplateColumns'];
+
+  /**
+   * The spacing between grid items.
+   * Maps to CSS `gap`.
+   */
+  gap?: Atoms['gap'];
+
+  /**
+   * The flow direction of grid items.
+   * Maps to CSS `gridAutoFlow`.
+   */
+  flow?: Atoms['gridAutoFlow'];
+
+  /**
+   * Alignment of items along the cross axis.
+   * Maps to CSS `alignItems`.
+   */
+  align?: Atoms['alignItems'];
+
+  /**
+   * Alignment of items along the main axis.
+   * Maps to CSS `justifyContent`.
+   */
+  justify?: Atoms['justifyContent'];
 }
 
 /**
- * Grid component with CSS Grid layout.
- * Provides a responsive 12-column grid system with customizable columns and gap.
+ * A layout primitive for CSS Grid-based layouts.
+ * Provides a simplified API for common grid patterns.
  *
+ * @param props - Component props.
+ * @returns The rendered grid container.
  * @example
- * <Grid>
- *   <GridItem span={6}>Half width</GridItem>
- *   <GridItem span={6}>Half width</GridItem>
- * </Grid>
- *
- * <Grid columns={4} gap="1rem">
- *   <GridItem>Item 1</GridItem>
- *   <GridItem>Item 2</GridItem>
+ * <Grid columns={3} gap="medium">
+ *   <div>Item 1</div>
+ *   <div>Item 2</div>
+ *   <div>Item 3</div>
  * </Grid>
  */
-export const Grid: React.FC<GridProps> = ({
-  columns = 12,
+export const Grid = ({
+  columns,
   gap,
-  responsive = true,
-  className = '',
-  as: Component = 'div',
+  flow,
+  align,
+  justify,
   children,
-  ...rest
-}) => {
-  const gridStyles: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-    gap,
-  };
-
-  const classes = clsx(
-    'picto-grid',
-    { 'picto-grid-responsive': responsive },
-    className
-  );
-
+  ...props
+}: GridProps): React.JSX.Element => {
   return (
-    <Component className={classes} style={gridStyles} {...rest}>
+    <Box
+      display="grid"
+      gridTemplateColumns={columns}
+      gap={gap}
+      gridAutoFlow={flow}
+      alignItems={align}
+      justifyContent={justify}
+      {...props}
+    >
       {children}
-    </Component>
+    </Box>
   );
 };

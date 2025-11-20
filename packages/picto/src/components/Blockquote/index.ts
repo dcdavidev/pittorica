@@ -1,2 +1,2 @@
-export type { BlockquoteProps } from './Blockquote.js';
-export { Blockquote } from './Blockquote.js';
+export * from './blockquote.css.js';
+export * from './Blockquote.js';
