@@ -127,7 +127,7 @@ const typographyProperties = defineProperties({
     fontStyle: ['normal', 'italic'],
     textTransform: ['none', 'uppercase', 'lowercase', 'capitalize'],
     textDecoration: ['none', 'underline', 'line-through'],
-    baselinePosition: ['sub', 'super'],
+    verticalAlign: ['baseline', 'top', 'middle', 'bottom', 'sub', 'super'],
   },
 });
 
