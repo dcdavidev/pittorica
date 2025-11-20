@@ -76,7 +76,7 @@ export type DividerProps = Omit<BoxProps, 'as' | 'children'> & {
 export const Divider = ({
   variant = 'solid',
   orientation = 'horizontal',
-  color = 'neutrals-light',
+  color = 'light',
   thickness = '1px',
   className,
   style,

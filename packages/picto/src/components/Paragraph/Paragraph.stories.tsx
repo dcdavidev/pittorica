@@ -55,7 +55,7 @@ export const Small: Story = {
   args: {
     size: 'small',
     children: lorem,
-    color: 'neutrals-dark',
+    color: 'light',
   },
 };
 

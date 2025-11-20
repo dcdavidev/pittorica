@@ -90,7 +90,7 @@ export const AsButton: Story = {
  */
 export const LayoutExample: Story = {
   render: () => (
-    <Box backgroundColor="neutrals-light" padding="large">
+    <Box backgroundColor="light" padding="large">
       <Box
         backgroundColor="light"
         padding="medium"

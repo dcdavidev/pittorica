@@ -10,11 +10,11 @@ export const quoteRecipe = recipe({
     selectors: {
       '&::before': {
         content: 'open-quote',
-        color: vars.colors.neutrals.dark,
+        color: vars.colors.dark,
       },
       '&::after': {
         content: 'close-quote',
-        color: vars.colors.neutrals.dark,
+        color: vars.colors.dark,
       },
     },
   },

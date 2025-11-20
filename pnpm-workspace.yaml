@@ -17,7 +17,7 @@ linkWorkspacePackages: true
 sharedWorkspaceLockfile: true
 
 # Save workspace protocol for local packages
-saveWorkspaceProtocol: "rolling"
+saveWorkspaceProtocol: 'rolling'
 
 # Resolution mode: use highest version
 resolutionMode: highest
@@ -39,7 +39,7 @@ strictPeerDependencies: false
 
 # Only build these dependencies
 onlyBuiltDependencies:
-  - "@swc/core"
+  - '@swc/core'
   - esbuild
   - nx
 

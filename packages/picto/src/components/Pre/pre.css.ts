@@ -20,10 +20,10 @@ export const preRecipe = recipe({
         border: 'none',
       },
       block: {
-        backgroundColor: vars.colors.neutrals.light,
+        backgroundColor: vars.colors.light,
         padding: vars.space.medium,
         borderRadius: vars.border.radius.medium,
-        border: `1px solid ${vars.colors.neutrals.dark}`,
+        border: `1px solid ${vars.colors.dark}`,
         color: vars.colors.text,
       },
     },

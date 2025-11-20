@@ -13,19 +13,19 @@ export const codeRecipe = recipe({
     variant: {
       code: {
         color: vars.colors.brand['600'],
-        backgroundColor: vars.colors.neutrals.light,
+        backgroundColor: vars.colors.light,
       },
       kbd: {
-        backgroundColor: vars.colors.neutrals.light,
-        border: `1px solid ${vars.colors.neutrals.dark}`,
+        backgroundColor: vars.colors.dark,
+        color: vars.colors.light,
+        border: `1px solid ${vars.colors.dark}`,
         borderBottomWidth: '2px',
-        color: vars.colors.text,
         fontSize: '0.75em',
         fontWeight: vars.typography.fontWeights.medium,
       },
       samp: {
-        backgroundColor: vars.colors.neutrals.dark,
-        color: vars.colors.neutrals.light,
+        color: vars.colors.dark,
+        backgroundColor: vars.colors.light,
       },
       var: {
         fontStyle: 'italic',

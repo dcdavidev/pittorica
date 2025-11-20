@@ -26,11 +26,11 @@ export const [themeClass, vars] = createTheme({
     background: palette.light, // #e9f1f7
     text: palette.dark, // #131b23
 
-    // We can also expose the raw neutrals if needed
-    neutrals: {
-      light: palette.light,
-      dark: palette.dark,
-    },
+    // neutrals
+    light: palette.light,
+    dark: palette.dark,
+    white: '#ffffff',
+    black: '#000000',
   },
   space: {
     none: '0',

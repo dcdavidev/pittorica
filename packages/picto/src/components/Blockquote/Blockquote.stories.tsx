@@ -61,7 +61,7 @@ export const Solid: Story = {
     children: 'Simplicity is the ultimate sophistication.',
     author: 'Leonardo da Vinci',
     variant: 'solid',
-    color: 'neutrals-light',
+    color: 'light',
   },
 };
 

@@ -43,7 +43,7 @@ const meta: Meta<DividerProps> = {
       control: 'select',
       options: colorOptions,
       description: 'Color token from the theme.',
-      defaultValue: 'neutrals-light',
+      defaultValue: 'light',
     },
   },
 };
@@ -149,7 +149,7 @@ export const ThickAndColored: Story = {
 export const CardExample: Story = {
   render: () => (
     <Box
-      backgroundColor="neutrals-light"
+      backgroundColor="light"
       style={{
         border: '1px solid #e0e0e0',
         borderRadius: '8px',
@@ -161,13 +161,13 @@ export const CardExample: Story = {
         <Text variant="label" size="large">
           Receipt #1234
         </Text>
-        <Text size="small" color="neutrals-dark">
+        <Text size="small" color="dark">
           Purchased on Nov 20, 2025
         </Text>
       </Box>
 
       {/* Pattern Divider */}
-      <Divider variant="zigzag" color="neutrals-light" />
+      <Divider variant="zigzag" color="light" />
 
       <Box padding="medium">
         <Box
