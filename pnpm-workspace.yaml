@@ -1,64 +1,46 @@
 packages:
   - packages/*
 
-# Auto-install peer dependencies to avoid manual installation
+allowedDeprecatedVersions: {}
+
 autoInstallPeers: true
 
-# Dedupe peer dependents to reduce duplication
 dedupePeerDependents: true
 
-# Resolve peer dependencies from workspace root
-resolvePeersFromWorkspaceRoot: true
-
-# Link workspace packages for local development
-linkWorkspacePackages: true
-
-# Use shared workspace lockfile
-sharedWorkspaceLockfile: true
-
-# Save workspace protocol for local packages
-saveWorkspaceProtocol: 'rolling'
-
-# Resolution mode: use highest version
-resolutionMode: highest
-
-# Node linker: isolated for better monorepo performance
-nodeLinker: isolated
-
-# Symlink packages
-symlink: true
-
-# Enable git checks
 gitChecks: true
 
-# Ignore scripts during install (set to false for development)
 ignoreScripts: false
 
-# Strict peer dependencies (set to false for flexibility)
-strictPeerDependencies: false
+ignoredOptionalDependencies: []
 
-# Only build these dependencies
+linkWorkspacePackages: true
+
+nodeLinker: isolated
+
 onlyBuiltDependencies:
+  - '@parcel/watcher'
   - '@swc/core'
   - esbuild
   - nx
 
-# Package extensions for fixing peer dependency issues
-packageExtensions: {}
-
-# Peer dependency rules
-peerDependencyRules:
-  ignoreMissing: []
-  allowedVersions: {}
-
-# Ignored optional dependencies
-ignoredOptionalDependencies: []
-
-# Overrides for dependency versions
 overrides: {}
 
-# Patched dependencies
+packageExtensions: {}
+
 patchedDependencies: {}
 
-# Allowed deprecated versions
-allowedDeprecatedVersions: {}
+peerDependencyRules:
+  allowedVersions: {}
+  ignoreMissing: []
+
+resolutionMode: highest
+
+resolvePeersFromWorkspaceRoot: true
+
+saveWorkspaceProtocol: rolling
+
+sharedWorkspaceLockfile: true
+
+strictPeerDependencies: false
+
+symlink: true

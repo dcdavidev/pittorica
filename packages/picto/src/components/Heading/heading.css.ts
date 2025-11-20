@@ -13,8 +13,14 @@ export const headingRecipe = recipe({
   },
   variants: {
     variant: {
-      display: { fontWeight: vars.typography.fontWeights.regular },
-      headline: { fontWeight: vars.typography.fontWeights.bold },
+      display: {
+        fontWeight: vars.typography.fontWeights.regular,
+        fontFamily: vars.typography.fonts.display,
+      },
+      headline: {
+        fontWeight: vars.typography.fontWeights.bold,
+        fontFamily: vars.typography.fonts.display,
+      },
     },
     size: {
       small: {},

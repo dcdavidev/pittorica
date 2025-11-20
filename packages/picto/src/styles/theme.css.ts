@@ -4,7 +4,6 @@ import { palette } from './tokens.js';
 
 /**
  * Helper to create the contract structure for color scales (100-900).
- * Used to avoid typing '100': '', '200': ''... manually in the contract.
  */
 const colorScaleContract = {
   100: '',
@@ -19,9 +18,14 @@ const colorScaleContract = {
 };
 
 /**
- * 1. THEME CONTRACT
- * Defines the shape of our theme variables without assigning values yet.
- * This creates the stable CSS variables (e.g. --colors-brand-500) that can be overridden.
+ * Type definitions to satisfy TypeScript when mapping tokens to contract.
+ * This tells TS that our dynamic palette strictly matches the contract shape.
+ */
+type ColorScale = typeof colorScaleContract;
+
+/**
+ * THEME CONTRACT
+ * Defines the shape of our theme variables.
  */
 export const vars = createThemeContract({
   colors: {
@@ -61,6 +65,7 @@ export const vars = createThemeContract({
       sans: '',
       serif: '',
       mono: '',
+      display: '',
     },
     fontSizes: {
       displayLarge: '',
@@ -97,18 +102,17 @@ export const vars = createThemeContract({
 });
 
 /**
- * 2. DEFAULT THEME IMPLEMENTATION
- * Applies the actual values from tokens.ts to the contract variables.
+ * DEFAULT THEME IMPLEMENTATION.
  */
 export const themeClass = createTheme(vars, {
   colors: {
-    brand: palette.brand,
-    secondary: palette.secondary,
-    tertiary: palette.tertiary,
-    info: palette.info,
-    success: palette.success,
-    warning: palette.warning,
-    error: palette.error,
+    brand: palette.brand as ColorScale,
+    secondary: palette.secondary as ColorScale,
+    tertiary: palette.tertiary as ColorScale,
+    info: palette.info as ColorScale,
+    success: palette.success as ColorScale,
+    warning: palette.warning as ColorScale,
+    error: palette.error as ColorScale,
 
     background: palette.light,
     text: palette.dark,
@@ -138,6 +142,7 @@ export const themeClass = createTheme(vars, {
       sans: '"Roboto", "Helvetica", "Arial", sans-serif',
       serif: '"Georgia", serif',
       mono: '"Roboto Mono", monospace',
+      display: '"Impact", "Arial Black", sans-serif',
     },
     fontSizes: {
       displayLarge: '3.56rem',
