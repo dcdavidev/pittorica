@@ -70,6 +70,6 @@ export const ErrorMessage: Story = {
     children: 'This field is required.',
     variant: 'body',
     size: 'small',
-    color: 'error-600',
+    color: 'error',
   },
 };
