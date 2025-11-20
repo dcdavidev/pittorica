@@ -5,6 +5,8 @@ export * from './Background/Background.js';
 export * from './Blockquote/blockquote.css.js';
 export * from './Blockquote/Blockquote.js';
 export * from './Box/Box.js';
+export * from './Button/button.css.js';
+export * from './Button/Button.js';
 export * from './Code/code.css.js';
 export * from './Code/Code.js';
 export * from './Container/container.css.js';
