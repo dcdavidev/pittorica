@@ -1,5 +1,6 @@
 export * from './Abbreviation/abbreviation.css.js';
 export * from './Abbreviation/Abbreviation.js';
+export * from './Background/index.js';
 export * from './Blockquote/blockquote.css.js';
 export * from './Blockquote/Blockquote.js';
 export * from './Box/Box.js';
