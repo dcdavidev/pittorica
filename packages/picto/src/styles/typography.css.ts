@@ -80,7 +80,6 @@ export const headingRecipe = recipe({
 export const textRecipe = recipe({
   base: {
     fontFamily: vars.typography.fonts.sans,
-    color: vars.colors.text,
     margin: 0,
   },
   variants: {
