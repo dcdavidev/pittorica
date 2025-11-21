@@ -1,6 +1,15 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import { motion } from 'motion/react';
+
+type PathData = {
+  id: string;
+  d: string;
+  delay: number;
+  duration: number;
+};
 
 export const BackgroundBeams = ({
   color = '#FF0000',
@@ -9,10 +18,27 @@ export const BackgroundBeams = ({
   color?: string;
   background?: string;
 }) => {
-  const paths = Array.from({ length: 30 });
+  const [paths, setPaths] = useState<PathData[]>([]);
 
   // Gradient id must be unique per color to avoid SVG conflicts if multiple instances
-  const gradientId = `beam-gradient-${color.replace('#', '')}`;
+  // We sanitize the color string to make it a valid ID
+  const gradientId = `beam-gradient-${color.replaceAll(/[^a-zA-Z0-9]/g, '')}`;
+
+  useEffect(() => {
+    // Generate paths only on the client to avoid Hydration Mismatch
+    // because Math.random() produces different results on server vs client.
+    const newPaths = Array.from({ length: 30 }).map(() => {
+      const uniqueKey = Math.random().toString(36).slice(2, 11);
+      return {
+        id: uniqueKey,
+        d: generateWavyPath(),
+        delay: Math.random() * 5,
+        duration: 5 + Math.random() * 5,
+      };
+    });
+    const timeoutId = setTimeout(() => setPaths(newPaths), 0);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div
@@ -33,30 +59,27 @@ export const BackgroundBeams = ({
         xmlns="http://www.w3.org/2000/svg"
         style={{ position: 'absolute', width: '100%', height: '100%' }}
       >
-        {paths.map((_, i) => {
-          const uniqueKey = `${gradientId}-${i}-${Math.random().toString(36).slice(2, 11)}`;
-          return (
-            <motion.path
-              key={uniqueKey}
-              d={generateWavyPath(i)}
-              stroke={`url(#${gradientId})`}
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              initial={{ pathLength: 0, opacity: 0, y: -50 }}
-              animate={{
-                pathLength: 1,
-                opacity: [0, 0.6, 0],
-                y: [0, 50],
-              }}
-              transition={{
-                duration: 5 + Math.random() * 5,
-                repeat: Infinity,
-                ease: 'linear',
-                delay: Math.random() * 5,
-              }}
-            />
-          );
-        })}
+        {paths.map((path) => (
+          <motion.path
+            key={path.id}
+            d={path.d}
+            stroke={`url(#${gradientId})`}
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0, y: -50 }}
+            animate={{
+              pathLength: 1,
+              opacity: [0, 0.6, 0],
+              y: [0, 50],
+            }}
+            transition={{
+              duration: path.duration,
+              repeat: Infinity,
+              ease: 'linear',
+              delay: path.delay,
+            }}
+          />
+        ))}
         <defs>
           <linearGradient
             id={gradientId}
@@ -76,7 +99,7 @@ export const BackgroundBeams = ({
   );
 };
 
-function generateWavyPath(_index: number) {
+function generateWavyPath() {
   const startX = Math.random() * 696;
   const amplitude = 10 + Math.random() * 20;
   const frequency = 0.02 + Math.random() * 0.02;
