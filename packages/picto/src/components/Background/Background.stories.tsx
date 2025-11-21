@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { themeClass } from '../../styles/theme.css.js';
+import { themeClass, vars } from '../../styles/theme.css.js';
 import { Box } from '../Box/Box.js';
 import { Heading } from '../Heading/Heading.js';
 import { Inline } from '../Inline/Inline.js';
@@ -28,14 +28,16 @@ const meta: Meta<BackgroundProps> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['bubbles'],
+      options: ['bubbles', 'beams'],
+      description: 'Visual style of the background',
     },
     animationSpeed: {
       control: { type: 'range', min: 5, max: 60, step: 1 },
+      description: 'Speed of animation (bubbles only)',
     },
-    interactive: {
-      control: 'boolean',
-      description: 'Enable cursor-following behavior for bubbles',
+    colors: {
+      control: 'object',
+      description: 'Array of hex color strings for bubbles or beams',
     },
   },
 };
@@ -50,6 +52,7 @@ type Story = StoryObj<BackgroundProps>;
 export const Bubbles: Story = {
   args: {
     variant: 'bubbles',
+    animationSpeed: 15,
   },
 };
 
@@ -60,6 +63,7 @@ export const CustomColors: Story = {
   args: {
     variant: 'bubbles',
     colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF'],
+    animationSpeed: 15,
   },
 };
 
@@ -67,7 +71,7 @@ export const CustomColors: Story = {
  * Background acting as a container for content.
  */
 export const AsContainer: Story = {
-  render: (args) => (
+  render: (args: BackgroundProps) => (
     <Background {...args} style={{ height: '100%' }}>
       <Box
         style={{
@@ -92,12 +96,33 @@ export const AsContainer: Story = {
 };
 
 /**
- * Interactive mode with cursor-following bubbles.
- * Move your cursor over the background to see bubbles follow and blend.
+ * Beams background
  */
-export const Interactive: Story = {
+export const Beams: Story = {
   args: {
-    variant: 'bubbles',
-    interactive: true,
+    variant: 'beams',
+    colors: ['#FFFFFF'],
   },
+  render: (args: BackgroundProps) => (
+    <Background {...args} style={{ height: '100%', backgroundColor: 'black' }}>
+      <Box
+        style={{
+          display: 'flex',
+          height: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'white',
+        }}
+      >
+        <Heading
+          variant="display"
+          size="large"
+          color="textInverse"
+          style={{ letterSpacing: vars.space.large }}
+        >
+          Beams
+        </Heading>
+      </Box>
+    </Background>
+  ),
 };

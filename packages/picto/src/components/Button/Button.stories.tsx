@@ -3,10 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { themeClass } from '../../styles/theme.css.js';
 import { Button } from './Button.js';
 
-/**
- * Button component following Material Design 3 principles.
- * Supports multiple variants, sizes, and states.
- */
 const meta: Meta<typeof Button> = {
   title: 'Inputs/Button',
   component: Button,

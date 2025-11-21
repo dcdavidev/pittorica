@@ -11,6 +11,7 @@ import { themeClass } from '../src/styles/theme.css.js';
 
 const preview: Preview = {
   parameters: {
+    layout: 'fullscreen',
     controls: {
       matchers: {
         color: /(background|color)$/i,
