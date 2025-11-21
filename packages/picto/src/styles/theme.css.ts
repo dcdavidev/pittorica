@@ -102,26 +102,10 @@ export const vars = createThemeContract({
 });
 
 /**
- * DEFAULT THEME IMPLEMENTATION.
+ * Shared tokens between Light and Dark themes.
+ * This prevents code duplication for spacing, typography, and borders.
  */
-export const themeClass = createTheme(vars, {
-  colors: {
-    brand: palette.brand as ColorScale,
-    secondary: palette.secondary as ColorScale,
-    tertiary: palette.tertiary as ColorScale,
-    info: palette.info as ColorScale,
-    success: palette.success as ColorScale,
-    warning: palette.warning as ColorScale,
-    error: palette.error as ColorScale,
-
-    background: palette.light,
-    text: palette.dark,
-
-    light: palette.light,
-    dark: palette.dark,
-    white: '#ffffff',
-    black: '#000000',
-  },
+const commonTokens = {
   space: {
     none: '0',
     small: '0.25rem',
@@ -148,19 +132,15 @@ export const themeClass = createTheme(vars, {
       displayLarge: '3.56rem',
       displayMedium: '2.81rem',
       displaySmall: '2.25rem',
-
       headlineLarge: '2rem',
       headlineMedium: '1.75rem',
       headlineSmall: '1.5rem',
-
       titleLarge: '1.375rem',
       titleMedium: '1rem',
       titleSmall: '0.875rem',
-
       bodyLarge: '1rem',
       bodyMedium: '0.875rem',
       bodySmall: '0.75rem',
-
       labelLarge: '0.875rem',
       labelMedium: '0.75rem',
       labelSmall: '0.68rem',
@@ -176,4 +156,59 @@ export const themeClass = createTheme(vars, {
       loose: '1.75',
     },
   },
+};
+
+/**
+ * DEFAULT THEME IMPLEMENTATION.
+ */
+export const themeClass = createTheme(vars, {
+  colors: {
+    brand: palette.brand as ColorScale,
+    secondary: palette.secondary as ColorScale,
+    tertiary: palette.tertiary as ColorScale,
+    info: palette.info as ColorScale,
+    success: palette.success as ColorScale,
+    warning: palette.warning as ColorScale,
+    error: palette.error as ColorScale,
+
+    // Light semantic mappings
+    background: palette.light,
+    text: palette.dark,
+
+    // Neutrals
+    light: palette.light,
+    dark: palette.dark,
+    white: '#ffffff',
+    black: '#000000',
+  },
+  ...commonTokens,
+});
+
+/**
+ * DARK THEME IMPLEMENTATION
+ * Inverts semantic colors while keeping the same contract.
+ */
+export const darkThemeClass = createTheme(vars, {
+  colors: {
+    brand: palette.brand as ColorScale,
+    secondary: palette.secondary as ColorScale,
+    tertiary: palette.tertiary as ColorScale,
+    info: palette.info as ColorScale,
+    success: palette.success as ColorScale,
+    warning: palette.warning as ColorScale,
+    error: palette.error as ColorScale,
+
+    // Dark semantic mappings (Inverted)
+    background: palette.dark, // Dark background
+    text: palette.light, // Light text
+
+    // Neutrals (Swapped semantics or kept raw depending on usage)
+    // Here we map 'light' to the dark color so components using 'vars.colors.light'
+    // as a background surface will become dark in dark mode.
+    light: palette.dark,
+    dark: palette.light,
+    white: '#ffffff', // Raw white stays white
+    black: '#000000', // Raw black stays black
+  },
+  ...commonTokens,
 });
