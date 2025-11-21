@@ -39,6 +39,7 @@ export const vars = createThemeContract({
 
     background: '',
     text: '',
+    textInverse: '',
 
     light: '',
     dark: '',
@@ -174,6 +175,7 @@ export const themeClass = createTheme(vars, {
     // Light semantic mappings
     background: palette.light,
     text: palette.dark,
+    textInverse: palette.light,
 
     // Neutrals
     light: palette.light,
@@ -201,6 +203,7 @@ export const darkThemeClass = createTheme(vars, {
     // Dark semantic mappings (Inverted)
     background: palette.dark, // Dark background
     text: palette.light, // Light text
+    textInverse: palette.dark, // Dark text for inverse contexts
 
     // Neutrals (Swapped semantics or kept raw depending on usage)
     // Here we map 'light' to the dark color so components using 'vars.colors.light'
