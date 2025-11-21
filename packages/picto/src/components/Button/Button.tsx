@@ -11,6 +11,32 @@ import { buttonRecipe, iconWrapper } from './button.css.js';
 type ButtonVariants = RecipeVariants<typeof buttonRecipe>;
 
 /**
+ * Helper function to render an icon dynamically.
+ * Accepts either a React Element (<Icon />) or a Component Type (Icon).
+ */
+const renderIcon = (Icon: React.ReactNode | React.ElementType) => {
+  if (!Icon) return null;
+
+  // If it's already a React Element (e.g. <Icon size={20} />), return it.
+  if (React.isValidElement(Icon)) {
+    return Icon;
+  }
+
+  // If it's a Component function/class (e.g. IconWritingSign), render it.
+  if (
+    typeof Icon === 'function' ||
+    (typeof Icon === 'object' && Icon !== null)
+  ) {
+    const IconComponent = Icon as React.ElementType;
+    // You can pass default props here if needed (e.g. size)
+    return <IconComponent />;
+  }
+
+  // Fallback for strings or other nodes
+  return Icon as React.ReactNode;
+};
+
+/**
  * Props for the Button component.
  * Extends BoxProps (minus conflicting props) to inherit atomic styles.
  */
@@ -78,13 +104,15 @@ export type ButtonProps = Omit<
 
   /**
    * Icon to display at the start (left) of the button text.
+   * Accepts a React Element or a Component Type.
    */
-  startIcon?: React.ReactNode;
+  startIcon?: React.ReactNode | React.ElementType;
 
   /**
    * Icon to display at the end (right) of the button text.
+   * Accepts a React Element or a Component Type.
    */
-  endIcon?: React.ReactNode;
+  endIcon?: React.ReactNode | React.ElementType;
 
   /**
    * Whether the button is disabled.
@@ -120,25 +148,6 @@ export type ButtonProps = Omit<
  * A versatile button component following Material Design 3 principles.
  * Built on top of the Box primitive with support for multiple variants,
  * sizes, icons, and states.
- *
- * @param {ButtonProps} props Component props.
- * @returns {React.JSX.Element} The rendered button.
- *
- * @example
- * // Filled button (default)
- * <Button>Click me</Button>
- *
- * @example
- * // Outlined button with icon
- * <Button variant="outlined" startIcon={<Icon />}>
- *   Save
- * </Button>
- *
- * @example
- * // Large tonal button
- * <Button variant="tonal" size="large">
- *   Submit
- * </Button>
  */
 export const Button = ({
   variant = 'filled',
@@ -209,9 +218,13 @@ export const Button = ({
         </>
       ) : (
         <>
-          {startIcon && <span className={iconWrapper}>{startIcon}</span>}
+          {startIcon && (
+            <span className={iconWrapper}>{renderIcon(startIcon)}</span>
+          )}
           {children}
-          {endIcon && <span className={iconWrapper}>{endIcon}</span>}
+          {endIcon && (
+            <span className={iconWrapper}>{renderIcon(endIcon)}</span>
+          )}
         </>
       )}
     </Box>
