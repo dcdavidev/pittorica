@@ -17,8 +17,11 @@ const meta: Meta<ContainerProps> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'xl', 'full'],
+      options: ['none', 'small', 'medium', 'large', 'xlarge', 'xxlarge'],
       description: 'The maximum width of the container.',
+      table: {
+        defaultValue: { summary: 'large' },
+      },
     },
   },
 };
@@ -32,30 +35,50 @@ type Story = StoryObj<ContainerProps>;
  */
 export const Default: Story = {
   args: {
-    children: 'Container Content',
-    size: 'lg',
-    style: { backgroundColor: '#e2e8f0', height: '200px' }, // Visual aid
+    children: 'Container Content (Large)',
+    size: 'large',
+    style: {
+      backgroundColor: '#e2e8f0',
+      height: '200px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   },
 };
 
 /**
  * Small container.
+ * Useful for narrow content like forms or articles.
  */
 export const Small: Story = {
   args: {
     children: 'Small Container',
-    size: 'sm',
-    style: { backgroundColor: '#cbd5e0', height: '200px' },
+    size: 'small',
+    style: {
+      backgroundColor: '#cbd5e0',
+      height: '200px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   },
 };
 
 /**
- * Full width container.
+ * None container.
+ * Full width with NO padding.
  */
-export const Full: Story = {
+export const None: Story = {
   args: {
-    children: 'Full Width Container',
-    size: 'full',
-    style: { backgroundColor: '#a0aec0', height: '200px' },
+    children: 'Full Width (No Padding)',
+    size: 'none',
+    style: {
+      backgroundColor: '#a0aec0',
+      height: '200px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   },
 };

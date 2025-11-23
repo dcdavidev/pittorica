@@ -15,8 +15,9 @@ type ContainerVariants = RecipeVariants<typeof containerRecipe>;
 export type ContainerProps = Omit<BoxProps, 'as'> & {
   /**
    * The maximum width of the container.
-   * Controls the responsive breakpoint for content width.
-   * @default 'lg'
+   * - 'none': Full width, no padding.
+   * - 'small' to 'xxlarge': Constrained width with responsive padding.
+   * @default 'large'
    */
   size?: NonNullable<ContainerVariants>['size'];
 };
@@ -25,16 +26,13 @@ export type ContainerProps = Omit<BoxProps, 'as'> & {
  * A layout primitive that constrains content to a maximum width and centers it.
  * Automatically adds responsive horizontal padding for proper spacing on all screen sizes.
  *
- * @param props - Component props.
- * @returns The rendered container element.
  * @example
- * <Container size="md">
- *   <Heading>Welcome</Heading>
- *   <Paragraph>Content goes here...</Paragraph>
+ * <Container size="medium">
+ * <Heading>Welcome</Heading>
  * </Container>
  */
 export const Container = ({
-  size = 'lg',
+  size = 'large',
   className,
   children,
   ...props
