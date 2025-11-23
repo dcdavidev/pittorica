@@ -47,6 +47,10 @@ const meta: Meta<typeof Sheet> = {
       control: 'boolean',
       description: 'Visible only when side is "bottom".',
     },
+    color: {
+      control: 'color',
+      description: 'Custom background color override.',
+    },
   },
 };
 
@@ -87,15 +91,10 @@ const SheetDemo = (
   );
 };
 
-// FIX TYPE: We define Story based on SheetDemo props to allow 'triggerText' in args
 type Story = StoryObj<React.ComponentProps<typeof SheetDemo>>;
 
 // --- STORIES ---
 
-/**
- * Standard Right Side Sheet.
- * Often used for editing details, filters, or secondary information.
- */
 export const EditProfile: Story = {
   render: (args) => <SheetDemo {...args} />,
   args: {
@@ -108,7 +107,6 @@ export const EditProfile: Story = {
           Make changes to your profile here. Click save when you're done.
         </p>
 
-        {/* FIX: Removed 'label' prop. Using standard label tag instead. */}
         <div
           style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
         >
@@ -178,11 +176,6 @@ export const EditProfile: Story = {
   },
 };
 
-/**
- * Bottom Sheet.
- * Standard mobile pattern, perfect for menus or quick actions.
- * Try dragging it down to close!
- */
 export const MobileActions: Story = {
   render: (args) => <SheetDemo {...args} />,
   args: {
@@ -198,7 +191,6 @@ export const MobileActions: Story = {
           { icon: <IconLogout />, label: 'Log Out', color: 'red' },
         ].map((item, i) => (
           <button
-            // FIX KEY: Used unique item label instead of index
             key={item.label}
             style={{
               display: 'flex',
@@ -223,10 +215,6 @@ export const MobileActions: Story = {
   },
 };
 
-/**
- * Left Side Sheet (Drawer).
- * Typically used for main navigation menus.
- */
 export const NavigationDrawer: Story = {
   render: (args) => <SheetDemo {...args} />,
   args: {
@@ -281,18 +269,11 @@ export const NavigationDrawer: Story = {
   },
 };
 
-/**
- * Helper data for the scrollable content story.
- * Generating IDs beforehand satisfies the "no-array-index-key" linter rule.
- */
 const termsSections = Array.from({ length: 10 }, (_, i) => ({
   id: `term-section-${i + 1}`,
   title: `Section ${i + 1}`,
 }));
 
-/**
- * Demonstrates scrolling behavior with long content.
- */
 export const ScrollableContent: Story = {
   render: (args) => <SheetDemo {...args} />,
   args: {
@@ -322,11 +303,6 @@ export const ScrollableContent: Story = {
   },
 };
 
-/**
- * Bottom Sheet with Constrained Width.
- * Unlike the standard full-width mobile sheet, this one stays centered
- * and keeps a readable width on larger screens.
- */
 export const CenteredBottomSheet: Story = {
   render: (args) => <SheetDemo {...args} />,
   args: {
@@ -352,6 +328,56 @@ export const CenteredBottomSheet: Story = {
             Confirm Action
           </button>
         </div>
+      </div>
+    ),
+  },
+};
+
+/**
+ * Demonstrates custom background color override.
+ * Useful for dark themes or brand-specific sheets.
+ */
+export const ColoredSheet: Story = {
+  render: (args) => <SheetDemo {...args} />,
+  args: {
+    side: 'right',
+    title: 'Dark',
+    color: '#1a202c', // Custom dark blue background
+    textColor: '#e2e8f0', // Custom light text color
+    triggerText: 'Open Dark Sheet',
+    children: (
+      <div style={{ color: '#e2e8f0' }}>
+        <p style={{ marginBottom: '1.5rem', lineHeight: 1.6 }}>
+          This sheet uses a custom background color prop.
+          <br />
+          The text color is manually adjusted here to be visible on the dark
+          background.
+        </p>
+        <nav
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+        >
+          {[
+            { label: 'Profile', icon: <IconUser /> },
+            { label: 'Settings', icon: <IconSettings /> },
+          ].map((item) => (
+            <a
+              key={item.label}
+              href="#"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                textDecoration: 'none',
+                color: 'white',
+                padding: '12px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(255,255,255,0.1)',
+              }}
+            >
+              {item.icon} {item.label}
+            </a>
+          ))}
+        </nav>
       </div>
     ),
   },

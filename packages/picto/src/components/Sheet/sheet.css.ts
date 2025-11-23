@@ -4,20 +4,18 @@ import { recipe } from '@vanilla-extract/recipes';
 import { vars } from '../../styles/theme.css.js';
 
 const sizes = {
-  small: '40rem', // ~640px
-  medium: '48rem', // ~768px
-  large: '64rem', // ~1024px
-  xlarge: '80rem', // ~1280px
-  xxlarge: '96rem', // ~1536px
+  small: '40rem',
+  medium: '48rem',
+  large: '64rem',
+  xlarge: '80rem',
+  xxlarge: '96rem',
 };
 
-// --- Z-INDEX CONFIGURATION ---
 const zIndex = {
   overlay: 10_000,
   sheet: 10_001,
 };
 
-// --- OVERLAY (BACKDROP) ---
 export const overlay = style({
   position: 'fixed',
   inset: 0,
@@ -26,7 +24,6 @@ export const overlay = style({
   backdropFilter: 'blur(2px)',
 });
 
-// --- SHEET CONTAINER ---
 export const sheetRecipe = recipe({
   base: style({
     position: 'fixed',
@@ -39,6 +36,8 @@ export const sheetRecipe = recipe({
     willChange: 'transform',
     boxSizing: 'border-box',
     backgroundColor: vars.colors.background,
+    // Default text color from theme, ensuring inheritance works if not overridden
+    color: vars.colors.text,
   }),
 
   variants: {
@@ -103,7 +102,7 @@ export const sheetRecipe = recipe({
 
   defaultVariants: {
     side: 'right',
-    width: 'full', // Default standard
+    width: 'full',
   },
 });
 
@@ -133,8 +132,8 @@ export const titleStyle = style({
   fontFamily: vars.typography.fonts.sans,
   fontSize: vars.typography.fontSizes.headlineSmall,
   fontWeight: vars.typography.fontWeights.medium,
-  color: vars.colors.text,
   margin: 0,
+  color: 'inherit',
 });
 
 export const content = style({
@@ -155,9 +154,11 @@ export const closeButton = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: vars.colors.gray[600],
-  transition: 'background-color 0.2s',
+  color: 'inherit',
+  opacity: 0.7,
+  transition: 'background-color 0.2s, opacity 0.2s',
   ':hover': {
-    backgroundColor: vars.colors.gray[100],
+    backgroundColor: 'rgba(0,0,0, 0.05)', // Hover generico
+    opacity: 1,
   },
 });

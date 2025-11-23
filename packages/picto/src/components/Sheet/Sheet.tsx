@@ -28,12 +28,18 @@ export type SheetProps = {
 
   side?: NonNullable<SheetVariants>['side'];
 
-  /**
-   * Controls the maximum width of the sheet.
-   * Mostly useful for 'bottom' sheets to prevent them from stretching too wide on desktop.
-   * @default 'full'
-   */
   maxWidth?: NonNullable<SheetVariants>['width'];
+
+  /**
+   * Background color of the sheet.
+   */
+  color?: string;
+
+  /**
+   * Text color of the sheet content (including title and close button).
+   * Use this to ensure contrast when using a custom background color.
+   */
+  textColor?: string;
 
   title?: React.ReactNode;
   showHandle?: boolean;
@@ -60,7 +66,9 @@ export const Sheet = ({
   isOpen,
   onClose,
   side = 'right',
-  maxWidth = 'full', // Default 100%
+  maxWidth = 'full',
+  color,
+  textColor, // <--- Destructuring
   title,
   showHandle = true,
   children,
@@ -97,7 +105,6 @@ export const Sheet = ({
     <AnimatePresence mode="wait" onExitComplete={unlockScroll}>
       {isOpen && (
         <>
-          {/* BACKDROP */}
           <motion.div
             className={overlay}
             onClick={onClose}
@@ -108,13 +115,16 @@ export const Sheet = ({
             transition={{ duration: 0.2 }}
           />
 
-          {/* SHEET CONTAINER */}
           <motion.div
             className={clsx(
               sheetRecipe({ side, width: appliedWidth }),
               themeClass,
               className
             )}
+            style={{
+              backgroundColor: color,
+              color: textColor,
+            }}
             role="dialog"
             aria-modal="true"
             variants={sheetVariants[side]}
