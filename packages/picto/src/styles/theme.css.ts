@@ -36,6 +36,7 @@ export const vars = createThemeContract({
     success: colorScaleContract,
     warning: colorScaleContract,
     error: colorScaleContract,
+    gray: colorScaleContract,
 
     background: '',
     text: '',
@@ -171,6 +172,7 @@ export const themeClass = createTheme(vars, {
     success: palette.success as ColorScale,
     warning: palette.warning as ColorScale,
     error: palette.error as ColorScale,
+    gray: palette.gray as ColorScale,
 
     // Light semantic mappings
     background: palette.light,
@@ -199,6 +201,7 @@ export const darkThemeClass = createTheme(vars, {
     success: palette.success as ColorScale,
     warning: palette.warning as ColorScale,
     error: palette.error as ColorScale,
+    gray: palette.gray as ColorScale,
 
     // Dark semantic mappings (Inverted)
     background: palette.dark, // Dark background

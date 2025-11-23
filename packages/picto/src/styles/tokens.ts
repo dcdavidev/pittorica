@@ -12,6 +12,7 @@ const sourceColors = {
   success: '#48bb78',
   warning: '#ecc94b',
   error: '#f56565',
+  gray: '#777777',
 };
 
 /**
