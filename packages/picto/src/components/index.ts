@@ -32,6 +32,8 @@ export * from './Pre/pre.css.js';
 export * from './Pre/Pre.js';
 export * from './Quote/quote.css.js';
 export * from './Quote/Quote.js';
+export * from './Sheet/sheet.css.js';
+export * from './Sheet/Sheet.js';
 export * from './Stack/Stack.js';
 export * from './Text/text.css.js';
 export * from './Text/Text.js';
