@@ -18,6 +18,8 @@ export * from './Divider/Divider.js';
 export * from './Grid/Grid.js';
 export * from './Heading/heading.css.js';
 export * from './Heading/Heading.js';
+export * from './Hero/hero.css.js';
+export * from './Hero/Hero.js';
 export * from './IconButton/icon-button.css.js';
 export * from './IconButton/IconButton.js';
 export * from './Inline/inline.css.js';
