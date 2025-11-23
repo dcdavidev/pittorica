@@ -321,3 +321,38 @@ export const ScrollableContent: Story = {
     ),
   },
 };
+
+/**
+ * Bottom Sheet with Constrained Width.
+ * Unlike the standard full-width mobile sheet, this one stays centered
+ * and keeps a readable width on larger screens.
+ */
+export const CenteredBottomSheet: Story = {
+  render: (args) => <SheetDemo {...args} />,
+  args: {
+    side: 'bottom',
+    maxWidth: 'medium',
+    title: 'Centered Actions',
+    triggerText: 'Open Centered Sheet',
+    showHandle: true,
+    children: (
+      <div style={{ textAlign: 'center', padding: '20px 0' }}>
+        <p>This sheet will not stretch to the full edges on a large monitor.</p>
+        <div style={{ display: 'grid', gap: '10px', marginTop: '20px' }}>
+          <Input placeholder="Example Input" fullWidth />
+          <button
+            style={{
+              padding: '12px',
+              background: '#3182ce',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+            }}
+          >
+            Confirm Action
+          </button>
+        </div>
+      </div>
+    ),
+  },
+};

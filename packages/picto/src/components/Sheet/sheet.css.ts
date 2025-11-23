@@ -1,12 +1,19 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-// REMOVED: import { atoms } ... (unused)
 import { vars } from '../../styles/theme.css.js';
+
+const sizes = {
+  small: '40rem', // ~640px
+  medium: '48rem', // ~768px
+  large: '64rem', // ~1024px
+  xlarge: '80rem', // ~1280px
+  xxlarge: '96rem', // ~1536px
+};
 
 // --- Z-INDEX CONFIGURATION ---
 const zIndex = {
-  overlay: 10_000, // Fixed: Added numeric separator
+  overlay: 10_000,
   sheet: 10_001,
 };
 
@@ -31,8 +38,6 @@ export const sheetRecipe = recipe({
     maxHeight: '100dvh',
     willChange: 'transform',
     boxSizing: 'border-box',
-
-    // Explicit background color using raw vars to prevent transparency issues
     backgroundColor: vars.colors.background,
   }),
 
@@ -42,7 +47,6 @@ export const sheetRecipe = recipe({
         bottom: 0,
         left: 0,
         right: 0,
-        width: '100%',
         maxHeight: '90vh',
         borderTopLeftRadius: '28px',
         borderTopRightRadius: '28px',
@@ -66,14 +70,42 @@ export const sheetRecipe = recipe({
         borderBottomRightRadius: '28px',
       }),
     },
+
+    width: {
+      full: style({ width: '100%' }),
+      small: style({
+        width: '100%',
+        maxWidth: sizes.small,
+        marginInline: 'auto',
+      }),
+      medium: style({
+        width: '100%',
+        maxWidth: sizes.medium,
+        marginInline: 'auto',
+      }),
+      large: style({
+        width: '100%',
+        maxWidth: sizes.large,
+        marginInline: 'auto',
+      }),
+      xlarge: style({
+        width: '100%',
+        maxWidth: sizes.xlarge,
+        marginInline: 'auto',
+      }),
+      xxlarge: style({
+        width: '100%',
+        maxWidth: sizes.xxlarge,
+        marginInline: 'auto',
+      }),
+    },
   },
 
   defaultVariants: {
     side: 'right',
+    width: 'full', // Default standard
   },
 });
-
-// --- INTERNAL ELEMENTS ---
 
 export const dragHandle = style({
   width: '32px',
@@ -87,12 +119,10 @@ export const dragHandle = style({
 });
 
 export const header = style({
-  // Using raw CSS values for padding to guarantee spacing
   paddingLeft: vars.space.xlarge,
   paddingRight: vars.space.xlarge,
   paddingTop: vars.space.large,
   paddingBottom: vars.space.medium,
-
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -111,7 +141,6 @@ export const content = style({
   paddingLeft: vars.space.xlarge,
   paddingRight: vars.space.xlarge,
   paddingBottom: vars.space.xlarge,
-
   flex: 1,
   overflowY: 'auto',
   paddingTop: 0,

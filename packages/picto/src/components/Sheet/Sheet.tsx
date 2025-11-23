@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { IconX } from '@tabler/icons-react';
 
 import { AnimatePresence, motion, PanInfo } from 'motion/react';
+import { RecipeVariants } from '@vanilla-extract/recipes';
 
 import { themeClass } from '../../styles/theme.css.js';
 import {
@@ -19,33 +20,27 @@ import {
   titleStyle,
 } from './sheet.css.js';
 
+type SheetVariants = RecipeVariants<typeof sheetRecipe>;
+
 export type SheetProps = {
   isOpen: boolean;
   onClose: () => void;
 
+  side?: NonNullable<SheetVariants>['side'];
+
   /**
-   * Position of the sheet.
-   * - 'bottom': Standard mobile sheet
-   * - 'right': Side sheet (details)
-   * - 'left': Navigation drawer style
-   * @default 'right'
+   * Controls the maximum width of the sheet.
+   * Mostly useful for 'bottom' sheets to prevent them from stretching too wide on desktop.
+   * @default 'full'
    */
-  side?: 'bottom' | 'right' | 'left';
+  maxWidth?: NonNullable<SheetVariants>['width'];
 
   title?: React.ReactNode;
-
-  /**
-   * Shows the drag handle bar (only visible if side='bottom')
-   * @default true
-   */
   showHandle?: boolean;
-
   children: React.ReactNode;
-
   className?: string;
 };
 
-// Animation variants configuration
 const sheetVariants = {
   bottom: {
     hidden: { y: '100%' },
@@ -65,6 +60,7 @@ export const Sheet = ({
   isOpen,
   onClose,
   side = 'right',
+  maxWidth = 'full', // Default 100%
   title,
   showHandle = true,
   children,
@@ -85,23 +81,23 @@ export const Sheet = ({
     };
   }, [isOpen, onClose]);
 
-  // Helper to unlock scroll on exit complete
   const unlockScroll = () => {
     document.body.style.overflow = '';
   };
 
-  // Drag Logic (Bottom Sheet only)
   const handleDragEnd = (_: never, info: PanInfo) => {
     if (info.offset.y > 100 || info.velocity.y > 500) {
       onClose();
     }
   };
 
+  const appliedWidth = side === 'bottom' ? maxWidth : 'full';
+
   return createPortal(
     <AnimatePresence mode="wait" onExitComplete={unlockScroll}>
       {isOpen && (
         <>
-          {/* BACKDROP / OVERLAY */}
+          {/* BACKDROP */}
           <motion.div
             className={overlay}
             onClick={onClose}
@@ -114,33 +110,32 @@ export const Sheet = ({
 
           {/* SHEET CONTAINER */}
           <motion.div
-            className={clsx(sheetRecipe({ side }), themeClass, className)}
+            className={clsx(
+              sheetRecipe({ side, width: appliedWidth }),
+              themeClass,
+              className
+            )}
             role="dialog"
             aria-modal="true"
             variants={sheetVariants[side]}
             initial="hidden"
             animate="visible"
             exit="hidden"
-            // Animation physics
             transition={{
               type: 'spring',
               damping: 25,
               stiffness: 300,
               mass: 0.8,
             }}
-            // Drag Logic
             drag={side === 'bottom' ? 'y' : false}
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={{ top: 0, bottom: 0.2 }}
             onDragEnd={handleDragEnd}
           >
-            {/* Drag Handle */}
             {side === 'bottom' && showHandle && <div className={dragHandle} />}
 
-            {/* Header */}
             <div className={header}>
               {title ? <h2 className={titleStyle}>{title}</h2> : <div />}
-
               <button
                 className={closeButton}
                 onClick={onClose}
@@ -150,7 +145,6 @@ export const Sheet = ({
               </button>
             </div>
 
-            {/* Content */}
             <div className={content}>{children}</div>
           </motion.div>
         </>
