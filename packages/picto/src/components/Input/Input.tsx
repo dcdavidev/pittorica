@@ -6,6 +6,8 @@ import { RecipeVariants } from '@vanilla-extract/recipes';
 
 import {
   endDecoratorStyle,
+  helperTextRecipe,
+  inputContainer,
   inputRecipe,
   nativeInput,
   startDecoratorStyle,
@@ -46,6 +48,12 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
    * Element placed after the input text (e.g., loading spinner, clear button).
    */
   endDecorator?: React.ReactNode;
+
+  /**
+   * Supporting text displayed below the input.
+   * Changes color automatically if error is true.
+   */
+  helperText?: React.ReactNode;
 };
 
 /**
@@ -62,6 +70,8 @@ export const Input = ({
   className,
   startDecorator,
   endDecorator,
+  helperText,
+  style,
   ...props
 }: InputProps & { ref?: React.Ref<HTMLInputElement> }) => {
   const wrapperClass = inputRecipe({
@@ -72,26 +82,34 @@ export const Input = ({
     fullWidth,
   });
 
+  const helperTextClass = helperTextRecipe({ error });
+
   return (
-    <div className={clsx(wrapperClass, className)}>
-      {/* Start Decorator */}
-      {startDecorator && (
-        <span className={startDecoratorStyle}>{startDecorator}</span>
-      )}
+    <div
+      className={clsx(inputContainer, className)}
+      style={{ width: fullWidth ? '100%' : 'auto', ...style }}
+    >
+      {/* INPUT VISUAL BOX */}
+      <div className={wrapperClass}>
+        {startDecorator && (
+          <span className={startDecoratorStyle}>{startDecorator}</span>
+        )}
 
-      {/* Native Input */}
-      <input
-        ref={ref}
-        className={nativeInput}
-        disabled={disabled}
-        aria-invalid={error}
-        {...props}
-      />
+        <input
+          ref={ref}
+          className={nativeInput}
+          disabled={disabled}
+          aria-invalid={error}
+          {...props}
+        />
 
-      {/* End Decorator */}
-      {endDecorator && (
-        <span className={endDecoratorStyle}>{endDecorator}</span>
-      )}
+        {endDecorator && (
+          <span className={endDecoratorStyle}>{endDecorator}</span>
+        )}
+      </div>
+
+      {/* HELPER TEXT */}
+      {helperText && <p className={helperTextClass}>{helperText}</p>}
     </div>
   );
 };

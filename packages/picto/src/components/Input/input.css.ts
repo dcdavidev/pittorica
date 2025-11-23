@@ -176,3 +176,39 @@ export const endDecoratorStyle = style([
   decorator,
   { marginLeft: vars.space.medium },
 ]);
+
+// HELPER TEXT
+export const helperTextRecipe = recipe({
+  base: style([
+    atoms({
+      marginTop: 'small',
+      paddingX: 'small',
+    }),
+    {
+      fontFamily: vars.typography.fonts.sans,
+      fontSize: vars.typography.fontSizes.bodySmall,
+      lineHeight: vars.typography.lineHeights.normal,
+    },
+  ]),
+
+  variants: {
+    error: {
+      true: style({
+        color: vars.colors.error[500],
+      }),
+      false: style({
+        color: vars.colors.gray[500],
+      }),
+    },
+  },
+
+  defaultVariants: {
+    error: false,
+  },
+});
+
+export const inputContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+});
