@@ -11,23 +11,34 @@ import { buttonRecipe, iconWrapper } from './button.css.js';
 type ButtonVariants = RecipeVariants<typeof buttonRecipe>;
 
 /**
- * Helper function to render an icon dynamically.
+ * Helper function to render a decorator dynamically.
+ * Accepts either a React Element (<Icon />) or a Component Type (Icon).
  */
-const renderIcon = (Icon: React.ReactNode | React.ElementType) => {
-  if (!Icon) return null;
-  if (React.isValidElement(Icon)) return Icon;
-  if (
-    typeof Icon === 'function' ||
-    (typeof Icon === 'object' && Icon !== null)
-  ) {
-    const IconComponent = Icon as React.ElementType;
-    return <IconComponent />;
+const renderDecorator = (Decorator: React.ReactNode | React.ElementType) => {
+  if (!Decorator) return null;
+
+  // If it's already a React Element (e.g. <Icon size={20} />), return it.
+  if (React.isValidElement(Decorator)) {
+    return Decorator;
   }
-  return Icon as React.ReactNode;
+
+  // If it's a Component function/class (e.g. IconWritingSign), render it.
+  if (
+    typeof Decorator === 'function' ||
+    (typeof Decorator === 'object' && Decorator !== null)
+  ) {
+    const DecoratorComponent = Decorator as React.ElementType;
+    // You can pass default props here if needed (e.g. size)
+    return <DecoratorComponent />;
+  }
+
+  // Fallback for strings or other nodes
+  return Decorator as React.ReactNode;
 };
 
 /**
  * Props for the Button component.
+ * Extends BoxProps (minus conflicting props) to inherit atomic styles.
  */
 export type ButtonProps = Omit<
   BoxProps,
@@ -74,37 +85,75 @@ export type ButtonProps = Omit<
 
   /**
    * Whether the button is in a selected/toggled state.
+   * Used for toggle buttons.
    * @default false
    */
   selected?: boolean;
 
   /**
    * URL to navigate to. When provided, the button renders as an anchor tag.
+   * Follows Astro.build pattern for navigation.
    */
   href?: string;
 
+  /**
+   * Target attribute for anchor tag (only used when href is provided).
+   * @default undefined
+   */
   target?: '_blank' | '_self' | '_parent' | '_top';
+
+  /**
+   * Rel attribute for anchor tag (only used when href is provided).
+   * @default undefined
+   */
   rel?: string;
 
   /**
-   * Icon/Element to display at the start.
+   * Icon/Element to display at the start (left) of the button text.
+   * Accepts a React Element or a Component Type.
    */
   startDecorator?: React.ReactNode | React.ElementType;
 
   /**
-   * Icon/Element to display at the end.
+   * Icon/Element to display at the end (right) of the button text.
+   * Accepts a React Element or a Component Type.
    */
   endDecorator?: React.ReactNode | React.ElementType;
 
+  /**
+   * Whether the button is disabled.
+   * @default false
+   */
   disabled?: boolean;
+
+  /**
+   * Whether the button is in a loading state.
+   * When true, the button is disabled and shows a loading indicator.
+   * @default false
+   */
   loading?: boolean;
+
+  /**
+   * The type of the button element.
+   * @default 'button'
+   */
   type?: 'button' | 'submit' | 'reset';
+
+  /**
+   * Click handler for the button.
+   */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+
+  /**
+   * The content of the button.
+   */
   children?: React.ReactNode;
 };
 
 /**
  * A versatile button component following Material Design 3 principles.
+ * Built on top of the Box primitive with support for multiple variants,
+ * sizes, icons, and states.
  */
 export const Button = ({
   variant = 'filled',
@@ -136,8 +185,11 @@ export const Button = ({
   });
 
   const isDisabled = disabled || loading;
+
+  // Determine if we should render as anchor or button
   const Component = href ? 'a' : 'button';
 
+  // Props specific to button element
   const buttonProps = href
     ? {}
     : {
@@ -146,6 +198,7 @@ export const Button = ({
         onClick,
       };
 
+  // Props specific to anchor element
   const anchorProps = href
     ? {
         href: isDisabled ? undefined : href,
@@ -174,14 +227,18 @@ export const Button = ({
       ) : (
         <>
           {startDecorator && (
-            <span className={iconWrapper}>{renderIcon(startDecorator)}</span>
+            <span className={iconWrapper}>
+              {renderDecorator(startDecorator)}
+            </span>
           )}
           {children}
           {endDecorator && (
-            <span className={iconWrapper}>{renderIcon(endDecorator)}</span>
+            <span className={iconWrapper}>{renderDecorator(endDecorator)}</span>
           )}
         </>
       )}
     </Box>
   );
 };
+
+Button.displayName = 'Button';
