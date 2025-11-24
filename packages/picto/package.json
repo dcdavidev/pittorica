@@ -1,6 +1,6 @@
 {
   "name": "@pittorica/picto",
-  "version": "0.11.4",
+  "version": "0.12.0",
   "private": false,
   "type": "module",
   "exports": {
