@@ -4,7 +4,7 @@ import { themeClass, vars } from '../../styles/theme.css.js';
 import { Box } from '../Box/Box.js';
 import { Heading } from '../Heading/Heading.js';
 import { Inline } from '../Inline/Inline.js';
-import { Background, BackgroundProps } from './Background';
+import { Background, BackgroundProps } from './Background.js';
 
 const meta: Meta<BackgroundProps> = {
   title: 'Components/Background',
@@ -28,7 +28,7 @@ const meta: Meta<BackgroundProps> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['bubbles', 'beams'],
+      options: ['bubbles', 'beams', 'jupiter', 'moon'],
       description: 'Visual style of the background',
     },
     animationSpeed: {
@@ -96,7 +96,8 @@ export const AsContainer: Story = {
 };
 
 /**
- * Beams background
+ * Beams background.
+ * Uses a dark background by default to make beams pop.
  */
 export const Beams: Story = {
   args: {
@@ -121,6 +122,71 @@ export const Beams: Story = {
           style={{ letterSpacing: vars.space.large }}
         >
           Beams
+        </Heading>
+      </Box>
+    </Background>
+  ),
+};
+
+/**
+ * Jupiter planetary background.
+ * Features animated gaseous bands and atmospheric glow using SVG filters.
+ */
+export const Jupiter: Story = {
+  args: {
+    variant: 'jupiter',
+  },
+  render: (args: BackgroundProps) => (
+    <Background {...args} style={{ height: '100%' }}>
+      <Box
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          // Text color chosen to complement the deep orange/brown palette of Jupiter
+          color: '#FDEBD0',
+          textShadow: '0 4px 12px rgba(0,0,0,0.8)',
+        }}
+      >
+        <Heading variant="display" size="large" style={{ fontSize: '5rem' }}>
+          JUPITER
+        </Heading>
+        <Heading variant="headline" size="medium">
+          The Gas Giant
+        </Heading>
+      </Box>
+    </Background>
+  ),
+};
+
+/**
+ * Moon surface background.
+ * Features cratered rocky texture and lighting effects using SVG filters.
+ */
+export const Moon: Story = {
+  args: {
+    variant: 'moon',
+  },
+  render: (args: BackgroundProps) => (
+    <Background {...args} style={{ height: '100%' }}>
+      <Box
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#FFFFFF',
+          textShadow: '0 4px 20px rgba(0,0,0,1)',
+        }}
+      >
+        <Heading variant="display" size="large" color="light">
+          MOON
+        </Heading>
+        <Heading variant="headline" size="medium" color="light">
+          Lunar Surface
         </Heading>
       </Box>
     </Background>

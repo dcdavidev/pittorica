@@ -4,6 +4,8 @@ export * from './Background/background.css.js';
 export * from './Background/Background.js';
 export * from './Background/BackgroundBeams.js';
 export * from './Background/BackgroundBubbles.js';
+export * from './Background/BackgroundJupiter.js';
+export * from './Background/BackgroundMoon.js';
 export * from './Blockquote/blockquote.css.js';
 export * from './Blockquote/Blockquote.js';
 export * from './Box/Box.js';

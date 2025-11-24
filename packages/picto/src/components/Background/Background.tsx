@@ -7,6 +7,8 @@ import clsx from 'clsx';
 import { backgroundRecipe, contentContainer } from './background.css.js';
 import { BackgroundBeams } from './BackgroundBeams.js';
 import { BackgroundBubbles } from './BackgroundBubbles.js';
+import { BackgroundJupiter } from './BackgroundJupiter.js';
+import { BackgroundMoon } from './BackgroundMoon.js';
 
 // --- TYPES ---
 
@@ -17,9 +19,11 @@ export interface BackgroundProps extends React.PropsWithChildren {
    * The visual variant of the background.
    * - 'bubbles': Floating, gooey bubbles.
    * - 'beams': Animated gradient beams.
+   * - 'jupiter': Gaseous, banded planet texture.
+   * - 'moon': Rocky, cratered surface texture.
    * @default 'bubbles'
    */
-  variant?: 'bubbles' | 'beams';
+  variant?: 'bubbles' | 'beams' | 'jupiter' | 'moon';
   colors?: string[];
   animationSpeed?: number;
 }
@@ -63,6 +67,10 @@ export const Background = ({
           background={style?.backgroundColor}
         />
       )}
+
+      {variant === 'jupiter' && <BackgroundJupiter />}
+
+      {variant === 'moon' && <BackgroundMoon />}
 
       {/* Content */}
       {hasChildren && <div className={contentContainer}>{children}</div>}
