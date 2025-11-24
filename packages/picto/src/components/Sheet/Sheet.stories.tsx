@@ -11,7 +11,9 @@ import {
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { themeClass } from '../../styles/theme.css.js';
+import { Button } from '../Button/Button.jsx';
 import { Input } from '../Input/Input';
+import { Stack } from '../Stack/Stack.jsx';
 import { Sheet, SheetProps } from './Sheet';
 
 const meta: Meta<typeof Sheet> = {
@@ -222,49 +224,41 @@ export const NavigationDrawer: Story = {
     title: 'Menu',
     triggerText: 'Open Menu (Left)',
     children: (
-      <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <a
-          href="#"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            textDecoration: 'none',
-            color: '#333',
-            padding: '12px',
-            borderRadius: '8px',
-            backgroundColor: '#f3f4f6',
-          }}
+      <Stack gap="large">
+        <Button
+          fullWidth
+          variant="text"
+          startDecorator={IconHome}
+          style={{ justifyContent: 'flex-start' }}
+          color="dark"
         >
-          <IconHome size={20} /> Home
-        </a>
-        <a
-          href="#"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            textDecoration: 'none',
-            color: '#333',
-            padding: '12px',
-          }}
+          Home
+        </Button>
+        <Button
+          fullWidth
+          variant="text"
+          startDecorator={IconMenu2}
+          style={{ justifyContent: 'flex-start' }}
         >
-          <IconMenu2 size={20} /> Projects
-        </a>
-        <a
-          href="#"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            textDecoration: 'none',
-            color: '#333',
-            padding: '12px',
-          }}
+          Projects
+        </Button>
+        <Button
+          fullWidth
+          variant="text"
+          startDecorator={IconSettings}
+          style={{ justifyContent: 'flex-start' }}
         >
-          <IconSettings size={20} /> Settings
-        </a>
-      </nav>
+          Settings
+        </Button>
+        <Button
+          fullWidth
+          variant="text"
+          startDecorator={IconLogout}
+          style={{ justifyContent: 'flex-start' }}
+        >
+          Log Out
+        </Button>
+      </Stack>
     ),
   },
 };

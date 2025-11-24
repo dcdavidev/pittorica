@@ -118,8 +118,8 @@ export const dragHandle = style({
 });
 
 export const header = style({
-  paddingLeft: vars.space.xlarge,
-  paddingRight: vars.space.xlarge,
+  paddingLeft: vars.space.large,
+  paddingRight: vars.space.large,
   paddingTop: vars.space.large,
   paddingBottom: vars.space.medium,
   display: 'flex',
@@ -137,8 +137,8 @@ export const titleStyle = style({
 });
 
 export const content = style({
-  paddingLeft: vars.space.xlarge,
-  paddingRight: vars.space.xlarge,
+  paddingLeft: vars.space.small,
+  paddingRight: vars.space.small,
   paddingBottom: vars.space.xlarge,
   flex: 1,
   overflowY: 'auto',

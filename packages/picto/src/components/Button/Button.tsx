@@ -12,33 +12,22 @@ type ButtonVariants = RecipeVariants<typeof buttonRecipe>;
 
 /**
  * Helper function to render an icon dynamically.
- * Accepts either a React Element (<Icon />) or a Component Type (Icon).
  */
 const renderIcon = (Icon: React.ReactNode | React.ElementType) => {
   if (!Icon) return null;
-
-  // If it's already a React Element (e.g. <Icon size={20} />), return it.
-  if (React.isValidElement(Icon)) {
-    return Icon;
-  }
-
-  // If it's a Component function/class (e.g. IconWritingSign), render it.
+  if (React.isValidElement(Icon)) return Icon;
   if (
     typeof Icon === 'function' ||
     (typeof Icon === 'object' && Icon !== null)
   ) {
     const IconComponent = Icon as React.ElementType;
-    // You can pass default props here if needed (e.g. size)
     return <IconComponent />;
   }
-
-  // Fallback for strings or other nodes
   return Icon as React.ReactNode;
 };
 
 /**
  * Props for the Button component.
- * Extends BoxProps (minus conflicting props) to inherit atomic styles.
  */
 export type ButtonProps = Omit<
   BoxProps,
@@ -60,6 +49,12 @@ export type ButtonProps = Omit<
   variant?: NonNullable<ButtonVariants>['variant'];
 
   /**
+   * The semantic color palette of the button.
+   * @default 'brand'
+   */
+  color?: NonNullable<ButtonVariants>['color'];
+
+  /**
    * The size of the button.
    * @default 'medium'
    */
@@ -79,78 +74,41 @@ export type ButtonProps = Omit<
 
   /**
    * Whether the button is in a selected/toggled state.
-   * Used for toggle buttons.
    * @default false
    */
   selected?: boolean;
 
   /**
    * URL to navigate to. When provided, the button renders as an anchor tag.
-   * Follows Astro.build pattern for navigation.
    */
   href?: string;
 
-  /**
-   * Target attribute for anchor tag (only used when href is provided).
-   * @default undefined
-   */
   target?: '_blank' | '_self' | '_parent' | '_top';
-
-  /**
-   * Rel attribute for anchor tag (only used when href is provided).
-   * @default undefined
-   */
   rel?: string;
 
   /**
-   * Icon to display at the start (left) of the button text.
-   * Accepts a React Element or a Component Type.
+   * Icon/Element to display at the start.
    */
-  startIcon?: React.ReactNode | React.ElementType;
+  startDecorator?: React.ReactNode | React.ElementType;
 
   /**
-   * Icon to display at the end (right) of the button text.
-   * Accepts a React Element or a Component Type.
+   * Icon/Element to display at the end.
    */
-  endIcon?: React.ReactNode | React.ElementType;
+  endDecorator?: React.ReactNode | React.ElementType;
 
-  /**
-   * Whether the button is disabled.
-   * @default false
-   */
   disabled?: boolean;
-
-  /**
-   * Whether the button is in a loading state.
-   * When true, the button is disabled and shows a loading indicator.
-   * @default false
-   */
   loading?: boolean;
-
-  /**
-   * The type of the button element.
-   * @default 'button'
-   */
   type?: 'button' | 'submit' | 'reset';
-
-  /**
-   * Click handler for the button.
-   */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-
-  /**
-   * The content of the button.
-   */
   children?: React.ReactNode;
 };
 
 /**
  * A versatile button component following Material Design 3 principles.
- * Built on top of the Box primitive with support for multiple variants,
- * sizes, icons, and states.
  */
 export const Button = ({
   variant = 'filled',
+  color = 'brand',
   size = 'medium',
   shape = 'round',
   fullWidth = false,
@@ -158,8 +116,8 @@ export const Button = ({
   href,
   target,
   rel,
-  startIcon,
-  endIcon,
+  startDecorator,
+  endDecorator,
   disabled = false,
   loading = false,
   type = 'button',
@@ -170,6 +128,7 @@ export const Button = ({
 }: ButtonProps): React.JSX.Element => {
   const recipeClass = buttonRecipe({
     variant,
+    color,
     size,
     shape,
     fullWidth,
@@ -177,11 +136,8 @@ export const Button = ({
   });
 
   const isDisabled = disabled || loading;
-
-  // Determine if we should render as anchor or button
   const Component = href ? 'a' : 'button';
 
-  // Props specific to button element
   const buttonProps = href
     ? {}
     : {
@@ -190,7 +146,6 @@ export const Button = ({
         onClick,
       };
 
-  // Props specific to anchor element
   const anchorProps = href
     ? {
         href: isDisabled ? undefined : href,
@@ -218,12 +173,12 @@ export const Button = ({
         </>
       ) : (
         <>
-          {startIcon && (
-            <span className={iconWrapper}>{renderIcon(startIcon)}</span>
+          {startDecorator && (
+            <span className={iconWrapper}>{renderIcon(startDecorator)}</span>
           )}
           {children}
-          {endIcon && (
-            <span className={iconWrapper}>{renderIcon(endIcon)}</span>
+          {endDecorator && (
+            <span className={iconWrapper}>{renderIcon(endDecorator)}</span>
           )}
         </>
       )}

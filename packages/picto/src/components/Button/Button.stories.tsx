@@ -202,7 +202,7 @@ export const ToggleButton: Story = {
 export const WithStartIcon: Story = {
   args: {
     children: 'Save',
-    startIcon: '💾',
+    startDecorator: '💾',
     variant: 'filled',
   },
 };
@@ -210,10 +210,10 @@ export const WithStartIcon: Story = {
 /**
  * Button with end icon
  */
-export const WithEndIcon: Story = {
+export const WithEndDecorator: Story = {
   args: {
     children: 'Next',
-    endIcon: '→',
+    endDecorator: '→',
     variant: 'filled',
   },
 };
@@ -224,8 +224,8 @@ export const WithEndIcon: Story = {
 export const WithBothIcons: Story = {
   args: {
     children: 'Download',
-    startIcon: '⬇️',
-    endIcon: '📁',
+    startDecorator: '⬇️',
+    endDecorator: '📁',
     variant: 'tonal',
   },
 };
@@ -380,7 +380,7 @@ export const LinkTargetBlank: Story = {
     href: 'https://github.com',
     target: '_blank',
     variant: 'outlined',
-    endIcon: '↗',
+    endDecorator: '↗',
   },
 };
 
@@ -419,7 +419,7 @@ export const NavigationExamples: Story = {
         href="https://google.com"
         target="_blank"
         variant="outlined"
-        endIcon="↗"
+        endDecorator="↗"
       >
         External Link
       </Button>
@@ -438,6 +438,25 @@ export const Playground: Story = {
     children: 'Click me!',
     variant: 'filled',
     size: 'medium',
-    startIcon: '🚀',
+    startDecorator: '🚀',
   },
+};
+
+/**
+ * Error color usage (e.g. Delete actions)
+ */
+export const ErrorColor: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      <Button variant="filled" color="error">
+        Delete
+      </Button>
+      <Button variant="outlined" color="error">
+        Cancel
+      </Button>
+      <Button variant="text" color="error">
+        Remove
+      </Button>
+    </div>
+  ),
 };
