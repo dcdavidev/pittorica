@@ -18,6 +18,8 @@ export const inputRecipe = recipe({
 
       fontFamily: vars.typography.fonts.sans,
       fontSize: vars.typography.fontSizes.bodyLarge,
+      // Move base text color here so variants can override it
+      color: vars.colors.text,
 
       selectors: {
         '&:focus-within': {
@@ -42,6 +44,8 @@ export const inputRecipe = recipe({
           borderTopRightRadius: vars.border.radius.medium,
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
+          // Darker text for better contrast on filled background
+          color: vars.colors.gray[900],
 
           ':hover': {
             backgroundColor: vars.colors.gray[200],
@@ -64,6 +68,7 @@ export const inputRecipe = recipe({
           backgroundColor: 'transparent',
           borderWidth: '1px',
           borderStyle: 'solid',
+          // Inherits base color (vars.colors.text)
 
           ':hover': {
             borderColor: vars.colors.gray[700],
@@ -142,7 +147,7 @@ export const nativeInput = style({
   outline: 'none',
   width: '100%',
   height: '100%',
-  color: vars.colors.text,
+  color: 'inherit',
   fontFamily: 'inherit',
   fontSize: 'inherit',
   padding: 0,
