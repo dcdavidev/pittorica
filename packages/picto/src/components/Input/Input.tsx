@@ -15,6 +15,32 @@ import {
 
 type InputVariants = RecipeVariants<typeof inputRecipe>;
 
+/**
+ * Helper function to render a decorator dynamically.
+ * Accepts either a React Element (<Icon />) or a Component Type (Icon).
+ */
+const renderDecorator = (Decorator: React.ReactNode | React.ElementType) => {
+  if (!Decorator) return null;
+
+  // If it's already a React Element (e.g. <Icon size={20} />), return it.
+  if (React.isValidElement(Decorator)) {
+    return Decorator;
+  }
+
+  // If it's a Component function/class (e.g. IconSearch), render it.
+  if (
+    typeof Decorator === 'function' ||
+    (typeof Decorator === 'object' && Decorator !== null)
+  ) {
+    const DecoratorComponent = Decorator as React.ElementType;
+    // You can pass default props here if needed (e.g. size/color context)
+    return <DecoratorComponent />;
+  }
+
+  // Fallback for strings or other nodes
+  return Decorator as React.ReactNode;
+};
+
 export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
   /**
    * Visual style of the input.
@@ -41,13 +67,15 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
 
   /**
    * Element placed before the input text (e.g., icon, currency symbol).
+   * Accepts a React Element or a Component Type.
    */
-  startDecorator?: React.ReactNode;
+  startDecorator?: React.ReactNode | React.ElementType;
 
   /**
    * Element placed after the input text (e.g., loading spinner, clear button).
+   * Accepts a React Element or a Component Type.
    */
-  endDecorator?: React.ReactNode;
+  endDecorator?: React.ReactNode | React.ElementType;
 
   /**
    * Supporting text displayed below the input.
@@ -92,7 +120,9 @@ export const Input = ({
       {/* INPUT VISUAL BOX */}
       <div className={wrapperClass}>
         {startDecorator && (
-          <span className={startDecoratorStyle}>{startDecorator}</span>
+          <span className={startDecoratorStyle}>
+            {renderDecorator(startDecorator)}
+          </span>
         )}
 
         <input
@@ -104,7 +134,9 @@ export const Input = ({
         />
 
         {endDecorator && (
-          <span className={endDecoratorStyle}>{endDecorator}</span>
+          <span className={endDecoratorStyle}>
+            {renderDecorator(endDecorator)}
+          </span>
         )}
       </div>
 
