@@ -39,6 +39,8 @@ export * from './components/Sheet/Sheet.js';
 export * from './components/Stack/Stack.js';
 export * from './components/Text/text.css.js';
 export * from './components/Text/Text.js';
+export * from './components/Textrea/textarea.css.js';
+export * from './components/Textrea/Textarea.js';
 export * from './styles/color-utils.js';
 export * from './styles/global.css.js';
 export * from './styles/sprinkles.css.js';

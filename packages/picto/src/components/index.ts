@@ -39,3 +39,5 @@ export * from './Sheet/Sheet.js';
 export * from './Stack/Stack.js';
 export * from './Text/text.css.js';
 export * from './Text/Text.js';
+export * from './Textrea/textarea.css.js';
+export * from './Textrea/Textarea.js';
