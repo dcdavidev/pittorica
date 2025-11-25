@@ -42,6 +42,10 @@ export const vars = createThemeContract({
     text: '',
     textInverse: '',
 
+    uiBackground: '',
+    uiBorder: '',
+    uiFocusRing: '',
+
     light: '',
     dark: '',
     white: '',
@@ -179,6 +183,10 @@ export const themeClass = createTheme(vars, {
     text: palette.dark,
     textInverse: palette.light,
 
+    uiBackground: palette.light,
+    uiBorder: palette.gray[300],
+    uiFocusRing: palette.brand[500],
+
     // Neutrals
     light: palette.light,
     dark: palette.dark,
@@ -207,6 +215,10 @@ export const darkThemeClass = createTheme(vars, {
     background: palette.dark, // Dark background
     text: palette.light, // Light text
     textInverse: palette.dark, // Dark text for inverse contexts
+
+    uiBackground: palette.dark,
+    uiBorder: palette.gray[300],
+    uiFocusRing: palette.brand[500],
 
     // Neutrals (Swapped semantics or kept raw depending on usage)
     // Here we map 'light' to the dark color so components using 'vars.colors.light'

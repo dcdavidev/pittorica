@@ -27,6 +27,8 @@ export type BoxProps = RemoveIndex<Atoms> &
     as?: React.ElementType;
     className?: string;
     children?: React.ReactNode;
+    htmlFor?: React.LabelHTMLAttributes<HTMLLabelElement>['htmlFor'];
+    form?: React.InputHTMLAttributes<HTMLInputElement>['form'];
   };
 
 /**

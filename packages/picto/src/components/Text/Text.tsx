@@ -39,6 +39,8 @@ export type TextProps = Omit<BoxProps, 'as'> & {
    * The size of the text.
    */
   size?: NonNullable<TextVariants>['size'];
+
+  htmlFor?: React.LabelHTMLAttributes<HTMLLabelElement>['htmlFor'];
 };
 
 /**
@@ -57,6 +59,7 @@ export const Text = ({
   color = 'text', // Set default color to ensure visibility
   className,
   children,
+  htmlFor,
   ...props
 }: TextProps): React.JSX.Element => {
   const recipeClass = textRecipe({ variant, size });
@@ -66,6 +69,7 @@ export const Text = ({
       as={as}
       className={clsx(recipeClass, className)}
       color={color}
+      htmlFor={htmlFor}
       {...props}
     >
       {children}
