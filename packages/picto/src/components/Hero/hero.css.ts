@@ -18,7 +18,6 @@ export const heroRecipe = recipe({
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-start',
       justifyContent: 'center',
       paddingY: 'xlarge',
       paddingX: {
