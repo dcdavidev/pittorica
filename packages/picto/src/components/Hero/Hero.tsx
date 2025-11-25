@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { RecipeVariants } from '@vanilla-extract/recipes';
 
 import { Background, BackgroundProps } from '../Background/Background.js';
-import { Box } from '../Box/Box.js';
+import { Box, BoxProps } from '../Box/Box.js';
 import { Container, ContainerProps } from '../Container/Container.js';
 import {
   backgroundLayer,
@@ -18,7 +18,7 @@ import {
 type HeroRecipeVariants = RecipeVariants<typeof heroRecipe>;
 type OverlayRecipeVariants = RecipeVariants<typeof overlayVariants>;
 
-export type HeroProps = {
+export type HeroProps = Omit<BoxProps, 'size' | 'color'> & {
   children?: React.ReactNode;
 
   /**
@@ -69,6 +69,7 @@ export const Hero = ({
   containerProps,
   className,
   children,
+  ...props
 }: HeroProps) => {
   const isDecoratedBg =
     backgroundStyle === 'beams' || backgroundStyle === 'bubbles';
@@ -81,6 +82,7 @@ export const Hero = ({
     <Box
       className={clsx(heroRecipe({ size, shape }), className)}
       style={color ? { backgroundColor: color } : undefined}
+      {...props}
     >
       {/* 1. BACKGROUND IMAGE */}
       {backgroundImage && !isDecoratedBg && (
