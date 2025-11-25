@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { Container } from '../Container/Container';
 import { Textarea, TextareaProps } from './Textarea';
 
 const longText = `This is a very long story.
@@ -17,6 +18,13 @@ const meta: Meta<TextareaProps> = {
   title: 'Inputs/Textarea',
   component: Textarea,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <Container maxWidth="sm">
+        <Story />
+      </Container>
+    ),
+  ],
   argTypes: {
     label: { control: 'text' },
     placeholder: { control: 'text' },

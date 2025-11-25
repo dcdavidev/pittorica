@@ -10,7 +10,7 @@ import {
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { themeClass } from '../../styles/theme.css.js';
-import { Input } from './Input';
+import { Input } from './Input.js';
 
 const meta: Meta<typeof Input> = {
   title: 'Inputs/Input',
@@ -28,7 +28,7 @@ const meta: Meta<typeof Input> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['outlined', 'filled'],
+      options: ['outlined', 'filled', 'plain'],
     },
     size: {
       control: 'select',
@@ -48,7 +48,7 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
-    placeholder: 'Standard input',
+    placeholder: 'Standard input (Outlined)',
     helperText: 'This is a standard helper text.',
   },
 };
@@ -58,6 +58,17 @@ export const FilledVariant: Story = {
     variant: 'filled',
     placeholder: 'Filled variant',
     helperText: 'Works with filled variant too.',
+  },
+};
+
+/**
+ * Variant: Plain
+ */
+export const PlainVariant: Story = {
+  args: {
+    variant: 'plain',
+    placeholder: 'Plain variant (Single line)',
+    helperText: 'Minimal styling for focus.',
   },
 };
 

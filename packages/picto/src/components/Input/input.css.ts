@@ -1,3 +1,4 @@
+// input.css.ts
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
@@ -18,7 +19,6 @@ export const inputRecipe = recipe({
 
       fontFamily: vars.typography.fonts.sans,
       fontSize: vars.typography.fontSizes.bodyLarge,
-      // Move base text color here so variants can override it
       color: vars.colors.text,
 
       selectors: {
@@ -33,18 +33,17 @@ export const inputRecipe = recipe({
   variants: {
     variant: {
       filled: style([
-        atoms({
-          backgroundColor: 'gray-100',
-          borderColor: 'gray-400',
-        }),
+        atoms({}),
         {
+          backgroundColor: vars.colors.gray[100],
+          borderColor: vars.colors.gray[400],
+
           borderBottomWidth: '1px',
           borderBottomStyle: 'solid',
           borderTopLeftRadius: vars.border.radius.medium,
           borderTopRightRadius: vars.border.radius.medium,
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
-          // Darker text for better contrast on filled background
           color: vars.colors.gray[900],
 
           ':hover': {
@@ -61,14 +60,13 @@ export const inputRecipe = recipe({
 
       outlined: style([
         atoms({
-          borderColor: 'gray-400',
           borderRadius: 'medium',
         }),
         {
+          borderColor: vars.colors.gray[400],
           backgroundColor: 'transparent',
           borderWidth: '1px',
           borderStyle: 'solid',
-          // Inherits base color (vars.colors.text)
 
           ':hover': {
             borderColor: vars.colors.gray[700],
@@ -76,6 +74,29 @@ export const inputRecipe = recipe({
           selectors: {
             '&:focus-within': {
               borderColor: vars.colors.brand[500],
+            },
+          },
+        },
+      ]),
+
+      plain: style([
+        atoms({
+          borderColor: 'transparent',
+          backgroundColor: 'transparent',
+        }),
+        {
+          borderRadius: 0,
+          borderBottomWidth: '1px',
+          borderBottomStyle: 'solid',
+          borderBottomColor: vars.colors.gray[400],
+
+          backgroundColor: 'transparent',
+
+          selectors: {
+            '&:focus-within': {
+              outline: 'none',
+              outlineOffset: '0',
+              borderBottomColor: vars.colors.brand[500],
             },
           },
         },

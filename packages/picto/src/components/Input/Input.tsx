@@ -46,7 +46,7 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
    * Visual style of the input.
    * @default 'outlined'
    */
-  variant?: NonNullable<InputVariants>['variant'];
+  variant?: NonNullable<InputVariants>['variant'] | 'plain';
 
   /**
    * The size of the component.

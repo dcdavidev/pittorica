@@ -50,6 +50,7 @@ export const vars = createThemeContract({
     dark: '',
     white: '',
     black: '',
+    transparent: '',
   },
   space: {
     none: '',
@@ -192,6 +193,7 @@ export const themeClass = createTheme(vars, {
     dark: palette.dark,
     white: '#ffffff',
     black: '#000000',
+    transparent: 'transparent',
   },
   ...commonTokens,
 });
@@ -227,6 +229,7 @@ export const darkThemeClass = createTheme(vars, {
     dark: palette.light,
     white: '#ffffff', // Raw white stays white
     black: '#000000', // Raw black stays black
+    transparent: 'transparent',
   },
   ...commonTokens,
 });
