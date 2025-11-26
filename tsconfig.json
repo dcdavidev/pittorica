@@ -5,6 +5,9 @@
   "references": [
     {
       "path": "./packages/picto"
+    },
+    {
+      "path": "./packages/pitto"
     }
   ],
   "ts-node": {

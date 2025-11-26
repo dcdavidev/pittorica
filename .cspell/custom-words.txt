@@ -1,7 +1,10 @@
 argb
 momo
 picto
+pitto
 pittorica
 xlarge
 xsmall
 xxlarge
+xxsmall
+xxxxlarge
