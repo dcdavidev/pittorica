@@ -1,10 +1,8 @@
-import Color from 'color';
 import { createGlobalTheme } from '@vanilla-extract/css';
 
 import { pitto } from './contract.css';
 
-import { getContrastTextColor } from '../helpers/get-contrast-text-color.js';
-import { lightenSurfaceColors } from '../helpers/get-surface-colors.js';
+import { getDynamicSurfaceScale } from '../helpers/get-surface-colors.js';
 import { PALETTE } from './default-palette.js';
 
 export const theme = createGlobalTheme(':root', pitto, {
@@ -84,25 +82,7 @@ export const theme = createGlobalTheme(':root', pitto, {
       },
     },
   },
-  surface: {
-    0: lightenSurfaceColors(0.9, PALETTE.brand, PALETTE.white, PALETTE.black),
-    100: lightenSurfaceColors(0.8, PALETTE.brand, PALETTE.white, PALETTE.black),
-    200: lightenSurfaceColors(0.7, PALETTE.brand, PALETTE.white, PALETTE.black),
-    300: lightenSurfaceColors(0.6, PALETTE.brand, PALETTE.white, PALETTE.black),
-    400: lightenSurfaceColors(0.5, PALETTE.brand, PALETTE.white, PALETTE.black),
-    500: lightenSurfaceColors(0.4, PALETTE.brand, PALETTE.white, PALETTE.black),
-    600: lightenSurfaceColors(0.3, PALETTE.brand, PALETTE.white, PALETTE.black),
-    700: lightenSurfaceColors(0.2, PALETTE.brand, PALETTE.white, PALETTE.black),
-    800: lightenSurfaceColors(0.1, PALETTE.brand, PALETTE.white, PALETTE.black),
-    900: {
-      color: Color(PALETTE.brand).hex(),
-      onColor: getContrastTextColor(
-        Color(PALETTE.brand).hex(),
-        PALETTE.white,
-        PALETTE.black
-      ),
-    },
-  },
+  surface: getDynamicSurfaceScale(PALETTE.brand, PALETTE.white, PALETTE.black),
   border: {
     radius: {
       none: '0rem',

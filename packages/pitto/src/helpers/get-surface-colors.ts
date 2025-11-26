@@ -1,55 +1,62 @@
 import Color from 'color';
 
-import { getContrastTextColor } from './get-contrast-text-color.js';
+import { pitto } from '../styles/contract.css.js';
 
-/**
- * Generates surface color and appropriate contrast text color based on the brand color and scale.
- * @param scale The amount to lighten the brand color.
- * @param brand The base color to be lightened.
- * @param white The color to use for white text.
- * @param black The color to use for black text.
- * @returns An object containing the surface color and the appropriate text color for contrast.
- * @example
- * getSurfaceColors(0.2, '#ff0000', '#ffffff', '#000000');
- */
-export function lightenSurfaceColors(
-  scale: number,
-  brand: string,
+type ConcreteSurfaceStructure = {
+  [K in keyof typeof pitto.surface]: { color: string; onColor: string };
+};
+
+const getContrastTextColor = (
+  bgColor: string,
   white: string,
   black: string
-) {
-  return {
-    color: Color(brand).lighten(scale).hex(),
-    onColor: getContrastTextColor(
-      Color(brand).lighten(scale).hex(),
-      white,
-      black
-    ),
-  };
-}
+): string => {
+  return Color(bgColor).isLight() ? black : white;
+};
 
 /**
- * Generates a surface color by darkening the brand color and determines the appropriate contrast text color.
- * @param scale The amount to darken the brand color.
- * @param brand The base color to be darkened.
- * @param white The color to use for white text.
- * @param black The color to use for black text.
- * @returns An object containing the darkened surface color and the appropriate text color for contrast.
+ * Generates a dynamic surface color scale based on the provided brand color and contrast colors.
+ * @param brandColorHEX The base brand color in HEX format to generate the surface scale from.
+ * @param contrastWhite The HEX color to use for text/icons on light backgrounds.
+ * @param contrastBlack The HEX color to use for text/icons on dark backgrounds.
+ * @returns An object mapping surface levels to their corresponding color and onColor values.
  * @example
- * darkenSurfaceColors(0.2, '#ff0000', '#ffffff', '#000000');
+ * const surfaces = getDynamicSurfaceScale('#ff0000', '#ffffff', '#000000');
+ * console.log(surfaces['100'].color); // Outputs a HEX color string for surface 100
  */
-export function darkenSurfaceColors(
-  scale: number,
-  brand: string,
-  white: string,
-  black: string
-) {
-  return {
-    color: Color(brand).darken(scale).hex(),
-    onColor: getContrastTextColor(
-      Color(brand).darken(scale).hex(),
-      white,
-      black
-    ),
+export function getDynamicSurfaceScale(
+  brandColorHEX: string,
+  contrastWhite: string,
+  contrastBlack: string
+): ConcreteSurfaceStructure {
+  const brand = Color(brandColorHEX);
+  const isBrandLight = brand.isLight();
+  const result: Partial<ConcreteSurfaceStructure> = {};
+
+  const levels = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900] as const;
+
+  for (let i = 0; i < 9; i++) {
+    const level = levels[i];
+    const colorKey =
+      level.toString() as unknown as keyof ConcreteSurfaceStructure;
+
+    const step = (9 - i) * 0.1;
+
+    const newColor = isBrandLight
+      ? brand.darken(step * 0.5).hex()
+      : brand.lighten(step).hex();
+
+    result[colorKey] = {
+      color: newColor,
+      onColor: getContrastTextColor(newColor, contrastWhite, contrastBlack),
+    };
+  }
+
+  const color900 = brand.hex();
+  result['900' as unknown as keyof ConcreteSurfaceStructure] = {
+    color: color900,
+    onColor: getContrastTextColor(color900, contrastWhite, contrastBlack),
   };
+
+  return result as ConcreteSurfaceStructure;
 }
