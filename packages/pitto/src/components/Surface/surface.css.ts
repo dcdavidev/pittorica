@@ -4,7 +4,9 @@ import { pitto } from '../../styles/contract.css.js';
 import { ELEVATION_PINS } from '../../styles/elevation.css.js';
 
 export const surfaceRecipe = recipe({
-  base: {},
+  base: {
+    width: '100%',
+  },
 
   variants: {
     elevation: {

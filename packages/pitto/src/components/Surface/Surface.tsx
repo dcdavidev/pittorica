@@ -15,7 +15,7 @@ export const SURFACE_SHAPES = [
 export type SurfaceShapeType = (typeof SURFACE_SHAPES)[number];
 
 export interface SurfaceProps
-  extends Omit<BoxProps, 'backgroundColor' | 'color'> {
+  extends Omit<BoxProps, 'as' | 'backgroundColor' | 'color'> {
   children?: React.ReactNode;
   elevation?: ElevationPin;
   shape?: SurfaceShapeType;
@@ -31,7 +31,7 @@ export const Surface: React.FC<SurfaceProps> = ({
   const elevationClass = surfaceRecipe({ elevation, shape });
 
   return (
-    <Box className={clsx(className, elevationClass)} {...props}>
+    <Box as="div" className={clsx(className, elevationClass)} {...props}>
       {children}
     </Box>
   );
