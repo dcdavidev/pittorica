@@ -5,6 +5,21 @@ import { Box } from './Box.js';
 const meta = {
   component: Box,
   title: 'Box',
+
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof Box>;
 export default meta;
 
@@ -56,8 +71,8 @@ export const DisplayHeading: Story = {
 export const CircularBox: Story = {
   args: {
     backgroundColor: 'info',
-    width: '5rem',
-    height: '5rem',
+    width: '100%',
+    height: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
