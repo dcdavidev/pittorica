@@ -4,12 +4,12 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "pnpm dlx nx run-many -t build",
+    "build": "nx run-many -t build",
     "build:picto": "nx run picto:build",
-    "doc:g:toc": "pnpm dlx markdown-toc -i README.md",
+    "doc:g:toc": "markdown-toc -i README.md",
     "postdoc:g:toc": "nx run-many -t doc:g:toc",
-    "fmt": "pnpm exec prettier --ignore-unknown --write .",
-    "lint": "pnpm dlx eslint --no-warn-ignored --fix .",
+    "fmt": "prettier --ignore-unknown --write .",
+    "lint": "eslint --no-warn-ignored --fix .",
     "lint:fmt": "pnpm lint && pnpm fmt",
     "release": "nx release --yes",
     "sb:picto": "nx storybook picto"
