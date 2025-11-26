@@ -3,9 +3,9 @@ import { createTheme } from '@vanilla-extract/css';
 
 import { pitto } from './contract.css';
 
-import { getContrastTextColor } from '../helpers/get-contrast-text-color';
-import { lightenSurfaceColors } from '../helpers/get-surface-colors';
-import { PALETTE } from './default-palette';
+import { getContrastTextColor } from '../helpers/get-contrast-text-color.js';
+import { lightenSurfaceColors } from '../helpers/get-surface-colors.js';
+import { PALETTE } from './default-palette.js';
 
 export const theme = createTheme(pitto, {
   color: {

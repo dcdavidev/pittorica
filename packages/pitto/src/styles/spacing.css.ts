@@ -1,6 +1,6 @@
 import { defineProperties } from '@vanilla-extract/sprinkles';
 
-import { pitto } from '../contract.css.js';
+import { pitto } from './contract.css.js';
 
 export const spacingProperties = defineProperties({
   properties: {
