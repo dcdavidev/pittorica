@@ -1,6 +1,8 @@
+import './theme.css.js';
+
 import { globalStyle } from '@vanilla-extract/css';
 
-import { pitto } from './styles/contract.css';
+import { pitto } from './contract.css';
 
 globalStyle('*, *::before, *::after', {
   boxSizing: 'border-box',

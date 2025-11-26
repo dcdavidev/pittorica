@@ -1,5 +1,5 @@
 import Color from 'color';
-import { createTheme } from '@vanilla-extract/css';
+import { createGlobalTheme } from '@vanilla-extract/css';
 
 import { pitto } from './contract.css';
 
@@ -7,7 +7,7 @@ import { getContrastTextColor } from '../helpers/get-contrast-text-color.js';
 import { lightenSurfaceColors } from '../helpers/get-surface-colors.js';
 import { PALETTE } from './default-palette.js';
 
-export const theme = createTheme(pitto, {
+export const theme = createGlobalTheme(':root', pitto, {
   color: {
     transparent: 'transparent',
 
@@ -26,10 +26,11 @@ export const theme = createTheme(pitto, {
   font: {
     family: {
       brand:
-        '"Momo Trust Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-      sans: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-      mono: 'SF Mono, Fira Code, Fira Mono, Roboto Mono, monospace',
-      serif: 'Georgia, Cambria, "Times New Roman", Times, serif',
+        '"Momo Trust Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      sans: '"Inter Variable", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      mono: '"SF Mono", "Fira Code Variable", "Fira Code", "Fira Mono", "Roboto Mono", monospace',
+      serif:
+        '"Roboto Serif Variable", "Roboto Serif", Georgia, Cambria, "Times New Roman", Times, serif',
     },
     weight: {
       light: '200',

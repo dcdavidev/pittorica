@@ -1,5 +1,7 @@
 argb
+cssmodule
 momo
+opsz
 picto
 pitto
 pittorica
