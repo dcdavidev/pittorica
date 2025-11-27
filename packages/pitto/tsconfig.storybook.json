@@ -4,7 +4,8 @@
     "outDir": "out-tsc/storybook",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true
   },
   "exclude": [
     "src/**/*.spec.ts",

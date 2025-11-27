@@ -4,7 +4,7 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/roboto-serif';
 import '../src/styles/global.css.js';
 
-import { Preview } from '@storybook/react-vite';
+import { type Preview } from '@storybook/react-vite';
 
 const preview: Preview = {
   parameters: {

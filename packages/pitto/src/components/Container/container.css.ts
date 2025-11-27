@@ -17,32 +17,32 @@ export const containerRecipe = recipe({
         marginRight: '1rem',
       },
       xxlarge: {
-        maxWidth: '1400px',
+        maxWidth: '87.5rem', // 1400px
         marginLeft: 'auto',
         marginRight: 'auto',
       },
       xlarge: {
-        maxWidth: '1200px',
+        maxWidth: '75rem', // 1200px
         marginLeft: 'auto',
         marginRight: 'auto',
       },
       large: {
-        maxWidth: '992px',
+        maxWidth: '62rem', // 992px
         marginLeft: 'auto',
         marginRight: 'auto',
       },
       medium: {
-        maxWidth: '768px',
+        maxWidth: '48rem', // 768px
         marginLeft: 'auto',
         marginRight: 'auto',
       },
       small: {
-        maxWidth: '576px',
+        maxWidth: '36rem', // 576px
         marginLeft: 'auto',
         marginRight: 'auto',
       },
       xsmall: {
-        maxWidth: '360px',
+        maxWidth: '22.5rem', // 360px
         marginLeft: 'auto',
         marginRight: 'auto',
       },

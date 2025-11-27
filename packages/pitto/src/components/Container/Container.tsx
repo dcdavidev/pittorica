@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 
 import { containerRecipe } from './container.css';
 
-import { Box, BoxProps } from '../Box';
+import { Box, type BoxProps } from '../Box';
 
 export const CONTAINER_SIZES = [
   'none',

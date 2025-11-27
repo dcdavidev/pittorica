@@ -1,7 +1,6 @@
 export * from './contract.css.js';
 export * from './contracts/border.css.js';
 export * from './contracts/color.css.js';
-export * from './contracts/elevation.css.js';
 export * from './contracts/font.css.js';
 export * from './contracts/spacing.css.js';
 export * from './global.css.js';
