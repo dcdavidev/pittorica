@@ -71,5 +71,6 @@ const ExampleContent = () => (
 export const Playground: Story = {
   args: {
     children: <ExampleContent />,
+    gap: 'medium',
   },
 };
