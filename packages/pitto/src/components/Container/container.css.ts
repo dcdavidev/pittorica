@@ -9,42 +9,42 @@ export const containerRecipe = recipe({
   variants: {
     size: {
       none: {
-        marginLeft: 0,
-        marginRight: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
       },
       fixed: {
-        marginLeft: '1rem',
-        marginRight: '1rem',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
       },
       xxlarge: {
         maxWidth: '87.5rem', // 1400px
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        paddingLeft: 'auto',
+        paddingRight: 'auto',
       },
       xlarge: {
         maxWidth: '75rem', // 1200px
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        paddingLeft: 'auto',
+        paddingRight: 'auto',
       },
       large: {
         maxWidth: '62rem', // 992px
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        paddingLeft: 'auto',
+        paddingRight: 'auto',
       },
       medium: {
         maxWidth: '48rem', // 768px
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        paddingLeft: 'auto',
+        paddingRight: 'auto',
       },
       small: {
         maxWidth: '36rem', // 576px
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        paddingLeft: 'auto',
+        paddingRight: 'auto',
       },
       xsmall: {
         maxWidth: '22.5rem', // 360px
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        paddingLeft: 'auto',
+        paddingRight: 'auto',
       },
     },
   },
