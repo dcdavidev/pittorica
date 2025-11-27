@@ -6,6 +6,7 @@ export default defineConfig([
     'old/',
     '**/vite.config.*.timestamp*',
     '**/vitest.config.*.timestamp*',
+    'packages/picto/',
   ]),
   ...spellbookx.configs['recommended-react'],
 ]);

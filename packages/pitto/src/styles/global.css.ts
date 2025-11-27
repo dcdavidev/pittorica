@@ -18,6 +18,6 @@ globalStyle('body', {
   fontFamily: pitto.font.family.sans,
   fontSize: pitto.font.size.body.medium,
 
-  backgroundColor: pitto.surface[0].color,
-  color: pitto.surface[0].onColor,
+  backgroundColor: pitto.color.brand[0].color,
+  color: pitto.color.brand[0].onColor,
 });

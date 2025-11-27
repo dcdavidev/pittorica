@@ -1,6 +1,6 @@
 import { defineProperties } from '@vanilla-extract/sprinkles';
 
-import { pitto } from './contract.css';
+import { pitto } from '../contract.css';
 
 const sizeMap = Object.assign(
   {},

@@ -1,5 +1,5 @@
 export const PALETTE = {
-  transparent: 'transparent',
+  transparent: 'rgba(0,0,0,0)',
   black: '#1a1313',
   white: '#f4f4f4',
   gray: '#757575',
