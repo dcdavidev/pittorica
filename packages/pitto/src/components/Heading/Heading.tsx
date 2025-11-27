@@ -2,14 +2,13 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import { RecipeVariants } from '@vanilla-extract/recipes';
+import { type RecipeVariants } from '@vanilla-extract/recipes';
 
-import { Box, BoxProps } from '../Box/Box.js';
-import { headingRecipe } from './heading.css.js';
+import { Box, type BoxProps } from '../Box/Box.js';
+import { headingStyle } from './heading.css.js';
 
 // Extract variants from the recipe
-type HeadingVariants = RecipeVariants<typeof headingRecipe>;
-
+type HeadingVariants = RecipeVariants<typeof headingStyle>;
 /**
  * Props for the Heading component.
  * Extends BoxProps (minus 'as') to inherit all atomic styles like color, margin, etc.
@@ -31,29 +30,18 @@ export type HeadingProps = Omit<BoxProps, 'as'> & {
   size?: NonNullable<HeadingVariants>['size'];
 };
 
-/**
- * A semantic heading component (h1-h6) with modern typography styles.
- * Separates semantic level from visual appearance for better accessibility.
- *
- * @param props - Component props.
- * @returns The rendered heading element.
- * @example
- * <Heading level={1} variant="display" size="large">Main Title</Heading>
- * @example
- * <Heading level={2} variant="headline" color="brand">Section Title</Heading>
- */
-export const Heading = ({
+export const Heading: React.FC<HeadingProps> = ({
   level = 2,
   variant = 'headline',
   size = 'medium',
-  color = 'text',
+  color = 'inherit',
   className,
   children,
   ...props
-}: HeadingProps): React.JSX.Element => {
+}) => {
   const Tag = `h${level}` as React.ElementType;
 
-  const recipeClass = headingRecipe({ variant, size });
+  const recipeClass = headingStyle({ variant, size });
 
   return (
     <Box

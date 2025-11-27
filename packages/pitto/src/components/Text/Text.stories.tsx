@@ -1,12 +1,8 @@
-import React from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { colorsMap } from '../../styles/sprinkles.css.js';
-import { themeClass } from '../../styles/theme.css.js';
+import { SCALABLE_COLOR_TOKENS } from '../../styles/index.js';
+import { Container } from '../Container/Container.js';
 import { Text, type TextProps } from './Text.js';
-
-const colorOptions = Object.keys(colorsMap);
 
 const meta: Meta<TextProps> = {
   title: 'Typography/Text',
@@ -14,9 +10,9 @@ const meta: Meta<TextProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className={themeClass} style={{ padding: '2rem' }}>
+      <Container size="fixed" style={{ marginTop: 'calc(50vh - 2rem)' }}>
         <Story />
-      </div>
+      </Container>
     ),
   ],
   argTypes: {
@@ -38,7 +34,7 @@ const meta: Meta<TextProps> = {
     },
     color: {
       control: 'select',
-      options: colorOptions,
+      options: SCALABLE_COLOR_TOKENS,
       description: 'Sprinkles color token.',
     },
   },

@@ -24,6 +24,11 @@ export const fontContract = createThemeContract({
     bold: '',
     extrabold: '',
   },
+  lineHeights: {
+    tight: '',
+    normal: '',
+    loose: '',
+  },
   size: {
     root: '',
     body: fontSizeScale,

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { themeClass } from '../../styles/theme.css.js';
-import { Abbreviation, AbbreviationProps } from './Abbreviation';
+import { Container } from '../Container/Container';
+import { Abbreviation, type AbbreviationProps } from './Abbreviation';
 
 const meta: Meta<AbbreviationProps> = {
   title: 'Typography/Abbreviation',
@@ -9,9 +9,15 @@ const meta: Meta<AbbreviationProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className={themeClass} style={{ padding: '2rem' }}>
+      <Container
+        size="small"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        style={{ height: '100vh' }}
+      >
         <Story />
-      </div>
+      </Container>
     ),
   ],
   argTypes: {

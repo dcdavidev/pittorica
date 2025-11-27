@@ -2,12 +2,12 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import { RecipeVariants } from '@vanilla-extract/recipes';
+import type { RecipeVariants } from '@vanilla-extract/recipes';
 
-import { Box, BoxProps } from '../Box/Box.js';
-import { abbreviationRecipe } from './abbreviation.css.js';
+import { Box, type BoxProps } from '../Box/Box.js';
+import { abbreviationStyle } from './abbreviation.css.js';
 
-type AbbreviationVariants = RecipeVariants<typeof abbreviationRecipe>;
+type AbbreviationVariants = RecipeVariants<typeof abbreviationStyle>;
 
 /**
  * Props for the Abbreviation component.
@@ -38,14 +38,14 @@ export interface AbbreviationProps extends Omit<BoxProps, 'as'> {
  * @example
  * <Abbreviation title="Cascading Style Sheets" variant="noUnderline">CSS</Abbreviation>
  */
-export const Abbreviation = ({
+export const Abbreviation: React.FC<AbbreviationProps> = ({
   title,
   variant = 'default',
   className,
   children,
   ...props
-}: AbbreviationProps): React.JSX.Element => {
-  const recipeClass = abbreviationRecipe({ variant });
+}) => {
+  const recipeClass = abbreviationStyle({ variant });
 
   return (
     <Box

@@ -2,19 +2,19 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import { RecipeVariants } from '@vanilla-extract/recipes';
+import { type RecipeVariants } from '@vanilla-extract/recipes';
 
-import { Box, BoxProps } from '../Box/Box.js';
-import { textRecipe } from './text.css.js';
+import { Box, type BoxProps } from '../Box/Box.js';
+import { textStyle } from './text.css.js';
 
 // Extract variants from the recipe
-type TextVariants = RecipeVariants<typeof textRecipe>;
+type TextVariants = RecipeVariants<typeof textStyle>;
 
 /**
  * Props for the Text component.
  * We extend BoxProps to inherit all spacing/layout atoms.
  */
-export type TextProps = Omit<BoxProps, 'as'> & {
+export interface TextProps extends Omit<BoxProps, 'as' | 'htmlFor'> {
   /**
    * The semantic HTML tag. Defaults to 'p'.
    */
@@ -41,35 +41,26 @@ export type TextProps = Omit<BoxProps, 'as'> & {
   size?: NonNullable<TextVariants>['size'];
 
   htmlFor?: React.LabelHTMLAttributes<HTMLLabelElement>['htmlFor'];
-};
+}
 
-/**
- * A versatile text component for body content, labels, and descriptions.
- *
- * @param {TextProps} props Component props.
- * @returns {React.JSX.Element} The rendered text.
- * @example
- * <Text variant="body" size="large">This is a paragraph.</Text>
- * <Text as="label" variant="label" color="error">Username *</Text>
- */
-export const Text = ({
+export const Text: React.FC<TextProps> = ({
   as = 'p',
   variant = 'body',
   size = 'large',
-  color = 'text', // Set default color to ensure visibility
+  color = 'inherit',
   className,
   children,
   htmlFor,
   ...props
-}: TextProps): React.JSX.Element => {
-  const recipeClass = textRecipe({ variant, size });
+}) => {
+  const recipeClass = textStyle({ variant, size });
 
   return (
     <Box
       as={as}
       className={clsx(recipeClass, className)}
       color={color}
-      htmlFor={htmlFor}
+      {...(as === 'label' && htmlFor ? { htmlFor } : {})}
       {...props}
     >
       {children}
