@@ -7,6 +7,8 @@ export * from './Divider/index.js';
 export * from './Grid/index.js';
 export * from './Heading/index.js';
 export * from './Inline/index.js';
+export * from './Linebreak/index.js';
+export * from './Paragraph/index.js';
 export * from './Pre/index.js';
 export * from './Quote/index.js';
 export * from './Stack/index.js';

@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Container } from '../Container/Container.js';
 import { Text } from '../Text/Text.js';
-import { LineBreak, type LineBreakProps } from './LineBreak.js';
+import { Linebreak, type LinebreakProps } from './Linebreak.js';
 
-const meta: Meta<LineBreakProps> = {
-  title: 'Typography/LineBreak',
-  component: LineBreak,
+const meta: Meta<LinebreakProps> = {
+  title: 'Typography/Linebreak',
+  component: Linebreak,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
@@ -18,14 +18,14 @@ const meta: Meta<LineBreakProps> = {
 };
 
 export default meta;
-type Story = StoryObj<LineBreakProps>;
+type Story = StoryObj<LinebreakProps>;
 
 export const Default: Story = {
   render: (args) => (
     <Text>
       This is the first line.
-      <LineBreak {...args} />
-      This is the second line (forced by LineBreak).
+      <Linebreak {...args} />
+      This is the second line (forced by Linebreak).
     </Text>
   ),
 };
@@ -34,11 +34,11 @@ export const PoemExample: Story = {
   render: (args) => (
     <Text as="div">
       Roses are red,
-      <LineBreak {...args} />
+      <Linebreak {...args} />
       Violets are blue,
-      <LineBreak {...args} />
+      <Linebreak {...args} />
       Sugar is sweet,
-      <LineBreak {...args} />
+      <Linebreak {...args} />
       And so are you.
     </Text>
   ),
