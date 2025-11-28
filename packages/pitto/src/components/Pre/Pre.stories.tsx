@@ -1,8 +1,6 @@
-import React from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { themeClass } from '../../styles/theme.css.js';
+import { Container } from '../Container/Container.js';
 import { Pre, type PreProps } from './Pre.js';
 
 const meta: Meta<PreProps> = {
@@ -11,12 +9,9 @@ const meta: Meta<PreProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div
-        className={themeClass}
-        style={{ padding: '2rem', maxWidth: '600px' }}
-      >
+      <Container size="fixed" style={{ marginTop: '1rem' }}>
         <Story />
-      </div>
+      </Container>
     ),
   ],
   argTypes: {

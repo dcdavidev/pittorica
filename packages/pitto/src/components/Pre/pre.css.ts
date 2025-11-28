@@ -1,12 +1,12 @@
 import { recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '../../styles/theme.css.js';
+import { pitto } from '../../styles/contract.css.js';
 
 export const preRecipe = recipe({
   base: {
-    fontFamily: vars.typography.fonts.mono,
-    fontSize: vars.typography.fontSizes.bodySmall,
-    lineHeight: vars.typography.lineHeights.normal,
+    fontFamily: pitto.font.family.mono,
+    fontSize: pitto.font.size.body.small,
+    lineHeight: pitto.font.lineHeights.normal,
     overflowX: 'auto',
     whiteSpace: 'pre',
     margin: 0,
@@ -20,11 +20,10 @@ export const preRecipe = recipe({
         border: 'none',
       },
       block: {
-        backgroundColor: vars.colors.light,
-        padding: vars.space.medium,
-        borderRadius: vars.border.radius.medium,
-        border: `1px solid ${vars.colors.dark}`,
-        color: vars.colors.text,
+        padding: pitto.spacing.medium,
+        borderRadius: pitto.border.radius.medium,
+        border: `1px solid ${pitto.color.black.black.color}`,
+        color: pitto.color.black.black.color,
       },
     },
   },

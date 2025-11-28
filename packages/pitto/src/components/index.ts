@@ -16,6 +16,8 @@ export * from './Inline/Inline.js';
 export * from './LineBreak/LineBreak.js';
 export * from './Paragraph/paragraph.css.js';
 export * from './Paragraph/Paragraph.js';
+export * from './Pre/pre.css.js';
+export * from './Pre/Pre.js';
 export * from './Stack/stack.css.js';
 export * from './Stack/Stack.js';
 export * from './Surface/surface.css.js';
