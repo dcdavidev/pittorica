@@ -15,7 +15,7 @@ export type ParagraphProps = Omit<BoxProps, 'as' | 'htmlFor'> & {
   htmlFor?: React.LabelHTMLAttributes<HTMLLabelElement>['htmlFor'];
 };
 
-export const Paragraph = ({
+export const Paragraph: React.FC<ParagraphProps> = ({
   size = 'medium',
   variant = 'body',
   color = 'inherit',
@@ -23,7 +23,7 @@ export const Paragraph = ({
   className,
   children,
   ...props
-}: ParagraphProps): React.JSX.Element => {
+}) => {
   const paragraphClass = paragraphRecipe({ variant, size });
 
   return (
