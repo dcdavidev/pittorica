@@ -1,11 +1,11 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { atoms } from '../../../../picto/src/styles/sprinkles.css.js';
-import { vars } from '../../../../picto/src/styles/theme.css.js';
+import { pitto } from '../../styles/contract.css.js';
+import { sprinkles } from '../../styles/sprinkles.css.js';
 
 const baseStyle = style([
-  atoms({
+  sprinkles({
     display: 'flex',
     width: '100%',
     alignItems: 'center',
@@ -13,22 +13,21 @@ const baseStyle = style([
   {
     position: 'relative',
     transition: 'all 0.2s ease-in-out',
-    fontFamily: vars.typography.fonts.sans,
-    fontSize: vars.typography.fontSizes.bodyLarge,
-    color: vars.colors.text,
+    fontFamily: pitto.font.family.sans,
+    fontSize: pitto.font.size.body.large,
     background: 'transparent',
     border: '1px solid',
-    borderColor: vars.colors.uiBorder,
-    borderRadius: vars.border.radius.medium,
+    borderColor: pitto.color.brand.brand.color,
+    borderRadius: pitto.border.radius.medium,
     resize: 'vertical',
     minHeight: '3rem',
     boxSizing: 'border-box',
     lineHeight: 1.5,
     overflow: 'hidden',
-    padding: vars.space.medium,
+    padding: pitto.spacing.medium,
     selectors: {
       '&:focus-within': {
-        outline: `2px solid ${vars.colors.brand[500]}`,
+        outline: `2px solid ${pitto.color.brand[500].color}`,
         outlineOffset: '-1px',
       },
     },
@@ -43,34 +42,32 @@ export const textareaRecipe = recipe({
         backgroundColor: 'transparent',
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderColor: vars.colors.uiBorder,
-        ':hover': { borderColor: vars.colors.gray[700] },
+        borderColor: pitto.color.brand.brand.color,
+        ':hover': { borderColor: pitto.color.gray[700].color },
         selectors: {
           '&:focus-within': {
-            borderColor: vars.colors.brand[500],
+            borderColor: pitto.color.brand[500].color,
           },
         },
       }),
       filled: style([
-        atoms({
-          backgroundColor: 'gray-100',
-        }),
         {
+          backgroundColor: pitto.color.gray[100].color,
           borderBottomWidth: '1px',
           borderBottomStyle: 'solid',
-          borderColor: vars.colors.gray[400],
-          borderTopLeftRadius: vars.border.radius.medium,
-          borderTopRightRadius: vars.border.radius.medium,
+          borderColor: pitto.color.gray[400].color,
+          borderTopLeftRadius: pitto.border.radius.medium,
+          borderTopRightRadius: pitto.border.radius.medium,
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
-          color: vars.colors.gray[900],
+          color: pitto.color.gray[900].color,
           ':hover': {
-            backgroundColor: vars.colors.gray[200],
+            backgroundColor: pitto.color.gray[200].color,
           },
           selectors: {
             '&:focus-within': {
-              backgroundColor: vars.colors.gray[100],
-              borderBottomColor: vars.colors.brand[500],
+              backgroundColor: pitto.color.gray[100].color,
+              borderBottomColor: pitto.color.brand[500].color,
             },
           },
         },
@@ -78,21 +75,21 @@ export const textareaRecipe = recipe({
     },
     size: {
       small: style([
-        atoms({
+        sprinkles({
           padding: 'small',
           fontSize: 'bodySmall',
         }),
         { minHeight: '2.5rem' },
       ]),
       medium: style([
-        atoms({
+        sprinkles({
           padding: 'medium',
           fontSize: 'bodyMedium',
         }),
         { minHeight: '3rem' },
       ]),
       large: style([
-        atoms({
+        sprinkles({
           padding: 'large',
           fontSize: 'bodyLarge',
         }),
@@ -101,12 +98,13 @@ export const textareaRecipe = recipe({
     },
     error: {
       true: style({
-        borderColor: vars.colors.error[500],
-        boxShadow: `0 0 0 1px ${vars.colors.error[500]}`,
+        borderColor: pitto.color.error[500].color,
+        color: pitto.color.error[500].color,
+        boxShadow: `0 0 0 1px ${pitto.color.error[500].color}`,
         selectors: {
           '&:focus-within': {
-            outlineColor: vars.colors.error[500],
-            borderColor: vars.colors.error[500],
+            outlineColor: pitto.color.error[500].color,
+            borderColor: pitto.color.error[500].color,
           },
         },
       }),
@@ -115,7 +113,7 @@ export const textareaRecipe = recipe({
       true: style({
         opacity: 0.6,
         cursor: 'not-allowed',
-        backgroundColor: vars.colors.gray[100],
+        backgroundColor: pitto.color.gray[100].color,
         pointerEvents: 'none',
       }),
     },

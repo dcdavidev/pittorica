@@ -15,3 +15,4 @@ export * from './Quote/index.js';
 export * from './Stack/index.js';
 export * from './Surface/index.js';
 export * from './Text/index.js';
+export * from './Textarea/index.js';

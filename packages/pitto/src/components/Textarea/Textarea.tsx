@@ -2,10 +2,10 @@ import React, { useId, useLayoutEffect, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 
-import { RecipeVariants } from '@vanilla-extract/recipes';
+import { type RecipeVariants } from '@vanilla-extract/recipes';
 
-import { vars } from '../../../../picto/src/styles/theme.css.js';
-import { Box, BoxProps } from '../Box/Box.js';
+import { pitto } from '../../styles/contract.css.js';
+import { Box, type BoxProps } from '../Box/Box.js';
 import { Text } from '../Text/Text.js';
 import { textareaRecipe } from './textarea.css.js';
 
@@ -21,7 +21,7 @@ export type TextareaProps = Omit<BoxProps, 'as' | 'children'> &
     disabled?: NonNullable<TextareaVariants>['disabled'];
   };
 
-export const Textarea = ({
+export const Textarea: React.FC<TextareaProps> = ({
   label,
   hasError = false,
   helpText,
@@ -33,9 +33,11 @@ export const Textarea = ({
   size = 'medium',
   disabled = false,
   ...props
-}: TextareaProps): React.JSX.Element => {
-  const inputId = props.id || useId();
+}) => {
+  const { ref: _ignoredRef, ...rest } = props;
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const inputId = props.id || useId();
 
   const [internalValue, setInternalValue] = useState(props.defaultValue || '');
   const controlledValue = value === undefined ? internalValue : value;
@@ -47,30 +49,26 @@ export const Textarea = ({
     disabled: disabled || props.readOnly,
   });
 
-  useLayoutEffect(() => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
+  const errorStyle = hasError
+    ? {
+        borderColor: pitto.color.error[500].color,
+        boxShadow: `0 0 0 1px ${pitto.color.error[500].color}`,
+      }
+    : {};
 
-    // Fix Irregular Whitespace Errors on these lines:
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
+  useLayoutEffect(() => {
+    const t = textareaRef.current;
+    if (!t) return;
+    t.style.height = 'auto';
+    t.style.height = `${t.scrollHeight}px`;
   }, [controlledValue]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (value === undefined) {
       setInternalValue(e.target.value);
     }
-    if (onChange) {
-      onChange(e);
-    }
+    onChange?.(e);
   };
-
-  const errorStyle = hasError
-    ? {
-        borderColor: vars.colors.error[500],
-        boxShadow: `0 0 0 1px ${vars.colors.error[500]}`,
-      }
-    : {};
 
   return (
     <Box as="div">
@@ -84,6 +82,7 @@ export const Textarea = ({
           {label}
         </Text>
       )}
+
       <textarea
         id={inputId}
         ref={textareaRef}
@@ -93,14 +92,17 @@ export const Textarea = ({
         onChange={handleInputChange}
         aria-invalid={hasError}
         disabled={disabled}
-        {...props}
+        {...rest}
       />
+
       {helpText && (
         <Text
           size="small"
           style={{
             marginTop: '0.25rem',
-            color: hasError ? vars.colors.error[500] : vars.colors.text,
+            color: hasError
+              ? pitto.color.error[500].color
+              : pitto.color.gray[500].color,
           }}
         >
           {helpText}

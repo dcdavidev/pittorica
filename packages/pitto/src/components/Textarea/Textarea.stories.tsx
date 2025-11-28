@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Container } from '../Container/Container';
-import { Textarea, TextareaProps } from './Textarea';
+import { Textarea, type TextareaProps } from './Textarea';
 
 const longText = `This is a very long story.
 The Textarea component should automatically grow as I type.
@@ -20,7 +20,7 @@ const meta: Meta<TextareaProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container maxWidth="sm">
+      <Container size="medium" padding="large">
         <Story />
       </Container>
     ),
