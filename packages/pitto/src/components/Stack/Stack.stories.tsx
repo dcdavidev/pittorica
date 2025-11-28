@@ -17,13 +17,7 @@ const meta: Meta<StackProps> = {
 
   decorators: [
     (Story) => (
-      <Container
-        size="none"
-        display={'flex'}
-        alignItems={'center'}
-        justifyContent={'center'}
-        style={{ height: '100vh' }}
-      >
+      <Container size="none" padding="large">
         <Story />
       </Container>
     ),

@@ -13,13 +13,7 @@ const meta: Meta<SurfaceProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container
-        size="medium"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        style={{ height: '100vh' }}
-      >
+      <Container size="medium" padding="large">
         <Story />{' '}
       </Container>
     ),

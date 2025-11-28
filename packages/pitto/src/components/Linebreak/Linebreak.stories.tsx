@@ -10,7 +10,7 @@ const meta: Meta<LinebreakProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container padding="large">
+      <Container size="fixed" padding="large">
         <Story />
       </Container>
     ),

@@ -87,7 +87,11 @@ export const Textarea: React.FC<TextareaProps> = ({
         id={inputId}
         ref={textareaRef}
         className={clsx(recipeClass, className)}
-        style={{ ...errorStyle, ...style }}
+        style={{
+          ...errorStyle,
+          ...(disabled && { cursor: 'not-allowed' }),
+          ...style,
+        }}
         value={controlledValue}
         onChange={handleInputChange}
         aria-invalid={hasError}

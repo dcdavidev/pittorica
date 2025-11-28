@@ -9,13 +9,7 @@ const meta: Meta<AbbreviationProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container
-        size="small"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        style={{ height: '100vh' }}
-      >
+      <Container size="small" padding="large">
         <Story />
       </Container>
     ),

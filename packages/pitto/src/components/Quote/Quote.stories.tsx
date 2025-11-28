@@ -9,7 +9,7 @@ const meta: Meta<QuoteProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container size="fixed" style={{ marginTop: '1rem' }}>
+      <Container size="fixed" padding="large">
         <Story />
       </Container>
     ),

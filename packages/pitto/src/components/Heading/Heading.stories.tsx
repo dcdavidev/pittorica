@@ -10,13 +10,7 @@ const meta: Meta<HeadingProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container
-        size="fixed"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: '30vh', padding: '2rem' }}
-      >
+      <Container size="fixed" padding="large">
         <Story />
       </Container>
     ),

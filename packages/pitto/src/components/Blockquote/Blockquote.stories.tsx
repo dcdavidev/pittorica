@@ -10,10 +10,7 @@ const meta: Meta<BlockquoteProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container
-        size="fixed"
-        style={{ marginTop: 'calc(50vh - 4rem)', minHeight: '100px' }}
-      >
+      <Container size="fixed" padding="large">
         <Story />
       </Container>
     ),

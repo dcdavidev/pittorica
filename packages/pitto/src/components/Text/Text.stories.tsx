@@ -10,7 +10,7 @@ const meta: Meta<TextProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container size="fixed" style={{ marginTop: 'calc(50vh - 2rem)' }}>
+      <Container size="fixed" padding="large">
         <Story />
       </Container>
     ),

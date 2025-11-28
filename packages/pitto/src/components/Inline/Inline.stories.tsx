@@ -10,13 +10,7 @@ const meta: Meta<InlineProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container
-        size="fixed"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        style={{ height: '100vh' }}
-      >
+      <Container size="fixed" padding="large">
         <Story />
       </Container>
     ),
