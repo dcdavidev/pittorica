@@ -12,7 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { themeClass } from '../../styles/theme.css.js';
 import { Button } from '../Button/Button.jsx';
-import { Input } from '../Input/Input';
+import { Input } from '../../../../pitto/src/components/Input/Input.js';
 import { Stack } from '../Stack/Stack.jsx';
 import { Sheet, SheetProps } from './Sheet';
 

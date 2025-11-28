@@ -1,13 +1,12 @@
-// input.css.ts
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { atoms } from '../../styles/sprinkles.css.js';
-import { vars } from '../../styles/theme.css.js';
+import { pitto } from '../../styles/contract.css.js';
+import { sprinkles } from '../../styles/sprinkles.css.js';
 
 export const inputRecipe = recipe({
   base: style([
-    atoms({
+    sprinkles({
       display: 'flex',
       alignItems: 'center',
       width: '100%',
@@ -17,13 +16,12 @@ export const inputRecipe = recipe({
       transition: 'all 0.2s ease-in-out',
       cursor: 'text',
 
-      fontFamily: vars.typography.fonts.sans,
-      fontSize: vars.typography.fontSizes.bodyLarge,
-      color: vars.colors.text,
+      fontFamily: pitto.font.family.sans,
+      fontSize: pitto.font.size.body.large,
 
       selectors: {
         '&:focus-within': {
-          outline: `2px solid ${vars.colors.brand[500]}`,
+          outline: `2px solid ${pitto.color.brand[500].color}`,
           outlineOffset: '-1px',
         },
       },
@@ -33,70 +31,73 @@ export const inputRecipe = recipe({
   variants: {
     variant: {
       filled: style([
-        atoms({}),
+        sprinkles({}),
         {
-          backgroundColor: vars.colors.gray[100],
-          borderColor: vars.colors.gray[400],
+          backgroundColor: pitto.color.gray[900].color,
+          borderColor: pitto.color.gray[400].color,
+          color: pitto.color.gray[100].color,
+          borderTopLeftRadius: pitto.border.radius.medium,
+          borderTopRightRadius: pitto.border.radius.medium,
 
           borderBottomWidth: '1px',
           borderBottomStyle: 'solid',
-          borderTopLeftRadius: vars.border.radius.medium,
-          borderTopRightRadius: vars.border.radius.medium,
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-          color: vars.colors.gray[900],
+          borderTopWidth: '0px',
+          borderTopStyle: 'solid',
+          borderLeftWidth: '0px',
+          borderLeftStyle: 'solid',
+          borderRightWidth: '0px',
+          borderRightStyle: 'solid',
 
           ':hover': {
-            backgroundColor: vars.colors.gray[200],
+            backgroundColor: pitto.color.gray[800].color,
           },
           selectors: {
             '&:focus-within': {
-              backgroundColor: vars.colors.gray[100],
-              borderBottomColor: vars.colors.brand[500],
+              backgroundColor: pitto.color.white[900].color,
+              borderBottomColor: pitto.color.brand[500].color,
+              outline: 'none',
             },
           },
         },
       ]),
 
       outlined: style([
-        atoms({
-          borderRadius: 'medium',
-        }),
+        sprinkles({}),
         {
-          borderColor: vars.colors.gray[400],
+          borderTopLeftRadius: pitto.border.radius.medium,
+          borderColor: pitto.color.gray[400].color,
           backgroundColor: 'transparent',
           borderWidth: '1px',
           borderStyle: 'solid',
 
           ':hover': {
-            borderColor: vars.colors.gray[700],
+            borderColor: pitto.color.gray[300].color,
           },
           selectors: {
             '&:focus-within': {
-              borderColor: vars.colors.brand[500],
+              borderColor: pitto.color.brand[500].color,
             },
           },
         },
       ]),
 
       plain: style([
-        atoms({
-          borderColor: 'transparent',
+        sprinkles({
           backgroundColor: 'transparent',
         }),
         {
+          borderColor: 'transparent',
           borderRadius: 0,
           borderBottomWidth: '1px',
           borderBottomStyle: 'solid',
-          borderBottomColor: vars.colors.gray[400],
-
+          borderBottomColor: pitto.color.gray[400].color,
           backgroundColor: 'transparent',
 
           selectors: {
             '&:focus-within': {
               outline: 'none',
               outlineOffset: '0',
-              borderBottomColor: vars.colors.brand[500],
+              borderBottomColor: pitto.color.brand[500].color,
             },
           },
         },
@@ -105,21 +106,21 @@ export const inputRecipe = recipe({
 
     size: {
       small: style([
-        atoms({
+        sprinkles({
           paddingX: 'medium',
           fontSize: 'bodySmall',
         }),
         { height: '2.5rem' },
       ]),
       medium: style([
-        atoms({
+        sprinkles({
           paddingX: 'medium',
           fontSize: 'bodyMedium',
         }),
         { height: '3rem' },
       ]),
       large: style([
-        atoms({
+        sprinkles({
           paddingX: 'large',
           fontSize: 'bodyLarge',
         }),
@@ -129,11 +130,12 @@ export const inputRecipe = recipe({
 
     error: {
       true: style({
-        borderColor: vars.colors.error[500],
+        color: pitto.color.error[500].color,
+        borderColor: pitto.color.error[500].color,
         selectors: {
           '&:focus-within': {
-            outlineColor: vars.colors.error[500],
-            borderColor: vars.colors.error[500],
+            outlineColor: pitto.color.error[500].color,
+            borderColor: pitto.color.error[500].color,
           },
         },
       }),
@@ -143,13 +145,13 @@ export const inputRecipe = recipe({
       true: style({
         opacity: 0.5,
         cursor: 'not-allowed',
-        backgroundColor: vars.colors.gray[100],
+        backgroundColor: pitto.color.gray[900].color,
         pointerEvents: 'none',
       }),
     },
 
     fullWidth: {
-      true: atoms({ width: '100%' }),
+      true: sprinkles({ width: '100%' }),
       false: style({ width: 'auto', display: 'inline-flex' }),
     },
   },
@@ -164,18 +166,18 @@ export const inputRecipe = recipe({
 // NATIVE INPUT
 export const nativeInput = style({
   border: 'none',
-  background: 'transparent',
   outline: 'none',
   width: '100%',
   height: '100%',
   color: 'inherit',
   fontFamily: 'inherit',
   fontSize: 'inherit',
-  padding: 0,
+  padding: pitto.spacing.small,
   margin: 0,
+  backgroundColor: 'transparent',
 
   '::placeholder': {
-    color: vars.colors.gray[500],
+    color: pitto.color.gray[500].color,
     opacity: 1,
   },
 
@@ -186,44 +188,45 @@ export const nativeInput = style({
 
 // DECORATORS
 export const decorator = style({
+  padding: pitto.spacing.medium,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: vars.colors.gray[600],
+  color: pitto.color.gray[600].color,
   flexShrink: 0,
 });
 
 export const startDecoratorStyle = style([
   decorator,
-  { marginRight: vars.space.medium },
+  { marginRight: pitto.spacing.medium, paddingRight: pitto.spacing.none },
 ]);
 
 export const endDecoratorStyle = style([
   decorator,
-  { marginLeft: vars.space.medium },
+  { marginLeft: pitto.spacing.medium, paddingLeft: pitto.spacing.none },
 ]);
 
 // HELPER TEXT
 export const helperTextRecipe = recipe({
   base: style([
-    atoms({
+    sprinkles({
       marginTop: 'small',
       paddingX: 'small',
     }),
     {
-      fontFamily: vars.typography.fonts.sans,
-      fontSize: vars.typography.fontSizes.bodySmall,
-      lineHeight: vars.typography.lineHeights.normal,
+      fontFamily: pitto.font.family.sans,
+      fontSize: pitto.font.size.body.small,
+      lineHeight: pitto.font.lineHeights.normal,
     },
   ]),
 
   variants: {
     error: {
       true: style({
-        color: vars.colors.error[500],
+        color: pitto.color.error[500].color,
       }),
       false: style({
-        color: vars.colors.gray[500],
+        color: pitto.color.gray[500].color,
       }),
     },
   },

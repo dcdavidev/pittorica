@@ -9,20 +9,18 @@ import {
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { themeClass } from '../../styles/theme.css.js';
+import { Container } from '../Container/Container.js';
 import { Input } from './Input.js';
 
 const meta: Meta<typeof Input> = {
   title: 'Inputs/Input',
   component: Input,
+  tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div
-        className={themeClass}
-        style={{ padding: '20px', maxWidth: '400px' }}
-      >
+      <Container size="medium" padding="large">
         <Story />
-      </div>
+      </Container>
     ),
   ],
   argTypes: {

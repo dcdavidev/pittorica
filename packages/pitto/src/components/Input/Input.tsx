@@ -1,8 +1,8 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { type InputHTMLAttributes } from 'react';
 
 import clsx from 'clsx';
 
-import { RecipeVariants } from '@vanilla-extract/recipes';
+import { type RecipeVariants } from '@vanilla-extract/recipes';
 
 import {
   endDecoratorStyle,
@@ -88,7 +88,9 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
  * A flexible Input component following Material Design 3 specs.
  * React 19 Version: 'ref' is passed as a standard prop.
  */
-export const Input = ({
+export const Input: React.FC<
+  InputProps & { ref?: React.Ref<HTMLInputElement> }
+> = ({
   ref,
   variant = 'outlined',
   size = 'medium',
@@ -101,7 +103,7 @@ export const Input = ({
   helperText,
   style,
   ...props
-}: InputProps & { ref?: React.Ref<HTMLInputElement> }) => {
+}) => {
   const wrapperClass = inputRecipe({
     variant,
     size,
@@ -115,7 +117,11 @@ export const Input = ({
   return (
     <div
       className={clsx(inputContainer, className)}
-      style={{ width: fullWidth ? '100%' : 'auto', ...style }}
+      style={{
+        width: fullWidth ? '100%' : 'auto',
+        cursor: disabled ? 'not-allowed' : 'text',
+        ...style,
+      }}
     >
       {/* INPUT VISUAL BOX */}
       <div className={wrapperClass}>
