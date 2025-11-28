@@ -1,4 +1,3 @@
-// src/components/Box/Box.tsx
 import React, { type ElementType, type ReactNode } from 'react';
 
 import clsx from 'clsx';
