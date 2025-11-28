@@ -2,13 +2,16 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import { Box, type BoxProps } from '../Box/Box.js';
+import { Box, type BoxProps } from '../Box';
 
 /**
  * Props for the LineBreak component.
  * It accepts all Box props except 'children' (void element) and 'as' (locked to 'br').
  */
-export type LineBreakProps = Omit<BoxProps, 'as' | 'children'>;
+export interface LineBreakProps extends Omit<BoxProps, 'children' | 'as'> {
+  style?: React.CSSProperties;
+  className?: string;
+}
 
 /**
  * A semantic component for inserting a single line break (<br>).
@@ -17,11 +20,6 @@ export type LineBreakProps = Omit<BoxProps, 'as' | 'children'>;
  * @param {LineBreakProps} props Component props.
  * @returns {React.JSX.Element} The rendered line break.
  */
-export const LineBreak = ({
-  className,
-  ...props
-}: LineBreakProps): React.JSX.Element => {
-  return (
-    <Box as="br" className={clsx('picto-linebreak', className)} {...props} />
-  );
+export const LineBreak: React.FC<LineBreakProps> = ({ className, style }) => {
+  return <Box as="br" className={clsx(className)} style={{ ...style }} />;
 };

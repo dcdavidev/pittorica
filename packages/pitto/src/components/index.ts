@@ -13,6 +13,7 @@ export * from './Heading/heading.css.js';
 export * from './Heading/Heading.js';
 export * from './Inline/inline.css.js';
 export * from './Inline/Inline.js';
+export * from './LineBreak/LineBreak.js';
 export * from './Stack/stack.css.js';
 export * from './Stack/Stack.js';
 export * from './Surface/surface.css.js';

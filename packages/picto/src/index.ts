@@ -28,7 +28,7 @@ export * from './components/Inline/inline.css.js';
 export * from './components/Inline/Inline.js';
 export * from './components/Input/input.css.js';
 export * from './components/Input/Input.js';
-export * from './components/LineBreak/LineBreak.js';
+export * from '../../pitto/src/components/LineBreak/LineBreak.js';
 export * from './components/Paragraph/Paragraph.js';
 export * from './components/Pre/pre.css.js';
 export * from './components/Pre/Pre.js';

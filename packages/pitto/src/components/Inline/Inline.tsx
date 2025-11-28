@@ -58,7 +58,7 @@ export type InlineProps = Omit<BoxProps, 'as'> & {
   sup?: boolean;
 };
 
-export const Inline = ({
+export const Inline: React.FC<InlineProps> = ({
   bold,
   italic,
   highlight,
@@ -70,7 +70,7 @@ export const Inline = ({
   className,
   children,
   ...props
-}: InlineProps): React.JSX.Element => {
+}) => {
   let as: React.ElementType = 'span';
   if (sub) as = 'sub';
   else if (sup) as = 'sup';

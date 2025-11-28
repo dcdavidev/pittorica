@@ -1,8 +1,6 @@
-import React from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { themeClass } from '../../styles/theme.css.js';
+import { Container } from '../Container/Container.js';
 import { Text } from '../Text/Text.js';
 import { LineBreak, type LineBreakProps } from './LineBreak.js';
 
@@ -12,19 +10,11 @@ const meta: Meta<LineBreakProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className={themeClass} style={{ padding: '2rem' }}>
+      <Container padding="large">
         <Story />
-      </div>
+      </Container>
     ),
   ],
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'A simple wrapper for the `<br />` tag to maintain component consistency.',
-      },
-    },
-  },
 };
 
 export default meta;
