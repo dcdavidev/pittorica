@@ -10,14 +10,7 @@ import { textStyle } from './text.css.js';
 // Extract variants from the recipe
 type TextVariants = RecipeVariants<typeof textStyle>;
 
-/**
- * Props for the Text component.
- * We extend BoxProps to inherit all spacing/layout atoms.
- */
 export interface TextProps extends Omit<BoxProps, 'as' | 'htmlFor'> {
-  /**
-   * The semantic HTML tag. Defaults to 'p'.
-   */
   as?:
     | 'p'
     | 'span'
@@ -29,17 +22,8 @@ export interface TextProps extends Omit<BoxProps, 'as' | 'htmlFor'> {
     | 'blockquote'
     | 'cite'
     | 'small';
-
-  /**
-   * The visual style variant.
-   */
   variant?: NonNullable<TextVariants>['variant'];
-
-  /**
-   * The size of the text.
-   */
   size?: NonNullable<TextVariants>['size'];
-
   htmlFor?: React.LabelHTMLAttributes<HTMLLabelElement>['htmlFor'];
 }
 

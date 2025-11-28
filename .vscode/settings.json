@@ -222,5 +222,6 @@
       ".config/lefthook.toml"
     ]
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "exportall.config.folderListener": ["/packages/pitto/src/components"]
 }

@@ -1,12 +1,8 @@
-import React from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { colorsMap } from '../../styles/sprinkles.css.js';
-import { themeClass } from '../../styles/theme.css.js';
+import { SCALABLE_COLOR_TOKENS } from '../../styles/index.js';
+import { Container } from '../Container/Container.js';
 import { Paragraph, type ParagraphProps } from './Paragraph.js';
-
-const colorOptions = Object.keys(colorsMap);
 
 const meta: Meta<ParagraphProps> = {
   title: 'Typography/Paragraph',
@@ -14,25 +10,26 @@ const meta: Meta<ParagraphProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div
-        className={themeClass}
-        style={{ padding: '2rem', maxWidth: '600px' }}
-      >
+      <Container size="fixed" style={{ padding: '2rem' }}>
         <Story />
-      </div>
+      </Container>
     ),
   ],
   argTypes: {
+    variant: {
+      control: 'select',
+      options: ['body', 'label'],
+    },
     size: {
-      control: 'radio',
+      control: 'select',
       options: ['small', 'medium', 'large'],
-      description: 'The font size of the paragraph.',
-      table: { defaultValue: { summary: 'medium' } },
     },
     color: {
       control: 'select',
-      options: colorOptions,
-      description: 'Text color override.',
+      options: SCALABLE_COLOR_TOKENS,
+    },
+    htmlFor: {
+      control: false,
     },
   },
 };
@@ -55,7 +52,7 @@ export const Small: Story = {
   args: {
     size: 'small',
     children: lorem,
-    color: 'light',
+    color: 'brand',
   },
 };
 
