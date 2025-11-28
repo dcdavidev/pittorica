@@ -1,8 +1,6 @@
-import React from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { themeClass } from '../../styles/theme.css.js';
+import { Container } from '../Container/Container.js';
 import { Text } from '../Text/Text.js';
 import { Inline, type InlineProps } from './Inline.js';
 
@@ -12,11 +10,15 @@ const meta: Meta<InlineProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className={themeClass} style={{ padding: '2rem' }}>
-        <Text size="medium" as="div">
-          <Story />
-        </Text>
-      </div>
+      <Container
+        size="fixed"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        style={{ height: '100vh' }}
+      >
+        <Story />
+      </Container>
     ),
   ],
 };

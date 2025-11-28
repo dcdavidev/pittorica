@@ -2,7 +2,7 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import { Box, BoxProps } from '../Box/Box.js';
+import { Box, type BoxProps } from '../Box/Box.js';
 import { inlineRecipe } from './inline.css.js';
 
 /**
@@ -58,20 +58,6 @@ export type InlineProps = Omit<BoxProps, 'as'> & {
   sup?: boolean;
 };
 
-/**
- * A versatile inline text component supporting multiple semantic HTML elements.
- * Automatically selects the appropriate HTML tag based on the provided boolean props.
- * Priority order: sub > sup > deleted > inserted > highlight > bold > italic > small > span.
- *
- * @param props - Component props.
- * @returns The rendered inline element.
- * @example
- * <Inline bold>Important text</Inline>
- * @example
- * <Inline italic highlight>Highlighted italic text</Inline>
- * @example
- * <Inline sup>2</Inline>
- */
 export const Inline = ({
   bold,
   italic,
@@ -95,37 +81,19 @@ export const Inline = ({
   else if (italic) as = 'em';
   else if (small) as = 'small';
 
-  const recipeClass = inlineRecipe({ highlight });
-
-  const boxProps: Partial<BoxProps> = {};
-
-  if (bold) {
-    boxProps.fontWeight = 'bold';
-  }
-  if (italic) {
-    boxProps.fontStyle = 'italic';
-  }
-  if (small) {
-    boxProps.fontSize = 'labelSmall';
-  }
-  if (deleted) {
-    boxProps.textDecoration = 'line-through';
-  } else if (inserted) {
-    boxProps.textDecoration = 'underline';
-  }
-  if (sub) {
-    boxProps.style = { verticalAlign: 'sub', fontSize: 'smaller' };
-  } else if (sup) {
-    boxProps.style = { verticalAlign: 'super', fontSize: 'smaller' };
-  }
+  const recipeClass = inlineRecipe({
+    highlight,
+    bold,
+    italic,
+    small,
+    deleted,
+    inserted,
+    sub,
+    sup,
+  });
 
   return (
-    <Box
-      as={as}
-      className={clsx(recipeClass, className)}
-      {...boxProps}
-      {...props}
-    >
+    <Box as={as} className={clsx(recipeClass, className)} {...props}>
       {children}
     </Box>
   );
