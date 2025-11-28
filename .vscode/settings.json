@@ -113,7 +113,7 @@
   "exportall.config.includeFoldersToExport": false,
   "exportall.config.namedExports": false,
   "exportall.config.semis": true,
-  "exportall.config.recursive": true,
+  "exportall.config.recursive": false,
   "exportall.config.exclude": [".test.", ".spec.", ".stories.", "/__tests__/"],
   "emojisense.markupCompletionsEnabled": true,
   "emojisense.showOnColon": true,
