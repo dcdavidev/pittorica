@@ -1,6 +1,20 @@
 {
   "name": "@pittorica/pitto",
   "version": "0.0.1",
+  "private": false,
+  "homepage": "https://github.com/dcdavidev/pittorica/tree/main/packages/pitto#readme",
+  "bugs": {
+    "url": "https://github.com/dcdavidev/pittorica/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcdavidev/pittorica.git",
+    "directory": "packages/pitto"
+  },
+  "author": {
+    "name": "Davide Di Criscito",
+    "url": "https://github.com/dcdavidev"
+  },
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -59,6 +73,9 @@
   "devDependencies": {
     "@vanilla-extract/vite-plugin": "^5.1.3",
     "markdown-toc": "^1.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "nx": {
     "targets": {
