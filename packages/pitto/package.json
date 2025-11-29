@@ -51,6 +51,7 @@
     "@vanilla-extract/sprinkles": "^1.6.5",
     "clsx": "^2.1.1",
     "color": "^5.0.3",
+    "motion": "^12.23.24",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

@@ -1,4 +1,5 @@
 export * from './Abbreviation/index.js';
+export * from './Background/index.js';
 export * from './Blockquote/index.js';
 export * from './Box/index.js';
 export * from './Button/index.js';

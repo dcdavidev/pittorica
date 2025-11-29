@@ -1,30 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { themeClass, vars } from '../../styles/theme.css.js';
+import { pitto } from '../../styles/contract.css.js';
 import { Box } from '../Box/Box.js';
 import { Heading } from '../Heading/Heading.js';
 import { Inline } from '../Inline/Inline.js';
-import { Background, BackgroundProps } from './Background.js';
+import { Background, type BackgroundProps } from './Background.js';
 
 const meta: Meta<BackgroundProps> = {
   title: 'Components/Background',
   component: Background,
   tags: ['autodocs'],
-  decorators: [
-    (Story) => (
-      <div
-        className={themeClass}
-        style={{
-          width: '100%',
-          height: '600px', // Fixed height for demonstration
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        <Story />
-      </div>
-    ),
-  ],
   argTypes: {
     variant: {
       control: 'select',
@@ -72,7 +57,7 @@ export const CustomColors: Story = {
  */
 export const AsContainer: Story = {
   render: (args: BackgroundProps) => (
-    <Background {...args} style={{ height: '100%' }}>
+    <Background {...args} style={{ height: '100vh' }}>
       <Box
         style={{
           display: 'flex',
@@ -85,7 +70,7 @@ export const AsContainer: Story = {
         }}
       >
         <Heading variant="display" size="large">
-          <Inline bold>Welcome to Picto</Inline>
+          <Inline bold>Welcome to @pittorica/pitto</Inline>
         </Heading>
         <Heading variant="headline" size="large">
           A beautiful design system
@@ -102,24 +87,23 @@ export const AsContainer: Story = {
 export const Beams: Story = {
   args: {
     variant: 'beams',
-    colors: ['#FFFFFF'],
+    colors: ['brand'],
   },
   render: (args: BackgroundProps) => (
-    <Background {...args} style={{ height: '100%', backgroundColor: 'black' }}>
+    <Background {...args} style={{ height: '100vh' }}>
       <Box
         style={{
           display: 'flex',
           height: '100%',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
+          color: 'black',
         }}
       >
         <Heading
           variant="display"
           size="large"
-          color="textInverse"
-          style={{ letterSpacing: vars.space.large }}
+          style={{ letterSpacing: pitto.spacing.large }}
         >
           Beams
         </Heading>
@@ -129,64 +113,33 @@ export const Beams: Story = {
 };
 
 /**
- * Jupiter planetary background.
- * Features animated gaseous bands and atmospheric glow using SVG filters.
+ * Background using a static image URL.
+ * Demonstrates the 'image' variant with cover behavior.
  */
-export const Jupiter: Story = {
+export const Image: Story = {
   args: {
-    variant: 'jupiter',
+    variant: 'image',
+    imageUrl: 'https://picsum.photos/1200/800',
   },
   render: (args: BackgroundProps) => (
-    <Background {...args} style={{ height: '100%' }}>
+    <Background {...args} style={{ height: '100vh', minHeight: '400px' }}>
       <Box
         style={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%',
           alignItems: 'center',
           justifyContent: 'center',
-          // Text color chosen to complement the deep orange/brown palette of Jupiter
-          color: '#FDEBD0',
-          textShadow: '0 4px 12px rgba(0,0,0,0.8)',
-        }}
-      >
-        <Heading variant="display" size="large" style={{ fontSize: '5rem' }}>
-          JUPITER
-        </Heading>
-        <Heading variant="headline" size="medium">
-          The Gas Giant
-        </Heading>
-      </Box>
-    </Background>
-  ),
-};
-
-/**
- * Moon surface background.
- * Features cratered rocky texture and lighting effects using SVG filters.
- */
-export const Moon: Story = {
-  args: {
-    variant: 'moon',
-  },
-  render: (args: BackgroundProps) => (
-    <Background {...args} style={{ height: '100%' }}>
-      <Box
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
           height: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#FFFFFF',
-          textShadow: '0 4px 20px rgba(0,0,0,1)',
+          color: 'white',
+          textAlign: 'center',
+          textShadow: '0 0 10px rgba(0,0,0,0.9)',
         }}
       >
-        <Heading variant="display" size="large" color="light">
-          MOON
+        <Heading variant="display" size="large">
+          Image Background
         </Heading>
-        <Heading variant="headline" size="medium" color="light">
-          Lunar Surface
+        <Heading variant="headline" size="large">
+          (Cover Mode)
         </Heading>
       </Box>
     </Background>
