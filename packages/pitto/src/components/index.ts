@@ -2,6 +2,7 @@ export * from './Abbreviation/index.js';
 export * from './Blockquote/index.js';
 export * from './Box/index.js';
 export * from './Button/index.js';
+export * from './Checkbox/index.js';
 export * from './Codeblock/index.js';
 export * from './Container/index.js';
 export * from './Divider/index.js';
