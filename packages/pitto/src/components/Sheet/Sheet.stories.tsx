@@ -10,31 +10,14 @@ import {
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { themeClass } from '../../styles/theme.css.js';
-import { Button } from '../Button/Button.jsx';
 import { Input } from '../../../../pitto/src/components/Input/Input.js';
+import { Button } from '../Button/Button.jsx';
 import { Stack } from '../Stack/Stack.jsx';
-import { Sheet, SheetProps } from './Sheet';
+import { Sheet, type SheetProps } from './Sheet';
 
 const meta: Meta<typeof Sheet> = {
   title: 'Overlays/Sheet',
   component: Sheet,
-  decorators: [
-    (Story) => (
-      <div
-        className={themeClass}
-        style={{
-          minHeight: '400px',
-          padding: '2rem',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-        }}
-      >
-        <Story />
-      </div>
-    ),
-  ],
   argTypes: {
     side: {
       control: 'select',
@@ -224,20 +207,20 @@ export const NavigationDrawer: Story = {
     title: 'Menu',
     triggerText: 'Open Menu (Left)',
     children: (
-      <Stack gap="large">
+      <Stack direction="vertical" gap="large">
         <Button
           fullWidth
           variant="text"
-          startDecorator={IconHome}
+          startDecorator={<IconHome />}
           style={{ justifyContent: 'flex-start' }}
-          color="dark"
+          color="black"
         >
           Home
         </Button>
         <Button
           fullWidth
           variant="text"
-          startDecorator={IconMenu2}
+          startDecorator={<IconMenu2 />}
           style={{ justifyContent: 'flex-start' }}
         >
           Projects
@@ -245,7 +228,7 @@ export const NavigationDrawer: Story = {
         <Button
           fullWidth
           variant="text"
-          startDecorator={IconSettings}
+          startDecorator={<IconSettings />}
           style={{ justifyContent: 'flex-start' }}
         >
           Settings
@@ -253,7 +236,7 @@ export const NavigationDrawer: Story = {
         <Button
           fullWidth
           variant="text"
-          startDecorator={IconLogout}
+          startDecorator={<IconLogout />}
           style={{ justifyContent: 'flex-start' }}
         >
           Log Out

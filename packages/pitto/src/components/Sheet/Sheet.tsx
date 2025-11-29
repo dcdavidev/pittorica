@@ -6,10 +6,9 @@ import clsx from 'clsx';
 
 import { IconX } from '@tabler/icons-react';
 
-import { AnimatePresence, motion, PanInfo } from 'motion/react';
-import { RecipeVariants } from '@vanilla-extract/recipes';
+import { AnimatePresence, motion, type PanInfo } from 'motion/react';
+import type { RecipeVariants } from '@vanilla-extract/recipes';
 
-import { themeClass } from '../../styles/theme.css.js';
 import {
   closeButton,
   content,
@@ -62,18 +61,18 @@ const sheetVariants = {
   },
 };
 
-export const Sheet = ({
+export const Sheet: React.FC<SheetProps> = ({
   isOpen,
   onClose,
   side = 'right',
   maxWidth = 'full',
   color,
-  textColor, // <--- Destructuring
+  textColor,
   title,
   showHandle = true,
   children,
   className,
-}: SheetProps) => {
+}) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -118,7 +117,6 @@ export const Sheet = ({
           <motion.div
             className={clsx(
               sheetRecipe({ side, width: appliedWidth }),
-              themeClass,
               className
             )}
             style={{

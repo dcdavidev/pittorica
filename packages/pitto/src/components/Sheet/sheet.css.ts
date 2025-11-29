@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { vars } from '../../styles/theme.css.js';
+import { pitto } from '../../styles/contract.css.js';
 
 const sizes = {
   small: '40rem',
@@ -35,9 +35,9 @@ export const sheetRecipe = recipe({
     maxHeight: '100dvh',
     willChange: 'transform',
     boxSizing: 'border-box',
-    backgroundColor: vars.colors.background,
+    backgroundColor: pitto.color.brand[900].color,
     // Default text color from theme, ensuring inheritance works if not overridden
-    color: vars.colors.text,
+    color: pitto.color.brand[900].onColor,
   }),
 
   variants: {
@@ -109,19 +109,19 @@ export const sheetRecipe = recipe({
 export const dragHandle = style({
   width: '32px',
   height: '4px',
-  backgroundColor: vars.colors.gray[300],
-  borderRadius: vars.border.radius.full,
+  backgroundColor: pitto.color.gray[300].color,
+  borderRadius: pitto.border.radius.full,
   margin: '0 auto',
-  marginTop: vars.space.medium,
-  marginBottom: vars.space.small,
+  marginTop: pitto.spacing.medium,
+  marginBottom: pitto.spacing.small,
   flexShrink: 0,
 });
 
 export const header = style({
-  paddingLeft: vars.space.large,
-  paddingRight: vars.space.large,
-  paddingTop: vars.space.large,
-  paddingBottom: vars.space.medium,
+  paddingLeft: pitto.spacing.large,
+  paddingRight: pitto.spacing.large,
+  paddingTop: pitto.spacing.large,
+  paddingBottom: pitto.spacing.medium,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -129,17 +129,17 @@ export const header = style({
 });
 
 export const titleStyle = style({
-  fontFamily: vars.typography.fonts.sans,
-  fontSize: vars.typography.fontSizes.headlineSmall,
-  fontWeight: vars.typography.fontWeights.medium,
+  fontFamily: pitto.font.family.sans,
+  fontSize: pitto.font.size.headline.small,
+  fontWeight: pitto.font.weight.medium,
   margin: 0,
   color: 'inherit',
 });
 
 export const content = style({
-  paddingLeft: vars.space.small,
-  paddingRight: vars.space.small,
-  paddingBottom: vars.space.xlarge,
+  paddingLeft: pitto.spacing.small,
+  paddingRight: pitto.spacing.small,
+  paddingBottom: pitto.spacing.xlarge,
   flex: 1,
   overflowY: 'auto',
   paddingTop: 0,
@@ -149,8 +149,8 @@ export const closeButton = style({
   background: 'transparent',
   border: 'none',
   cursor: 'pointer',
-  padding: vars.space.small,
-  borderRadius: vars.border.radius.full,
+  padding: pitto.spacing.small,
+  borderRadius: pitto.border.radius.full,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

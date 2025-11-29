@@ -16,6 +16,7 @@ export * from './Linebreak/index.js';
 export * from './Paragraph/index.js';
 export * from './Pre/index.js';
 export * from './Quote/index.js';
+export * from './Sheet/index.js';
 export * from './Stack/index.js';
 export * from './Surface/index.js';
 export * from './Switch/index.js';
