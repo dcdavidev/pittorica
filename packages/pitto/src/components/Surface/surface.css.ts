@@ -7,13 +7,12 @@ import {
   type ColorTokenFull,
 } from '../../styles/sprinkles/color.css.js';
 
-// --- COLOR RECIPE GENERATION ---
-const colorRecipe = {} as Record<BGColorToken, string>;
+const colorRecipe = {} as Partial<Record<BGColorToken, string>>;
 
 const BG_TOKEN_KEYS = COLOR_TOKEN_KEYS.filter((key) => !key.startsWith('on'));
 
 for (const colorKey of BG_TOKEN_KEYS) {
-  if (colorKey === 'transparent') {
+  if (['transparent', 'inherit', 'currentColor'].includes(colorKey)) {
     continue;
   }
 
@@ -25,14 +24,18 @@ for (const colorKey of BG_TOKEN_KEYS) {
   });
 }
 
+const transparentVariant = sprinkles({
+  backgroundColor: 'transparent',
+  color: 'inherit',
+});
+
+delete colorRecipe.transparent;
+
 export const surfaceRecipe = recipe({
   base: {},
   variants: {
     color: {
-      transpartent: {
-        backgroundColor: 'rgba(0,0,0,0)',
-        color: 'inherit',
-      },
+      transparent: transparentVariant,
       ...colorRecipe,
     },
   },
