@@ -11,6 +11,7 @@
     "url": "https://github.com/dcdavidev/pittorica.git",
     "directory": "packages/pitto"
   },
+  "license": "MIT",
   "author": {
     "name": "Davide Di Criscito",
     "url": "https://github.com/dcdavidev"
@@ -53,6 +54,11 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "LICENSE"
+  ],
   "dependencies": {
     "@fontsource-variable/fira-code": "^5.2.7",
     "@fontsource-variable/inter": "^5.2.8",
