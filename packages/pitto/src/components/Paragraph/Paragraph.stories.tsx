@@ -10,7 +10,7 @@ const meta: Meta<ParagraphProps> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Container size="fixed" style={{ padding: '2rem' }}>
+      <Container size="fixed" padding="large">
         <Story />
       </Container>
     ),
