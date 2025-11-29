@@ -2,6 +2,10 @@ import React, { useId } from 'react';
 
 import clsx from 'clsx';
 
+import { CheckboxIcon } from '../../icons/CheckboxIcon.js';
+import { SquareIcon } from '../../icons/SquareIcon.js';
+import { SquareMinusIcon } from '../../icons/SquareMinusIcon.js';
+import { SquareOffIcon } from '../../icons/SquareOffIcon.js';
 import { Box, type BoxProps } from '../Box/Box.js';
 import { Text } from '../Text/Text.js';
 import {
@@ -25,78 +29,6 @@ export type CheckboxProps = CheckboxContainerProps &
     indeterminate?: boolean;
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
   };
-
-const strokeWidth = 3;
-
-const CheckedIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={strokeWidth}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="icon icon-tabler icons-tabler-outline icon-tabler-checkbox"
-  >
-    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    <path d="M9 11l3 3l8 -8" />
-    <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
-  </svg>
-);
-
-const UncheckedIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={strokeWidth}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="icon icon-tabler icons-tabler-outline icon-tabler-square"
-  >
-    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
-  </svg>
-);
-
-const IndeterminateIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="icon icon-tabler icons-tabler-filled icon-tabler-square-minus"
-  >
-    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    <path d="M19 2a3 3 0 0 1 3 3v14a3 3 0 0 1 -3 3h-14a3 3 0 0 1 -3 -3v-14a3 3 0 0 1 3 -3zm-4 9h-6l-.117 .007a1 1 0 0 0 .117 1.993h6l.117 -.007a1 1 0 0 0 -.117 -1.993z" />
-  </svg>
-);
-
-const DisabledIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={strokeWidth}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="icon icon-tabler icons-tabler-outline icon-tabler-square-off"
-  >
-    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    <path d="M8 4h10a2 2 0 0 1 2 2v10m-.584 3.412a2 2 0 0 1 -1.416 .588h-12a2 2 0 0 1 -2 -2v-12c0 -.552 .224 -1.052 .586 -1.414" />
-    <path d="M3 3l18 18" />
-  </svg>
-);
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   label,
@@ -125,16 +57,17 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   });
 
   const renderIcon = () => {
+    const iconProps = { strokeWidth: '2' };
     if (indeterminate) {
-      return <IndeterminateIcon />;
+      return <SquareMinusIcon {...iconProps} />;
     }
     if (disabled && !checked) {
-      return <DisabledIcon />;
+      return <SquareOffIcon {...iconProps} />;
     }
     if (checked) {
-      return <CheckedIcon />;
+      return <CheckboxIcon {...iconProps} />;
     }
-    return <UncheckedIcon />;
+    return <SquareIcon {...iconProps} />;
   };
 
   return (
