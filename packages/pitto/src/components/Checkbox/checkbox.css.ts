@@ -35,6 +35,9 @@ const indicatorBase = style({
   marginRight: pitto.spacing.small,
   borderRadius: pitto.border.radius.xsmall,
 
+  backgroundColor: pitto.color.white[200].color,
+  color: pitto.color.gray[200].onColor,
+
   borderWidth: '0px',
   borderStyle: 'none',
 
@@ -55,7 +58,9 @@ export const indicatorRecipe = recipe({
         },
 
         [`${checkboxContainer}:has(:checked) &`]: {
+          backgroundColor: pitto.color.brand[500].color,
           borderColor: pitto.color.brand[500].color,
+          color: pitto.color.brand[500].onColor,
         },
       },
     },

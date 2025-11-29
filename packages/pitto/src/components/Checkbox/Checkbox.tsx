@@ -26,6 +26,8 @@ export type CheckboxProps = CheckboxContainerProps &
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
   };
 
+const strokeWidth = 3;
+
 const CheckedIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +36,7 @@ const CheckedIcon = () => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
     className="icon icon-tabler icons-tabler-outline icon-tabler-checkbox"
@@ -53,7 +55,7 @@ const UncheckedIcon = () => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
     className="icon icon-tabler icons-tabler-outline icon-tabler-square"
@@ -85,7 +87,7 @@ const DisabledIcon = () => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
     className="icon icon-tabler icons-tabler-outline icon-tabler-square-off"
@@ -96,7 +98,7 @@ const DisabledIcon = () => (
   </svg>
 );
 
-export const Checkbox = ({
+export const Checkbox: React.FC<CheckboxProps> = ({
   label,
   hasError = false,
   className,
@@ -105,7 +107,7 @@ export const Checkbox = ({
   disabled = false,
   id,
   ...props
-}: CheckboxProps): React.JSX.Element => {
+}) => {
   const inputId = id || useId();
 
   const { onChange, value, defaultValue, name, form, ...containerProps } =

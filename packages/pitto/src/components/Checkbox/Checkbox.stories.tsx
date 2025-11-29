@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Container } from '../Container/Container.js';
@@ -87,5 +89,47 @@ export const Indeterminate: Story = {
     label: 'Select all/deselect all',
     indeterminate: true,
     checked: false,
+  },
+};
+
+export const InteractiveToggle: Story = {
+  render: (args) => {
+    const { checked: initialChecked, onChange, ...restArgs } = args;
+
+    const [isChecked, setIsChecked] = useState(initialChecked || false);
+
+    const handleChange = (
+      e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLLabelElement>
+    ) => {
+      // Only handle input change events
+      if (
+        'target' in e &&
+        (e.target as HTMLInputElement).checked !== undefined
+      ) {
+        setIsChecked((e.target as HTMLInputElement).checked);
+        if (onChange) {
+          onChange(e as React.ChangeEvent<HTMLInputElement>);
+        }
+      } else {
+        if (onChange) {
+          onChange(e as React.FormEvent<HTMLLabelElement>);
+        }
+      }
+    };
+
+    return (
+      <Checkbox
+        {...restArgs}
+        label="Toggle checkbox status"
+        checked={isChecked}
+        onChange={handleChange}
+        indeterminate={false}
+      />
+    );
+  },
+  args: {
+    checked: false,
+    hasError: false,
+    disabled: false,
   },
 };
