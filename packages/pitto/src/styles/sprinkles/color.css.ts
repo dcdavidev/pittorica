@@ -2,7 +2,7 @@
 import { defineProperties } from '@vanilla-extract/sprinkles';
 
 import { pitto } from '../contract.css.js';
-import { ColorScale, ScalableColorToken } from '../contracts/color.css.js';
+import type { ColorScale, ScalableColorToken } from '../contracts/color.css.js';
 
 type FullColorKeys = keyof typeof pitto.color; // 'transparent' | 'black' | 'white' | 'gray' | ...
 type BaseKey = Exclude<keyof typeof pitto.color, 'transparent'>; // black | white | gray | ...

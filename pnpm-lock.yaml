@@ -204,46 +204,6 @@ importers:
         specifier: ^4.0.14
         version: 4.0.14(@types/node@24.10.1)(@vitest/browser-playwright@4.0.14)(@vitest/ui@4.0.14)(jiti@2.6.1)(jsdom@27.2.0)(sass@1.94.2)(terser@5.44.1)(yaml@2.8.1)
 
-  packages/picto:
-    dependencies:
-      '@fontsource/momo-trust-display':
-        specifier: ^5.2.1
-        version: 5.2.1
-      '@fontsource/momo-trust-sans':
-        specifier: ^5.2.2
-        version: 5.2.2
-      '@material/material-color-utilities':
-        specifier: ^0.3.0
-        version: 0.3.0
-      '@vanilla-extract/css':
-        specifier: ^1.17.5
-        version: 1.17.5(babel-plugin-macros@3.1.0)
-      '@vanilla-extract/recipes':
-        specifier: ^0.5.7
-        version: 0.5.7(@vanilla-extract/css@1.17.5(babel-plugin-macros@3.1.0))
-      '@vanilla-extract/sprinkles':
-        specifier: ^1.6.5
-        version: 1.6.5(@vanilla-extract/css@1.17.5(babel-plugin-macros@3.1.0))
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      motion:
-        specifier: ^12.23.24
-        version: 12.23.24(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-    devDependencies:
-      '@storybook/react':
-        specifier: 10.1.0
-        version: 10.1.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(storybook@10.1.0(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(typescript@5.9.3)
-      '@storybook/react-vite':
-        specifier: 10.1.0
-        version: 10.1.0(esbuild@0.25.12)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(rollup@4.53.3)(storybook@10.1.0(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(typescript@5.9.3)(vite@7.2.4(@types/node@24.10.1)(jiti@2.6.1)(sass@1.94.2)(terser@5.44.1)(yaml@2.8.1))(webpack@5.102.1(@swc/core@1.15.3(@swc/helpers@0.5.17))(esbuild@0.25.12))
-      '@tabler/icons-react':
-        specifier: ^3.35.0
-        version: 3.35.0(react@19.2.0)
-      '@vanilla-extract/vite-plugin':
-        specifier: ^5.1.3
-        version: 5.1.3(@types/node@24.10.1)(babel-plugin-macros@3.1.0)(jiti@2.6.1)(sass@1.94.2)(terser@5.44.1)(vite@7.2.4(@types/node@24.10.1)(jiti@2.6.1)(sass@1.94.2)(terser@5.44.1)(yaml@2.8.1))(yaml@2.8.1)
-
   packages/pitto:
     dependencies:
       '@fontsource-variable/fira-code':
@@ -1658,9 +1618,6 @@ packages:
   '@fontsource/momo-trust-display@5.2.1':
     resolution: {integrity: sha512-s2iPIYBntsjiqlFGmof3pEx8qOXAj70QXib82HfSu+l0pKwJvIEtObSrje1Qcgs+MBtaGDIUFofgfX6dIUKwkw==}
 
-  '@fontsource/momo-trust-sans@5.2.2':
-    resolution: {integrity: sha512-IY81pWr/tujgoxGGnC+EUNcQdLROV1ZPy8UeHN3zuUQZ8EXCGpWAd8R3v2SUGx3/yjOY8ERr2IZR3Tnj1sJ4cA==}
-
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
     engines: {node: '>=18.18.0'}
@@ -1735,9 +1692,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
-
-  '@material/material-color-utilities@0.3.0':
-    resolution: {integrity: sha512-ztmtTd6xwnuh2/xu+Vb01btgV8SQWYCaK56CkRK8gEkWe5TuDyBcYJ0wgkMRn+2VcE9KUmhvkz+N9GHrqw/C0g==}
 
   '@mdx-js/react@3.1.1':
     resolution: {integrity: sha512-f++rKLQgUVYDAtECQ6fn/is15GkEH9+nZPM3MS0RcxVqoTfawHvDlSCH7JbMhAM6uJ32v3eXLvLmLvjGu7PTQw==}
@@ -9798,8 +9752,6 @@ snapshots:
 
   '@fontsource/momo-trust-display@5.2.1': {}
 
-  '@fontsource/momo-trust-sans@5.2.2': {}
-
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.7':
@@ -9873,8 +9825,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
-
-  '@material/material-color-utilities@0.3.0': {}
 
   '@mdx-js/react@3.1.1(@types/react@19.2.7)(react@19.2.0)':
     dependencies:
