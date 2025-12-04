@@ -3,7 +3,17 @@ import Color from 'color';
 import { type ScalableColorToken } from '../contracts/color.css.js';
 import { PALETTE } from '../palette.js';
 
-const getContrastTextColor = (
+/**
+ * Returns the most readable text color (black or white) for a given background color.
+ * @param hexColor The background color in hex format.
+ * @param black The hex value for black, used for contrast calculation (default is PALETTE.black).
+ * @param white The hex value for white, used for contrast calculation (default is PALETTE.white).
+ * @returns The hex value of the recommended text color for optimal contrast.
+ * @example
+ * // Returns '#000000' or '#ffffff' depending on the contrast with the background
+ * getContrastTextColor('#ff0000');
+ */
+export const getContrastTextColor = (
   hexColor: string,
   black: string = PALETTE.black,
   white: string = PALETTE.white
@@ -24,7 +34,19 @@ const getContrastTextColor = (
   return contrastWithWhite > contrastWithBlack ? white : black;
 };
 
-const getScaleValue = (
+/**
+ * Generates a color scale value and its appropriate contrast text color.
+ * @param baseColorHex The base color in hex format.
+ * @param white The hex value for white, used for contrast calculation.
+ * @param black The hex value for black, used for contrast calculation.
+ * @param index The scale index (0 for base, higher for lighter/darker variants).
+ * @param isDark Whether the base color is considered dark (true) or light (false).
+ * @returns An object with the scaled color hex and the recommended onColor for text contrast.
+ * @example
+ * // Example usage:
+ * // getScaleValue('#ff0000', '#ffffff', '#000000', 100, true);
+ */
+export const getScaleValue = (
   baseColorHex: string,
   white: string,
   black: string,
@@ -49,7 +71,19 @@ const getScaleValue = (
   };
 };
 
-const createColorScale = <C extends ScalableColorToken>(
+/**
+ * Creates a color scale object for a given color token, generating lighter or darker variants and their contrast text colors.
+ * @param colorName The scalable color token name to use as the key for the scale.
+ * @param baseColorHex The base color in hex format to generate the scale from.
+ * @param white The hex value for white, used for contrast calculation.
+ * @param black The hex value for black, used for contrast calculation.
+ * @param isDark Whether the base color is considered dark (true) or light (false).
+ * @returns An object containing the color scale and recommended contrast text colors for each variant.
+ * @example
+ * // Example usage:
+ * // createColorScale('brand', '#ff0000', '#ffffff', '#000000', true);
+ */
+export const createColorScale = <C extends ScalableColorToken>(
   colorName: C,
   baseColorHex: string,
   white: string,
