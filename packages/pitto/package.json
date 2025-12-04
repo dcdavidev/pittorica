@@ -1,6 +1,6 @@
 {
   "name": "@pittorica/pitto",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": false,
   "homepage": "https://github.com/dcdavidev/pittorica/tree/main/packages/pitto#readme",
   "bugs": {
@@ -20,33 +20,33 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "@pittorica/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
+      "@pittorica/source": "./src/index.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./css": "./dist/index.css",
     "./components": {
-      "@pittorica/source": "./src/components/index.ts",
       "types": "./dist/components/index.d.ts",
+      "@pittorica/source": "./src/components/index.ts",
       "import": "./dist/components/index.js",
       "default": "./dist/components/index.js"
     },
     "./icons": {
-      "@pittorica/source": "./src/icons/index.ts",
       "types": "./dist/icons/index.d.ts",
+      "@pittorica/source": "./src/icons/index.ts",
       "import": "./dist/icons/index.js",
       "default": "./dist/icons/index.js"
     },
     "./components/*": {
-      "@pittorica/source": "./src/components/*/index.ts",
       "types": "./dist/components/*/index.d.ts",
+      "@pittorica/source": "./src/components/*/index.ts",
       "import": "./dist/components/*/index.js",
       "default": "./dist/components/*/index.js"
     },
     "./styles": {
-      "@pittorica/source": "./src/styles/index.ts",
       "types": "./dist/styles/index.d.ts",
+      "@pittorica/source": "./src/styles/index.ts",
       "import": "./dist/styles/index.js",
       "default": "./dist/styles/index.js"
     }
