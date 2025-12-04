@@ -103,7 +103,18 @@ export const createColorScale = <C extends ScalableColorToken>(
     900: getScaleValue(baseColorHex, white, black, 900, isDark),
   }) as const;
 
-const colorScaleTheme = (
+/**
+ * Creates a color scale theme object for a given color token, automatically determining if the base color is dark or light.
+ * @param colorName The scalable color token name to use as the key for the scale.
+ * @param baseColorHex The base color in hex format to generate the scale from.
+ * @param white The hex value for white, used for contrast calculation.
+ * @param black The hex value for black, used for contrast calculation.
+ * @returns An object containing the color scale and recommended contrast text colors for each variant.
+ * @example
+ * // Example usage:
+ * // createColorScaleTheme('brand', '#ff0000', '#ffffff', '#000000');
+ */
+export const createColorScaleTheme = (
   colorName: ScalableColorToken,
   baseColorHex: string,
   white: string,
@@ -116,22 +127,52 @@ const colorScaleTheme = (
 
 export const colorTheme = {
   transparent: PALETTE.transparent,
-  black: colorScaleTheme('black', PALETTE.black, PALETTE.white, PALETTE.black),
-  white: colorScaleTheme('white', PALETTE.white, PALETTE.white, PALETTE.black),
-  gray: colorScaleTheme('gray', PALETTE.gray, PALETTE.white, PALETTE.black),
-  brand: colorScaleTheme('brand', PALETTE.brand, PALETTE.white, PALETTE.black),
-  info: colorScaleTheme('info', PALETTE.info, PALETTE.white, PALETTE.black),
-  success: colorScaleTheme(
+  black: createColorScaleTheme(
+    'black',
+    PALETTE.black,
+    PALETTE.white,
+    PALETTE.black
+  ),
+  white: createColorScaleTheme(
+    'white',
+    PALETTE.white,
+    PALETTE.white,
+    PALETTE.black
+  ),
+  gray: createColorScaleTheme(
+    'gray',
+    PALETTE.gray,
+    PALETTE.white,
+    PALETTE.black
+  ),
+  brand: createColorScaleTheme(
+    'brand',
+    PALETTE.brand,
+    PALETTE.white,
+    PALETTE.black
+  ),
+  info: createColorScaleTheme(
+    'info',
+    PALETTE.info,
+    PALETTE.white,
+    PALETTE.black
+  ),
+  success: createColorScaleTheme(
     'success',
     PALETTE.success,
     PALETTE.white,
     PALETTE.black
   ),
-  warning: colorScaleTheme(
+  warning: createColorScaleTheme(
     'warning',
     PALETTE.warning,
     PALETTE.white,
     PALETTE.black
   ),
-  error: colorScaleTheme('error', PALETTE.error, PALETTE.white, PALETTE.black),
+  error: createColorScaleTheme(
+    'error',
+    PALETTE.error,
+    PALETTE.white,
+    PALETTE.black
+  ),
 };
