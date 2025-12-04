@@ -11,18 +11,33 @@ type ButtonVariants = RecipeVariants<typeof buttonRecipe>;
 
 export type ButtonProps = Omit<BoxProps, 'as' | 'children'> &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    /** The content of the button */
     children: React.ReactNode;
+    /** The visual variant of the button */
     variant?: NonNullable<ButtonVariants>['variant'];
+    /** The size of the button */
     size?: NonNullable<ButtonVariants>['size'];
+    /** Whether the button should take up the full width of its container */
     fullWidth?: NonNullable<ButtonVariants>['fullWidth'];
-    startDecorator?: React.ReactNode;
-    endDecorator?: React.ReactNode;
+    /**
+     * Element placed before the children.
+     * Can be a React Node (e.g. `<Icon />`) or a Component type (e.g. `Icon`).
+     */
+    startDecorator?: React.ReactNode | React.ElementType;
+    /**
+     * Element placed after the children.
+     * Can be a React Node (e.g. `<Icon />`) or a Component type (e.g. `Icon`).
+     */
+    endDecorator?: React.ReactNode | React.ElementType;
+    /** Whether the button is disabled */
     disabled?: NonNullable<ButtonVariants>['disabled'];
   };
 
 /**
  * Helper function to render a decorator dynamically.
  * Accepts either a React Element (<Icon />) or a Component Type (Icon).
+ * @param Decorator - The element or component to render.
+ * @returns The rendered node or null.
  */
 const renderDecorator = (Decorator: React.ReactNode | React.ElementType) => {
   if (!Decorator) return null;
@@ -38,7 +53,6 @@ const renderDecorator = (Decorator: React.ReactNode | React.ElementType) => {
     (typeof Decorator === 'object' && Decorator !== null)
   ) {
     const DecoratorComponent = Decorator as React.ElementType;
-    // You can pass default props here if needed (e.g. size/color context)
     return <DecoratorComponent />;
   }
 
@@ -63,7 +77,7 @@ export const Button: React.FC<ButtonProps> = ({
     <Box
       as="button"
       className={clsx(recipeClass, className)}
-      type="button" // Default HTML type
+      type="button"
       disabled={disabled}
       style={{
         cursor: disabled ? 'not-allowed !important' : 'pointer',
